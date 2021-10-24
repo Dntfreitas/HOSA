@@ -1,16 +1,16 @@
 import numpy as np
-#
+
 from sklearn.model_selection import train_test_split
 from sklearn.utils import class_weight
-from tensorflow_core.python.keras.utils import to_categorical
+from tensorflow.keras.utils import to_categorical
 
-from CNN import CNN
+from CNNClassification import CNNClassification
 from create_overlapping import create_overlapping
 
 
-def hosa_cnn(X, y, g_max, o_max, n_start, n_step, n_max, m_start, m_max, mul_max, epsilon):
+def hosa_cnn(X, y, g_max, o_max, n_start, n_step, n_max, m_start, m_max, mul_max, epsilon, batch_size=1000, epochs=50, patientece=5, verbose=1):
     G = np.arange(1, g_max + 1)
-    O = np.insert(np.arange(1, o_max + 1, 2), 0, 0)
+    O = np.arange(2, o_max + 1, 2)  # TODO: check when 0; should be only even?
     K = 2 ** np.arange(m_start, m_max + 1)
     N = np.arange(n_start, n_max + 1, n_step)
     MUL = np.arange(1, mul_max + 1)
@@ -40,7 +40,7 @@ def hosa_cnn(X, y, g_max, o_max, n_start, n_step, n_max, m_start, m_max, mul_max
                                     # Compute the overlapping
                                     X_new, y_new = create_overlapping(X, y, overlapping_type, o, stride=1)
                                     # Train/test split
-                                    X_train, X_test, y_train, y_test = train_test_split(X_new, y_new, test_size=0.33)  # todo:check
+                                    X_train, X_test, y_train, y_test = train_test_split(X_new, y_new, test_size=0.33)
                                     # Compute class weights
                                     class_weights = class_weight.compute_class_weight('balanced', n_classes, y_train)
                                     class_weights = {j: class_weights[j] for j in range(len(n_classes))}
@@ -55,7 +55,8 @@ def hosa_cnn(X, y, g_max, o_max, n_start, n_step, n_max, m_start, m_max, mul_max
                                     else:
                                         gof_layer_sizes.append(k_prev * mul)
                                     # Compose and fit the model
-                                    model = CNN(class_weights, n, gof_layer_sizes, batch_size=1000, epochs=20, verbose=1)
+                                    model = CNNClassification(class_weights, n, gof_layer_sizes, batch_size=batch_size, epochs=epochs, patientece=patientece, verbose=verbose)
+                                    model.prepare(X_train.shape[1])
                                     model.compile()
                                     model.fit(X_train, y_train)
                                     # Test the model
