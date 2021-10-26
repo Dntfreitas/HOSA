@@ -1,5 +1,4 @@
 import numpy as np
-
 from sklearn.model_selection import train_test_split
 from sklearn.utils import class_weight
 from tensorflow.keras.utils import to_categorical
@@ -10,7 +9,7 @@ from create_overlapping import create_overlapping
 
 def hosa_cnn(X, y, g_max, o_max, n_start, n_step, n_max, m_start, m_max, mul_max, epsilon, batch_size=1000, epochs=50, patientece=5, verbose=1):
     G = np.arange(1, g_max + 1)
-    O = np.arange(2, o_max + 1, 2)  # TODO: check when 0; should be only even?
+    O = np.insert(np.arange(1, o_max + 1, 2), 0, 0)
     K = 2 ** np.arange(m_start, m_max + 1)
     N = np.arange(n_start, n_max + 1, n_step)
     MUL = np.arange(1, mul_max + 1)

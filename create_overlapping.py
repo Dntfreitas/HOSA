@@ -7,15 +7,17 @@ def create_overlapping(X, y, overlapping_type, overlapping_epochs, stride=1, app
     if type(apply_data_standardization) != bool:
         raise ValueError('The parameter `apply_data_standardization` must be boolean.')
     # Check if the number of overlapping epochs is even
-    if overlapping_epochs % 2 != 0:
-        raise ValueError('The number of overlapping epochs should be an even.')
+    if (overlapping_epochs > 0 and overlapping_epochs % 2 == 0) or overlapping_epochs < 0:
+        raise ValueError('The number of overlapping epochs should be an odd positive number.')
     epochs, n_points = X.shape
     x_flatten = X.flatten()
     window_size = n_points * (overlapping_epochs + 1)
     # Check if has enough data points to create the overlapping
     if window_size > len(x_flatten):
         raise ValueError('Not enough to create the overlapping window.')
-    if overlapping_type == 'central':
+    if overlapping_epochs == 0:
+        annotations = y[1:]
+    elif overlapping_type == 'central':
         annotations = y[int(overlapping_epochs / 2):-int(overlapping_epochs / 2)]
     elif overlapping_type == 'left':
         annotations = y[overlapping_epochs:]
