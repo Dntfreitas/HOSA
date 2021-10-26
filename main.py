@@ -1,5 +1,6 @@
 import numpy as np
 
+from CNNClassification import CNNClassification, CNN
 from optimize_cnn import hosa_cnn
 
 g_max = 4
@@ -22,3 +23,5 @@ y = np.random.randint(0, 2, size)
 epsilon = 0.01
 
 hosa_cnn(X, y, g_max, o_max, n_start, n_step, n_max, m_start, m_max, mul_max, epsilon)
+
+CNN()

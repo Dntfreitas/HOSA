@@ -8,11 +8,13 @@ from create_overlapping import create_overlapping
 
 
 def hosa_cnn(X, y, g_max, o_max, n_start, n_step, n_max, m_start, m_max, mul_max, epsilon, batch_size=1000, epochs=50, patientece=5, verbose=1):
+    # TODO: 2-fold cross validation
+    # TODO: u-shaped
     G = np.arange(1, g_max + 1)
     O = np.insert(np.arange(1, o_max + 1, 2), 0, 0)
     K = 2 ** np.arange(m_start, m_max + 1)
     N = np.arange(n_start, n_max + 1, n_step)
-    MUL = np.arange(1, mul_max + 1)
+    MUL = np.insert(np.arange(1, mul_max + 1, dtype=float), 0, 0.5)
     overlapping_types = ['central', 'left', 'right']
     n_classes = np.unique(y)
 
@@ -36,16 +38,16 @@ def hosa_cnn(X, y, g_max, o_max, n_start, n_step, n_max, m_start, m_max, mul_max
                             # Compute the overlapping
                             X_new, y_new = create_overlapping(X, y, overlapping_type, o, stride=1)
                             # Train/test split
-                            X_train, X_test, y_train, y_test = train_test_split(X_new, y_new, test_size=0.33)
+                            X_train, X_test, y_train, y_test = train_test_split(X_new, y_new, test_size=0.5)
+                            # Compute class weights
+                            class_weights = class_weight.compute_class_weight('balanced', n_classes, y_train)
+                            class_weights = {j: class_weights[j] for j in range(len(n_classes))}
+                            # To categorical
+                            y_train = to_categorical(y_train)
+                            y_test = to_categorical(y_test)
                             for mul in MUL:
                                 k_prev = np.nan
                                 for i in range(g + 1):
-                                    # Compute class weights
-                                    class_weights = class_weight.compute_class_weight('balanced', n_classes, y_train)
-                                    class_weights = {j: class_weights[j] for j in range(len(n_classes))}
-                                    # To categorical
-                                    y_train = to_categorical(y_train)
-                                    y_test = to_categorical(y_test)
                                     # Compute the GofLayer sizes
                                     gof_layer_sizes = []
                                     if i == 0:
