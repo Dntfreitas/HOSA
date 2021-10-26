@@ -33,13 +33,13 @@ def hosa_cnn(X, y, g_max, o_max, n_start, n_step, n_max, m_start, m_max, mul_max
                 for k in K:  # Number of kernels
                     for n in N:  # Number of neurons
                         for overlapping_type in overlapping_types:
+                            # Compute the overlapping
+                            X_new, y_new = create_overlapping(X, y, overlapping_type, o, stride=1)
+                            # Train/test split
+                            X_train, X_test, y_train, y_test = train_test_split(X_new, y_new, test_size=0.33)
                             for mul in MUL:
                                 k_prev = np.nan
                                 for i in range(g + 1):
-                                    # Compute the overlapping
-                                    X_new, y_new = create_overlapping(X, y, overlapping_type, o, stride=1)
-                                    # Train/test split
-                                    X_train, X_test, y_train, y_test = train_test_split(X_new, y_new, test_size=0.33)
                                     # Compute class weights
                                     class_weights = class_weight.compute_class_weight('balanced', n_classes, y_train)
                                     class_weights = {j: class_weights[j] for j in range(len(n_classes))}
