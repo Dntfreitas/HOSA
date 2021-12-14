@@ -194,12 +194,8 @@ for ExaminedLayers in range(0, ExaminedLayersMax + 1, 1):
                             tf.keras.backend.clear_session()
                             gc.collect()
 
-
-
-
                             class_weights = class_weight.compute_class_weight('balanced', np.unique(YTrain), YTrain)
                             class_weights = {i: class_weights[i] for i in range(2)}
-
 
                             YTrain = to_categorical(YTrain)  # len(XTrain) labels with 1 label per epoch and 1 feature.
                             YTest = to_categorical(YTest)  # len(XTrain) labels with 1 label per epoch and 1 feature.

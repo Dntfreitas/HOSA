@@ -12,9 +12,9 @@ def create_overlapping(X, y, overlapping_type, overlapping_epochs, stride=1, app
     epochs, n_points = X.shape
     x_flatten = X.flatten()
     window_size = n_points * (overlapping_epochs + 1)
-    # Check if has enough data points to create the overlapping
+    # Check if it has enough data points to create the overlapping
     if window_size > len(x_flatten):
-        raise ValueError('Not enough to create the overlapping window.')
+        raise ValueError('Not enough data to create the overlapping window.')
     if overlapping_epochs == 0:
         annotations = y[1:]
     elif overlapping_type == 'central':

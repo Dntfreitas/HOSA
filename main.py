@@ -1,6 +1,6 @@
 import numpy as np
 
-from CNNClassification import CNNClassification, CNN
+from CNNClassification import CNN
 from optimize_cnn import hosa_cnn
 
 g_max = 4
