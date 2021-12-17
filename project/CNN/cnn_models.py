@@ -4,25 +4,24 @@ import numpy as np
 import tensorflow as tf
 from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.model_selection import train_test_split
-from tensorflow.python.keras.metrics import AUC, MSE
+from tensorflow.python.keras.metrics import MSE
 
-from Callbacks.EarlyStoppingAtMinLoss import EarlyStoppingAtMinLoss
-from aux import metrics_multilabel
+from Callbacks import EarlyStoppingAtMinLoss
+from aux import metrics_multiclass
 
 
 class CNN(abc.ABC):
     def __init__(self, n_neurons_first_dense_layer, gol_sizes,
-                 cnn_dim=1, kernel_size=3, pool_size=2, strides_convolution=1, strides_pooling=2, padding='valid',
+                 optimizer='adam', cnn_dim=1, kernel_size=3, pool_size=2, strides_convolution=1, strides_pooling=2, padding='valid',
                  activation_function_gol='relu', activation_function_dense='relu',
                  batch_size=1000, epochs=50, patientece=5, dropout_percentage=0.1,
                  verbose=1):
-        self.n_neurons_first_dense_layer, self.gol_sizes, self.cnn_dim, self.kernel_size, self.pool_size, self.strides_convolution, self.strides_pooling, self.padding, self.activation_function_gol, self.activation_function_dense, self.batch_size, self.epochs, self.patientece, self.dropout_percentage, self.verbose = n_neurons_first_dense_layer, gol_sizes, cnn_dim, kernel_size, pool_size, strides_convolution, strides_pooling, padding, activation_function_gol, activation_function_dense, batch_size, epochs, patientece, dropout_percentage, verbose
+        self.optimizer, self.n_neurons_first_dense_layer, self.gol_sizes, self.cnn_dim, self.kernel_size, self.pool_size, self.strides_convolution, self.strides_pooling, self.padding, self.activation_function_gol, self.activation_function_dense, self.batch_size, self.epochs, self.patientece, self.dropout_percentage, self.verbose = optimizer, n_neurons_first_dense_layer, gol_sizes, cnn_dim, kernel_size, pool_size, strides_convolution, strides_pooling, padding, activation_function_gol, activation_function_dense, batch_size, epochs, patientece, dropout_percentage, verbose
         self.model = tf.keras.models.Sequential()
-        self.n_features = None
 
-    def prepare(self, y):
-        self.n_features = y.shape[-1]
-        self.model.add(tf.keras.layers.InputLayer(input_shape=(self.n_features, 1)))
+    def prepare(self, x, y):
+        n_features = x.shape[-1]
+        self.model.add(tf.keras.layers.InputLayer(input_shape=(n_features, 1)))
         for n_output_filters in self.gol_sizes:
             self.__add_gol(n_output_filters, self.cnn_dim)
         self.model.add(tf.keras.layers.Flatten())
@@ -63,29 +62,28 @@ class CNN(abc.ABC):
 
 
 class CNNClassification(CNN):
-    def __init__(self, number_classes, class_weights,
-                 n_neurons_first_dense_layer, gol_sizes,
-                 cnn_dim=1, kernel_size=3, pool_size=2, strides_convolution=1, strides_pooling=2, padding='valid',
+    def __init__(self, number_classes, n_neurons_first_dense_layer, gol_sizes,
+                 optimizer='adam', metrics='accuracy', cnn_dim=1, kernel_size=3, pool_size=2, strides_convolution=1, strides_pooling=2, padding='valid',
                  activation_function_gol='relu', activation_function_dense='relu',
                  batch_size=1000, epochs=50, patientece=5, dropout_percentage=0.1,
                  verbose=1):
-        self.number_classes, self.class_weights, self.is_binary = number_classes, class_weights, None
-        super().__init__(n_neurons_first_dense_layer, gol_sizes, cnn_dim, kernel_size, pool_size, strides_convolution, strides_pooling, padding, activation_function_gol, activation_function_dense, batch_size, epochs, patientece, dropout_percentage, verbose)
+        self.metrics, self.number_classes, self.is_binary = metrics, number_classes, None
+        super().__init__(n_neurons_first_dense_layer, gol_sizes, optimizer, cnn_dim, kernel_size, pool_size, strides_convolution, strides_pooling, padding, activation_function_gol, activation_function_dense, batch_size, epochs, patientece, dropout_percentage, verbose)
 
-    def prepare(self, y):
-        super().prepare(y)
+    def prepare(self, x, y):
+        super().prepare(x, y)
         # Add the last layer
         self.model.add(tf.keras.layers.Dense(self.number_classes, activation='softmax'))
         return self.model
 
     def fit(self, X, y, class_weights=None, test_size=0.33):
         callback = EarlyStoppingAtMinLoss
-        super(self).ffit(X, y, callback, class_weights, test_size)
+        super().ffit(X, y, callback, class_weights, test_size)
 
     def score(self, X, y):
         X = np.expand_dims(X, axis=-1)
         y_probs, y_pred = self.predict(X)
-        auc_value, accuracy, sensitivity, specificity = metrics_multilabel(y, y_probs)
+        auc_value, accuracy, sensitivity, specificity = metrics_multiclass(y, y_probs)
         return auc_value, accuracy, sensitivity, specificity
 
     def predict(self, X):
@@ -95,23 +93,24 @@ class CNNClassification(CNN):
 
     def compile(self):
         if self.number_classes > 2:
-            self.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=[AUC()])
+            loss = 'sparse_categorical_crossentropy'
         else:
-            self.model.compile(loss='binary_crossentropy', optimizer='adam', metrics=[AUC()])
+            loss = 'binary_crossentropy'
+        self.model.compile(loss=loss, optimizer=self.optimizer, metrics=self.metrics)
 
 
 class CNNRegression(CNN):
     def __init__(self, number_outputs,
                  n_neurons_first_dense_layer, gol_sizes,
-                 cnn_dim=1, kernel_size=3, pool_size=2, strides_convolution=1, strides_pooling=2, padding='valid',
+                 optimizer='adam', cnn_dim=1, kernel_size=3, pool_size=2, strides_convolution=1, strides_pooling=2, padding='valid',
                  activation_function_gol='relu', activation_function_dense='relu',
                  batch_size=1000, epochs=50, patientece=5, dropout_percentage=0.1,
                  verbose=1):
         self.number_outputs = number_outputs
-        super().__init__(n_neurons_first_dense_layer, gol_sizes, cnn_dim, kernel_size, pool_size, strides_convolution, strides_pooling, padding, activation_function_gol, activation_function_dense, batch_size, epochs, patientece, dropout_percentage, verbose)
+        super().__init__(n_neurons_first_dense_layer, gol_sizes, optimizer, cnn_dim, kernel_size, pool_size, strides_convolution, strides_pooling, padding, activation_function_gol, activation_function_dense, batch_size, epochs, patientece, dropout_percentage, verbose)
 
-    def prepare(self, y):
-        super().prepare(y)
+    def prepare(self, x, y):
+        super().prepare(x, y)
         # Add the last layer
         self.model.add(tf.keras.layers.Dense(self.number_outputs, activation='linear'))
         return self.model
@@ -132,4 +131,4 @@ class CNNRegression(CNN):
         return mse, r2
 
     def compile(self):
-        self.model.compile(loss='mean_squared_error', optimizer='adam', metrics=[MSE()])
+        self.model.compile(loss='mean_squared_error', optimizer=self.optimizer, metrics=[MSE()])
