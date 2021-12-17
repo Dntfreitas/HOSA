@@ -6,9 +6,6 @@ from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.model_selection import train_test_split
 from tensorflow.python.keras.metrics import MSE
 
-import sys
-sys.path.insert(0, '..')
-
 from Callbacks import EarlyStoppingAtMinLoss
 from aux import metrics_multiclass
 
