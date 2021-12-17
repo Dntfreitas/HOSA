@@ -17,9 +17,9 @@ sys.path.insert(0, os.path.abspath('../..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'project'
-copyright = '2022, Mendonça et al.'
-author = 'Mendonça et al'
+project = 'HOSA'
+copyright = '2022, Mendonça et al'
+author = 'Mendonça et al.'
 
 # The full version, including alpha/beta/rc tags
 release = '0.1'
@@ -33,7 +33,8 @@ extensions = [
         "sphinx.ext.autodoc",
         "sphinx.ext.napoleon",
         "sphinx.ext.autosummary",
-        "sphinx.ext.viewcode"
+        "sphinx.ext.viewcode",
+        "sphinxcontrib.spelling"
 ]
 
 autoclass_content = "both"  # include both class docstring and __init__
@@ -78,3 +79,10 @@ html_domain_indices = True
 
 # The master toctree document.
 master_doc = 'index'
+
+# Theme configuration
+html_theme_options = {
+    'analytics_id':'G-CKGHPS9QNL',
+    'display_version': False,
+    'style_nav_header_background':'#008b00'
+}
