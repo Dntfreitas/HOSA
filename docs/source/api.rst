@@ -14,6 +14,6 @@ The main statsmodels API is split into models:
 Regression
 ~~~~~~~~~~
 
-.. automodule:: project.Callbacks
+.. automodule:: Callbacks
 
-.. automodule:: project.CNN
+.. automodule:: CNN
