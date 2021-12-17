@@ -13,7 +13,9 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath('../..'))
+sys.path.insert(0, os.path.abspath('../../project'))
+sys.path.insert(0, os.path.abspath('../../project/CNN'))
+sys.path.insert(0, os.path.abspath('../../project/Callbacks'))
 
 # -- Project information -----------------------------------------------------
 
