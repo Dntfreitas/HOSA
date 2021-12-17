@@ -33,8 +33,7 @@ extensions = [
         "sphinx.ext.autodoc",
         "sphinx.ext.napoleon",
         "sphinx.ext.autosummary",
-        "sphinx.ext.viewcode",
-        "sphinxcontrib.spelling"
+        "sphinx.ext.viewcode"
 ]
 
 autoclass_content = "both"  # include both class docstring and __init__
