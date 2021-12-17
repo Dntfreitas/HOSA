@@ -6,8 +6,8 @@ from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.model_selection import train_test_split
 from tensorflow.python.keras.metrics import MSE
 
-from Callbacks import EarlyStoppingAtMinLoss
-from aux import metrics_multiclass
+from project.Callbacks import EarlyStoppingAtMinLoss
+from project.aux import metrics_multiclass
 
 
 class CNN(abc.ABC):

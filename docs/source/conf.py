@@ -13,15 +13,13 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath('../../project'))
-sys.path.insert(0, os.path.abspath('../../project/CNN'))
-sys.path.insert(0, os.path.abspath('../../project/Callbacks'))
+sys.path.insert(0, os.path.abspath('../..'))
 
 # -- Project information -----------------------------------------------------
 
 project = 'project'
 copyright = '2022, Mendonça et al.'
-author = 'Mendonça et al.'
+author = 'Mendonça et al'
 
 # The full version, including alpha/beta/rc tags
 release = '0.1'
