@@ -33,7 +33,8 @@ extensions = [
         "sphinx.ext.autodoc",
         "sphinx.ext.napoleon",
         "sphinx.ext.autosummary",
-        "sphinx.ext.viewcode"
+        "sphinx.ext.viewcode",
+        "sphinx.ext.intersphinx"
 ]
 
 autoclass_content = "both"  # include both class docstring and __init__
@@ -43,6 +44,16 @@ autodoc_default_options = {
         "private-members":   True,
         "show-inheritance":  True,
 }
+
+intersphinx_mapping = {
+        'numpy':      ('https://numpy.org/doc/stable/', None),
+        'python':     ('https://docs.python.org/3/', None),
+        'pydagogue':  ('https://matthew-brett.github.io/pydagogue/', None),
+        'matplotlib': ('https://matplotlib.org/', None),
+        'scipy':      ('https://docs.scipy.org/doc/scipy/reference/', None),
+        'pandas':     ('https://pandas.pydata.org/pandas-docs/stable/', None),
+}
+
 autosummary_generate = True  # Make _autosummary files and include them
 napoleon_numpy_docstring = False  # Force consistency, leave only Google
 napoleon_use_rtype = False  # More legible
@@ -67,10 +78,9 @@ html_theme = 'sphinx_rtd_theme'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-
 # Custom sidebar templates, maps document names to template names.
 html_sidebars = {
-    "**": ["logo-text.html", "globaltoc.html", "localtoc.html", "searchbox.html"]
+        "**": ["logo-text.html", "globaltoc.html", "localtoc.html", "searchbox.html"]
 }
 
 # If false, no module index is generated.
@@ -81,7 +91,7 @@ master_doc = 'index'
 
 # Theme configuration
 html_theme_options = {
-    'analytics_id':'G-CKGHPS9QNL',
-    'display_version': False,
-    'style_nav_header_background':'#008b00'
+        'analytics_id':                'G-CKGHPS9QNL',
+        'display_version':             False,
+        'style_nav_header_background': '#008b00'
 }

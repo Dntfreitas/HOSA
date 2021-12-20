@@ -9,18 +9,25 @@ class EarlyStoppingAtMinLoss(tf.keras.callbacks.Callback):
         self.class_model = class_model
         self.model, self.patience = self.class_model.model, patience
         self.X_validation, self.y_validation = validation_data
-        self.best_weights = self.wait = self.stopped_epoch = self.best_metric_value = None
+        self.best_weights = self.wait = self.stopped_epoch = self.best_metric_value = self.compare_function = None
         self.rtol, self.atol = rtol, atol
         self.early_stopping = False
 
     def on_train_begin(self, logs=None):
         self.wait = 0
         self.stopped_epoch = 0
-        self.best_metric_value = -np.inf
+        if 'Regression' in str(type(self.class_model)):
+            self.best_metric_value = np.inf
+            self.compare_function = np.less
+        elif 'Classification' in str(type(self.class_model)):
+            self.best_metric_value = -np.inf
+            self.compare_function = np.greater
+        else:
+            raise ValueError('The class of the model is invalid. Only regression and classification models are currently available.')
 
     def on_epoch_end(self, epoch, logs=None):
         current_metric, *_ = self.class_model.score(self.X_validation, self.y_validation)
-        if current_metric > self.best_metric_value and not np.isclose(current_metric, self.best_metric_value, rtol=self.rtol, atol=self.atol):
+        if self.compare_function(current_metric, self.best_metric_value) and not np.isclose(current_metric, self.best_metric_value, rtol=self.rtol, atol=self.atol):
             self.best_metric_value = current_metric
             self.wait = 0
             self.best_weights = self.model.get_weights()
