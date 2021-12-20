@@ -1,18 +1,26 @@
 import numpy as np
-from sklearn.metrics import multilabel_confusion_matrix, roc_auc_score
-from sklearn.utils import compute_class_weight
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import multilabel_confusion_matrix, roc_auc_score, balanced_accuracy_score
 
 
-def metrics_multiclass(y_true, y_probs):
+def metrics_multiclass(y_true, y_probs, n_classes, inbalance_correction=False):
     y_pred = np.argmax(y_probs, axis=1)
-    confusion_matrices = multilabel_confusion_matrix(y_true, y_pred)
-    tp, fn, fp, tn = confusion_matrices[:, 0, 0], confusion_matrices[:, 0, 1], confusion_matrices[:, 1, 0], confusion_matrices[:, 1, 1]
-    class_weight = compute_class_weight(class_weight='balanced', classes=np.unique(y_true), y=y_true)
-    sensitivity = np.average(tp / (tp + fn), weights=class_weight)
-    specificity = np.average(tn / (fp + tn), weights=class_weight)
-    accuracy = np.average((tp + tn) / (tp + tn + fn + fp), weights=class_weight)
-    if len(class_weight) <= 2:
-        auc_value = roc_auc_score(y_true, y_probs[:, 1])
+    mcm = multilabel_confusion_matrix(y_true, y_pred)
+    tn, tp, fn, fp = mcm[:, 0, 0], mcm[:, 1, 1], mcm[:, 1, 0], mcm[:, 0, 1]
+    if inbalance_correction:
+        classes_weight = np.sum(mcm[:, 1, :], axis=1) / np.sum(mcm[:, 1, :])
+        sensitivity = np.average(tp / (tp + fn), weights=classes_weight)
+        specificity = np.average(tn / (fp + tn), weights=classes_weight)
+        accuracy = balanced_accuracy_score(y_true, y_pred)
     else:
-        auc_value = roc_auc_score(y_true, y_probs, average='weighted', multi_class='ovr')
+        sensitivity = np.mean(tp / (tp + fn))
+        specificity = np.mean(tn / (fp + tn))
+        accuracy = accuracy_score(y_true, y_pred)
+    if n_classes > 2:
+        if inbalance_correction:
+            auc_value = roc_auc_score(y_true, y_probs, average='weighted', multi_class='ovr')
+        else:
+            auc_value = roc_auc_score(y_true, y_probs, average='macro', multi_class='ovr')
+    else:
+        auc_value = roc_auc_score(y_true, y_probs[:, 1])
     return auc_value, accuracy, sensitivity, specificity
