@@ -41,7 +41,7 @@ autoclass_content = "both"  # include both class docstring and __init__
 autodoc_default_options = {
         "members":           True,
         "inherited-members": True,
-        "private-members":   True,
+        "private-members":   False,
         "show-inheritance":  True,
 }
 
