@@ -94,7 +94,7 @@ class BaseCNN:
         Args:
             X (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (class labels in classification, real numbers in regression).
-            callback (EarlyStoppingAtMinLoss): Early stopping callback to halt the training of the model.
+            callback (EarlyStoppingAtMinLoss): Early stopping callback for halting the model's training.
             class_weights (None or dict): Dictionary mapping class indices (integers) to a weight (float) value, used for weighting the loss function (during training only).
             test_size (float or int): Proportion of the dataset to include in the test split.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.

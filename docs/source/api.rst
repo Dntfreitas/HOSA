@@ -1,19 +1,17 @@
 API Reference
 =============
-The main statsmodels API is split into models:
 
-* ``statsmodels.api``: Cross-sectional models and methods. Canonically imported
-  using ``import statsmodels.api as sm``.
-* ``statsmodels.tsa.api``: Time-series models and methods. Canonically imported
-  using ``import statsmodels.tsa.api as tsa``.
-* ``statsmodels.formula.api``: A convenience interface for specifying models
-  using formula strings and DataFrames. This API directly exposes the ``from_formula``
-  class method of models that support the formula API. Canonically imported using
-  ``import statsmodels.formula.api as smf``
+The HOSA library is split into three modules:
+* ``CNN.cnn_models``: for implementing classification and regression models using Convolutional Neural Networks (CNN).
+* ``LSTM.lstm_models``: for implementing classification and regression models using Long Short-Term Memory (LSTM) networks.
+* ``Callbacks.EarlyStoppingAtMinLoss``: for implementing early stopping callbacks for halting the model's training.
 
-Regression
+CNN
+~~~~~~~~~~
+
+.. automodule:: project.CNN
+
+Callbacks
 ~~~~~~~~~~
 
 .. automodule:: project.Callbacks
-
-.. automodule:: project.CNN

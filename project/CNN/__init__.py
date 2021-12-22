@@ -1,7 +1,4 @@
-"""This module demonstrates basic Sphinx usage with Python modules.
-
-This is a test
-==============
+"""This module implements classification and regression models using Convolutional Neural Networks (CNN).
 
 .. autosummary::
     :toctree: _autosummary

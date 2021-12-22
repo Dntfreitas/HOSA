@@ -1,7 +1,4 @@
-"""This module demonstrates basic Sphinx usage with Python modules.
-
-This is a test
-==============
+"""This module implements early stopping callbacks for halting the model's training.
 
 .. autosummary::
     :toctree: _autosummary
