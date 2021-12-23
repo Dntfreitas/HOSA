@@ -232,7 +232,6 @@ class CNNClassification(BaseCNN):
         .. note::
             This function can be used for both binary and multiclass classification.
         """
-        X = np.expand_dims(X, axis=-1)
         y_probs, y_pred = self.predict(X)
         auc_value, accuracy, sensitivity, specificity = metrics_multiclass(y, y_probs, self.number_classes)
         return auc_value, accuracy, sensitivity, sensitivity
@@ -246,6 +245,7 @@ class CNNClassification(BaseCNN):
             X (numpy.ndarray): Input data.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``predict`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#predict>`_.
         """
+        X = np.expand_dims(X, axis=-1)
         y_probs = self.model.predict(X, **kwargs)
         y_pred_labels = np.argmax(y_probs, axis=1)
         return y_probs, y_pred_labels
@@ -352,7 +352,6 @@ class CNNRegression(BaseCNN):
             list: List containing the mean squared error (MSE) and coefficient of determination (:math:`R^2`).
 
         """
-        X = np.expand_dims(X, axis=-1)
         y_pred = self.predict(X)
         r2 = r2_score(y, y_pred)
         mse = mean_squared_error(y, y_pred)
@@ -367,6 +366,7 @@ class CNNRegression(BaseCNN):
             X (numpy.ndarray): Input data.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``predict`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#predict>`_.
         """
+        X = np.expand_dims(X, axis=-1)
         y_pred = self.model.predict(X, **kwargs)
         return y_pred
 
