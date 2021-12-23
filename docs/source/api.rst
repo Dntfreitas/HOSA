@@ -12,6 +12,11 @@ CNN
 
 .. automodule:: project.CNN
 
+LSTM
+~~~~~~~~~~
+
+.. automodule:: project.LSTM
+
 Callbacks
 ~~~~~~~~~~
 
