@@ -65,4 +65,6 @@ def test_regression():
     clf.compile()
     clf.fit(X_train, y_train)
 
+
+test_multiclass()
 test_regression()
