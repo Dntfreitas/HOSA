@@ -143,7 +143,8 @@ def run_multiclass_classification_lstm():
 
 def run_regression_lstm(is_bidirectional):
     try:
-        dataset = read_csv('../datasets/pollution.csv', header=0, index_col=0)
+        dataset = read_csv('https://raw.githubusercontent.com/jbrownlee/Datasets/master/pollution.csv', header=0, index_col=0)
+        dataset = dataset.head(750).copy()
         values = dataset.values[:, 4:]
         encoder = LabelEncoder()
         values[:, 4] = encoder.fit_transform(values[:, 4])
