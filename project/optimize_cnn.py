@@ -3,8 +3,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.utils import class_weight
 from tensorflow.keras.utils import to_categorical
 
-from project.CNN import CNNClassification
 from create_overlapping import create_overlapping
+from project.CNN import CNNClassification
 
 
 def hosa_cnn(X, y, g_max, o_max, n_start, n_step, n_max, m_start, m_max, mul_max, epsilon, batch_size=1000, epochs=50, patientece=5, verbose=1):
