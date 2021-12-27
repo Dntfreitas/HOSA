@@ -85,7 +85,7 @@ class BaseCNN:
             raise ValueError('`cnn_dim` parameter must be 1, 2 or 3.')
         self.model.add(tf.keras.layers.Dropout(self.dropout_percentage))
 
-    def aux_fit(self, X, y, callback, class_weights, test_size, **kwargs):
+    def aux_fit(self, X, y, callback, class_weights, validation_size, **kwargs):
         """
         Auxiliar function for classification and regression models compatibility.
 
@@ -97,11 +97,11 @@ class BaseCNN:
             y (numpy.ndarray): Target values (class labels in classification, real numbers in regression).
             callback (EarlyStoppingAtMinLoss): Early stopping callback for halting the model's training.
             class_weights (None or dict): Dictionary mapping class indices (integers) to a weight (float) value, used for weighting the loss function (during training only).
-            test_size (float or int): Proportion of the dataset to include in the test split.
+            validation_size (float or int): Proportion of the train dataset to include in the validation split.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
         """
 
-        X_train, X_validation, y_train, y_validation = train_test_split(X, y, test_size=test_size)
+        X_train, X_validation, y_train, y_validation = train_test_split(X, y, test_size=validation_size)
         X_train = np.expand_dims(X_train, axis=-1)
         X_validation = np.expand_dims(X_validation, axis=-1)
         callbacks = [callback(self, self.patientece, (X_validation, y_validation))]
@@ -198,7 +198,7 @@ class CNNClassification(BaseCNN):
         self.model.add(tf.keras.layers.Dense(self.number_classes, activation='softmax'))
         return self.model
 
-    def fit(self, X, y, class_weights=None, test_size=0.33, **kwargs):
+    def fit(self, X, y, class_weights=None, validation_size=0.33, **kwargs):
         """
 
         Fits the model to data matrix X and target(s) y.
@@ -207,14 +207,14 @@ class CNNClassification(BaseCNN):
             X (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (i.e., class labels).
             class_weights (dict): Dictionary mapping class indices (integers) to a weight (float) value, used for weighting the loss function (during training only).
-            test_size (float or int): Proportion of the dataset to include in the test split.
+            validation_size (float or int): Proportion of the train dataset to include in the validation split.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
 
         Returns:
             tensorflow.keras.Sequential: Returns a trained TensorFlow model.
         """
         callback = EarlyStoppingAtMinLoss
-        super().aux_fit(X, y, callback, class_weights, test_size, **kwargs)
+        super().aux_fit(X, y, callback, class_weights, validation_size, **kwargs)
         return self.model
 
     def score(self, X, y):
@@ -322,7 +322,7 @@ class CNNRegression(BaseCNN):
         self.model.add(tf.keras.layers.Dense(self.number_outputs, activation='linear'))
         return self.model
 
-    def fit(self, X, y, test_size=0.33, **kwargs):
+    def fit(self, X, y, validation_size=0.33, **kwargs):
         """
 
         Fits the model to data matrix X and target(s) y.
@@ -330,14 +330,14 @@ class CNNRegression(BaseCNN):
         Args:
             X (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (i.e., class labels).
-            test_size (float or int): Proportion of the dataset to include in the test split.
+            validation_size (float or int): Proportion of the train dataset to include in the validation split.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
 
         Returns:
             tensorflow.keras.Sequential: Returns a trained TensorFlow model.
         """
         callback = EarlyStoppingAtMinLoss
-        super().aux_fit(X, y, callback, None, test_size, **kwargs)
+        super().aux_fit(X, y, callback, None, validation_size, **kwargs)
 
     def score(self, X, y):
         """

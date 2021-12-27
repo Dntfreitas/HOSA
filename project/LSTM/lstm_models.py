@@ -53,7 +53,8 @@ class BaseLSTM:
             y (numpy.ndarray): Target values (class labels in classification, real numbers in regression).
         """
         # Input layer
-        self.model.add(tf.keras.layers.InputLayer(input_shape=(X.shape[1], X.shape[2])))
+        n_features = X.shape[-1]
+        self.model.add(tf.keras.layers.InputLayer(input_shape=(n_features, 1)))
         if self.is_bidirectional:
             self.model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(self.n_units, return_sequences=self.n_subs_layers > 0)))
         else:
@@ -69,7 +70,7 @@ class BaseLSTM:
         # Dense layer
         self.model.add(tf.keras.layers.Dense(self.n_neurons_last_dense_layer, kernel_initializer=self.kernel_initializer, activation=self.activation_function_dense))
 
-    def aux_fit(self, X, y, callback, class_weights, test_size, **kwargs):
+    def aux_fit(self, X, y, callback, class_weights, validation_size, **kwargs):
         """
         Auxiliar function for classification and regression models compatibility.
 
@@ -81,11 +82,11 @@ class BaseLSTM:
             y (numpy.ndarray): Target values (class labels in classification, real numbers in regression).
             callback (EarlyStoppingAtMinLoss): Early stopping callback for halting the model's training.
             class_weights (None or dict): Dictionary mapping class indices (integers) to a weight (float) value, used for weighting the loss function (during training only).
-            test_size (float or int): Proportion of the dataset to include in the test split.
+            validation_size (float or int): Proportion of the train dataset to include in the validation split.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
         """
 
-        X_train, X_validation, y_train, y_validation = train_test_split(X, y, test_size=test_size)
+        X_train, X_validation, y_train, y_validation = train_test_split(X, y, test_size=validation_size)
         X_train = np.expand_dims(X_train, axis=-1)
         X_validation = np.expand_dims(X_validation, axis=-1)
         callbacks = [callback(self, self.patientece, (X_validation, y_validation))]
@@ -173,7 +174,7 @@ class LSTMClassification(BaseLSTM):
         self.model.add(tf.keras.layers.Dense(self.number_classes, activation='softmax'))
         return self.model
 
-    def fit(self, X, y, class_weights=None, test_size=0.33, **kwargs):
+    def fit(self, X, y, class_weights=None, validation_size=0.33, **kwargs):
         """
 
         Fits the model to data matrix X and target(s) y.
@@ -182,14 +183,14 @@ class LSTMClassification(BaseLSTM):
             X (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (i.e., class labels).
             class_weights (dict): Dictionary mapping class indices (integers) to a weight (float) value, used for weighting the loss function (during training only).
-            test_size (float or int): Proportion of the dataset to include in the test split.
+            validation_size (float or int): Proportion of the train dataset to include in the validation split.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
 
         Returns:
             tensorflow.keras.Sequential: Returns a trained TensorFlow model.
         """
         callback = EarlyStoppingAtMinLoss
-        super().aux_fit(X, y, callback, class_weights, test_size, **kwargs)
+        super().aux_fit(X, y, callback, class_weights, validation_size, **kwargs)
         return self.model
 
     def score(self, X, y):
@@ -207,7 +208,6 @@ class LSTMClassification(BaseLSTM):
         .. note::
             This function can be used for both binary and multiclass classification.
         """
-        X = np.expand_dims(X, axis=-1)  # TODO: check
         y_probs, y_pred = self.predict(X)
         auc_value, accuracy, sensitivity, specificity = metrics_multiclass(y, y_probs, self.number_classes)
         return auc_value, accuracy, sensitivity, sensitivity
@@ -221,6 +221,7 @@ class LSTMClassification(BaseLSTM):
             X (numpy.ndarray): Input data.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``predict`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#predict>`_.
         """
+        # TODO: check why we don't need  `X = np.expand_dims(X, axis=-1)`
         y_probs = self.model.predict(X, **kwargs)
         y_pred_labels = np.argmax(y_probs, axis=1)
         return y_probs, y_pred_labels
@@ -267,7 +268,7 @@ class LSTMRegression(BaseLSTM):
         """
         if metrics is None:
             metrics = ['mean_squared_error']
-        self.metrics, self.number_outputs = number_outputs, metrics
+        self.number_outputs, self.metrics = number_outputs, metrics
         super().__init__(is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, verbose)
 
     def prepare(self, X, y):
@@ -287,7 +288,7 @@ class LSTMRegression(BaseLSTM):
         self.model.add(tf.keras.layers.Dense(self.number_outputs, activation='linear'))
         return self.model
 
-    def fit(self, X, y, test_size=0.33, **kwargs):
+    def fit(self, X, y, validation_size=0.33, **kwargs):
         """
 
         Fits the model to data matrix X and target(s) y.
@@ -295,14 +296,14 @@ class LSTMRegression(BaseLSTM):
         Args:
             X (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (i.e., class labels).
-            test_size (float or int): Proportion of the dataset to include in the test split.
+            validation_size (float or int): Proportion of the train dataset to include in the validation split.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
 
         Returns:
             tensorflow.keras.Sequential: Returns a trained TensorFlow model.
         """
         callback = EarlyStoppingAtMinLoss
-        super().aux_fit(X, y, callback, None, test_size, **kwargs)
+        super().aux_fit(X, y, callback, None, validation_size, **kwargs)
 
     def score(self, X, y):
         """
@@ -317,7 +318,6 @@ class LSTMRegression(BaseLSTM):
             list: List containing the mean squared error (MSE) and coefficient of determination (:math:`R^2`).
 
         """
-        X = np.expand_dims(X, axis=-1)
         y_pred = self.predict(X)
         r2 = r2_score(y, y_pred)
         mse = mean_squared_error(y, y_pred)
