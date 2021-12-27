@@ -17,7 +17,7 @@ class BaseCNN:
 
         """Base class for Convolutional Neural Network (CNN) models for classification and regression.
 
-        Each CNN model comprises an input layer, a set of GofLayers (where each group is composed of one convolution layer, which was followed by one pooling layer, and a dropout layer), a flatten layer, a dense layer, and an output layer.
+        Each CNN model comprises an input layer, a set of GofLayers (where each group is composed of one convolution layer, which was followed by one pooling layer, and a dropout layer), a dense layer, and an output layer.
 
         .. warning::
             This class should not be used directly. Use derived classes instead, i.e., :class:`.CNNClassification` or :class:`.CNNRegression`.
@@ -56,8 +56,15 @@ class BaseCNN:
             X (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (class labels in classification, real numbers in regression).
         """
-        n_features = X.shape[-1]
-        self.model.add(tf.keras.layers.InputLayer(input_shape=(n_features, 1)))
+        if self.cnn_dim == 1:
+            input_shape = (X.shape[-1], 1)
+        elif self.cnn_dim == 2:
+            input_shape = (X.shape[-2], X.shape[-1], 1)
+        elif self.cnn_dim == 3:
+            input_shape = (X.shape[-3], X.shape[-2], X.shape[-1], 1)
+        else:
+            raise ValueError('`cnn_dim` parameter must be 1, 2 or 3.')
+        self.model.add(tf.keras.layers.InputLayer(input_shape=input_shape))
         for n_output_filters in self.gol_sizes:
             self.__add_gol(n_output_filters, self.cnn_dim)
         self.model.add(tf.keras.layers.Flatten())
@@ -85,7 +92,7 @@ class BaseCNN:
             raise ValueError('`cnn_dim` parameter must be 1, 2 or 3.')
         self.model.add(tf.keras.layers.Dropout(self.dropout_percentage))
 
-    def aux_fit(self, X, y, callback, class_weights, validation_size, **kwargs):
+    def aux_fit(self, X, y, callback, validation_size, rtol=1e-03, atol=1e-04, class_weights=None, inbalance_correction=None, **kwargs):
         """
         Auxiliar function for classification and regression models compatibility.
 
@@ -96,16 +103,32 @@ class BaseCNN:
             X (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (class labels in classification, real numbers in regression).
             callback (EarlyStoppingAtMinLoss): Early stopping callback for halting the model's training.
-            class_weights (None or dict): Dictionary mapping class indices (integers) to a weight (float) value, used for weighting the loss function (during training only).
             validation_size (float or int): Proportion of the train dataset to include in the validation split.
+            atol (float): Absolute tolerance used for early stopping based on the performance metric.
+            rtol (float): Relative tolerance used for early stopping based on the performance metric.
+            class_weights (None or dict): Dictionary mapping class indices (integers) to a weight (float) value, used for weighting the loss function (during training only). **Only used for classification problems.**
+            inbalance_correction (None or bool): Whether to apply correction to class imbalances. **Only used for classification problems.**
             **kwargs: Extra arguments that are used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
         """
 
         X_train, X_validation, y_train, y_validation = train_test_split(X, y, test_size=validation_size)
         X_train = np.expand_dims(X_train, axis=-1)
         X_validation = np.expand_dims(X_validation, axis=-1)
-        callbacks = [callback(self, self.patientece, (X_validation, y_validation))]
+        callbacks = [callback(self, self.patientece, (X_validation, y_validation), inbalance_correction, rtol, atol)]
         self.model.fit(X_train, y_train, batch_size=self.batch_size, epochs=self.epochs, validation_data=(X_validation, y_validation), callbacks=callbacks, class_weight=class_weights, verbose=self.verbose, **kwargs)
+
+    @abc.abstractmethod
+    def fit(self, X, y, **kwargs):
+        """
+
+        Fits the model to data matrix X and target(s) y.
+
+        Args:
+            X (numpy.ndarray): Input data.
+            y (numpy.ndarray): Target values (class labels in classification, real numbers in regression).
+            **kwargs: Extra arguments that are explicitly used for regression or classification models.
+        """
+        raise NotImplemented
 
     @abc.abstractmethod
     def compile(self, **kwargs):
@@ -119,7 +142,7 @@ class BaseCNN:
         raise NotImplemented
 
     @abc.abstractmethod
-    def score(self, X, y):
+    def score(self, X, y, **kwargs):
         """
 
         Computes the performance metric(s) (e.g., accuracy) on the given input data and target values.
@@ -127,6 +150,7 @@ class BaseCNN:
         Args:
             X (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (class labels in classification, real numbers in regression).
+            **kwargs: Extra arguments that are explicitly used for regression or classification models.
         """
         raise NotImplemented
 
@@ -151,7 +175,7 @@ class CNNClassification(BaseCNN):
                  verbose=1):
         """Convolutional Neural Network (CNN) classifier.
 
-        The model comprises an input layer, a set of GofLayers (where each group is composed of one convolution layer, which was followed by one pooling layer, and a dropout layer), a flatten layer, a dense layer, and an output layer.
+        The model comprises an input layer, a set of GofLayers (where each group is composed of one convolution layer, which was followed by one pooling layer, and a dropout layer), a dense layer, and an output layer.
 
         Args:
             number_classes (int): Number of classes (or labels) of the classification problem.
@@ -198,7 +222,7 @@ class CNNClassification(BaseCNN):
         self.model.add(tf.keras.layers.Dense(self.number_classes, activation='softmax'))
         return self.model
 
-    def fit(self, X, y, class_weights=None, validation_size=0.33, **kwargs):
+    def fit(self, X, y, validation_size=0.33, rtol=1e-03, atol=1e-04, class_weights=None, inbalance_correction=False, **kwargs):
         """
 
         Fits the model to data matrix X and target(s) y.
@@ -206,25 +230,29 @@ class CNNClassification(BaseCNN):
         Args:
             X (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (i.e., class labels).
-            class_weights (dict): Dictionary mapping class indices (integers) to a weight (float) value, used for weighting the loss function (during training only).
             validation_size (float or int): Proportion of the train dataset to include in the validation split.
+            atol (float): Absolute tolerance used for early stopping based on the performance metric.
+            rtol (float): Relative tolerance used for early stopping based on the performance metric.
+            class_weights (None or dict): Dictionary mapping class indices (integers) to a weight (float) value, used for weighting the loss function (during training only).
+            inbalance_correction (bool): Whether to apply correction to class imbalances.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
 
         Returns:
             tensorflow.keras.Sequential: Returns a trained TensorFlow model.
         """
         callback = EarlyStoppingAtMinLoss
-        super().aux_fit(X, y, callback, class_weights, validation_size, **kwargs)
+        super().aux_fit(X, y, callback, validation_size, rtol, atol, class_weights, inbalance_correction, **kwargs)
         return self.model
 
-    def score(self, X, y):
+    def score(self, X, y, inbalance_correction=False):
         """
 
         Computes the performance metrics on the given input data and target values.
 
         Args:
-            X: Input data.
-            y: Target values (i.e., class labels).
+            X (numpy.ndarray): Input data.
+            y (numpy.ndarray): Target values (i.e., class labels).
+            inbalance_correction (bool): Whether to apply correction to class imbalances.
 
         Returns:
             list: List containing the area under the ROC curve (AUC), accuracy, sensitivity and sensitivity.
@@ -233,7 +261,7 @@ class CNNClassification(BaseCNN):
             This function can be used for both binary and multiclass classification.
         """
         y_probs, y_pred = self.predict(X)
-        auc_value, accuracy, sensitivity, specificity = metrics_multiclass(y, y_probs, self.number_classes)
+        auc_value, accuracy, sensitivity, specificity = metrics_multiclass(y, y_probs, self.number_classes, inbalance_correction=inbalance_correction)
         return auc_value, accuracy, sensitivity, sensitivity
 
     def predict(self, X, **kwargs):
@@ -274,7 +302,7 @@ class CNNRegression(BaseCNN):
                  verbose=1):
         """Convolutional Neural Network (CNN) regressor.
 
-        The model comprises an input layer, a set of GofLayers (where each group is composed of one convolution layer, which was followed by one pooling layer, and a dropout layer), a flatten layer, a dense layer, and an output layer.
+        The model comprises an input layer, a set of GofLayers (where each group is composed of one convolution layer, which was followed by one pooling layer, and a dropout layer), a dense layer, and an output layer.
 
         Args:
             number_outputs (int): Dimension of the target output vector.
@@ -322,7 +350,7 @@ class CNNRegression(BaseCNN):
         self.model.add(tf.keras.layers.Dense(self.number_outputs, activation='linear'))
         return self.model
 
-    def fit(self, X, y, validation_size=0.33, **kwargs):
+    def fit(self, X, y, validation_size=0.33, rtol=1e-03, atol=1e-04, **kwargs):
         """
 
         Fits the model to data matrix X and target(s) y.
@@ -331,22 +359,25 @@ class CNNRegression(BaseCNN):
             X (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (i.e., class labels).
             validation_size (float or int): Proportion of the train dataset to include in the validation split.
+            atol (float): Absolute tolerance used for early stopping based on the performance metric.
+            rtol (float): Relative tolerance used for early stopping based on the performance metric.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
 
         Returns:
             tensorflow.keras.Sequential: Returns a trained TensorFlow model.
         """
         callback = EarlyStoppingAtMinLoss
-        super().aux_fit(X, y, callback, None, validation_size, **kwargs)
+        super().aux_fit(X, y, callback, validation_size, rtol, atol, class_weights=None, inbalance_correction=None, **kwargs)
 
-    def score(self, X, y):
+    def score(self, X, y, **kwargs):
         """
 
         Computes the performance metrics on the given input data and target values.
 
         Args:
-            X: Input data.
-            y: Target values (i.e., class labels).
+            X (numpy.ndarray): Input data.
+            y (numpy.ndarray): Target values (i.e., class labels).
+            **kwargs: *Ignored*. Only included here for compatibility with :class:`.CNNClassification`.
 
         Returns:
             list: List containing the mean squared error (MSE) and coefficient of determination (:math:`R^2`).

@@ -1,9 +1,9 @@
 import numpy as np
+from create_overlapping import create_overlapping
 from sklearn.model_selection import train_test_split
 from sklearn.utils import class_weight
 from tensorflow.keras.utils import to_categorical
 
-from create_overlapping import create_overlapping
 from project.CNN import CNNClassification
 
 

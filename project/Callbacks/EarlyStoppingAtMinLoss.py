@@ -4,10 +4,10 @@ import tensorflow as tf
 
 class EarlyStoppingAtMinLoss(tf.keras.callbacks.Callback):
 
-    def __init__(self, class_model, patience, validation_data, rtol=1e-03, atol=1e-04):
+    def __init__(self, class_model, patience, validation_data, inbalance_correction=False, rtol=1e-03, atol=1e-04):
         super().__init__()
         self.class_model = class_model
-        self.model, self.patience = self.class_model.model, patience
+        self.model, self.patience, self.inbalance_correction = self.class_model.model, patience, inbalance_correction
         self.X_validation, self.y_validation = validation_data
         self.best_weights = self.wait = self.stopped_epoch = self.best_metric_value = self.compare_function = None
         self.rtol, self.atol = rtol, atol
@@ -26,7 +26,7 @@ class EarlyStoppingAtMinLoss(tf.keras.callbacks.Callback):
             raise ValueError('The class of the model is invalid. Only regression and classification models are currently available.')
 
     def on_epoch_end(self, epoch, logs=None):
-        current_metric, *_ = self.class_model.score(self.X_validation, self.y_validation)
+        current_metric, *_ = self.class_model.score(self.X_validation, self.y_validation, inbalance_correction=self.inbalance_correction)
         if self.compare_function(current_metric, self.best_metric_value) and not np.isclose(current_metric, self.best_metric_value, rtol=self.rtol, atol=self.atol):
             self.best_metric_value = current_metric
             self.wait = 0

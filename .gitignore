@@ -131,3 +131,4 @@ dmypy.json
 
 docs/build/
 _trial_temp
+.coverage
