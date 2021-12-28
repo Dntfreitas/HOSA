@@ -9,24 +9,25 @@ from project.Callbacks import EarlyStoppingAtMinLoss
 from project.aux import metrics_multiclass
 
 
-class BaseLSTM:
+class BaseRNN:
     def __init__(self, is_bidirectional, n_units, n_subs_layers,
-                 n_neurons_last_dense_layer, optimizer='adam', dropout_percentage=0.1,
+                 n_neurons_last_dense_layer, model_type='lstm', optimizer='adam', dropout_percentage=0.1,
                  activation_function_dense='relu', kernel_initializer='normal',
                  batch_size=1000, epochs=50, patientece=5, verbose=1):
 
-        """Base class for Long Short-Term Memory (LSTM) models for classification and regression.
+        """Base class for Recurrent Neural Network (RNN) models for classification and regression.
 
-        Each LSTM model comprises an input layer (an LSTM or a bidirectional LSTM cell), ``n_subs_layers`` subsequent layers (similar to the input cell), a dropout layer, a dense layer, and an output layer.
+        Each RNN model comprises an input layer (an RNN or a bidirectional RNN cell), ``n_subs_layers`` subsequent layers (similar to the input cell), a dropout layer, a dense layer, and an output layer.
 
         .. warning::
-            This class should not be used directly. Use derived classes instead, i.e., :class:`.LSTMClassification` or :class:`.LSTMRegression`.
+            This class should not be used directly. Use derived classes instead, i.e., :class:`.RNNClassification` or :class:`.RNNRegression`.
 
         Args:
-            is_bidirectional (bool): If ``true``, then bidirectional layers will be used to build the LSTM model.
+            is_bidirectional (bool): If ``true``, then bidirectional layers will be used to build the RNN model.
             n_units (int): Dimensionality of the output space, i.e., the dimensionality of the hidden state.
             n_subs_layers (int): Number of subsequent layers beteween the input and output layers.
             n_neurons_last_dense_layer (int): Number of neurons units of the penultimate dense layer (i.e., before the output layer).
+            model_type(str): Type of RNN model to be used. Available options are ``lstm``, for a Long Short-Term Memory model, or ``gru``, for a Gated Recurrent Unit model.
             optimizer (str): Name of optimizer. See `tensorflow.keras.optimizers <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers>`_.
             dropout_percentage (float): Fraction of the input units to drop.
             activation_function_dense (str): Activation function to use on the last dense layer. If not specified, no activation is applied (i.e., applies the liear activation function). See `tensorflow.keras.activations <https://www.tensorflow.org/api_docs/python/tf/keras/activations>`_.
@@ -40,7 +41,7 @@ class BaseLSTM:
             The parameters used in this library were adapted from the same parameters of the TensorFlow library. Descriptions were thus modified accordingly to our approach.  However, refer to the TensorFlow documentation for more details about each of those parameters.
 
         """
-        self.is_bidirectional, self.n_units, self.n_subs_layers, self.n_neurons_last_dense_layer, self.optimizer, self.dropout_percentage, self.activation_function_dense, self.kernel_initializer, self.batch_size, self.epochs, self.patientece, self.verbose = is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, verbose
+        self.is_bidirectional, self.n_units, self.n_subs_layers, self.n_neurons_last_dense_layer, self.model_type, self.optimizer, self.dropout_percentage, self.activation_function_dense, self.kernel_initializer, self.batch_size, self.epochs, self.patientece, self.verbose = is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, verbose
         self.model = tf.keras.models.Sequential()
 
     def prepare(self, X, y):
@@ -52,19 +53,26 @@ class BaseLSTM:
             X (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (class labels in classification, real numbers in regression).
         """
+        # Choose type of layer based on the model choosen by the user
+        if self.model_type == 'lstm':
+            layer_type = tf.keras.layers.LSTM
+        elif self.model_type == 'gru':
+            layer_type = tf.keras.layers.GRU
+        else:
+            raise ValueError('Type of RNN model invalid. Available options are ``lstm``, for a Long Short-Term Memory model, or ``gru``, for a Gated Recurrent Unit model.')
         # Input layer
         n_features = X.shape[-1]
         self.model.add(tf.keras.layers.InputLayer(input_shape=(n_features, 1)))
         if self.is_bidirectional:
-            self.model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(self.n_units, return_sequences=self.n_subs_layers > 0)))
+            self.model.add(tf.keras.layers.Bidirectional(layer_type(self.n_units, return_sequences=self.n_subs_layers > 0)))
         else:
-            self.model.add(tf.keras.layers.LSTM(self.n_units, return_sequences=self.n_subs_layers > 0))
+            self.model.add(layer_type(self.n_units, return_sequences=self.n_subs_layers > 0))
         # Subsequent layers
         for n in range(self.n_subs_layers):
             if self.is_bidirectional:
-                self.model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(self.n_units, return_sequences=n < self.n_subs_layers - 1)))
+                self.model.add(tf.keras.layers.Bidirectional(layer_type(self.n_units, return_sequences=n < self.n_subs_layers - 1)))
             else:
-                self.model.add(tf.keras.layers.LSTM(self.n_units, return_sequences=n < self.n_subs_layers - 1))
+                self.model.add(layer_type(self.n_units, return_sequences=n < self.n_subs_layers - 1))
         # Dropout layer
         self.model.add(tf.keras.layers.Dropout(self.dropout_percentage))
         # Dense layer
@@ -145,21 +153,22 @@ class BaseLSTM:
         raise NotImplemented
 
 
-class LSTMClassification(BaseLSTM):
-    def __init__(self, number_classes, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer,
+class RNNClassification(BaseRNN):
+    def __init__(self, number_classes, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type='lstm',
                  optimizer='adam', dropout_percentage=0.1, metrics=None, activation_function_dense='relu', kernel_initializer='normal',
                  batch_size=1000, epochs=50, patientece=5,
                  verbose=1):
-        """Long Short-Term Memory (LSTM) model classifier.
+        """Recurrent Neural Network (RNN) model classifier.
 
-        The model comprises an input layer (an LSTM or a bidirectional LSTM cell), ``n_subs_layers`` subsequent layers (similar to the input cell), a dropout layer, a dense layer, and an output layer.
+        The model comprises an input layer (an RNN or a bidirectional RNN cell), ``n_subs_layers`` subsequent layers (similar to the input cell), a dropout layer, a dense layer, and an output layer.
 
         Args:
             number_classes (int): Number of classes (or labels) of the classification problem.
-            is_bidirectional (bool): If ``true``, then bidirectional layers will be used to build the LSTM model.
+            is_bidirectional (bool): If ``true``, then bidirectional layers will be used to build the RNN model.
             n_units (int): Dimensionality of the output space, i.e., the dimensionality of the hidden state.
             n_subs_layers (int): Number of subsequent layers beteween the input and output layers.
             n_neurons_last_dense_layer (int): Number of neurons units of the penultimate dense layer (i.e., before the output layer).
+            model_type(str): Type of RNN model to be used. Available options are ``lstm``, for a Long Short-Term Memory model, or ``gru``, for a Gated Recurrent Unit model.
             optimizer (str): Name of optimizer. See `tensorflow.keras.optimizers <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers>`_.
             dropout_percentage (float): Fraction of the input units to drop.
             metrics (list): List of metrics to be evaluated by the model during training and testing. Each item of the list can be a string (name of a built-in function), function or a `tf.keras.metrics.Metric <https://www.tensorflow.org/api_docs/python/tf/keras/metrics/Metric>`_ instance. By default, ``metrics=['accuracy']``.
@@ -173,7 +182,7 @@ class LSTMClassification(BaseLSTM):
         if metrics is None:
             metrics = ['accuracy']
         self.metrics, self.number_classes, self.is_binary = metrics, number_classes, None
-        super().__init__(is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, verbose)
+        super().__init__(is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, verbose)
 
     def prepare(self, X, y):
         """
@@ -263,21 +272,22 @@ class LSTMClassification(BaseLSTM):
         return self.model
 
 
-class LSTMRegression(BaseLSTM):
-    def __init__(self, number_outputs, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer,
+class RNNRegression(BaseRNN):
+    def __init__(self, number_outputs, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type='lstm',
                  optimizer='adam', dropout_percentage=0.1, metrics=None, activation_function_dense='relu', kernel_initializer='normal',
                  batch_size=1000, epochs=50, patientece=5,
                  verbose=1):
-        """Long Short-Term Memory (LSTM) model regressor.
+        """Recurrent Neural Network (RNN) model regressor.
 
-        The model comprises an input layer (an LSTM or a bidirectional LSTM cell), ``n_subs_layers`` subsequent layers (similar to the input cell), a dropout layer, a dense layer, and an output layer.
+        The model comprises an input layer (an RNN or a bidirectional RNN cell), ``n_subs_layers`` subsequent layers (similar to the input cell), a dropout layer, a dense layer, and an output layer.
 
         Args:
             number_outputs (int): Dimension of the target output vector.
-            is_bidirectional (bool): If ``true``, then bidirectional layers will be used to build the LSTM model.
+            is_bidirectional (bool): If ``true``, then bidirectional layers will be used to build the RNN model.
             n_units (int): Dimensionality of the output space, i.e., the dimensionality of the hidden state.
             n_subs_layers (int): Number of subsequent layers beteween the input and output layers.
             n_neurons_last_dense_layer (int): Number of neurons units of the penultimate dense layer (i.e., before the output layer).
+            model_type(str): Type of RNN model to be used. Available options are ``lstm``, for a Long Short-Term Memory model, or ``gru``, for a Gated Recurrent Unit model.
             optimizer (str): Name of optimizer. See `tensorflow.keras.optimizers <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers>`_.
             dropout_percentage (float): Fraction of the input units to drop.
             metrics (list): List of metrics to be evaluated by the model during training and testing. Each item of the list can be a string (name of a built-in function), function or a `tf.keras.metrics.Metric <https://www.tensorflow.org/api_docs/python/tf/keras/metrics/Metric>`_ instance. By default, ``metrics = ['mean_squared_error']``.
@@ -291,7 +301,7 @@ class LSTMRegression(BaseLSTM):
         if metrics is None:
             metrics = ['mean_squared_error']
         self.number_outputs, self.metrics = number_outputs, metrics
-        super().__init__(is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, verbose)
+        super().__init__(is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, verbose)
 
     def prepare(self, X, y):
         """

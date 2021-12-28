@@ -40,32 +40,32 @@ def metrics_multiclass(y_true, y_probs, n_classes, inbalance_correction=False):
     return auc_value, accuracy, sensitivity, specificity
 
 
-def create_overlapping(X, y, overlapping_type, overlapping_epochs, stride=1, apply_data_standardization=True):
-    # Check if the parameter `apply_data_standardization` is boolean
-    if type(apply_data_standardization) != bool:
-        raise ValueError('The parameter `apply_data_standardization` must be boolean.')
-    # Check if the number of overlapping epochs is even
-    if (overlapping_epochs > 0 and overlapping_epochs % 2 == 0) or overlapping_epochs < 0:
-        raise ValueError('The number of overlapping epochs should be an odd positive number.')
+def create_overlapping(X, y, overlapping_type, overlapping_epochs, stride=1, data_standardization_strategy='after'):
+    if data_standardization_strategy == 'before':
+        X = StandardScaler().fit_transform(X)
+    if overlapping_epochs < 0:
+        raise ValueError('The number of overlapping epochs should be zero or a positive number.')
     epochs, n_points = X.shape
-    x_flatten = X.flatten()
-    window_size = n_points * (overlapping_epochs + 1)
-    # Check if it has enough data points to create the overlapping
-    if window_size > len(x_flatten):
-        raise ValueError('Not enough data to create the overlapping window.')
     if overlapping_epochs == 0:
-        annotations = y[1:]
+        window_size = n_points
+        annotations = y[::stride]
     elif overlapping_type == 'central':
-        annotations = y[int(overlapping_epochs / 2):-int(overlapping_epochs / 2)]
+        window_size = n_points * (2 * overlapping_epochs + 1)
+        annotations = y[overlapping_epochs:-overlapping_epochs:stride]
     elif overlapping_type == 'left':
-        annotations = y[overlapping_epochs:]
+        window_size = n_points * (overlapping_epochs + 1)
+        annotations = y[overlapping_epochs::stride]
     elif overlapping_type == 'right':
-        annotations = y[:-overlapping_epochs]
+        window_size = n_points * (overlapping_epochs + 1)
+        annotations = y[:-overlapping_epochs:stride]
     else:
         raise ValueError(f'`{overlapping_type}` is not a valid type. The available types are: `central`, `left` and `right`.')
+    x_flatten = X.flatten()
+    if window_size > len(x_flatten):
+        raise ValueError('Not enough data to create the overlapping window.')
     idx = np.arange(len(x_flatten))
     idx_win = sliding_window(idx, window_size)[::n_points * stride]
     X_windowed = x_flatten[idx_win]
-    if apply_data_standardization:
-        X_windowed = StandardScaler().fit_transform(X_windowed)
+    if data_standardization_strategy == 'after':
+        X_windowed = (X_windowed - np.mean(X_windowed, axis=1)[:, None]) / np.std(X_windowed, axis=1)[:, None]
     return X_windowed, annotations

@@ -9,7 +9,7 @@ from project.CNN import CNNClassification
 
 def hosa_cnn(X, y, g_max, o_max, n_start, n_step, n_max, m_start, m_max, mul_max, epsilon, batch_size=1000, epochs=50, patientece=5, verbose=1):
     # TODO: 2-fold cross validation
-    # TODO: u-shaped
+    # TODO: u-shaped <>
     G = np.arange(1, g_max + 1)
     O = np.insert(np.arange(1, o_max + 1, 2), 0, 0)
     K = 2 ** np.arange(m_start, m_max + 1)
