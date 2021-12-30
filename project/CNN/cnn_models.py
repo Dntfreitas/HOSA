@@ -1,4 +1,5 @@
 import abc
+import pickle
 
 import numpy as np
 import tensorflow as tf
@@ -11,7 +12,7 @@ from project.aux import metrics_multiclass
 
 class BaseCNN:
     def __init__(self, n_neurons_first_dense_layer, gol_sizes,
-                 optimizer='adam', cnn_dim=1, kernel_size=3, pool_size=2, strides_convolution=1, strides_pooling=2, dropout_percentage=0.1, padding='valid',
+                 optimizer='adam', cnn_dim=1, kernel_size=2, pool_size=2, strides_convolution=1, strides_pooling=2, dropout_percentage=0.1, padding='valid',
                  activation_function_gol='relu', activation_function_dense='relu',
                  batch_size=1000, epochs=50, patientece=5, verbose=1):
 
@@ -117,6 +118,10 @@ class BaseCNN:
         callbacks = [callback(self, self.patientece, (X_validation, y_validation), inbalance_correction, rtol, atol)]
         self.model.fit(X_train, y_train, batch_size=self.batch_size, epochs=self.epochs, validation_data=(X_validation, y_validation), callbacks=callbacks, class_weight=class_weights, verbose=self.verbose, **kwargs)
 
+    def to_pickle(self, path):
+        file_handler = open(path, 'w')
+        pickle.dump(self, file_handler)
+
     @abc.abstractmethod
     def fit(self, X, y, **kwargs):
         """
@@ -169,7 +174,7 @@ class BaseCNN:
 
 class CNNClassification(BaseCNN):
     def __init__(self, number_classes, n_neurons_first_dense_layer, gol_sizes,
-                 optimizer='adam', metrics=None, cnn_dim=1, kernel_size=3, pool_size=2, strides_convolution=1, strides_pooling=2, dropout_percentage=0.1, padding='valid',
+                 optimizer='adam', metrics=None, cnn_dim=1, kernel_size=2, pool_size=2, strides_convolution=1, strides_pooling=2, dropout_percentage=0.1, padding='valid',
                  activation_function_gol='relu', activation_function_dense='relu',
                  batch_size=1000, epochs=50, patientece=5,
                  verbose=1):
@@ -222,6 +227,9 @@ class CNNClassification(BaseCNN):
         self.model.add(tf.keras.layers.Dense(self.number_classes, activation='softmax'))
         return self.model
 
+    def __repr__(self):
+        return f'CNNClassification(number_classes={self.number_classes}, n_neurons_first_dense_layer={self.n_neurons_first_dense_layer}, gol_sizes={self.gol_sizes}, optimizer="{self.optimizer}", metrics={self.metrics}, cnn_dim={self.cnn_dim}, kernel_size={self.kernel_size}, pool_size={self.pool_size}, strides_convolution={self.strides_convolution}, strides_pooling={self.strides_pooling}, dropout_percentage={self.dropout_percentage}, padding="{self.padding}", activation_function_gol="{self.activation_function_gol}", activation_function_dense="{self.activation_function_dense}", batch_size={self.batch_size}, epochs={self.epochs}, patientece={self.patientece}, verbose={self.verbose})'
+
     def fit(self, X, y, validation_size=0.33, rtol=1e-03, atol=1e-04, class_weights=None, inbalance_correction=False, **kwargs):
         """
 
@@ -262,7 +270,7 @@ class CNNClassification(BaseCNN):
         """
         y_probs, y_pred = self.predict(X)
         auc_value, accuracy, sensitivity, specificity = metrics_multiclass(y, y_probs, self.number_classes, inbalance_correction=inbalance_correction)
-        return auc_value, accuracy, sensitivity, sensitivity
+        return auc_value, accuracy, sensitivity, specificity
 
     def predict(self, X, **kwargs):
         """
@@ -294,9 +302,10 @@ class CNNClassification(BaseCNN):
 
 
 class CNNRegression(BaseCNN):
+
     def __init__(self, number_outputs,
                  n_neurons_first_dense_layer, gol_sizes,
-                 optimizer='adam', metrics=None, cnn_dim=1, kernel_size=3, pool_size=2, strides_convolution=1, strides_pooling=2, dropout_percentage=0.1, padding='valid',
+                 optimizer='adam', metrics=None, cnn_dim=1, kernel_size=2, pool_size=2, strides_convolution=1, strides_pooling=2, dropout_percentage=0.1, padding='valid',
                  activation_function_gol='relu', activation_function_dense='relu',
                  batch_size=1000, epochs=50, patientece=5,
                  verbose=1):
@@ -349,6 +358,9 @@ class CNNRegression(BaseCNN):
         super().prepare(X, y)
         self.model.add(tf.keras.layers.Dense(self.number_outputs, activation='linear'))
         return self.model
+
+    def __repr__(self):
+        return f'CNNRegression(number_outputs={self.number_outputs}, n_neurons_first_dense_layer={self.n_neurons_first_dense_layer}, gol_sizes={self.gol_sizes}, optimizer="{self.optimizer}", metrics={self.metrics}, cnn_dim={self.cnn_dim}, kernel_size={self.kernel_size}, pool_size={self.pool_size}, strides_convolution={self.strides_convolution}, strides_pooling={self.strides_pooling}, dropout_percentage={self.dropout_percentage}, padding="{self.padding}", activation_function_gol="{self.activation_function_gol}", activation_function_dense="{self.activation_function_dense}", batch_size={self.batch_size}, epochs={self.epochs}, patientece={self.patientece}, verbose={self.verbose})'
 
     def fit(self, X, y, validation_size=0.33, rtol=1e-03, atol=1e-04, **kwargs):
         """
