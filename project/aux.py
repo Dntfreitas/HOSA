@@ -1,3 +1,7 @@
+import operator
+from functools import partial, reduce
+from itertools import product
+
 import numpy as np
 from numpy.lib.stride_tricks import as_strided
 from sklearn.metrics import accuracy_score
@@ -69,3 +73,39 @@ def create_overlapping(X, y, overlapping_type, overlapping_epochs, stride=1, dat
     if data_standardization_strategy == 'after':
         X_windowed = (X_windowed - np.mean(X_windowed, axis=1)[:, None]) / np.std(X_windowed, axis=1)[:, None]
     return X_windowed, annotations
+
+
+def create_overlapping_rnn(X, y, timesteps, overlapping_type, overlapping_epochs, stride=1, data_standardization_strategy='after'):
+    X_windowed, annotations = create_overlapping(X, y, overlapping_type, overlapping_epochs, stride, data_standardization_strategy)
+    annotations = annotations[timesteps - 1:]
+    idx = np.arange(len(X_windowed))
+    idx_win = sliding_window(idx, timesteps)
+    X_windowed_cnn = X_windowed[idx_win]
+    return X_windowed_cnn, annotations
+
+
+def create_parameter_grid(param_grid):
+    for p in param_grid:
+        # Always sort the keys of a dictionary, for reproducibility
+        keys_sorted = sorted(p, key=lambda key: len(p[key]), reverse=True)
+        items = [(key, p[key]) for key in keys_sorted]
+        if not items:
+            yield {}
+        else:
+            keys, values = zip(*items)
+            for v in product(*values):
+                params = dict(zip(keys, v))
+                yield params
+
+
+def n_points(param_grid):
+    product = partial(reduce, operator.mul)
+    n_total_parameters = sum(product(len(v) for v in p.values()) if p else 1 for p in param_grid)
+    # Select the step
+    step = 0
+    for p in param_grid:
+        for v in p:
+            current_step = len(p[v])
+            if current_step > step:
+                step = current_step
+    return n_total_parameters, step
