@@ -1,5 +1,4 @@
 import abc
-import pickle
 
 import numpy as np
 import tensorflow as tf
@@ -119,10 +118,6 @@ class BaseCNN:
         callbacks = [callback(self, self.patientece, (X_validation, y_validation), inbalance_correction, rtol, atol)]
         self.model.fit(X_train, y_train, batch_size=self.batch_size, epochs=self.epochs, validation_data=(X_validation, y_validation), callbacks=callbacks, class_weight=class_weights, verbose=self.verbose, **kwargs)
 
-    def to_pickle(self, path):
-        file_handler = open(path, 'w')
-        pickle.dump(self, file_handler)
-
     @abc.abstractmethod
     def fit(self, X, y, **kwargs):
         """
@@ -226,9 +221,6 @@ class CNNClassification(BaseCNN):
         super().prepare(X, y)
         self.model.add(tf.keras.layers.Dense(self.number_outputs, activation='softmax'))
         return self.model
-
-    def __repr__(self):
-        return f'CNNClassification(number_classes={self.number_outputs}, n_neurons_first_dense_layer={self.n_neurons_first_dense_layer}, gol_sizes={self.gol_sizes}, optimizer="{self.optimizer}", metrics={self.metrics}, cnn_dim={self.cnn_dim}, kernel_size={self.kernel_size}, pool_size={self.pool_size}, strides_convolution={self.strides_convolution}, strides_pooling={self.strides_pooling}, dropout_percentage={self.dropout_percentage}, padding="{self.padding}", activation_function_gol="{self.activation_function_gol}", activation_function_dense="{self.activation_function_dense}", batch_size={self.batch_size}, epochs={self.epochs}, patientece={self.patientece}, verbose={self.verbose})'
 
     def fit(self, X, y, validation_size=0.33, rtol=1e-03, atol=1e-04, class_weights=None, inbalance_correction=False, **kwargs):
         """
@@ -356,9 +348,6 @@ class CNNRegression(BaseCNN):
         super().prepare(X, y)
         self.model.add(tf.keras.layers.Dense(self.number_outputs, activation='linear'))
         return self.model
-
-    def __repr__(self):
-        return f'CNNRegression(number_outputs={self.number_outputs}, n_neurons_first_dense_layer={self.n_neurons_first_dense_layer}, gol_sizes={self.gol_sizes}, optimizer="{self.optimizer}", metrics={self.metrics}, cnn_dim={self.cnn_dim}, kernel_size={self.kernel_size}, pool_size={self.pool_size}, strides_convolution={self.strides_convolution}, strides_pooling={self.strides_pooling}, dropout_percentage={self.dropout_percentage}, padding="{self.padding}", activation_function_gol="{self.activation_function_gol}", activation_function_dense="{self.activation_function_dense}", batch_size={self.batch_size}, epochs={self.epochs}, patientece={self.patientece}, verbose={self.verbose})'
 
     def fit(self, X, y, validation_size=0.33, rtol=1e-03, atol=1e-04, **kwargs):
         """

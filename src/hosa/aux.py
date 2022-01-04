@@ -73,7 +73,7 @@ def create_overlapping(X, y, model, overlapping_epochs, overlapping_type=None, s
     def rnn(X, y, timesteps, overlapping_epochs, overlapping_type, stride):
         if timesteps is None:
             raise ValueError('`timesteps` must be defined.')
-        X_windowed, y_windowed = cnn(X, y, overlapping_type, overlapping_epochs, stride)
+        X_windowed, y_windowed = cnn(X, y, overlapping_epochs, overlapping_type, stride)
         y_windowed = y_windowed[timesteps - 1:] if y_windowed is not None else None
         idx = np.arange(len(X_windowed))
         idx_win = sliding_window(idx, timesteps)

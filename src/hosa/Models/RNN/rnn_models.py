@@ -61,8 +61,7 @@ class BaseRNN:
         else:
             raise ValueError('Type of RNN model invalid. Available options are ``lstm``, for a Long Short-Term Memory model, or ``gru``, for a Gated Recurrent Unit model.')
         # Input layer
-        n_features = X.shape[-1]
-        self.model.add(tf.keras.layers.InputLayer(input_shape=(n_features, 1)))
+        self.model.add(tf.keras.layers.InputLayer(input_shape=X.shape[1:]))
         if self.is_bidirectional:
             self.model.add(tf.keras.layers.Bidirectional(layer_type(self.n_units, return_sequences=self.n_subs_layers > 0)))
         else:
@@ -98,8 +97,6 @@ class BaseRNN:
         """
 
         X_train, X_validation, y_train, y_validation = train_test_split(X, y, test_size=validation_size)
-        X_train = np.expand_dims(X_train, axis=-1)
-        X_validation = np.expand_dims(X_validation, axis=-1)
         callbacks = [callback(self, self.patientece, (X_validation, y_validation), inbalance_correction, rtol, atol)]
         self.model.fit(X_train, y_train, batch_size=self.batch_size, epochs=self.epochs, validation_data=(X_validation, y_validation), callbacks=callbacks, class_weight=class_weights, verbose=self.verbose, **kwargs)
 
@@ -250,7 +247,6 @@ class RNNClassification(BaseRNN):
             X (numpy.ndarray): Input data.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``predict`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#predict>`_.
         """
-        # TODO: check why we don't need  `X = np.expand_dims(X, axis=-1)`
         y_probs = self.model.predict(X, **kwargs)
         y_pred_labels = np.argmax(y_probs, axis=1)
         return y_probs, y_pred_labels
@@ -263,7 +259,7 @@ class RNNClassification(BaseRNN):
         Returns:
             tensorflow.keras.Sequential: Returns an untrained but compiled TensorFlow model.
         """
-        self.model.compile(loss='sparse_categorical_crossentropy', optimizer=self.optimizer, metrics=self.metrics, **kwargs)
+        self.model.compile(loss='sparse_categorical_crossentropy', optimizer=self.optimizer, metrics=self.metrics)
         return self.model
 
 
@@ -373,4 +369,4 @@ class RNNRegression(BaseRNN):
         Returns:
             tensorflow.keras.Sequential: Returns an untrained but compiled TensorFlow model.
         """
-        self.model.compile(loss='mean_squared_error', optimizer=self.optimizer, metrics=self.metrics, **kwargs)
+        self.model.compile(loss='mean_squared_error', optimizer=self.optimizer, metrics=self.metrics)

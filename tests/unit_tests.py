@@ -1,8 +1,9 @@
 import unittest
 
 import numpy as np
+import pandas as pd
 from pandas import read_csv
-from sklearn.datasets import load_breast_cancer, fetch_california_housing
+from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from tensorflow import keras, random
@@ -94,9 +95,11 @@ def run_multiclass_classification_3dcnn():
 
 def run_regression_cnn():
     try:
-        X, y = fetch_california_housing(return_X_y=True)
-        X = X[:500]
-        y = y[:500]
+        data = pd.read_csv('https://raw.githubusercontent.com/ageron/handson-ml/master/datasets/housing/housing.csv')
+        X = data[['longitude', 'latitude', 'housing_median_age', 'total_rooms', 'total_bedrooms', 'population']]
+        y = data['median_house_value']
+        X = X[:500].fillna(0)
+        y = y[:500].fillna(0)
         X_train, X_test, y_train, y_test = train_test_split(X, y)
         scaler = StandardScaler()
         X_train = scaler.fit_transform(X_train)
@@ -112,22 +115,22 @@ def run_regression_cnn():
         return False
 
 
-def run_multiclass_classification_rnn():
+def run_multiclass_classification_rnn(is_bidirectional=False, overlapping_epochs=3):
     try:
         num_distinct_words = 5000
         max_sequence_length = 300
         number_classes = 2
-        is_bidirectional = False
         n_units = 2
         n_subs_layers = 2
         n_neurons_last_dense_layer = 10
-        (X_train, y_train), (x_test, y_test) = imdb.load_data(num_words=num_distinct_words)
+        (X_train, y_train), (X_test, y_test) = imdb.load_data(num_words=num_distinct_words)
         X_train = X_train[:500]
         y_train = y_train[:500]
-        x_test = x_test[:250]
+        X_test = X_test[:250]
         X_train = pad_sequences(X_train, maxlen=max_sequence_length, value=0.0)
-        X_test = pad_sequences(x_test, maxlen=max_sequence_length, value=0.0)
-        X_test = np.expand_dims(X_test, axis=-1)
+        X_test = pad_sequences(X_test, maxlen=max_sequence_length, value=0.0)
+        X_train, y_train = create_overlapping(X_train, y_train, RNNRegression, 'central', overlapping_epochs, stride=1, timesteps=2)
+        X_test, y_test = create_overlapping(X_test, y_test, RNNRegression, 'central', overlapping_epochs, stride=1, timesteps=2)
         for model in ['lstm', 'gru']:
             clf = RNNClassification(number_classes, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type=model, patientece=2, epochs=5, verbose=0)
             clf.prepare(X_train, y_train)
@@ -143,7 +146,7 @@ def run_multiclass_classification_rnn():
 def run_regression_rnn(is_bidirectional, overlapping_type, overlapping_epochs=5, stride=1, timesteps=1):
     try:
         dataset = read_csv('https://raw.githubusercontent.com/jbrownlee/Datasets/master/pollution.csv', header=0, index_col=0)
-        dataset = dataset.head(750).copy()
+        dataset = dataset.head(200).copy()
         values = dataset.values[:, 4:]
         encoder = LabelEncoder()
         values[:, 4] = encoder.fit_transform(values[:, 4])
@@ -158,7 +161,6 @@ def run_regression_rnn(is_bidirectional, overlapping_type, overlapping_epochs=5,
         n_units = 2
         n_subs_layers = 2
         n_neurons_last_dense_layer = 10
-        X_test = np.expand_dims(X_test, axis=-1)
         for model in ['lstm', 'gru']:
             reg = RNNRegression(number_outputs, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type=model, patientece=2, epochs=5, verbose=0)
             reg.prepare(X_train, y_train)
@@ -187,17 +189,10 @@ class CNNTest(unittest.TestCase):
         self.assertEqual(run_regression_cnn(), True)
 
     def test_rnn_multiclass_classification(self):
-        self.assertEqual(run_multiclass_classification_rnn(), True)
+        self.assertEqual(run_multiclass_classification_rnn(is_bidirectional=False), True)
+        self.assertEqual(run_multiclass_classification_rnn(is_bidirectional=True, overlapping_epochs=0), True)
 
     def test_rnn_regression(self):
-        self.assertEqual(run_regression_rnn(True, 'central', stride=1, timesteps=1), True)
-        self.assertEqual(run_regression_rnn(False, 'right', stride=1, timesteps=1), True)
-        self.assertEqual(run_regression_rnn(False, 'left', stride=1, timesteps=2), True)
-        self.assertEqual(run_regression_rnn(True, 'central', stride=2, timesteps=1), True)
-        self.assertEqual(run_regression_rnn(False, 'right', stride=2, timesteps=1), True)
         self.assertEqual(run_regression_rnn(False, 'left', stride=2, timesteps=1), True)
-        self.assertEqual(run_regression_rnn(True, 'central', stride=2, timesteps=1), True)
-
-
-if __name__ == '__main__':
-    unittest.main()
+        self.assertEqual(run_regression_rnn(False, 'right', stride=2, timesteps=1), True)
+        self.assertEqual(run_regression_rnn(False, 'central', stride=2, timesteps=1), True)
