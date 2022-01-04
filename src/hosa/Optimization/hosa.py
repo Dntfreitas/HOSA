@@ -1,9 +1,6 @@
 import numpy as np
-from sklearn.datasets import load_breast_cancer, fetch_california_housing
 from sklearn.model_selection import ShuffleSplit
 
-from src.hosa.Models.CNN import CNNClassification, CNNRegression
-from src.hosa.Optimization.defaults import get_default_cnn_classification
 from src.hosa.aux import create_parameter_grid, n_points, create_overlapping
 
 
@@ -143,26 +140,3 @@ class HOSA:
         overlapping_type, overlapping_epochs, stride, timesteps = self.__prepare_param_overlapping(self.get_params())
         X, y = create_overlapping(X, y, self.best_net, overlapping_type, overlapping_epochs, stride=stride, timesteps=timesteps)
         return self.best_net.score(X, y, **kwargs)
-
-
-def test_classification():
-    X, y = load_breast_cancer(return_X_y=True)
-    clf = HOSA(CNNClassification, 2, get_default_cnn_classification(), X, y, 0.1, n_splits=3, apply_rsv=False)
-    clf.fit(inbalance_correction=True)
-    print(clf.best_metric)
-    print(clf.best_specification)
-    print(clf.score(X, y))
-
-
-def test_regression():
-    X, y = fetch_california_housing(return_X_y=True)
-    X = X[:500]
-    y = y[:500]
-    clf = HOSA(CNNRegression, 1, get_default_cnn_classification(), X, y, 0.1, n_splits=3, apply_rsv=False)
-    clf.fit()
-    print(clf.best_metric)
-    print(clf.best_specification)
-    print(clf.score(X, y))
-
-
-test_regression()

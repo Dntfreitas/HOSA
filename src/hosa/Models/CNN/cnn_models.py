@@ -23,6 +23,7 @@ class BaseCNN:
             This class should not be used directly. Use derived classes instead, i.e., :class:`.CNNClassification` or :class:`.CNNRegression`.
 
         Args:
+            number_outputs (int): Number of classes (or labels) of the classification problem.
             n_neurons_first_dense_layer (int): Number of neuron units in the first dense layer.
             gol_sizes (list): *i*-th element represents the number of output filters in the *i*-th GofLayer.
                 Each GofLayer comprises one convolution layer, followed by one subsampling layer and a 10% dropout layer.

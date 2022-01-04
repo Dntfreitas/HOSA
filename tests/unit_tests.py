@@ -12,6 +12,7 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 from src.hosa.Models.CNN.cnn_models import CNNClassification, CNNRegression
 from src.hosa.Models.RNN.rnn_models import RNNClassification, RNNRegression
+from src.hosa.Optimization.hosa import HOSA
 from src.hosa.aux import create_overlapping
 
 
@@ -175,6 +176,30 @@ def run_regression_rnn(is_bidirectional, overlapping_type, overlapping_epochs=5,
         return False
 
 
+def run_hosa_classification():
+    try:
+        X, y = load_breast_cancer(return_X_y=True)
+        param_grid = [{
+                'n_neurons_first_dense_layer': [10, 15],
+                'gol_sizes':                   [[3, 3], [4, 4]],
+                'overlapping_type':            ['left', 'central', 'right'],
+                'overlapping_epochs':          [3],
+                'stride':                      [1],
+                'timesteps':                   [1, 2],
+                'model_type':                  ['lstm', 'gru']
+        }]
+        clf = HOSA(CNNClassification, 2, param_grid, X, y, 0.1, n_splits=3, apply_rsv=True)
+        clf.fit(inbalance_correction=True, validation_size=0.5)
+        clf.score(X, y)
+        clf = HOSA(RNNClassification, 2, param_grid, X, y, 0.1, n_splits=3, apply_rsv=False)
+        clf.fit(inbalance_correction=False)
+        clf.score(X, y)
+        return True
+    except Exception as e:
+        print(e)
+        return False
+
+
 class ModelTesting(unittest.TestCase):
 
     def test_cnn_binary_classification(self):
@@ -198,3 +223,6 @@ class ModelTesting(unittest.TestCase):
         self.assertEqual(run_regression_rnn(False, 'left', stride=2, timesteps=1), True)
         self.assertEqual(run_regression_rnn(False, 'right', stride=2, timesteps=1), True)
         self.assertEqual(run_regression_rnn(False, 'central', stride=2, timesteps=1), True)
+
+    def test_hosa_classification(self):
+        self.assertEqual(run_hosa_classification(), True)

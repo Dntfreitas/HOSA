@@ -10,10 +10,10 @@ from src.hosa.aux import metrics_multiclass
 
 
 class BaseRNN:
-    def __init__(self, is_bidirectional, n_units, n_subs_layers,
-                 n_neurons_last_dense_layer, model_type='lstm', optimizer='adam', dropout_percentage=0.1,
+    def __init__(self, number_outputs, is_bidirectional=False, n_units=10, n_subs_layers=2,
+                 n_neurons_last_dense_layer=50, model_type='lstm', optimizer='adam', dropout_percentage=0.1,
                  activation_function_dense='relu', kernel_initializer='normal',
-                 batch_size=1000, epochs=50, patientece=5, verbose=1):
+                 batch_size=1000, epochs=50, patientece=5, verbose=1, **kwargs):
 
         """Base class for Recurrent Neural Network (RNN) models for classification and regression.
 
@@ -23,6 +23,7 @@ class BaseRNN:
             This class should not be used directly. Use derived classes instead, i.e., :class:`.RNNClassification` or :class:`.RNNRegression`.
 
         Args:
+            number_outputs (int): Number of classes (or labels) of the classification problem.
             is_bidirectional (bool): If ``true``, then bidirectional layers will be used to build the RNN model.
             n_units (int): Dimensionality of the output space, i.e., the dimensionality of the hidden state.
             n_subs_layers (int): Number of subsequent layers beteween the input and output layers.
@@ -36,12 +37,13 @@ class BaseRNN:
             epochs (int): Number of epochs to train the model.
             patientece (int): Number of epochs with no improvement after which training will be stopped.
             verbose (int): Verbosity mode. Available options are ``0``, for silent mode, or ``1``, for a progress bar.
+            **kwargs: *Ignored*. Extra arguments that are used for compatibility reasons.
 
         .. note::
             The parameters used in this library were adapted from the same parameters of the TensorFlow library. Descriptions were thus modified accordingly to our approach.  However, refer to the TensorFlow documentation for more details about each of those parameters.
 
         """
-        self.is_bidirectional, self.n_units, self.n_subs_layers, self.n_neurons_last_dense_layer, self.model_type, self.optimizer, self.dropout_percentage, self.activation_function_dense, self.kernel_initializer, self.batch_size, self.epochs, self.patientece, self.verbose = is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, verbose
+        self.number_outputs, self.is_bidirectional, self.n_units, self.n_subs_layers, self.n_neurons_last_dense_layer, self.model_type, self.optimizer, self.dropout_percentage, self.activation_function_dense, self.kernel_initializer, self.batch_size, self.epochs, self.patientece, self.verbose = number_outputs, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, verbose
         self.model = tf.keras.models.Sequential()
 
     def prepare(self, X, y):
@@ -149,16 +151,16 @@ class BaseRNN:
 
 
 class RNNClassification(BaseRNN):
-    def __init__(self, number_classes, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type='lstm',
+    def __init__(self, number_outputs, is_bidirectional=False, n_units=10, n_subs_layers=2, n_neurons_last_dense_layer=50, model_type='lstm',
                  optimizer='adam', dropout_percentage=0.1, metrics=None, activation_function_dense='relu', kernel_initializer='normal',
                  batch_size=1000, epochs=50, patientece=5,
-                 verbose=1):
+                 verbose=1, **kwargs):
         """Recurrent Neural Network (RNN) model classifier.
 
         The model comprises an input layer (an RNN or a bidirectional RNN cell), ``n_subs_layers`` subsequent layers (similar to the input cell), a dropout layer, a dense layer, and an output layer.
 
         Args:
-            number_classes (int): Number of classes (or labels) of the classification problem.
+            number_outputs (int): Number of classes (or labels) of the classification problem.
             is_bidirectional (bool): If ``true``, then bidirectional layers will be used to build the RNN model.
             n_units (int): Dimensionality of the output space, i.e., the dimensionality of the hidden state.
             n_subs_layers (int): Number of subsequent layers beteween the input and output layers.
@@ -173,11 +175,12 @@ class RNNClassification(BaseRNN):
             epochs (int): Number of epochs to train the model.
             patientece (int): Number of epochs with no improvement after which training will be stopped.
             verbose (int): Verbosity mode. Available options are ``0``, for silent mode, or ``1``, for a progress bar.
+            **kwargs: *Ignored*. Extra arguments that are used for compatibility reasons.
         """
         if metrics is None:
             metrics = ['accuracy']
-        self.metrics, self.number_classes, self.is_binary = metrics, number_classes, None
-        super().__init__(is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, verbose)
+        self.metrics, self.is_binary = metrics, None
+        super().__init__(number_outputs, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, verbose, **kwargs)
 
     def prepare(self, X, y):
         """
@@ -192,7 +195,7 @@ class RNNClassification(BaseRNN):
             tensorflow.keras.Sequential: Returns an untrained TensorFlow model.
         """
         super().prepare(X, y)
-        self.model.add(tf.keras.layers.Dense(self.number_classes, activation='softmax'))
+        self.model.add(tf.keras.layers.Dense(self.number_outputs, activation='softmax'))
         return self.model
 
     def fit(self, X, y, validation_size=0.33, rtol=1e-03, atol=1e-04, class_weights=None, inbalance_correction=False, **kwargs):
@@ -235,7 +238,7 @@ class RNNClassification(BaseRNN):
             This function can be used for both binary and multiclass classification.
         """
         y_probs, y_pred = self.predict(X)
-        auc_value, accuracy, sensitivity, specificity = metrics_multiclass(y, y_probs, self.number_classes, inbalance_correction=inbalance_correction)
+        auc_value, accuracy, sensitivity, specificity = metrics_multiclass(y, y_probs, self.number_outputs, inbalance_correction=inbalance_correction)
         return auc_value, accuracy, sensitivity, sensitivity
 
     def predict(self, X, **kwargs):
@@ -264,10 +267,10 @@ class RNNClassification(BaseRNN):
 
 
 class RNNRegression(BaseRNN):
-    def __init__(self, number_outputs, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type='lstm',
+    def __init__(self, number_outputs, is_bidirectional=False, n_units=10, n_subs_layers=2, n_neurons_last_dense_layer=50, model_type='lstm',
                  optimizer='adam', dropout_percentage=0.1, metrics=None, activation_function_dense='relu', kernel_initializer='normal',
                  batch_size=1000, epochs=50, patientece=5,
-                 verbose=1):
+                 verbose=1, **kwargs):
         """Recurrent Neural Network (RNN) model regressor.
 
         The model comprises an input layer (an RNN or a bidirectional RNN cell), ``n_subs_layers`` subsequent layers (similar to the input cell), a dropout layer, a dense layer, and an output layer.
@@ -288,11 +291,12 @@ class RNNRegression(BaseRNN):
             epochs (int): Number of epochs to train the model.
             patientece (int): Number of epochs with no improvement after which training will be stopped.
             verbose (int): Verbosity mode. Available options are ``0``, for silent mode, or ``1``, for a progress bar.
+            **kwargs: *Ignored*. Extra arguments that are used for compatibility reasons.
         """
         if metrics is None:
             metrics = ['mean_squared_error']
-        self.number_outputs, self.metrics = number_outputs, metrics
-        super().__init__(is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, verbose)
+        self.metrics = metrics
+        super().__init__(number_outputs, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, verbose, **kwargs)
 
     def prepare(self, X, y):
         """
