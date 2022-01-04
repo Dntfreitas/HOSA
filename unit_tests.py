@@ -11,7 +11,7 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 from project.CNN import CNNClassification, CNNRegression
 from project.RNN import RNNClassification, RNNRegression
-from project.aux import create_overlapping
+from project.aux import create_overlapping_cnn
 
 
 def run_binary_classification_cnn(inbalance_correction):
@@ -150,7 +150,7 @@ def run_regression_rnn(is_bidirectional, overlapping_type, overlapping_epochs=5,
         values = values.astype('float32')
         X = values[:, 1:]
         y = values[:, 0]
-        X, y = create_overlapping(X, y, overlapping_type, overlapping_epochs, stride=stride, data_standardization_strategy=data_standardization_strategy)
+        X, y = create_overlapping_cnn(X, y, overlapping_type, overlapping_epochs, stride=stride, data_standardization_strategy=data_standardization_strategy)
         np.nan_to_num(X, copy=False)
         np.nan_to_num(y, copy=False)
         X_train, X_test, y_train, y_test = train_test_split(X, y)

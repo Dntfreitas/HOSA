@@ -11,10 +11,10 @@ from project.aux import metrics_multiclass
 
 
 class BaseCNN:
-    def __init__(self, n_neurons_first_dense_layer, gol_sizes,
+    def __init__(self, number_outputs, n_neurons_first_dense_layer, gol_sizes,
                  optimizer='adam', cnn_dim=1, kernel_size=2, pool_size=2, strides_convolution=1, strides_pooling=2, dropout_percentage=0.1, padding='valid',
                  activation_function_gol='relu', activation_function_dense='relu',
-                 batch_size=1000, epochs=50, patientece=5, verbose=1):
+                 batch_size=1000, epochs=50, patientece=5, verbose=1, **kwargs):
 
         """Base class for Convolutional Neural Network (CNN) models for classification and regression.
 
@@ -41,11 +41,12 @@ class BaseCNN:
             epochs (int): Number of epochs to train the model.
             patientece (int): Number of epochs with no improvement after which training will be stopped.
             verbose (int): Verbosity mode. Available options are ``0``, for silent mode, or ``1``, for a progress bar.
+            **kwargs: *Ignored*. Extra arguments that are used for compatibility reasons.
 
         .. note::
             The parameters used in this library were adapted from the same parameters of the TensorFlow library. Descriptions were thus modified accordingly to our approach.  However, refer to the TensorFlow documentation for more details about each of those parameters.
         """
-        self.optimizer, self.n_neurons_first_dense_layer, self.gol_sizes, self.cnn_dim, self.kernel_size, self.pool_size, self.strides_convolution, self.strides_pooling, self.padding, self.activation_function_gol, self.activation_function_dense, self.batch_size, self.epochs, self.patientece, self.dropout_percentage, self.verbose = optimizer, n_neurons_first_dense_layer, gol_sizes, cnn_dim, kernel_size, pool_size, strides_convolution, strides_pooling, padding, activation_function_gol, activation_function_dense, batch_size, epochs, patientece, dropout_percentage, verbose
+        self.number_outputs, self.optimizer, self.n_neurons_first_dense_layer, self.gol_sizes, self.cnn_dim, self.kernel_size, self.pool_size, self.strides_convolution, self.strides_pooling, self.padding, self.activation_function_gol, self.activation_function_dense, self.batch_size, self.epochs, self.patientece, self.dropout_percentage, self.verbose = number_outputs, optimizer, n_neurons_first_dense_layer, gol_sizes, cnn_dim, kernel_size, pool_size, strides_convolution, strides_pooling, padding, activation_function_gol, activation_function_dense, batch_size, epochs, patientece, dropout_percentage, verbose
         self.model = tf.keras.models.Sequential()
 
     def prepare(self, X, y):
@@ -136,13 +137,11 @@ class BaseCNN:
         raise NotImplemented
 
     @abc.abstractmethod
-    def compile(self, **kwargs):
+    def compile(self):
         """
 
         Compiles the model for training.
 
-        Args:
-            **kwargs: Extra arguments that are used in the TensorFlow's model ``compile`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#compile>`_.
         """
         raise NotImplemented
 
@@ -173,17 +172,17 @@ class BaseCNN:
 
 
 class CNNClassification(BaseCNN):
-    def __init__(self, number_classes, n_neurons_first_dense_layer, gol_sizes,
+    def __init__(self, number_outputs, n_neurons_first_dense_layer, gol_sizes,
                  optimizer='adam', metrics=None, cnn_dim=1, kernel_size=2, pool_size=2, strides_convolution=1, strides_pooling=2, dropout_percentage=0.1, padding='valid',
                  activation_function_gol='relu', activation_function_dense='relu',
                  batch_size=1000, epochs=50, patientece=5,
-                 verbose=1):
+                 verbose=1, **kwargs):
         """Convolutional Neural Network (CNN) classifier.
 
         The model comprises an input layer, a set of GofLayers (where each group is composed of one convolution layer, which was followed by one pooling layer, and a dropout layer), a dense layer, and an output layer.
 
         Args:
-            number_classes (int): Number of classes (or labels) of the classification problem.
+            number_outputs (int): Number of classes (or labels) of the classification problem.
             n_neurons_first_dense_layer (int): Number of neuron units in the first dense layer.
             gol_sizes (list): *i*-th element represents the number of output filters in the *i*-th GofLayer.
                 Each GofLayer comprises one convolution layer, followed by one subsampling layer and a 10% dropout layer.
@@ -202,14 +201,15 @@ class CNNClassification(BaseCNN):
             epochs (int): Number of epochs to train the model.
             patientece (int): Number of epochs with no improvement after which training will be stopped.
             verbose (int): Verbosity mode. Available options are ``0``, for silent mode, or ``1``, for a progress bar.
+            **kwargs: *Ignored*. Extra arguments that are used for compatibility reasons.
 
         .. note::
             The parameters used in this library were adapted from the same parameters of the TensorFlow library. Descriptions were thus modified accordingly to our approach.  However, refer to the TensorFlow documentation for more details about each of those parameters.
         """
         if metrics is None:
             metrics = ['accuracy']
-        self.metrics, self.number_classes, self.is_binary = metrics, number_classes, None
-        super().__init__(n_neurons_first_dense_layer, gol_sizes, optimizer, cnn_dim, kernel_size, pool_size, strides_convolution, strides_pooling, dropout_percentage, padding, activation_function_gol, activation_function_dense, batch_size, epochs, patientece, verbose)
+        self.metrics, self.number_outputs, self.is_binary = metrics, number_outputs, None
+        super().__init__(number_outputs, n_neurons_first_dense_layer, gol_sizes, optimizer, cnn_dim, kernel_size, pool_size, strides_convolution, strides_pooling, dropout_percentage, padding, activation_function_gol, activation_function_dense, batch_size, epochs, patientece, verbose, **kwargs)
 
     def prepare(self, X, y):
         """
@@ -224,11 +224,11 @@ class CNNClassification(BaseCNN):
             tensorflow.keras.Sequential: Returns an untrained TensorFlow model.
         """
         super().prepare(X, y)
-        self.model.add(tf.keras.layers.Dense(self.number_classes, activation='softmax'))
+        self.model.add(tf.keras.layers.Dense(self.number_outputs, activation='softmax'))
         return self.model
 
     def __repr__(self):
-        return f'CNNClassification(number_classes={self.number_classes}, n_neurons_first_dense_layer={self.n_neurons_first_dense_layer}, gol_sizes={self.gol_sizes}, optimizer="{self.optimizer}", metrics={self.metrics}, cnn_dim={self.cnn_dim}, kernel_size={self.kernel_size}, pool_size={self.pool_size}, strides_convolution={self.strides_convolution}, strides_pooling={self.strides_pooling}, dropout_percentage={self.dropout_percentage}, padding="{self.padding}", activation_function_gol="{self.activation_function_gol}", activation_function_dense="{self.activation_function_dense}", batch_size={self.batch_size}, epochs={self.epochs}, patientece={self.patientece}, verbose={self.verbose})'
+        return f'CNNClassification(number_classes={self.number_outputs}, n_neurons_first_dense_layer={self.n_neurons_first_dense_layer}, gol_sizes={self.gol_sizes}, optimizer="{self.optimizer}", metrics={self.metrics}, cnn_dim={self.cnn_dim}, kernel_size={self.kernel_size}, pool_size={self.pool_size}, strides_convolution={self.strides_convolution}, strides_pooling={self.strides_pooling}, dropout_percentage={self.dropout_percentage}, padding="{self.padding}", activation_function_gol="{self.activation_function_gol}", activation_function_dense="{self.activation_function_dense}", batch_size={self.batch_size}, epochs={self.epochs}, patientece={self.patientece}, verbose={self.verbose})'
 
     def fit(self, X, y, validation_size=0.33, rtol=1e-03, atol=1e-04, class_weights=None, inbalance_correction=False, **kwargs):
         """
@@ -269,7 +269,7 @@ class CNNClassification(BaseCNN):
             This function can be used for both binary and multiclass classification.
         """
         y_probs, y_pred = self.predict(X)
-        auc_value, accuracy, sensitivity, specificity = metrics_multiclass(y, y_probs, self.number_classes, inbalance_correction=inbalance_correction)
+        auc_value, accuracy, sensitivity, specificity = metrics_multiclass(y, y_probs, self.number_outputs, inbalance_correction=inbalance_correction)
         return auc_value, accuracy, sensitivity, specificity
 
     def predict(self, X, **kwargs):
@@ -286,18 +286,15 @@ class CNNClassification(BaseCNN):
         y_pred_labels = np.argmax(y_probs, axis=1)
         return y_probs, y_pred_labels
 
-    def compile(self, **kwargs):
+    def compile(self):
         """
 
         Compiles the model for training.
 
-        Args:
-            **kwargs: Extra arguments that are used in the TensorFlow's model ``compile`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#compile>`_.
-
         Returns:
             tensorflow.keras.Sequential: Returns an untrained but compiled TensorFlow model.
         """
-        self.model.compile(loss='sparse_categorical_crossentropy', optimizer=self.optimizer, metrics=self.metrics, **kwargs)
+        self.model.compile(loss='sparse_categorical_crossentropy', optimizer=self.optimizer, metrics=self.metrics)
         return self.model
 
 
@@ -308,7 +305,7 @@ class CNNRegression(BaseCNN):
                  optimizer='adam', metrics=None, cnn_dim=1, kernel_size=2, pool_size=2, strides_convolution=1, strides_pooling=2, dropout_percentage=0.1, padding='valid',
                  activation_function_gol='relu', activation_function_dense='relu',
                  batch_size=1000, epochs=50, patientece=5,
-                 verbose=1):
+                 verbose=1, **kwargs):
         """Convolutional Neural Network (CNN) regressor.
 
         The model comprises an input layer, a set of GofLayers (where each group is composed of one convolution layer, which was followed by one pooling layer, and a dropout layer), a dense layer, and an output layer.
@@ -333,6 +330,7 @@ class CNNRegression(BaseCNN):
             epochs (int): Number of epochs to train the model.
             patientece (int): Number of epochs with no improvement after which training will be stopped.
             verbose (int): Verbosity mode. Available options are ``0``, for silent mode, or ``1``, for a progress bar.
+            **kwargs: *Ignored*. Extra arguments that are used for compatibility reasons.
 
         .. note::
             The parameters used in this library were adapted from the same parameters of the TensorFlow library. Descriptions were thus modified accordingly to our approach.  However, refer to the TensorFlow documentation for more details about each of those parameters.
@@ -340,7 +338,7 @@ class CNNRegression(BaseCNN):
         if metrics is None:
             metrics = ['mean_squared_error']
         self.metrics, self.number_outputs = metrics, number_outputs
-        super().__init__(n_neurons_first_dense_layer, gol_sizes, optimizer, cnn_dim, kernel_size, pool_size, strides_convolution, strides_pooling, dropout_percentage, padding, activation_function_gol, activation_function_dense, batch_size, epochs, patientece, verbose)
+        super().__init__(number_outputs, n_neurons_first_dense_layer, gol_sizes, optimizer, cnn_dim, kernel_size, pool_size, strides_convolution, strides_pooling, dropout_percentage, padding, activation_function_gol, activation_function_dense, batch_size, epochs, patientece, verbose, **kwargs)
 
     def prepare(self, X, y):
         """
@@ -413,15 +411,12 @@ class CNNRegression(BaseCNN):
         y_pred = self.model.predict(X, **kwargs)
         return y_pred
 
-    def compile(self, **kwargs):
+    def compile(self):
         """
 
         Compiles the model for training.
 
-        Args:
-            **kwargs: Extra arguments that are used in the TensorFlow's model ``compile`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#compile>`_.
-
         Returns:
             tensorflow.keras.Sequential: Returns an untrained but compiled TensorFlow model.
         """
-        self.model.compile(loss='mean_squared_error', optimizer=self.optimizer, metrics=self.metrics, **kwargs)
+        self.model.compile(loss='mean_squared_error', optimizer=self.optimizer, metrics=self.metrics)

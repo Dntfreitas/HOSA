@@ -117,13 +117,11 @@ class BaseRNN:
         raise NotImplemented
 
     @abc.abstractmethod
-    def compile(self, **kwargs):
+    def compile(self):
         """
 
         Compiles the model for training.
 
-        Args:
-            **kwargs: Extra arguments that are used in the TensorFlow's model ``compile`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#compile>`_.
         """
         raise NotImplemented
 
@@ -257,13 +255,10 @@ class RNNClassification(BaseRNN):
         y_pred_labels = np.argmax(y_probs, axis=1)
         return y_probs, y_pred_labels
 
-    def compile(self, **kwargs):
+    def compile(self):
         """
 
         Compiles the model for training.
-
-        Args:
-            **kwargs: Extra arguments that are used in the TensorFlow's model ``compile`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#compile>`_.
 
         Returns:
             tensorflow.keras.Sequential: Returns an untrained but compiled TensorFlow model.
@@ -370,13 +365,10 @@ class RNNRegression(BaseRNN):
         y_pred = self.model.predict(X, **kwargs)
         return y_pred
 
-    def compile(self, **kwargs):
+    def compile(self):
         """
 
         Compiles the model for training.
-
-        Args:
-            **kwargs: Extra arguments that are used in the TensorFlow's model ``compile`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#compile>`_.
 
         Returns:
             tensorflow.keras.Sequential: Returns an untrained but compiled TensorFlow model.

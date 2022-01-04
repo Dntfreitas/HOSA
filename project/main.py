@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 
 from project.RNN import RNNRegression
-from project.aux import create_overlapping
+from project.aux import create_overlapping_cnn
 
 dataset = read_csv('../datasets/pollution.csv', header=0, index_col=0)
 values = dataset.values[:, 4:]
@@ -15,7 +15,7 @@ X = values[:, 1:]
 y = values[:, 0]
 overlapping_type = 'right'
 overlapping_epochs = 1
-X, y = create_overlapping(X, y, overlapping_type, overlapping_epochs, stride=1, data_standardization_strategy=True)
+X, y = create_overlapping_cnn(X, y, overlapping_type, overlapping_epochs, stride=1, data_standardization_strategy=True)
 np.nan_to_num(X, copy=False)
 np.nan_to_num(y, copy=False)
 X_train, X_test, y_train, y_test = train_test_split(X, y)
