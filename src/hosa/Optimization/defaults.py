@@ -25,10 +25,10 @@ def get_default_cnn_classification():
     overlapping_scenarios_test = ['left', 'central', 'right']
     # Compose the final parameter grid
     param_grid = [{
-            'n_neurons_first_dense_layer':   [10, 15, 20],
-            'gol_sizes':                     [[3, 3], [4]],
-            'overlapping_type':              ['left', 'central', 'right'],
-            'overlapping_epochs':            [3, 4],
-            'stride':                        [1],
+            'n_neurons_first_dense_layer': [10, 15, 20],
+            'gol_sizes':                   [[3, 3], [4, 4]],
+            'overlapping_type':            ['left'],
+            'overlapping_epochs':          [3],
+            'stride':                      [1],
     }]
     return param_grid

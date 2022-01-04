@@ -9,9 +9,9 @@ from tensorflow import keras, random
 from tensorflow.keras.datasets import imdb
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
-from project.CNN import CNNClassification, CNNRegression
-from project.RNN import RNNClassification, RNNRegression
-from project.aux import create_overlapping_cnn
+from src.hosa.Models.CNN.cnn_models import CNNClassification, CNNRegression
+from src.hosa.Models.RNN.rnn_models import RNNClassification, RNNRegression
+from src.hosa.aux import create_overlapping
 
 
 def run_binary_classification_cnn(inbalance_correction):
@@ -140,7 +140,7 @@ def run_multiclass_classification_rnn():
         return False
 
 
-def run_regression_rnn(is_bidirectional, overlapping_type, overlapping_epochs=5, data_standardization_strategy='after', stride=1):
+def run_regression_rnn(is_bidirectional, overlapping_type, overlapping_epochs=5, stride=1, timesteps=1):
     try:
         dataset = read_csv('https://raw.githubusercontent.com/jbrownlee/Datasets/master/pollution.csv', header=0, index_col=0)
         dataset = dataset.head(750).copy()
@@ -150,7 +150,7 @@ def run_regression_rnn(is_bidirectional, overlapping_type, overlapping_epochs=5,
         values = values.astype('float32')
         X = values[:, 1:]
         y = values[:, 0]
-        X, y = create_overlapping_cnn(X, y, overlapping_type, overlapping_epochs, stride=stride, data_standardization_strategy=data_standardization_strategy)
+        X, y = create_overlapping(X, y, RNNRegression, overlapping_type, overlapping_epochs, stride=stride, timesteps=timesteps)
         np.nan_to_num(X, copy=False)
         np.nan_to_num(y, copy=False)
         X_train, X_test, y_train, y_test = train_test_split(X, y)
@@ -190,15 +190,13 @@ class CNNTest(unittest.TestCase):
         self.assertEqual(run_multiclass_classification_rnn(), True)
 
     def test_rnn_regression(self):
-        self.assertEqual(run_regression_rnn(True, 'central', stride=1), True)
-        self.assertEqual(run_regression_rnn(False, 'right', stride=1), True)
-        self.assertEqual(run_regression_rnn(False, 'left', stride=1), True)
-        self.assertEqual(run_regression_rnn(True, 'central', stride=2), True)
-        self.assertEqual(run_regression_rnn(False, 'right', stride=2), True)
-        self.assertEqual(run_regression_rnn(False, 'left', stride=2), True)
-        self.assertEqual(run_regression_rnn(True, 'central', data_standardization_strategy=None, stride=2), True)
-        self.assertEqual(run_regression_rnn(True, 'central', data_standardization_strategy='before', stride=2), True)
-        self.assertEqual(run_regression_rnn(False, 'central', overlapping_epochs=0, data_standardization_strategy='after', stride=1), True)
+        self.assertEqual(run_regression_rnn(True, 'central', stride=1, timesteps=1), True)
+        self.assertEqual(run_regression_rnn(False, 'right', stride=1, timesteps=1), True)
+        self.assertEqual(run_regression_rnn(False, 'left', stride=1, timesteps=2), True)
+        self.assertEqual(run_regression_rnn(True, 'central', stride=2, timesteps=1), True)
+        self.assertEqual(run_regression_rnn(False, 'right', stride=2, timesteps=1), True)
+        self.assertEqual(run_regression_rnn(False, 'left', stride=2, timesteps=1), True)
+        self.assertEqual(run_regression_rnn(True, 'central', stride=2, timesteps=1), True)
 
 
 if __name__ == '__main__':

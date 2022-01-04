@@ -6,7 +6,6 @@ import numpy as np
 from numpy.lib.stride_tricks import as_strided
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import multilabel_confusion_matrix, roc_auc_score, balanced_accuracy_score
-from sklearn.preprocessing import StandardScaler
 
 
 def sliding_window(x, window_shape):

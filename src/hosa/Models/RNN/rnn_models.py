@@ -5,8 +5,8 @@ import tensorflow as tf
 from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.model_selection import train_test_split
 
-from project.Callbacks import EarlyStoppingAtMinLoss
-from project.aux import metrics_multiclass
+from src.hosa.Callbacks import EarlyStoppingAtMinLoss
+from src.hosa.aux import metrics_multiclass
 
 
 class BaseRNN:

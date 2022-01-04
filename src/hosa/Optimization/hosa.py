@@ -1,15 +1,15 @@
 import numpy as np
-from sklearn.datasets import load_breast_cancer
-from sklearn.model_selection import train_test_split
+from sklearn.datasets import load_breast_cancer, fetch_california_housing
+from sklearn.model_selection import ShuffleSplit
 
-from project.CNN import CNNClassification
-from project.aux import create_parameter_grid, n_points, create_overlapping
-from project.defaults import get_default_cnn_classification
+from src.hosa.Models.CNN import CNNClassification, CNNRegression
+from src.hosa.Optimization.defaults import get_default_cnn_classification
+from src.hosa.aux import create_parameter_grid, n_points, create_overlapping
 
 
 class HOSA:
-    def __init__(self, model, number_outputs, parameters, X_train, X_test, y_train, y_test, tr):
-        self.model, self.number_outputs, self.parameters, self.X_train, self.X_test, self.y_train, self.y_test, self.tr = model, number_outputs, parameters, X_train, X_test, y_train, y_test, tr
+    def __init__(self, model, number_outputs, parameters, X, y, tr, apply_rsv=True, validation_size=.25, n_splits=10):
+        self.model, self.number_outputs, self.parameters, self.X, self.y, self.tr, self.apply_rsv, self.validation_size, self.n_splits = model, number_outputs, parameters, X, y, tr, apply_rsv, validation_size, n_splits
         self.best_net = self.best_metric = self.best_specification = None
         n_total_parameters, step = n_points(parameters)
         self.parameter_grid = create_parameter_grid(parameters)
@@ -48,6 +48,28 @@ class HOSA:
     def __stop_check_decrease(self, best_metric_current, best_metric_prev):
         return best_metric_prev - best_metric_current <= self.tr
 
+    def assess_model(self, net, X_win, y_win, **kwargs):
+        # If we need to use random sub-sampling validation
+        if self.apply_rsv:
+            # Generate the splits
+            rs = ShuffleSplit(n_splits=self.n_splits, test_size=self.validation_size)
+            metrics = np.empty(self.n_splits)
+            i = 0
+            for train_index, validation_index in rs.split(X_win):
+                X_win_train, y_win_train = X_win[train_index], y_win[train_index]
+                X_win_validation, y_win_validation = X_win[validation_index], y_win[validation_index]
+                net.fit(X_win_train, y_win_train, **kwargs)
+                # Collect metrics about the model
+                metric, *_ = net.score(X_win_validation, y_win_validation)
+                metrics[i] = metric
+                i = i + 1
+            return np.mean(metrics)
+        else:
+            net.fit(X_win, y_win, **kwargs)
+            # Collect metrics about the model
+            metric, *_ = net.score(X_win, y_win)
+            return metric
+
     def fit(self, **kwargs):
         # Initalize variables
         best_net_prev = best_net_current = None
@@ -55,7 +77,7 @@ class HOSA:
         best_metric_prev = self.initial_metric_value
         best_metric_current = self.initial_metric_value
         overlapping_type = overlapping_epochs = stride = timesteps = None
-        X_train_win = y_train_win = None
+        X_win = y_win = None
         stop = False
         step = 0
         # Get first specification
@@ -67,14 +89,13 @@ class HOSA:
             changed = overlapping_type != overlapping_type_new or overlapping_epochs != overlapping_epochs_new or stride != stride_new or timesteps != timesteps_new
             if changed:
                 overlapping_type, overlapping_epochs, stride, timesteps = overlapping_type_new, overlapping_epochs_new, stride_new, timesteps_new
-                X_train_win, y_train_win = create_overlapping(self.X_train, self.y_train, self.model, overlapping_type, overlapping_epochs, stride=stride, timesteps=timesteps)
-            # Create and fit the model
+                X_win, y_win = create_overlapping(self.X, self.y, self.model, overlapping_type, overlapping_epochs, stride=stride, timesteps=timesteps)
+            # Generate the model
             net = self.model(number_outputs=self.number_outputs, **specification)
-            net.prepare(X_train_win, y_train_win)
+            net.prepare(X_win, y_win)
             net.compile()
-            net.fit(X_train_win, y_train_win, **kwargs)
-            # Collect metrics about the model
-            metric, *_ = net.score(X_train_win, y_train_win)
+            # Asses the model
+            metric = self.assess_model(net, X_win, y_win, **kwargs)
             # Compare with the current metrics
             if self.compare_function(metric, best_metric_current):
                 best_metric_current = metric
@@ -124,9 +145,24 @@ class HOSA:
         return self.best_net.score(X, y, **kwargs)
 
 
-X, y = load_breast_cancer(return_X_y=True)
-X_train, X_test, y_train, y_test = train_test_split(X, y)
+def test_classification():
+    X, y = load_breast_cancer(return_X_y=True)
+    clf = HOSA(CNNClassification, 2, get_default_cnn_classification(), X, y, 0.1, n_splits=3, apply_rsv=False)
+    clf.fit(inbalance_correction=True)
+    print(clf.best_metric)
+    print(clf.best_specification)
+    print(clf.score(X, y))
 
-clf = HOSA(CNNClassification, 2, get_default_cnn_classification(), X_train, X_test, y_train, y_test, 0.1)
-clf.fit(inbalance_correction=True)
-print(clf.score(X_test, y_test))
+
+def test_regression():
+    X, y = fetch_california_housing(return_X_y=True)
+    X = X[:500]
+    y = y[:500]
+    clf = HOSA(CNNRegression, 1, get_default_cnn_classification(), X, y, 0.1, n_splits=3, apply_rsv=False)
+    clf.fit()
+    print(clf.best_metric)
+    print(clf.best_specification)
+    print(clf.score(X, y))
+
+
+test_regression()
