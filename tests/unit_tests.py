@@ -104,6 +104,8 @@ def run_regression_cnn():
         scaler = StandardScaler()
         X_train = scaler.fit_transform(X_train)
         X_test = scaler.transform(X_test)
+        X_train, y_train = create_overlapping(X_train, y_train, CNNRegression, 'central', 3, stride=1, timesteps=2)
+        X_test, y_test = create_overlapping(X_test, y_test, CNNRegression, 'central', 3, stride=1, timesteps=2)
         reg = CNNRegression(1, 10, [3, 5], patientece=2, epochs=5, verbose=0, kernel_size=2, pool_size=1, strides_pooling=1)
         reg.prepare(X_train, y_train)
         reg.compile()
@@ -173,7 +175,7 @@ def run_regression_rnn(is_bidirectional, overlapping_type, overlapping_epochs=5,
         return False
 
 
-class CNNTest(unittest.TestCase):
+class ModelTesting(unittest.TestCase):
 
     def test_cnn_binary_classification(self):
         self.assertEqual(run_binary_classification_cnn(True), True)
