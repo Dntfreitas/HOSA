@@ -13,7 +13,7 @@ class BaseRNN:
     def __init__(self, number_outputs, is_bidirectional=False, n_units=10, n_subs_layers=2,
                  n_neurons_last_dense_layer=50, model_type='lstm', optimizer='adam', dropout_percentage=0.1,
                  activation_function_dense='relu', kernel_initializer='normal',
-                 batch_size=1000, epochs=50, patientece=5, verbose=1, **kwargs):
+                 batch_size=1000, epochs=50, patientece=5, **kwargs):
 
         """Base class for Recurrent Neural Network (RNN) models for classification and regression.
 
@@ -36,14 +36,13 @@ class BaseRNN:
             batch_size (int or None): Number of samples per batch of computation. If ``None``, ``batch_size`` will default to 32.
             epochs (int): Number of epochs to train the model.
             patientece (int): Number of epochs with no improvement after which training will be stopped.
-            verbose (int): Verbosity mode. Available options are ``0``, for silent mode, or ``1``, for a progress bar.
             **kwargs: *Ignored*. Extra arguments that are used for compatibility reasons.
 
         .. note::
             The parameters used in this library were adapted from the same parameters of the TensorFlow library. Descriptions were thus modified accordingly to our approach.  However, refer to the TensorFlow documentation for more details about each of those parameters.
 
         """
-        self.number_outputs, self.is_bidirectional, self.n_units, self.n_subs_layers, self.n_neurons_last_dense_layer, self.model_type, self.optimizer, self.dropout_percentage, self.activation_function_dense, self.kernel_initializer, self.batch_size, self.epochs, self.patientece, self.verbose = number_outputs, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, verbose
+        self.number_outputs, self.is_bidirectional, self.n_units, self.n_subs_layers, self.n_neurons_last_dense_layer, self.model_type, self.optimizer, self.dropout_percentage, self.activation_function_dense, self.kernel_initializer, self.batch_size, self.epochs, self.patientece = number_outputs, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece
         self.model = tf.keras.models.Sequential()
 
     def prepare(self, X, y):
@@ -100,7 +99,7 @@ class BaseRNN:
 
         X_train, X_validation, y_train, y_validation = train_test_split(X, y, test_size=validation_size)
         callbacks = [callback(self, self.patientece, (X_validation, y_validation), inbalance_correction, rtol, atol)]
-        self.model.fit(X_train, y_train, batch_size=self.batch_size, epochs=self.epochs, validation_data=(X_validation, y_validation), callbacks=callbacks, class_weight=class_weights, verbose=self.verbose, **kwargs)
+        self.model.fit(X_train, y_train, batch_size=self.batch_size, epochs=self.epochs, validation_data=(X_validation, y_validation), callbacks=callbacks, class_weight=class_weights, **kwargs)
 
     @abc.abstractmethod
     def fit(self, X, y, **kwargs):
@@ -154,7 +153,7 @@ class RNNClassification(BaseRNN):
     def __init__(self, number_outputs, is_bidirectional=False, n_units=10, n_subs_layers=2, n_neurons_last_dense_layer=50, model_type='lstm',
                  optimizer='adam', dropout_percentage=0.1, metrics=None, activation_function_dense='relu', kernel_initializer='normal',
                  batch_size=1000, epochs=50, patientece=5,
-                 verbose=1, **kwargs):
+                 **kwargs):
         """Recurrent Neural Network (RNN) model classifier.
 
         The model comprises an input layer (an RNN or a bidirectional RNN cell), ``n_subs_layers`` subsequent layers (similar to the input cell), a dropout layer, a dense layer, and an output layer.
@@ -174,13 +173,12 @@ class RNNClassification(BaseRNN):
             batch_size (int or None): Number of samples per batch of computation. If ``None``, ``batch_size`` will default to 32.
             epochs (int): Number of epochs to train the model.
             patientece (int): Number of epochs with no improvement after which training will be stopped.
-            verbose (int): Verbosity mode. Available options are ``0``, for silent mode, or ``1``, for a progress bar.
             **kwargs: *Ignored*. Extra arguments that are used for compatibility reasons.
         """
         if metrics is None:
             metrics = ['accuracy']
         self.metrics, self.is_binary = metrics, None
-        super().__init__(number_outputs, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, verbose, **kwargs)
+        super().__init__(number_outputs, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, **kwargs)
 
     def prepare(self, X, y):
         """
@@ -270,7 +268,7 @@ class RNNRegression(BaseRNN):
     def __init__(self, number_outputs, is_bidirectional=False, n_units=10, n_subs_layers=2, n_neurons_last_dense_layer=50, model_type='lstm',
                  optimizer='adam', dropout_percentage=0.1, metrics=None, activation_function_dense='relu', kernel_initializer='normal',
                  batch_size=1000, epochs=50, patientece=5,
-                 verbose=1, **kwargs):
+                 **kwargs):
         """Recurrent Neural Network (RNN) model regressor.
 
         The model comprises an input layer (an RNN or a bidirectional RNN cell), ``n_subs_layers`` subsequent layers (similar to the input cell), a dropout layer, a dense layer, and an output layer.
@@ -290,13 +288,12 @@ class RNNRegression(BaseRNN):
             batch_size (int or None): Number of samples per batch of computation. If ``None``, ``batch_size`` will default to 32.
             epochs (int): Number of epochs to train the model.
             patientece (int): Number of epochs with no improvement after which training will be stopped.
-            verbose (int): Verbosity mode. Available options are ``0``, for silent mode, or ``1``, for a progress bar.
             **kwargs: *Ignored*. Extra arguments that are used for compatibility reasons.
         """
         if metrics is None:
             metrics = ['mean_squared_error']
         self.metrics = metrics
-        super().__init__(number_outputs, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, verbose, **kwargs)
+        super().__init__(number_outputs, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, **kwargs)
 
     def prepare(self, X, y):
         """

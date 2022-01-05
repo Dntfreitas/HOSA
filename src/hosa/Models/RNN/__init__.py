@@ -7,3 +7,5 @@
     rnn_models.RNNClassification
     rnn_models.RNNRegression
 """
+
+from .rnn_models import BaseRNN, RNNClassification, RNNRegression

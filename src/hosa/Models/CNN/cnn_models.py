@@ -13,7 +13,7 @@ class BaseCNN:
     def __init__(self, number_outputs, n_neurons_first_dense_layer, gol_sizes,
                  optimizer='adam', cnn_dim=1, kernel_size=2, pool_size=2, strides_convolution=1, strides_pooling=2, dropout_percentage=0.1, padding='valid',
                  activation_function_gol='relu', activation_function_dense='relu',
-                 batch_size=1000, epochs=50, patientece=5, verbose=1, **kwargs):
+                 batch_size=1000, epochs=50, patientece=5, **kwargs):
 
         """Base class for Convolutional Neural Network (CNN) models for classification and regression.
 
@@ -40,13 +40,12 @@ class BaseCNN:
             batch_size (int or None): Number of samples per batch of computation. If ``None``, ``batch_size`` will default to 32.
             epochs (int): Number of epochs to train the model.
             patientece (int): Number of epochs with no improvement after which training will be stopped.
-            verbose (int): Verbosity mode. Available options are ``0``, for silent mode, or ``1``, for a progress bar.
             **kwargs: *Ignored*. Extra arguments that are used for compatibility reasons.
 
         .. note::
             The parameters used in this library were adapted from the same parameters of the TensorFlow library. Descriptions were thus modified accordingly to our approach.  However, refer to the TensorFlow documentation for more details about each of those parameters.
         """
-        self.number_outputs, self.optimizer, self.n_neurons_first_dense_layer, self.gol_sizes, self.cnn_dim, self.kernel_size, self.pool_size, self.strides_convolution, self.strides_pooling, self.padding, self.activation_function_gol, self.activation_function_dense, self.batch_size, self.epochs, self.patientece, self.dropout_percentage, self.verbose = number_outputs, optimizer, n_neurons_first_dense_layer, gol_sizes, cnn_dim, kernel_size, pool_size, strides_convolution, strides_pooling, padding, activation_function_gol, activation_function_dense, batch_size, epochs, patientece, dropout_percentage, verbose
+        self.number_outputs, self.optimizer, self.n_neurons_first_dense_layer, self.gol_sizes, self.cnn_dim, self.kernel_size, self.pool_size, self.strides_convolution, self.strides_pooling, self.padding, self.activation_function_gol, self.activation_function_dense, self.batch_size, self.epochs, self.patientece, self.dropout_percentage = number_outputs, optimizer, n_neurons_first_dense_layer, gol_sizes, cnn_dim, kernel_size, pool_size, strides_convolution, strides_pooling, padding, activation_function_gol, activation_function_dense, batch_size, epochs, patientece, dropout_percentage
         self.model = tf.keras.models.Sequential()
 
     def prepare(self, X, y):
@@ -117,7 +116,7 @@ class BaseCNN:
         X_train = np.expand_dims(X_train, axis=-1)
         X_validation = np.expand_dims(X_validation, axis=-1)
         callbacks = [callback(self, self.patientece, (X_validation, y_validation), inbalance_correction, rtol, atol)]
-        self.model.fit(X_train, y_train, batch_size=self.batch_size, epochs=self.epochs, validation_data=(X_validation, y_validation), callbacks=callbacks, class_weight=class_weights, verbose=self.verbose, **kwargs)
+        self.model.fit(X_train, y_train, batch_size=self.batch_size, epochs=self.epochs, validation_data=(X_validation, y_validation), callbacks=callbacks, class_weight=class_weights, **kwargs)
 
     @abc.abstractmethod
     def fit(self, X, y, **kwargs):
@@ -172,7 +171,7 @@ class CNNClassification(BaseCNN):
                  optimizer='adam', metrics=None, cnn_dim=1, kernel_size=2, pool_size=2, strides_convolution=1, strides_pooling=2, dropout_percentage=0.1, padding='valid',
                  activation_function_gol='relu', activation_function_dense='relu',
                  batch_size=1000, epochs=50, patientece=5,
-                 verbose=1, **kwargs):
+                 **kwargs):
         """Convolutional Neural Network (CNN) classifier.
 
         The model comprises an input layer, a set of GofLayers (where each group is composed of one convolution layer, which was followed by one pooling layer, and a dropout layer), a dense layer, and an output layer.
@@ -196,7 +195,6 @@ class CNNClassification(BaseCNN):
             batch_size (int or None): Number of samples per batch of computation. If ``None``, ``batch_size`` will default to 32.
             epochs (int): Number of epochs to train the model.
             patientece (int): Number of epochs with no improvement after which training will be stopped.
-            verbose (int): Verbosity mode. Available options are ``0``, for silent mode, or ``1``, for a progress bar.
             **kwargs: *Ignored*. Extra arguments that are used for compatibility reasons.
 
         .. note::
@@ -205,7 +203,7 @@ class CNNClassification(BaseCNN):
         if metrics is None:
             metrics = ['accuracy']
         self.metrics, self.number_outputs, self.is_binary = metrics, number_outputs, None
-        super().__init__(number_outputs, n_neurons_first_dense_layer, gol_sizes, optimizer, cnn_dim, kernel_size, pool_size, strides_convolution, strides_pooling, dropout_percentage, padding, activation_function_gol, activation_function_dense, batch_size, epochs, patientece, verbose, **kwargs)
+        super().__init__(number_outputs, n_neurons_first_dense_layer, gol_sizes, optimizer, cnn_dim, kernel_size, pool_size, strides_convolution, strides_pooling, dropout_percentage, padding, activation_function_gol, activation_function_dense, batch_size, epochs, patientece, **kwargs)
 
     def prepare(self, X, y):
         """
@@ -298,7 +296,7 @@ class CNNRegression(BaseCNN):
                  optimizer='adam', metrics=None, cnn_dim=1, kernel_size=2, pool_size=2, strides_convolution=1, strides_pooling=2, dropout_percentage=0.1, padding='valid',
                  activation_function_gol='relu', activation_function_dense='relu',
                  batch_size=1000, epochs=50, patientece=5,
-                 verbose=1, **kwargs):
+                 **kwargs):
         """Convolutional Neural Network (CNN) regressor.
 
         The model comprises an input layer, a set of GofLayers (where each group is composed of one convolution layer, which was followed by one pooling layer, and a dropout layer), a dense layer, and an output layer.
@@ -322,7 +320,6 @@ class CNNRegression(BaseCNN):
             batch_size (int or None): Number of samples per batch of computation. If ``None``, ``batch_size`` will default to 32.
             epochs (int): Number of epochs to train the model.
             patientece (int): Number of epochs with no improvement after which training will be stopped.
-            verbose (int): Verbosity mode. Available options are ``0``, for silent mode, or ``1``, for a progress bar.
             **kwargs: *Ignored*. Extra arguments that are used for compatibility reasons.
 
         .. note::
@@ -331,7 +328,7 @@ class CNNRegression(BaseCNN):
         if metrics is None:
             metrics = ['mean_squared_error']
         self.metrics, self.number_outputs = metrics, number_outputs
-        super().__init__(number_outputs, n_neurons_first_dense_layer, gol_sizes, optimizer, cnn_dim, kernel_size, pool_size, strides_convolution, strides_pooling, dropout_percentage, padding, activation_function_gol, activation_function_dense, batch_size, epochs, patientece, verbose, **kwargs)
+        super().__init__(number_outputs, n_neurons_first_dense_layer, gol_sizes, optimizer, cnn_dim, kernel_size, pool_size, strides_convolution, strides_pooling, dropout_percentage, padding, activation_function_gol, activation_function_dense, batch_size, epochs, patientece, **kwargs)
 
     def prepare(self, X, y):
         """
