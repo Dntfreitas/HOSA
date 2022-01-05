@@ -5,15 +5,15 @@ import tensorflow as tf
 from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.model_selection import train_test_split
 
-from project.Callbacks import EarlyStoppingAtMinLoss
-from project.aux import metrics_multiclass
+from hosa.Callbacks import EarlyStoppingAtMinLoss
+from hosa.aux import metrics_multiclass
 
 
 class BaseRNN:
-    def __init__(self, is_bidirectional, n_units, n_subs_layers,
-                 n_neurons_last_dense_layer, model_type='lstm', optimizer='adam', dropout_percentage=0.1,
+    def __init__(self, number_outputs, is_bidirectional=False, n_units=10, n_subs_layers=2,
+                 n_neurons_last_dense_layer=50, model_type='lstm', optimizer='adam', dropout_percentage=0.1,
                  activation_function_dense='relu', kernel_initializer='normal',
-                 batch_size=1000, epochs=50, patientece=5, verbose=1):
+                 batch_size=1000, epochs=50, patientece=5, **kwargs):
 
         """Base class for Recurrent Neural Network (RNN) models for classification and regression.
 
@@ -23,6 +23,7 @@ class BaseRNN:
             This class should not be used directly. Use derived classes instead, i.e., :class:`.RNNClassification` or :class:`.RNNRegression`.
 
         Args:
+            number_outputs (int): Number of classes (or labels) of the classification problem.
             is_bidirectional (bool): If ``true``, then bidirectional layers will be used to build the RNN model.
             n_units (int): Dimensionality of the output space, i.e., the dimensionality of the hidden state.
             n_subs_layers (int): Number of subsequent layers beteween the input and output layers.
@@ -35,13 +36,13 @@ class BaseRNN:
             batch_size (int or None): Number of samples per batch of computation. If ``None``, ``batch_size`` will default to 32.
             epochs (int): Number of epochs to train the model.
             patientece (int): Number of epochs with no improvement after which training will be stopped.
-            verbose (int): Verbosity mode. Available options are ``0``, for silent mode, or ``1``, for a progress bar.
+            **kwargs: *Ignored*. Extra arguments that are used for compatibility reasons.
 
         .. note::
             The parameters used in this library were adapted from the same parameters of the TensorFlow library. Descriptions were thus modified accordingly to our approach.  However, refer to the TensorFlow documentation for more details about each of those parameters.
 
         """
-        self.is_bidirectional, self.n_units, self.n_subs_layers, self.n_neurons_last_dense_layer, self.model_type, self.optimizer, self.dropout_percentage, self.activation_function_dense, self.kernel_initializer, self.batch_size, self.epochs, self.patientece, self.verbose = is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, verbose
+        self.number_outputs, self.is_bidirectional, self.n_units, self.n_subs_layers, self.n_neurons_last_dense_layer, self.model_type, self.optimizer, self.dropout_percentage, self.activation_function_dense, self.kernel_initializer, self.batch_size, self.epochs, self.patientece = number_outputs, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece
         self.model = tf.keras.models.Sequential()
 
     def prepare(self, X, y):
@@ -61,8 +62,7 @@ class BaseRNN:
         else:
             raise ValueError('Type of RNN model invalid. Available options are ``lstm``, for a Long Short-Term Memory model, or ``gru``, for a Gated Recurrent Unit model.')
         # Input layer
-        n_features = X.shape[-1]
-        self.model.add(tf.keras.layers.InputLayer(input_shape=(n_features, 1)))
+        self.model.add(tf.keras.layers.InputLayer(input_shape=X.shape[1:]))
         if self.is_bidirectional:
             self.model.add(tf.keras.layers.Bidirectional(layer_type(self.n_units, return_sequences=self.n_subs_layers > 0)))
         else:
@@ -98,10 +98,8 @@ class BaseRNN:
         """
 
         X_train, X_validation, y_train, y_validation = train_test_split(X, y, test_size=validation_size)
-        X_train = np.expand_dims(X_train, axis=-1)
-        X_validation = np.expand_dims(X_validation, axis=-1)
         callbacks = [callback(self, self.patientece, (X_validation, y_validation), inbalance_correction, rtol, atol)]
-        self.model.fit(X_train, y_train, batch_size=self.batch_size, epochs=self.epochs, validation_data=(X_validation, y_validation), callbacks=callbacks, class_weight=class_weights, verbose=self.verbose, **kwargs)
+        self.model.fit(X_train, y_train, batch_size=self.batch_size, epochs=self.epochs, validation_data=(X_validation, y_validation), callbacks=callbacks, class_weight=class_weights, **kwargs)
 
     @abc.abstractmethod
     def fit(self, X, y, **kwargs):
@@ -117,13 +115,11 @@ class BaseRNN:
         raise NotImplemented
 
     @abc.abstractmethod
-    def compile(self, **kwargs):
+    def compile(self):
         """
 
         Compiles the model for training.
 
-        Args:
-            **kwargs: Extra arguments that are used in the TensorFlow's model ``compile`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#compile>`_.
         """
         raise NotImplemented
 
@@ -154,16 +150,16 @@ class BaseRNN:
 
 
 class RNNClassification(BaseRNN):
-    def __init__(self, number_classes, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type='lstm',
+    def __init__(self, number_outputs, is_bidirectional=False, n_units=10, n_subs_layers=2, n_neurons_last_dense_layer=50, model_type='lstm',
                  optimizer='adam', dropout_percentage=0.1, metrics=None, activation_function_dense='relu', kernel_initializer='normal',
                  batch_size=1000, epochs=50, patientece=5,
-                 verbose=1):
+                 **kwargs):
         """Recurrent Neural Network (RNN) model classifier.
 
         The model comprises an input layer (an RNN or a bidirectional RNN cell), ``n_subs_layers`` subsequent layers (similar to the input cell), a dropout layer, a dense layer, and an output layer.
 
         Args:
-            number_classes (int): Number of classes (or labels) of the classification problem.
+            number_outputs (int): Number of classes (or labels) of the classification problem.
             is_bidirectional (bool): If ``true``, then bidirectional layers will be used to build the RNN model.
             n_units (int): Dimensionality of the output space, i.e., the dimensionality of the hidden state.
             n_subs_layers (int): Number of subsequent layers beteween the input and output layers.
@@ -177,12 +173,12 @@ class RNNClassification(BaseRNN):
             batch_size (int or None): Number of samples per batch of computation. If ``None``, ``batch_size`` will default to 32.
             epochs (int): Number of epochs to train the model.
             patientece (int): Number of epochs with no improvement after which training will be stopped.
-            verbose (int): Verbosity mode. Available options are ``0``, for silent mode, or ``1``, for a progress bar.
+            **kwargs: *Ignored*. Extra arguments that are used for compatibility reasons.
         """
         if metrics is None:
             metrics = ['accuracy']
-        self.metrics, self.number_classes, self.is_binary = metrics, number_classes, None
-        super().__init__(is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, verbose)
+        self.metrics, self.is_binary = metrics, None
+        super().__init__(number_outputs, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, **kwargs)
 
     def prepare(self, X, y):
         """
@@ -197,7 +193,7 @@ class RNNClassification(BaseRNN):
             tensorflow.keras.Sequential: Returns an untrained TensorFlow model.
         """
         super().prepare(X, y)
-        self.model.add(tf.keras.layers.Dense(self.number_classes, activation='softmax'))
+        self.model.add(tf.keras.layers.Dense(self.number_outputs, activation='softmax'))
         return self.model
 
     def fit(self, X, y, validation_size=0.33, rtol=1e-03, atol=1e-04, class_weights=None, inbalance_correction=False, **kwargs):
@@ -240,7 +236,7 @@ class RNNClassification(BaseRNN):
             This function can be used for both binary and multiclass classification.
         """
         y_probs, y_pred = self.predict(X)
-        auc_value, accuracy, sensitivity, specificity = metrics_multiclass(y, y_probs, self.number_classes, inbalance_correction=inbalance_correction)
+        auc_value, accuracy, sensitivity, specificity = metrics_multiclass(y, y_probs, self.number_outputs, inbalance_correction=inbalance_correction)
         return auc_value, accuracy, sensitivity, sensitivity
 
     def predict(self, X, **kwargs):
@@ -252,31 +248,27 @@ class RNNClassification(BaseRNN):
             X (numpy.ndarray): Input data.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``predict`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#predict>`_.
         """
-        # TODO: check why we don't need  `X = np.expand_dims(X, axis=-1)`
         y_probs = self.model.predict(X, **kwargs)
         y_pred_labels = np.argmax(y_probs, axis=1)
         return y_probs, y_pred_labels
 
-    def compile(self, **kwargs):
+    def compile(self):
         """
 
         Compiles the model for training.
 
-        Args:
-            **kwargs: Extra arguments that are used in the TensorFlow's model ``compile`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#compile>`_.
-
         Returns:
             tensorflow.keras.Sequential: Returns an untrained but compiled TensorFlow model.
         """
-        self.model.compile(loss='sparse_categorical_crossentropy', optimizer=self.optimizer, metrics=self.metrics, **kwargs)
+        self.model.compile(loss='sparse_categorical_crossentropy', optimizer=self.optimizer, metrics=self.metrics)
         return self.model
 
 
 class RNNRegression(BaseRNN):
-    def __init__(self, number_outputs, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type='lstm',
+    def __init__(self, number_outputs, is_bidirectional=False, n_units=10, n_subs_layers=2, n_neurons_last_dense_layer=50, model_type='lstm',
                  optimizer='adam', dropout_percentage=0.1, metrics=None, activation_function_dense='relu', kernel_initializer='normal',
                  batch_size=1000, epochs=50, patientece=5,
-                 verbose=1):
+                 **kwargs):
         """Recurrent Neural Network (RNN) model regressor.
 
         The model comprises an input layer (an RNN or a bidirectional RNN cell), ``n_subs_layers`` subsequent layers (similar to the input cell), a dropout layer, a dense layer, and an output layer.
@@ -296,12 +288,12 @@ class RNNRegression(BaseRNN):
             batch_size (int or None): Number of samples per batch of computation. If ``None``, ``batch_size`` will default to 32.
             epochs (int): Number of epochs to train the model.
             patientece (int): Number of epochs with no improvement after which training will be stopped.
-            verbose (int): Verbosity mode. Available options are ``0``, for silent mode, or ``1``, for a progress bar.
+            **kwargs: *Ignored*. Extra arguments that are used for compatibility reasons.
         """
         if metrics is None:
             metrics = ['mean_squared_error']
-        self.number_outputs, self.metrics = number_outputs, metrics
-        super().__init__(is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, verbose)
+        self.metrics = metrics
+        super().__init__(number_outputs, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patientece, **kwargs)
 
     def prepare(self, X, y):
         """
@@ -370,15 +362,12 @@ class RNNRegression(BaseRNN):
         y_pred = self.model.predict(X, **kwargs)
         return y_pred
 
-    def compile(self, **kwargs):
+    def compile(self):
         """
 
         Compiles the model for training.
 
-        Args:
-            **kwargs: Extra arguments that are used in the TensorFlow's model ``compile`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#compile>`_.
-
         Returns:
             tensorflow.keras.Sequential: Returns an untrained but compiled TensorFlow model.
         """
-        self.model.compile(loss='mean_squared_error', optimizer=self.optimizer, metrics=self.metrics, **kwargs)
+        self.model.compile(loss='mean_squared_error', optimizer=self.optimizer, metrics=self.metrics)

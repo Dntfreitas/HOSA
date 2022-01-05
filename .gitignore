@@ -110,11 +110,11 @@ ENV/
 env.bak/
 venv.bak/
 
-# Spyder project settings
+# Spyder hosa settings
 .spyderproject
 .spyproject
 
-# Rope project settings
+# Rope hosa settings
 .ropeproject
 
 # mkdocs documentation
@@ -132,3 +132,4 @@ dmypy.json
 docs/build/
 _trial_temp
 .coverage
+/docs/source/_autosummary/
