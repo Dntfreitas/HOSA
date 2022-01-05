@@ -9,10 +9,11 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 from tensorflow import keras, random
 from tensorflow.keras.datasets import imdb
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-from src.hosa.Models.CNN.cnn_models import CNNClassification, CNNRegression
-from src.hosa.Models.RNN.rnn_models import RNNClassification, RNNRegression
-from src.hosa.Optimization.hosa import HOSA
-from src.hosa.aux import create_overlapping
+
+from hosa.Models.CNN.cnn_models import CNNClassification, CNNRegression
+from hosa.Models.RNN import RNNClassification, RNNRegression
+from hosa.Optimization.hosa import HOSA
+from hosa.aux import create_overlapping
 
 
 def run_binary_classification_cnn(inbalance_correction):

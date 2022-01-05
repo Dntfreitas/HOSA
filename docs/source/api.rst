@@ -10,12 +10,12 @@ The HOSA library is split into three modules:
 CNN
 ~~~~~~~~~~
 
-.. automodule:: src.hosa.Models.CNN
+.. automodule:: hosa.Models.CNN
 
 RNN
 ~~~~~~~~~~
 
-.. automodule:: src.hosa.Models.RNN
+.. automodule:: hosa.Models.RNN
 
 Callbacks
 ~~~~~~~~~~

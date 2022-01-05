@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn.model_selection import ShuffleSplit
 
-from src.hosa.aux import create_parameter_grid, n_points, create_overlapping
+from hosa.aux import create_parameter_grid, n_points, create_overlapping
 
 
 class HOSA:
