@@ -24,7 +24,7 @@ def run_binary_classification_cnn(inbalance_correction):
         scaler = StandardScaler()
         X_train = scaler.fit_transform(X_train)
         X_test = scaler.transform(X_test)
-        clf = CNNClassification(2, 10, [3, 2], epochs=200, patientece=3)
+        clf = CNNClassification(2, 10, [3, 2], epochs=200, patience=3)
         clf.prepare(X_train, y_train)
         clf.compile()
         clf.fit(X_train, y_train, inbalance_correction=inbalance_correction, verbose=0)
@@ -108,7 +108,7 @@ def run_regression_cnn():
         X_test = scaler.transform(X_test)
         X_train, y_train = create_overlapping(X_train, y_train, CNNRegression, 'central', 3, stride=1, timesteps=2)
         X_test, y_test = create_overlapping(X_test, y_test, CNNRegression, 'central', 3, stride=1, timesteps=2)
-        reg = CNNRegression(1, 10, [3, 5], patientece=2, epochs=5, kernel_size=2, pool_size=1, strides_pooling=1)
+        reg = CNNRegression(1, 10, [3, 5], patience=2, epochs=5, kernel_size=2, pool_size=1, strides_pooling=1)
         reg.prepare(X_train, y_train)
         reg.compile()
         reg.fit(X_train, y_train, verbose=0)
@@ -126,17 +126,17 @@ def run_multiclass_classification_rnn(is_bidirectional=False, overlapping_epochs
         number_classes = 2
         n_units = 2
         n_subs_layers = 2
-        n_neurons_last_dense_layer = 10
+        n_neurons_dense_layer = 10
         (X_train, y_train), (X_test, y_test) = imdb.load_data(num_words=num_distinct_words)
         X_train = X_train[:500]
         y_train = y_train[:500]
         X_test = X_test[:250]
         X_train = pad_sequences(X_train, maxlen=max_sequence_length, value=0.0)
         X_test = pad_sequences(X_test, maxlen=max_sequence_length, value=0.0)
-        X_train, y_train = create_overlapping(X_train, y_train, RNNRegression, 'central', overlapping_epochs, stride=1, timesteps=2)
-        X_test, y_test = create_overlapping(X_test, y_test, RNNRegression, 'central', overlapping_epochs, stride=1, timesteps=2)
+        X_train, y_train = create_overlapping(X_train, y_train, RNNClassification, 'central', overlapping_epochs, stride=1, timesteps=2)
+        X_test, y_test = create_overlapping(X_test, y_test, RNNClassification, 'central', overlapping_epochs, stride=1, timesteps=2)
         for model in ['lstm', 'gru']:
-            clf = RNNClassification(number_classes, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type=model, patientece=2, epochs=5)
+            clf = RNNClassification(number_classes, n_neurons_dense_layer, is_bidirectional=is_bidirectional, n_units=n_units, n_subs_layers=n_subs_layers, model_type=model, patience=2, epochs=5)
             clf.prepare(X_train, y_train)
             clf.compile()
             clf.fit(X_train, y_train, verbose=0)
@@ -164,9 +164,9 @@ def run_regression_rnn(is_bidirectional, overlapping_type, overlapping_epochs=5,
         number_outputs = 1
         n_units = 2
         n_subs_layers = 2
-        n_neurons_last_dense_layer = 10
+        n_neurons_dense_layer = 10
         for model in ['lstm', 'gru']:
-            reg = RNNRegression(number_outputs, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type=model, patientece=2, epochs=5)
+            reg = RNNRegression(number_outputs, n_neurons_dense_layer, is_bidirectional=is_bidirectional, n_units=n_units, n_subs_layers=n_subs_layers, model_type=model, patience=2, epochs=5)
             reg.prepare(X_train, y_train)
             reg.compile()
             reg.fit(X_train, y_train, verbose=0)
@@ -182,13 +182,13 @@ def run_hosa_classification():
         X, y = load_breast_cancer(return_X_y=True)
         X = X[:, :5]
         param_grid = [{
-                'n_neurons_first_dense_layer': [5, 10],
-                'gol_sizes':                   [[3]],
-                'overlapping_type':            ['central', 'right'],
-                'overlapping_epochs':          [3],
-                'stride':                      [1],
-                'timesteps':                   [1, 2],
-                'model_type':                  ['lstm', 'gru']
+                'n_neurons_dense_layer': [5, 10],
+                'gol_sizes':             [[3]],
+                'overlapping_type':      ['central', 'right'],
+                'overlapping_epochs':    [3],
+                'stride':                [1],
+                'timesteps':             [1, 2],
+                'model_type':            ['lstm', 'gru']
         }]
         clf = HOSA(CNNClassification, 2, param_grid, X, y, 0.1, n_splits=2, apply_rsv=True)
         clf.fit(inbalance_correction=True, validation_size=0.5, verbose=0)
@@ -215,11 +215,11 @@ def run_hosa_regression():
         np.nan_to_num(X, copy=False)
         np.nan_to_num(y, copy=False)
         param_grid = [{
-                'n_neurons_first_dense_layer': [5, 10],
-                'gol_sizes':                   [[3]],
-                'overlapping_type':            ['central', 'left'],
-                'overlapping_epochs':          [3],
-                'model_type':                  ['lstm', 'gru']
+                'n_neurons_dense_layer': [5, 10],
+                'gol_sizes':             [[3]],
+                'overlapping_type':      ['central', 'left'],
+                'overlapping_epochs':    [3],
+                'model_type':            ['lstm', 'gru']
         }]
         clf = HOSA(CNNRegression, 1, param_grid, X, y, 0.1, apply_rsv=False)
         clf.fit(validation_size=0.5, verbose=0)

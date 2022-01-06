@@ -3,7 +3,7 @@
 .. autosummary::
     :toctree: _autosummary
 
-    EarlyStoppingAtMinLoss.EarlyStoppingAtMinLoss
+    early_stopping_min_loss.EarlyStoppingAtMinLoss
 """
 
-from .EarlyStoppingAtMinLoss import EarlyStoppingAtMinLoss
+from .early_stopping_min_loss import EarlyStoppingAtMinLoss
