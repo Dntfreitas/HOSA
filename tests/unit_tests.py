@@ -181,7 +181,7 @@ def run_hosa_classification():
     try:
         X, y = load_breast_cancer(return_X_y=True)
         X = X[:, :5]
-        param_grid = [{
+        param_grid = {
                 'n_neurons_dense_layer': [5, 10],
                 'gol_sizes':             [[3]],
                 'overlapping_type':      ['central', 'right'],
@@ -189,11 +189,11 @@ def run_hosa_classification():
                 'stride':                [1],
                 'timesteps':             [1, 2],
                 'model_type':            ['lstm', 'gru']
-        }]
-        clf = HOSA(CNNClassification, 2, param_grid, X, y, 0.1, n_splits=2, apply_rsv=True)
+        }
+        clf = HOSA(X, y, CNNClassification, 2, param_grid, 0.1, n_splits=2, apply_rsv=True)
         clf.fit(inbalance_correction=True, validation_size=0.5, verbose=0)
         clf.score(X, y)
-        clf = HOSA(RNNClassification, 2, param_grid, X, y, 0.1, apply_rsv=False)
+        clf = HOSA(X, y, RNNClassification, 2, param_grid, 0.1, apply_rsv=False)
         clf.fit(inbalance_correction=False, verbose=0)
         clf.score(X, y)
         return True
@@ -214,18 +214,18 @@ def run_hosa_regression():
         y = values[:, 0]
         np.nan_to_num(X, copy=False)
         np.nan_to_num(y, copy=False)
-        param_grid = [{
+        param_grid = {
                 'n_neurons_dense_layer': [5, 10],
                 'gol_sizes':             [[3]],
                 'overlapping_type':      ['central', 'left'],
                 'overlapping_epochs':    [3],
                 'model_type':            ['lstm', 'gru']
-        }]
-        clf = HOSA(CNNRegression, 1, param_grid, X, y, 0.1, apply_rsv=False)
+        }
+        clf = HOSA(X, y, CNNRegression, 1, param_grid, 0.1, apply_rsv=False)
         clf.fit(validation_size=0.5, verbose=0)
         clf.score(X, y)
         param_grid[0]['timesteps'] = [1]
-        clf = HOSA(RNNRegression, 1, param_grid, X, y, 0.1, apply_rsv=False)
+        clf = HOSA(X, y, RNNRegression, 1, param_grid, 0.1, apply_rsv=False)
         clf.fit(verbose=0)
         clf.predict(X)
         return True

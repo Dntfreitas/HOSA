@@ -10,6 +10,7 @@ from hosa.aux import metrics_multiclass
 
 
 class BaseRNN:
+    # n_neurons_dense_layer * 2 0.5  1,
     def __init__(self, n_outputs, n_neurons_dense_layer, is_bidirectional=False, n_units=10, n_subs_layers=2,
                  model_type='lstm', optimizer='adam', dropout_percentage=0.1,
                  activation_function_dense='relu', kernel_initializer='normal',
@@ -149,6 +150,7 @@ class BaseRNN:
 
 
 class RNNClassification(BaseRNN):
+    # n_neurons_dense_layer
     def __init__(self, n_outputs, n_neurons_dense_layer, is_bidirectional=False, n_units=10, n_subs_layers=2,
                  model_type='lstm', optimizer='adam', dropout_percentage=0.1, metrics=None,
                  activation_function_dense='relu', kernel_initializer='normal',
@@ -255,7 +257,7 @@ class RNNClassification(BaseRNN):
             inbalance_correction (bool): Whether to apply correction to class imbalances.
 
         Returns:
-            tuple: Returns a list containing the area under the ROC curve (AUC), accuracy, sensitivity, and sensitivity.
+            tuple: Returns a tuple containing the area under the ROC curve (AUC), accuracy, sensitivity, and sensitivity.
 
         .. note::
             This function can be used for both binary and multiclass classification.
@@ -274,7 +276,7 @@ class RNNClassification(BaseRNN):
             **kwargs: Extra arguments that are used in the TensorFlow's model ``predict`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#predict>`_.
 
         Returns:
-            tuple: Returns a list containing the probability estimates and predicted classes.
+            tuple: Returns a tuple containing the probability estimates and predicted classes.
         """
         y_probs = self.model.predict(X, **kwargs)
         y_pred_labels = np.argmax(y_probs, axis=1)
@@ -327,7 +329,7 @@ class RNNRegression(BaseRNN):
                 from hosa.Models.RNN import RNNRegression
                 from hosa.aux import create_overlapping
 
-                # 1 - Download, load and split the data
+                # 1 - Download, load, and split the data
                 dataset = pd.read_csv('https://raw.githubusercontent.com/jbrownlee/Datasets/master/airline-passengers.csv', header=0, index_col=0)
                 X = dataset.Passengers.to_numpy().reshape((len(dataset), 1))
                 y = dataset.Passengers.to_numpy()
@@ -394,7 +396,7 @@ class RNNRegression(BaseRNN):
             **kwargs: *Ignored*. Only included here for compatibility with :class:`.CNNClassification`.
 
         Returns:
-            tuple: List containing the mean squared error (MSE) and coefficient of determination (:math:`R^2`).
+            tuple: Returns a tuple containing the mean squared error (MSE) and coefficient of determination (:math:`R^2`).
 
         """
         y_pred = self.predict(X)
@@ -412,7 +414,7 @@ class RNNRegression(BaseRNN):
             **kwargs: Extra arguments that are used in the TensorFlow's model ``predict`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#predict>`_.
 
         Returns:
-            list: Returns a list containing the estimates.
+            numpy.ndarray: Returns an array containing the estimates.
         """
         y_pred = self.model.predict(X, **kwargs)
         return y_pred

@@ -3,9 +3,15 @@ API Reference
 
 The HOSA library is split into three modules:
 
-* ``Models.CNN.cnn_models``: for implementing classification and regression models using Convolutional Neural Networks (CNN).
-* ``Models.RNN.rnn_models``: for implementing classification and regression models using Recurrent Neural Network (RNNs).
-* ``Callbacks.EarlyStoppingAtMinLoss``: for implementing early stopping callbacks for halting the model's training.
+* ``Hosa.Models.CNN.cnn_models``: for implementing classification and regression models using Convolutional Neural Networks (CNN).
+* ``Hosa.Models.CNN.cnn_models``: for implementing classification and regression models using Convolutional Neural Networks (CNN).
+* ``Hosa.Models.RNN.rnn_models``: for implementing classification and regression models using Recurrent Neural Network (RNNs).
+* ``Hosa.Callbacks``: for implementing early stopping callbacks for halting the model's training.
+
+HOSA
+~~~~~~~~~~
+
+.. automodule:: hosa.Optimization
 
 CNN
 ~~~~~~~~~~
@@ -20,4 +26,4 @@ RNN
 Callbacks
 ~~~~~~~~~~
 
-.. automodule:: Callbacks
+.. automodule:: hosa.Callbacks
