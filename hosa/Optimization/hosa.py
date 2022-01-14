@@ -55,7 +55,6 @@ class HOSA:
         self.model, self.n_outputs, self.parameters, self.X, self.y, self.tr, self.apply_rsv, self.validation_size, self.n_splits = model, n_outputs, [parameters], X, y, tr, apply_rsv, validation_size, n_splits
         self.best_model = self.best_metric = self.best_specification = None
         n_total_parameters, step = n_points(self.parameters)
-        self.parameter_grid = create_parameter_grid(self.parameters)
         self.steps_check_improvment = (n_total_parameters // step)
         # According to the model, initialize the metrics and compare function
         if 'Regression' in str(model):
@@ -162,7 +161,62 @@ class HOSA:
             metric, *_ = model.score(X_win, y_win)
             return metric
 
-    def fit(self, **kwargs):
+    def fit(self, max_gol_sizes, n_kernels, mults, **kwargs):
+        """
+        Runs fit, following the HOSA approach, with all sets of parameters.
+
+        Args:
+            **kwargs: Extra arguments explicitly used for regression or classification models, including the additional arguments that are used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
+
+        Returns:
+            tensorflow.keras.Sequential: Returns the best TensorFlow model found.
+
+        """
+
+        # Initalize variables
+        best_metric = self.initial_metric_value
+        best_model = best_specification = None
+        k_construction_size = []
+        stop = False
+        # Perform optimization
+        while len(k_construction_size) < max_gol_sizes and not stop:
+            # Inicialize the best current metric for comparing with the best metric found
+            best_metric_current = self.initial_metric_value
+            best_model_current = best_specification_current = None
+            # If there is just one GOL
+            if len(k_construction_size) == 0:
+                n_kernels_test = np.array(n_kernels).reshape((len(n_kernels), 1))
+            else:
+                n_kernels_test = [k_construction_size + [int(k_construction_size[-1] * mult)] for mult in mults]
+            # Test each kernel size
+            for n_kernel in n_kernels_test:
+                # Run grid search
+                specification, model, metric = self.grid_search(n_kernel, **kwargs)
+                # Compare with the current metrics, and update the current best values if necessary
+                if self.compare_function(metric, best_metric_current):
+                    best_model_current = model
+                    best_metric_current = metric
+                    best_specification_current = specification
+            # Check the stopping criterion
+            if self.stop_check(best_metric_current, best_metric):
+                if self.compare_function(best_metric_current, best_metric):
+                    self.best_model = best_model_current
+                    self.best_metric = best_metric_current
+                    self.best_specification = best_specification_current
+                else:
+                    self.best_model = best_model
+                    self.best_metric = best_metric
+                    self.best_specification = best_specification
+                stop = True
+            else:
+                best_model = best_model_current
+                best_metric = best_metric_current
+                best_specification = best_specification_current
+                k_construction_size.append(best_model.n_kernels[-1])
+        self.best_model, self.best_metric, self.best_specification = best_model, best_metric, best_specification
+        return self.best_model, self.best_metric, self.best_specification
+
+    def grid_search(self, n_kernels, **kwargs):
         """
         Runs fit, following the HOSA approach, with all sets of parameters.
 
@@ -174,18 +228,16 @@ class HOSA:
 
         """
         # Initalize variables
-        best_model_prev = best_model_current = None
-        best_specification_current = best_specification_prev = None
-        best_metric_prev = self.initial_metric_value
-        best_metric_current = self.initial_metric_value
+        best_model = best_specification = None
+        best_metric = self.initial_metric_value
         overlapping_type = overlapping_epochs = stride = timesteps = None
         X_win = y_win = None
-        stop = False
-        step = 0
+        # Generate parameter grid
+        parameter_grid = create_parameter_grid(self.parameters)
         # Get first specification
-        specification = next(self.parameter_grid, None)
+        specification = next(parameter_grid, None)
         # Test all parameters, until stop criterion is met or there is no more elements to test
-        while not stop and specification is not None:
+        while specification is not None:
             # If necessary, create new overlap
             overlapping_type_new, overlapping_epochs_new, stride_new, timesteps_new = self.__prepare_param_overlapping(specification)
             changed = overlapping_type != overlapping_type_new or overlapping_epochs != overlapping_epochs_new or stride != stride_new or timesteps != timesteps_new
@@ -193,45 +245,19 @@ class HOSA:
                 overlapping_type, overlapping_epochs, stride, timesteps = overlapping_type_new, overlapping_epochs_new, stride_new, timesteps_new
                 X_win, y_win = create_overlapping(self.X, self.y, self.model, overlapping_type, overlapping_epochs, stride=stride, timesteps=timesteps)
             # Generate the model
-            model = self.model(n_outputs=self.n_outputs, **specification)
+            model = self.model(n_kernels=n_kernels, n_outputs=self.n_outputs, **specification)
             model.prepare(X_win, y_win)
             model.compile()
             # Fit and asses the model
             metric = self.__fit_assess_model(model, X_win, y_win, **kwargs)
             # Compare with the current metrics
-            if self.compare_function(metric, best_metric_current):
-                best_metric_current = metric
-                best_model_current = model
-                best_specification_current = specification
-            # Increment step
-            step = step + 1
-            # If we need to check the performance metrics
-            if step % self.steps_check_improvment == 0:
-                if self.stop_check(best_metric_current, best_metric_prev):
-                    if self.compare_function(best_metric_current, best_metric_prev):
-                        self.best_model = best_model_current
-                        self.best_metric = best_metric_current
-                        self.best_specification = best_specification_current
-                    else:
-                        self.best_model = best_model_prev
-                        self.best_metric = best_metric_prev
-                        self.best_specification = best_specification_prev
-                    stop = True
-                else:
-                    self.best_model = best_model_current
-                    self.best_metric = best_metric_current
-                    self.best_specification = best_specification_current
-                    # The previous becames the current
-                    best_model_prev = best_model_current
-                    best_metric_prev = best_metric_current
-                    best_specification_prev = best_specification_current
-                    # Delete current values
-                    best_metric_current = self.initial_metric_value
-                    best_model_current = None
-                    best_specification_current = None
+            if self.compare_function(metric, best_metric):
+                best_metric = metric
+                best_model = model
+                best_specification = specification
             # Get next specification
-            specification = next(self.parameter_grid, None)
-        return self.best_model
+            specification = next(parameter_grid, None)
+        return best_specification, best_model, best_metric
 
     def get_params(self):
         """
