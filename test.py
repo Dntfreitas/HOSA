@@ -17,7 +17,7 @@ param_grid = {
 }
 # 3 - Create a HOSA instance and find the best set of parameters
 clf = HOSA(X, y, CNNRegression, 1, param_grid, 0.1, apply_rsv=True, n_splits=3)
-clf.fit(verbose=0)
+clf.fit_cnn(verbose=0)
 # 4 - Save the best model
 best_parms = clf.get_params()
 best_model = clf.get_model()

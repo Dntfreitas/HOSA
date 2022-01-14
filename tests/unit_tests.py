@@ -191,10 +191,10 @@ def run_hosa_classification():
                 'model_type':            ['lstm', 'gru']
         }
         clf = HOSA(X, y, CNNClassification, 2, param_grid, 0.1, n_splits=2, apply_rsv=True)
-        clf.fit(inbalance_correction=True, validation_size=0.5, verbose=0)
+        clf.fit_cnn(inbalance_correction=True, validation_size=0.5, verbose=0)
         clf.score(X, y)
         clf = HOSA(X, y, RNNClassification, 2, param_grid, 0.1, apply_rsv=False)
-        clf.fit(inbalance_correction=False, verbose=0)
+        clf.fit_cnn(inbalance_correction=False, verbose=0)
         clf.score(X, y)
         return True
     except Exception as e:
@@ -222,11 +222,11 @@ def run_hosa_regression():
                 'model_type':            ['lstm', 'gru']
         }
         clf = HOSA(X, y, CNNRegression, 1, param_grid, 0.1, apply_rsv=False)
-        clf.fit(validation_size=0.5, verbose=0)
+        clf.fit_cnn(validation_size=0.5, verbose=0)
         clf.score(X, y)
         param_grid[0]['timesteps'] = [1]
         clf = HOSA(X, y, RNNRegression, 1, param_grid, 0.1, apply_rsv=False)
-        clf.fit(verbose=0)
+        clf.fit_cnn(verbose=0)
         clf.predict(X)
         return True
     except Exception as e:

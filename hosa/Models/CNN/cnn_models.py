@@ -120,7 +120,7 @@ class BaseCNN:
         X_train = np.expand_dims(X_train, axis=-1)
         X_validation = np.expand_dims(X_validation, axis=-1)
         callbacks = [callback(self, self.patience, (X_validation, y_validation), inbalance_correction, rtol, atol)]
-        self.model.fit(X_train, y_train, batch_size=self.batch_size, epochs=self.epochs, validation_data=(X_validation, y_validation), callbacks=callbacks, class_weight=class_weights, **kwargs)
+        self.model.fit_cnn(X_train, y_train, batch_size=self.batch_size, epochs=self.epochs, validation_data=(X_validation, y_validation), callbacks=callbacks, class_weight=class_weights, **kwargs)
 
     @abc.abstractmethod
     def fit(self, X, y, **kwargs):

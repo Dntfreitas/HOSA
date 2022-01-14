@@ -150,7 +150,6 @@ class BaseRNN:
 
 
 class RNNClassification(BaseRNN):
-    # n_neurons_dense_layer
     def __init__(self, n_outputs, n_neurons_dense_layer, is_bidirectional=False, n_units=10, n_subs_layers=2,
                  model_type='lstm', optimizer='adam', dropout_percentage=0.1, metrics=None,
                  activation_function_dense='relu', kernel_initializer='normal',

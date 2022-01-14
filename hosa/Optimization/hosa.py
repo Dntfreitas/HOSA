@@ -161,7 +161,7 @@ class HOSA:
             metric, *_ = model.score(X_win, y_win)
             return metric
 
-    def fit(self, max_gol_sizes, n_kernels, mults, **kwargs):
+    def fit_cnn(self, max_gol_sizes, n_kernels, mults, **kwargs):
         """
         Runs fit, following the HOSA approach, with all sets of parameters.
 
@@ -191,7 +191,7 @@ class HOSA:
             # Test each kernel size
             for n_kernel in n_kernels_test:
                 # Run grid search
-                specification, model, metric = self.grid_search(n_kernel, **kwargs)
+                specification, model, metric = self.grid_search_cnn(n_kernel, **kwargs)
                 # Compare with the current metrics, and update the current best values if necessary
                 if self.compare_function(metric, best_metric_current):
                     best_model_current = model
@@ -216,7 +216,7 @@ class HOSA:
         self.best_model, self.best_metric, self.best_specification = best_model, best_metric, best_specification
         return self.best_model, self.best_metric, self.best_specification
 
-    def grid_search(self, n_kernels, **kwargs):
+    def grid_search_cnn(self, n_kernels, **kwargs):
         """
         Runs fit, following the HOSA approach, with all sets of parameters.
 
@@ -258,6 +258,92 @@ class HOSA:
             # Get next specification
             specification = next(parameter_grid, None)
         return best_specification, best_model, best_metric
+
+    def fit_rnn(self, max_n_subs_layers, n_hidden_units, mults, **kwargs):
+        # Initalize variables
+        best_metric = self.initial_metric_value
+        best_model = best_specification = None
+        n_subs_layers_construction = 1
+        stop = False
+        # Perform optimization
+        while n_subs_layers_construction < max_n_subs_layers and not stop:
+            # Inicialize the best current metric for comparing with the best metric found
+            best_metric_current = self.initial_metric_value
+            best_model_current = best_specification_current = None
+            # Test each number of hidden units
+            for n_units in n_hidden_units:
+                # Test each number of units in the dense layer
+                for mult in mults:
+                    # Run grid search
+                    specification, model, metric = self.grid_search_rnn(n_neurons_dense_layer=np.floor(n_units * mult), n_units=n_units, **kwargs)
+                    # Compare with the current metrics, and update the current best values if necessary
+                    if self.compare_function(metric, best_metric_current):
+                        best_model_current = model
+                        best_metric_current = metric
+                        best_specification_current = specification
+            # Check the stopping criterion
+            if self.stop_check(best_metric_current, best_metric):
+                if self.compare_function(best_metric_current, best_metric):
+                    self.best_model = best_model_current
+                    self.best_metric = best_metric_current
+                    self.best_specification = best_specification_current
+                else:
+                    self.best_model = best_model
+                    self.best_metric = best_metric
+                    self.best_specification = best_specification
+                stop = True
+            else:
+                best_model = best_model_current
+                best_metric = best_metric_current
+                best_specification = best_specification_current
+                n_subs_layers_construction.append(best_model.n_kernels[-1])
+                n_subs_layers_construction = n_subs_layers_construction + 1
+        self.best_model, self.best_metric, self.best_specification = best_model, best_metric, best_specification
+        return self.best_model, self.best_metric, self.best_specification
+
+    def grid_search_rnn(self, n_neurons_dense_layer, n_units,**kwargs):
+        """
+        Runs fit, following the HOSA approach, with all sets of parameters.
+
+        Args:
+            **kwargs: Extra arguments explicitly used for regression or classification models, including the additional arguments that are used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
+
+        Returns:
+            tensorflow.keras.Sequential: Returns the best TensorFlow model found.
+
+        """
+        # Initalize variables
+        best_model = best_specification = None
+        best_metric = self.initial_metric_value
+        overlapping_type = overlapping_epochs = stride = timesteps = None
+        X_win = y_win = None
+        # Generate parameter grid
+        parameter_grid = create_parameter_grid(self.parameters)
+        # Get first specification
+        specification = next(parameter_grid, None)
+        # Test all parameters, until stop criterion is met or there is no more elements to test
+        while specification is not None:
+            # If necessary, create new overlap
+            overlapping_type_new, overlapping_epochs_new, stride_new, timesteps_new = self.__prepare_param_overlapping(specification)
+            changed = overlapping_type != overlapping_type_new or overlapping_epochs != overlapping_epochs_new or stride != stride_new or timesteps != timesteps_new
+            if changed:
+                overlapping_type, overlapping_epochs, stride, timesteps = overlapping_type_new, overlapping_epochs_new, stride_new, timesteps_new
+                X_win, y_win = create_overlapping(self.X, self.y, self.model, overlapping_type, overlapping_epochs, stride=stride, timesteps=timesteps)
+            # Generate the model
+            model = self.model(n_neurons_dense_layer=n_neurons_dense_layer, n_units=n_units, n_outputs=self.n_outputs, **specification)
+            model.prepare(X_win, y_win)
+            model.compile()
+            # Fit and asses the model
+            metric = self.__fit_assess_model(model, X_win, y_win, **kwargs)
+            # Compare with the current metrics
+            if self.compare_function(metric, best_metric):
+                best_metric = metric
+                best_model = model
+                best_specification = specification
+            # Get next specification
+            specification = next(parameter_grid, None)
+        return best_specification, best_model, best_metric
+
 
     def get_params(self):
         """
