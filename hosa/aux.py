@@ -114,3 +114,34 @@ def n_points(param_grid):
             if current_step > step:
                 step = current_step
     return n_total_parameters, step
+
+
+def prepare_param_overlapping(specification):
+    """
+
+    Prepares, considering the given specification, the parameters for creating the input and output overlapping.
+
+    Args:
+        specification (dict): Parameter names mapped to their values.
+
+    Returns:
+        tuple: Returns a tuple containing the overlapping type, number of overlapping epochs, strides, and timesteps.
+
+    """
+    if 'overlapping_epochs' in specification:
+        overlapping_epochs = specification['overlapping_epochs']
+    else:
+        overlapping_epochs = 0
+    if overlapping_epochs > 0 and 'overlapping_type' in specification:
+        overlapping_type = specification['overlapping_type']
+    else:
+        overlapping_type = None
+    if 'stride' in specification:
+        stride = specification['stride']
+    else:
+        stride = 1
+    if 'timesteps' in specification:
+        timesteps = specification['timesteps']
+    else:
+        timesteps = None
+    return overlapping_type, overlapping_epochs, stride, timesteps

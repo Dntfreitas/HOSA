@@ -2,7 +2,7 @@ import numpy as np
 
 
 def get_default_cnn_classification():
-    # GOL sizes
+    # GofL sizes
     n_layers = np.arange(1, 5)
     first_layers = 2 ** np.arange(4, 8)
     multiplication_factor = [0.5, 1, 2]
