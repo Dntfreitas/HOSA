@@ -10,8 +10,7 @@ from hosa.aux import metrics_multiclass
 
 
 class BaseRNN:
-    # n_neurons_dense_layer * 2 0.5  1,
-    def __init__(self, n_outputs, n_neurons_dense_layer, is_bidirectional=False, n_units=10, n_subs_layers=2,
+    def __init__(self, n_outputs, n_neurons_dense_layer, n_units, n_subs_layers, is_bidirectional=False,
                  model_type='lstm', optimizer='adam', dropout_percentage=0.1,
                  activation_function_dense='relu', kernel_initializer='normal',
                  batch_size=1000, epochs=50, patience=5, **kwargs):
@@ -29,9 +28,9 @@ class BaseRNN:
         Args:
             n_outputs (int): Number of class labels in classification, or the number of numerical values to predict in regression.
             n_neurons_dense_layer (int): Number of neurons units of the penultimate dense layer (i.e., before the output layer).
-            is_bidirectional (bool): If ``true``, then bidirectional layers will be used to build the RNN model.
             n_units (int): Dimensionality of the output space, i.e., the dimensionality of the hidden state.
-            n_subs_layers (int): Number of subsequent layers beteween the input and output layers.
+            n_subs_layers (int): Number of subsequent recurrent layers beteween the input and output layers.
+            is_bidirectional (bool): If ``true``, then bidirectional layers will be used to build the RNN model.
             model_type(str): Type of RNN model to be used. Available options are ``lstm``, for a Long Short-Term Memory model, or ``gru``, for a Gated Recurrent Unit model.
             optimizer (str): Name of the optimizer. See `tensorflow.keras.optimizers <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers>`_.
             dropout_percentage (float): Fraction of the input units to drop.
@@ -42,7 +41,7 @@ class BaseRNN:
             patience (int): Number of epochs with no improvement after which training will be stopped.
             **kwargs: *Ignored*. Extra arguments that are used for compatibility reasons.
         """
-        self.n_outputs, self.n_neurons_dense_layer, self.is_bidirectional, self.n_units, self.n_subs_layers, self.model_type, self.optimizer, self.dropout_percentage, self.activation_function_dense, self.kernel_initializer, self.batch_size, self.epochs, self.patience = n_outputs, n_neurons_dense_layer, is_bidirectional, n_units, n_subs_layers, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patience
+        self.n_outputs, self.n_neurons_dense_layer, self.n_units, self.is_bidirectional, self.n_subs_layers, self.model_type, self.optimizer, self.dropout_percentage, self.activation_function_dense, self.kernel_initializer, self.batch_size, self.epochs, self.patience = n_outputs, n_neurons_dense_layer, n_units, is_bidirectional, n_subs_layers, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patience
         self.model = tf.keras.models.Sequential()
 
     def prepare(self, X, y):
@@ -150,7 +149,7 @@ class BaseRNN:
 
 
 class RNNClassification(BaseRNN):
-    def __init__(self, n_outputs, n_neurons_dense_layer, is_bidirectional=False, n_units=10, n_subs_layers=2,
+    def __init__(self, n_outputs, n_neurons_dense_layer, n_units, n_subs_layers, is_bidirectional=False,
                  model_type='lstm', optimizer='adam', dropout_percentage=0.1, metrics=None,
                  activation_function_dense='relu', kernel_initializer='normal',
                  batch_size=1000, epochs=50, patience=5, **kwargs):
@@ -161,9 +160,9 @@ class RNNClassification(BaseRNN):
         Args:
             n_outputs (int): Number of class labels to predict.
             n_neurons_dense_layer (int): Number of neurons units of the penultimate dense layer (i.e., before the output layer).
-            is_bidirectional (bool): If ``true``, then bidirectional layers will be used to build the RNN model.
             n_units (int): Dimensionality of the output space, i.e., the dimensionality of the hidden state.
             n_subs_layers (int): Number of subsequent layers beteween the input and output layers.
+            is_bidirectional (bool): If ``true``, then bidirectional layers will be used to build the RNN model.
             model_type(str): Type of RNN model to be used. Available options are ``lstm``, for a Long Short-Term Memory model, or ``gru``, for a Gated Recurrent Unit model.
             optimizer (str): Name of the optimizer. See `tensorflow.keras.optimizers <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers>`_.
             dropout_percentage (float): Fraction of the input units to drop.
@@ -208,7 +207,7 @@ class RNNClassification(BaseRNN):
         if metrics is None:
             metrics = ['accuracy']
         self.metrics, self.is_binary = metrics, None
-        super().__init__(n_outputs, n_neurons_dense_layer, is_bidirectional, n_units, n_subs_layers, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patience, **kwargs)
+        super().__init__(n_outputs, n_neurons_dense_layer, n_units, n_subs_layers, is_bidirectional, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patience, **kwargs)
 
     def prepare(self, X, y):
         """
@@ -294,7 +293,7 @@ class RNNClassification(BaseRNN):
 
 
 class RNNRegression(BaseRNN):
-    def __init__(self, n_outputs, n_neurons_dense_layer, is_bidirectional=False, n_units=10, n_subs_layers=2,
+    def __init__(self, n_outputs, n_neurons_dense_layer, n_units, n_subs_layers, is_bidirectional=False,
                  model_type='lstm', optimizer='adam', dropout_percentage=0.1, metrics=None,
                  activation_function_dense='relu', kernel_initializer='normal',
                  batch_size=1000, epochs=50, patience=5, **kwargs):
@@ -305,9 +304,9 @@ class RNNRegression(BaseRNN):
         Args:
             n_outputs (int): Number of numerical values to predict in regression.
             n_neurons_dense_layer (int): Number of neurons units of the penultimate dense layer (i.e., before the output layer).
-            is_bidirectional (bool): If ``true``, then bidirectional layers will be used to build the RNN model.
             n_units (int): Dimensionality of the output space, i.e., the dimensionality of the hidden state.
             n_subs_layers (int): Number of subsequent layers beteween the input and output layers.
+            is_bidirectional (bool): If ``true``, then bidirectional layers will be used to build the RNN model.
             model_type(str): Type of RNN model to be used. Available options are ``lstm``, for a Long Short-Term Memory model, or ``gru``, for a Gated Recurrent Unit model.
             optimizer (str): Name of the optimizer. See `tensorflow.keras.optimizers <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers>`_.
             dropout_percentage (float): Fraction of the input units to drop.
@@ -351,7 +350,7 @@ class RNNRegression(BaseRNN):
         if metrics is None:
             metrics = ['mean_squared_error']
         self.metrics = metrics
-        super().__init__(n_outputs, n_neurons_dense_layer, is_bidirectional, n_units, n_subs_layers, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patience, **kwargs)
+        super().__init__(n_outputs, n_neurons_dense_layer, n_units, n_subs_layers, is_bidirectional, model_type, optimizer, dropout_percentage, activation_function_dense, kernel_initializer, batch_size, epochs, patience, **kwargs)
 
     def prepare(self, X, y):
         """

@@ -43,7 +43,7 @@ def metrics_multiclass(y_true, y_probs, n_classes, inbalance_correction=False):
     return auc_value, accuracy, sensitivity, specificity
 
 
-def create_overlapping(X, y, model, overlapping_epochs, overlapping_type=None, stride=1, timesteps=None):
+def create_overlapping(X, y, model, overlapping_epochs=0, overlapping_type=None, stride=1, timesteps=None):
     def cnn(X, y, overlapping_epochs, overlapping_type, stride):
         if overlapping_epochs < 0:
             raise ValueError('The number of overlapping epochs should be zero or a positive number.')
