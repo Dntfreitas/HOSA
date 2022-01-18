@@ -183,7 +183,7 @@ class HOSA:
         Returns:
             dict: Parameter names mapped to their values.
         """
-        return self.best_specification
+        return self.model.__dict__
 
     def get_model(self):
         """
@@ -212,7 +212,6 @@ class HOSA:
 
     def score(self, X, y, **kwargs):
         """
-
         Computes the performance metrics on the given input data and target values in the best model found.
 
         Args:
@@ -235,7 +234,7 @@ class HOSA:
         Args:
             **kwargs: Extra arguments explicitly used for regression or classification models.
         """
-        raise NotImplemented
+        raise NotImplementedError
 
 
 class HOSACNN(HOSA):

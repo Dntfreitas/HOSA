@@ -135,7 +135,7 @@ class BaseCNN:
             y (numpy.ndarray): Target values (class labels in classification, real numbers in regression).
             **kwargs: Extra arguments explicitly used for regression or classification models.
         """
-        raise NotImplemented
+        raise NotImplementedError
 
     @abc.abstractmethod
     def compile(self):
@@ -143,7 +143,7 @@ class BaseCNN:
 
         Compiles the model for training.
         """
-        raise NotImplemented
+        raise NotImplementedError
 
     @abc.abstractmethod
     def score(self, X, y, **kwargs):
@@ -156,7 +156,7 @@ class BaseCNN:
             y (numpy.ndarray): Target values (class labels in classification, real numbers in regression).
             **kwargs: Extra arguments that are explicitly used for regression or classification models.
         """
-        raise NotImplemented
+        raise NotImplementedError
 
     @abc.abstractmethod
     def predict(self, X, **kwargs):
@@ -168,7 +168,14 @@ class BaseCNN:
             X (numpy.ndarray): Input data.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``predict`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#predict>`_.
         """
-        raise NotImplemented
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def __dict__(self):
+        """
+        Prepares a dictonary with the parameters of the model.
+        """
+        raise NotImplementedError
 
 
 class CNNClassification(BaseCNN):
@@ -320,6 +327,32 @@ class CNNClassification(BaseCNN):
         self.model.compile(loss='sparse_categorical_crossentropy', optimizer=self.optimizer, metrics=self.metrics)
         return self.model
 
+    def __dict__(self):
+        """
+        Prepares a dictonary with the parameters of the model.
+
+        Returns:
+            dict: Dictonary with the parameter names mapped to their values.
+        """
+        dict = {'n_outputs':                 self.n_outputs,
+                'n_kernels':                 self.n_kernels,
+                'n_neurons_dense_layer':     self.n_neurons_dense_layer,
+                'optimizer':                 self.optimizer,
+                'metrics':                   self.metrics,
+                'cnn_dim':                   self.cnn_dim,
+                'kernel_size':               self.kernel_size,
+                'pool_size':                 self.pool_size,
+                'strides_convolution':       self.strides_convolution,
+                'strides_pooling':           self.strides_pooling,
+                'padding':                   self.padding,
+                'dropout_percentage':        self.dropout_percentage,
+                'activation_function_gol':   self.activation_function_gol,
+                'activation_function_dense': self.activation_function_dense,
+                'batch_size':                self.batch_size,
+                'epochs':                    self.epochs,
+                'patience':                  self.patience}
+        return dict
+
 
 class CNNRegression(BaseCNN):
 
@@ -466,3 +499,29 @@ class CNNRegression(BaseCNN):
             tensorflow.keras.Sequential: Returns an untrained but compiled TensorFlow model.
         """
         self.model.compile(loss='mean_squared_error', optimizer=self.optimizer, metrics=self.metrics)
+
+    def __dict__(self):
+        """
+        Prepares a dictonary with the parameters of the model.
+
+        Returns:
+            dict: Dictonary with the parameter names mapped to their values.
+        """
+        dict = {'n_outputs':                 self.n_outputs,
+                'n_kernels':                 self.n_kernels,
+                'n_neurons_dense_layer':     self.n_neurons_dense_layer,
+                'optimizer':                 self.optimizer,
+                'metrics':                   self.metrics,
+                'cnn_dim':                   self.cnn_dim,
+                'kernel_size':               self.kernel_size,
+                'pool_size':                 self.pool_size,
+                'strides_convolution':       self.strides_convolution,
+                'strides_pooling':           self.strides_pooling,
+                'padding':                   self.padding,
+                'dropout_percentage':        self.dropout_percentage,
+                'activation_function_gol':   self.activation_function_gol,
+                'activation_function_dense': self.activation_function_dense,
+                'batch_size':                self.batch_size,
+                'epochs':                    self.epochs,
+                'patience':                  self.patience}
+        return dict

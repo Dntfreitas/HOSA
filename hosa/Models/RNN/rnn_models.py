@@ -111,7 +111,7 @@ class BaseRNN:
             y (numpy.ndarray): Target values (class labels in classification, real numbers in regression).
             **kwargs: Extra arguments explicitly used for regression or classification models.
         """
-        raise NotImplemented
+        raise NotImplementedError
 
     @abc.abstractmethod
     def compile(self):
@@ -120,7 +120,7 @@ class BaseRNN:
         Compiles the model for training.
 
         """
-        raise NotImplemented
+        raise NotImplementedError
 
     @abc.abstractmethod
     def score(self, X, y, **kwargs):
@@ -133,7 +133,7 @@ class BaseRNN:
             y (numpy.ndarray): Target values (class labels in classification, real numbers in regression).
             **kwargs: Extra arguments that are explicitly used for regression or classification models.
         """
-        raise NotImplemented
+        raise NotImplementedError
 
     @abc.abstractmethod
     def predict(self, X, **kwargs):
@@ -145,7 +145,14 @@ class BaseRNN:
             X (numpy.ndarray): Input data.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``predict`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#predict>`_.
         """
-        raise NotImplemented
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def __dict__(self):
+        """
+        Prepares a dictonary with the parameters of the model.
+        """
+        raise NotImplementedError
 
 
 class RNNClassification(BaseRNN):
@@ -291,6 +298,30 @@ class RNNClassification(BaseRNN):
         self.model.compile(loss='sparse_categorical_crossentropy', optimizer=self.optimizer, metrics=self.metrics)
         return self.model
 
+    def __dict__(self):
+        """
+        Prepares a dictonary with the parameters of the model.
+
+        Returns:
+            dict: Dictonary with the parameter names mapped to their values.
+        """
+        dict = {'n_outputs':                 self.n_outputs,
+                'n_neurons_dense_layer':     self.n_neurons_dense_layer,
+                'n_units':                   self.n_units,
+                'n_subs_layers':             self.n_subs_layers,
+                'is_bidirectional':          self.is_bidirectional,
+                'model_type':                self.model_type,
+                'optimizer':                 self.optimizer,
+                'dropout_percentage':        self.dropout_percentage,
+                'metrics':                   self.metrics,
+                'activation_function_dense': self.activation_function_dense,
+                'kernel_initializer':        self.kernel_initializer,
+                'batch_size':                self.batch_size,
+                'epochs':                    self.epochs,
+                'patience':                  self.patience}
+
+        return dict
+
 
 class RNNRegression(BaseRNN):
     def __init__(self, n_outputs, n_neurons_dense_layer, n_units, n_subs_layers, is_bidirectional=False,
@@ -426,3 +457,26 @@ class RNNRegression(BaseRNN):
             tensorflow.keras.Sequential: Returns an untrained but compiled TensorFlow model.
         """
         self.model.compile(loss='mean_squared_error', optimizer=self.optimizer, metrics=self.metrics)
+
+    def __dict__(self):
+        """
+        Prepares a dictonary with the parameters of the model.
+
+        Returns:
+            dict: Dictonary with the parameter names mapped to their values.
+        """
+        dict = {'n_outputs':                 self.n_outputs,
+                'n_neurons_dense_layer':     self.n_neurons_dense_layer,
+                'n_units':                   self.n_units,
+                'n_subs_layers':             self.n_subs_layers,
+                'is_bidirectional':          self.is_bidirectional,
+                'model_type':                self.model_type,
+                'optimizer':                 self.optimizer,
+                'dropout_percentage':        self.dropout_percentage,
+                'metrics':                   self.metrics,
+                'activation_function_dense': self.activation_function_dense,
+                'kernel_initializer':        self.kernel_initializer,
+                'batch_size':                self.batch_size,
+                'epochs':                    self.epochs,
+                'patience':                  self.patience}
+        return dict
