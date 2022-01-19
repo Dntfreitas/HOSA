@@ -2,6 +2,7 @@ import abc
 
 import numpy as np
 from sklearn.model_selection import ShuffleSplit
+from tqdm import tqdm
 
 from hosa.aux import create_parameter_grid, n_points, create_overlapping, prepare_param_overlapping
 
@@ -183,7 +184,7 @@ class HOSA:
         Returns:
             dict: Parameter names mapped to their values.
         """
-        return self.model.__dict__
+        return self.best_specification
 
     def get_model(self):
         """
@@ -262,12 +263,13 @@ class HOSACNN(HOSA):
         del (self.parameters[0]['n_kernels_first_gol'])
         del (self.parameters[0]['mults'])
 
-    def fit(self, max_gol_sizes, **kwargs):
+    def fit(self, max_gol_sizes, show_progress=True, **kwargs):
         """
         Optimize the model following the HOSA approach with all sets of parameters.
 
         Args:
             max_gol_sizes (int): Maximum number of GofLayers to add to the model.
+            show_progress (bool): `True` to show a progress bar; `False` otherwise.
             **kwargs: Extra arguments explicitly used for regression or classification models, including the additional arguments that are used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
 
         Returns:
@@ -278,41 +280,48 @@ class HOSACNN(HOSA):
         best_model = best_specification = None
         k_construction_size = []
         stop = False
-        # Perform optimization
-        while len(k_construction_size) < max_gol_sizes and not stop:
-            # Inicialize the best current metric for comparing with the best metric found
-            best_metric_current = self.initial_metric_value
-            best_model_current = best_specification_current = None
-            # If there is just one GofL
-            if len(k_construction_size) == 0:
-                n_kernels_test = np.array(self.n_kernels_first_gol).reshape((len(self.n_kernels_first_gol), 1))
-            else:
-                n_kernels_test = [k_construction_size + [np.floor(k_construction_size[-1] * mult)] for mult in self.mults]
-            # Test each kernel size
-            for n_kernel in n_kernels_test:
-                # Run grid search
-                specification, model, metric = self.grid_search(n_kernel, **kwargs)
-                # Compare with the current metrics, and update the current best values if necessary
-                if self.compare_function(metric, best_metric_current):
-                    best_model_current = model
-                    best_metric_current = metric
-                    best_specification_current = specification
-            # Check the stopping criterion
-            if self.stop_check(best_metric_current, best_metric):
-                if self.compare_function(best_metric_current, best_metric):
-                    self.best_model = best_model_current
-                    self.best_metric = best_metric_current
-                    self.best_specification = best_specification_current
+        # Show progess bar?
+        with tqdm(total=max_gol_sizes, disable=not show_progress, colour='green') as pbar_all:
+            # Perform optimization
+            while len(k_construction_size) < max_gol_sizes and not stop:
+                # Inicialize the best current metric for comparing with the best metric found
+                best_metric_current = self.initial_metric_value
+                best_model_current = best_specification_current = None
+                # If there is just one GofL
+                if len(k_construction_size) == 0:
+                    n_kernels_test = np.array(self.n_kernels_first_gol).reshape((len(self.n_kernels_first_gol), 1))
                 else:
-                    self.best_model = best_model
-                    self.best_metric = best_metric
-                    self.best_specification = best_specification
-                stop = True
-            else:
-                best_model = best_model_current
-                best_metric = best_metric_current
-                best_specification = best_specification_current
-                k_construction_size.append(best_model.n_kernels[-1])
+                    n_kernels_test = [k_construction_size + [np.floor(k_construction_size[-1] * mult)] for mult in self.mults]
+                # Test each kernel size
+                for n_kernel in n_kernels_test:
+                    # Run grid search
+                    specification, model, metric = self.grid_search(n_kernel, **kwargs)
+                    # Compare with the current metrics, and update the current best values if necessary
+                    if self.compare_function(metric, best_metric_current):
+                        best_model_current = model
+                        best_metric_current = metric
+                        best_specification_current = specification
+                # Check the stopping criterion
+                if self.stop_check(best_metric_current, best_metric):
+                    if self.compare_function(best_metric_current, best_metric):
+                        self.best_model = best_model_current
+                        self.best_metric = best_metric_current
+                        self.best_specification = best_specification_current
+                    else:
+                        self.best_model = best_model
+                        self.best_metric = best_metric
+                        self.best_specification = best_specification
+                    stop = True
+                else:
+                    best_model = best_model_current
+                    best_metric = best_metric_current
+                    best_specification = best_specification_current
+                    k_construction_size.append(best_model.n_kernels[-1])
+                # Update progress bar
+                best_specification_complete = best_model.__dict__()
+                pbar_all.set_postfix(n_goflayers=len(best_specification_complete['n_kernels']), no_kernels=best_specification_complete['n_kernels'])
+                pbar_all.update(1)
+        best_specification.update(self.best_model.__dict__())
         self.best_model, self.best_metric, self.best_specification = best_model, best_metric, best_specification
         return self.best_model, self.best_metric, self.best_specification
 
@@ -342,7 +351,7 @@ class HOSARNN(HOSA):
         del (self.parameters[0]['n_hidden_units'])
         del (self.parameters[0]['mults'])
 
-    def fit(self, max_n_subs_layers, **kwargs):
+    def fit(self, max_n_subs_layers, show_progress=True, **kwargs):
         """
         Optimize the model following the HOSA approach with all sets of parameters.
 
@@ -358,37 +367,43 @@ class HOSARNN(HOSA):
         best_model = best_specification = None
         n_subs_layers_construction = 1
         stop = False
-        # Perform optimization
-        while n_subs_layers_construction < max_n_subs_layers and not stop:
-            # Inicialize the best current metric for comparing with the best metric found
-            best_metric_current = self.initial_metric_value
-            best_model_current = best_specification_current = None
-            # Test each number of hidden units
-            for n_units in self.n_hidden_units:
-                # Test each number of units in the dense layer
-                for mult in self.mults:
-                    # Run grid search
-                    specification, model, metric = self.grid_search(n_neurons_dense_layer=np.floor(n_units * mult), n_units=n_units, n_subs_layers=n_subs_layers_construction, **kwargs)
-                    # Compare with the current metrics, and update the current best values if necessary
-                    if self.compare_function(metric, best_metric_current):
-                        best_model_current = model
-                        best_metric_current = metric
-                        best_specification_current = specification
-            # Check the stopping criterion
-            if self.stop_check(best_metric_current, best_metric):
-                if self.compare_function(best_metric_current, best_metric):
-                    self.best_model = best_model_current
-                    self.best_metric = best_metric_current
-                    self.best_specification = best_specification_current
+        # Show progess bar?
+        with tqdm(total=max_n_subs_layers, disable=not show_progress, colour='green') as pbar_all:
+            # Perform optimization
+            while n_subs_layers_construction < max_n_subs_layers and not stop:
+                # Inicialize the best current metric for comparing with the best metric found
+                best_metric_current = self.initial_metric_value
+                best_model_current = best_specification_current = None
+                # Test each number of hidden units
+                for n_units in self.n_hidden_units:
+                    # Test each number of units in the dense layer
+                    for mult in self.mults:
+                        # Run grid search
+                        specification, model, metric = self.grid_search(n_neurons_dense_layer=np.floor(n_units * mult), n_units=n_units, n_subs_layers=n_subs_layers_construction, **kwargs)
+                        # Compare with the current metrics, and update the current best values if necessary
+                        if self.compare_function(metric, best_metric_current):
+                            best_model_current = model
+                            best_metric_current = metric
+                            best_specification_current = specification
+                # Check the stopping criterion
+                if self.stop_check(best_metric_current, best_metric):
+                    if self.compare_function(best_metric_current, best_metric):
+                        self.best_model = best_model_current
+                        self.best_metric = best_metric_current
+                        self.best_specification = best_specification_current
+                    else:
+                        self.best_model = best_model
+                        self.best_metric = best_metric
+                        self.best_specification = best_specification
+                    stop = True
                 else:
-                    self.best_model = best_model
-                    self.best_metric = best_metric
-                    self.best_specification = best_specification
-                stop = True
-            else:
-                best_model = best_model_current
-                best_metric = best_metric_current
-                best_specification = best_specification_current
-                n_subs_layers_construction = n_subs_layers_construction + 1
+                    best_model = best_model_current
+                    best_metric = best_metric_current
+                    best_specification = best_specification_current
+                    n_subs_layers_construction = n_subs_layers_construction + 1
+                # Update progress bar
+                best_specification_complete = best_model.__dict__()
+                pbar_all.set_postfix(n_subs_layers=best_specification_complete['n_subs_layers'], n_hidden_units=best_specification_complete['n_units'], n_hidden_dense=best_specification_complete['n_neurons_dense_layer'])
+                pbar_all.update(1)
         self.best_model, self.best_metric, self.best_specification = best_model, best_metric, best_specification
         return self.best_model, self.best_metric, self.best_specification
