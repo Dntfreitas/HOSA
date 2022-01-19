@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.model_selection import ShuffleSplit
 from tqdm import tqdm
 
-from hosa.aux import create_parameter_grid, n_points, create_overlapping, prepare_param_overlapping
+from hosa.Helpers.functions import create_parameter_grid, n_points, create_overlapping, prepare_param_overlapping
 
 
 class HOSA:
@@ -35,8 +35,6 @@ class HOSA:
         self.__check_params()
         # Intialize variables
         self.best_model = self.best_metric = self.best_specification = None
-        n_total_parameters, step = n_points(self.parameters)
-        self.steps_check_improvment = (n_total_parameters // step)
         # According to the model, initialize the metrics and compare function
         if 'Regression' in str(model):
             self.initial_metric_value = np.inf
@@ -123,6 +121,7 @@ class HOSA:
             ValueError: If the user did not set some mandatory parameter.
 
         """
+        # Note: `required_parameters` must be defined in each child-class
         for parameter in self.required_parameters:
             if parameter not in self.parameters[0]:
                 raise ValueError('The parameter `' + parameter + '` must be specified in the `parameters` dictionary.')
@@ -158,7 +157,7 @@ class HOSA:
             changed = overlapping_type != overlapping_type_new or overlapping_epochs != overlapping_epochs_new or stride != stride_new or timesteps != timesteps_new
             if changed:
                 overlapping_type, overlapping_epochs, stride, timesteps = overlapping_type_new, overlapping_epochs_new, stride_new, timesteps_new
-                X_win, y_win = create_overlapping(self.X, self.y, self.model, overlapping_type, overlapping_epochs, stride=stride, timesteps=timesteps)
+                X_win, y_win = create_overlapping(self.X, self.y, self.model, overlapping_type, overlapping_epochs, n_stride=stride, n_timesteps=timesteps)
             # Generate the model
             if self.is_cnn:
                 model = self.model(n_kernels=n_kernels, n_outputs=self.n_outputs, **specification)
@@ -208,7 +207,7 @@ class HOSA:
             numpy.ndarray: Returns an array containing the estimates that were obtained on the best-fitted model found.
         """
         overlapping_type, overlapping_epochs, stride, timesteps = prepare_param_overlapping(self.get_params())
-        X, y = create_overlapping(X, None, self.best_model, overlapping_type, overlapping_epochs, stride=stride, timesteps=timesteps)
+        X, y = create_overlapping(X, None, self.best_model, overlapping_type, overlapping_epochs, n_stride=stride, n_timesteps=timesteps)
         return self.best_model.predict(X, **kwargs)
 
     def score(self, X, y, **kwargs):
@@ -224,7 +223,7 @@ class HOSA:
             tuple: Returns a tuple containing the performance metric according to the type of model.
         """
         overlapping_type, overlapping_epochs, stride, timesteps = prepare_param_overlapping(self.get_params())
-        X, y = create_overlapping(X, y, self.best_model, overlapping_type, overlapping_epochs, stride=stride, timesteps=timesteps)
+        X, y = create_overlapping(X, y, self.best_model, overlapping_type, overlapping_epochs, n_stride=stride, n_timesteps=timesteps)
         return self.best_model.score(X, y, **kwargs)
 
     @abc.abstractmethod
@@ -357,6 +356,7 @@ class HOSARNN(HOSA):
 
         Args:
             max_n_subs_layers (int): Maximum number of subsequent layers to add to the model.
+            show_progress (bool): `True` to show a progress bar; `False` otherwise.
             **kwargs: Extra arguments explicitly used for regression or classification models, including the additional arguments that are used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
 
         Returns:

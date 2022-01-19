@@ -6,7 +6,7 @@ from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.model_selection import train_test_split
 
 from hosa.Callbacks import EarlyStoppingAtMinLoss
-from hosa.aux import metrics_multiclass
+from hosa.Helpers.functions import metrics_multiclass
 
 
 class BaseRNN:
@@ -268,7 +268,7 @@ class RNNClassification(BaseRNN):
             This function can be used for both binary and multiclass classification.
         """
         y_probs, y_pred = self.predict(X)
-        auc_value, accuracy, sensitivity, specificity = metrics_multiclass(y, y_probs, self.n_outputs, inbalance_correction=inbalance_correction)
+        auc_value, accuracy, sensitivity, specificity = metrics_multiclass(y, y_probs, self.n_outputs, imbalance_correction=inbalance_correction)
         return auc_value, accuracy, sensitivity, sensitivity
 
     def predict(self, X, **kwargs):

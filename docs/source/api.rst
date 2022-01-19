@@ -27,3 +27,8 @@ Callbacks
 ~~~~~~~~~~
 
 .. automodule:: hosa.Callbacks
+
+Helpers
+~~~~~~~~~~
+
+.. automodule:: hosa.Helpers

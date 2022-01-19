@@ -13,7 +13,7 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from hosa.Models.CNN.cnn_models import CNNClassification, CNNRegression
 from hosa.Models.RNN import RNNClassification, RNNRegression
 from hosa.Optimization.hosa import HOSA
-from hosa.aux import create_overlapping
+from hosa.Helpers.functions import create_overlapping
 
 
 def run_binary_classification_cnn(inbalance_correction):
@@ -106,8 +106,8 @@ def run_regression_cnn():
         scaler = StandardScaler()
         X_train = scaler.fit_transform(X_train)
         X_test = scaler.transform(X_test)
-        X_train, y_train = create_overlapping(X_train, y_train, CNNRegression, 'central', 3, stride=1, timesteps=2)
-        X_test, y_test = create_overlapping(X_test, y_test, CNNRegression, 'central', 3, stride=1, timesteps=2)
+        X_train, y_train = create_overlapping(X_train, y_train, CNNRegression, 'central', 3, n_stride=1, n_timesteps=2)
+        X_test, y_test = create_overlapping(X_test, y_test, CNNRegression, 'central', 3, n_stride=1, n_timesteps=2)
         reg = CNNRegression(1, 10, [3, 5], patience=2, epochs=5, kernel_size=2, pool_size=1, strides_pooling=1)
         reg.prepare(X_train, y_train)
         reg.compile()
@@ -133,8 +133,8 @@ def run_multiclass_classification_rnn(is_bidirectional=False, overlapping_epochs
         X_test = X_test[:250]
         X_train = pad_sequences(X_train, maxlen=max_sequence_length, value=0.0)
         X_test = pad_sequences(X_test, maxlen=max_sequence_length, value=0.0)
-        X_train, y_train = create_overlapping(X_train, y_train, RNNClassification, 'central', overlapping_epochs, stride=1, timesteps=2)
-        X_test, y_test = create_overlapping(X_test, y_test, RNNClassification, 'central', overlapping_epochs, stride=1, timesteps=2)
+        X_train, y_train = create_overlapping(X_train, y_train, RNNClassification, 'central', overlapping_epochs, n_stride=1, n_timesteps=2)
+        X_test, y_test = create_overlapping(X_test, y_test, RNNClassification, 'central', overlapping_epochs, n_stride=1, n_timesteps=2)
         for model in ['lstm', 'gru']:
             clf = RNNClassification(number_classes, n_neurons_dense_layer, is_bidirectional=is_bidirectional, n_units=n_units, n_subs_layers=n_subs_layers, model_type=model, patience=2, epochs=5)
             clf.prepare(X_train, y_train)
@@ -157,7 +157,7 @@ def run_regression_rnn(is_bidirectional, overlapping_type, overlapping_epochs=5,
         values = values.astype('float32')
         X = values[:, 1:]
         y = values[:, 0]
-        X, y = create_overlapping(X, y, RNNRegression, overlapping_type, overlapping_epochs, stride=stride, timesteps=timesteps)
+        X, y = create_overlapping(X, y, RNNRegression, overlapping_type, overlapping_epochs, n_stride=stride, n_timesteps=timesteps)
         np.nan_to_num(X, copy=False)
         np.nan_to_num(y, copy=False)
         X_train, X_test, y_train, y_test = train_test_split(X, y)
