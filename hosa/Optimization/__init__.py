@@ -3,7 +3,9 @@
 .. autosummary::
     :toctree: _autosummary
 
-    hosa.HOSA
+    hosa.BaseHOSA
+    hosa.HOSACNN
+    hosa.HOSARNN
 """
 
-from .hosa import HOSA
+from .hosa import BaseHOSA

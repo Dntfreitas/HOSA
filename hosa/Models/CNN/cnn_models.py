@@ -99,7 +99,7 @@ class BaseCNN:
             raise ValueError('`cnn_dim` parameter must be 1, 2 or 3.')
         self.model.add(tf.keras.layers.Dropout(self.dropout_percentage))
 
-    def aux_fit(self, X, y, callback, validation_size, rtol=1e-03, atol=1e-04, class_weights=None, inbalance_correction=None, **kwargs):
+    def aux_fit(self, X, y, callback, validation_size, rtol=1e-03, atol=1e-04, class_weights=None, imbalance_correction=None, **kwargs):
         """
         Auxiliar function for classification and regression models compatibility.
 
@@ -114,14 +114,14 @@ class BaseCNN:
             atol (float): Absolute tolerance used for early stopping based on the performance metric.
             rtol (float): Relative tolerance used for early stopping based on the performance metric.
             class_weights (None or dict): Dictionary mapping class indices (integers) to a weight (float) value, used for weighting the loss function (during training only). **Only used for classification problems. Ignored for regression.**
-            inbalance_correction (None or bool): Whether to apply correction to class imbalances. **Only used for classification problems. Ignored for regression.**
+            imbalance_correction (None or bool): Whether to apply correction to class imbalances. **Only used for classification problems. Ignored for regression.**
             **kwargs: Extra arguments used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
         """
 
         X_train, X_validation, y_train, y_validation = train_test_split(X, y, test_size=validation_size)
         X_train = np.expand_dims(X_train, axis=-1)
         X_validation = np.expand_dims(X_validation, axis=-1)
-        callbacks = [callback(self, self.patience, (X_validation, y_validation), inbalance_correction, rtol, atol)]
+        callbacks = [callback(self, self.patience, (X_validation, y_validation), imbalance_correction, rtol, atol)]
         self.model.fit(X_train, y_train, batch_size=self.batch_size, epochs=self.epochs, validation_data=(X_validation, y_validation), callbacks=callbacks, class_weight=class_weights, **kwargs)
 
     @abc.abstractmethod
@@ -257,7 +257,7 @@ class CNNClassification(BaseCNN):
         super().prepare(X, y)
         self.model.add(tf.keras.layers.Dense(self.n_outputs, activation='softmax'))
 
-    def fit(self, X, y, validation_size=0.33, rtol=1e-03, atol=1e-04, class_weights=None, inbalance_correction=False, **kwargs):
+    def fit(self, X, y, validation_size=0.33, rtol=1e-03, atol=1e-04, class_weights=None, imbalance_correction=False, **kwargs):
         """
 
         Fits the model to data matrix X and target(s) y.
@@ -269,17 +269,17 @@ class CNNClassification(BaseCNN):
             atol (float): Absolute tolerance used for early stopping based on the performance metric.
             rtol (float): Relative tolerance used for early stopping based on the performance metric.
             class_weights (None or dict): Dictionary mapping class indices (integers) to a weight (float) value, used for weighting the loss function (during training only).
-            inbalance_correction (bool): Whether to apply correction to class imbalances.
+            imbalance_correction (bool): `True` if correction for imbalance should be applied to the metrics; `False` otherwise.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
 
         Returns:
             tensorflow.keras.Sequential: Returns a trained TensorFlow model.
         """
         callback = EarlyStoppingAtMinLoss
-        super().aux_fit(X, y, callback, validation_size, rtol, atol, class_weights, inbalance_correction, **kwargs)
+        super().aux_fit(X, y, callback, validation_size, rtol, atol, class_weights, imbalance_correction, **kwargs)
         return self.model
 
-    def score(self, X, y, inbalance_correction=False):
+    def score(self, X, y, imbalance_correction=False):
         """
 
         Computes the performance metrics on the given input data and target values.
@@ -287,7 +287,7 @@ class CNNClassification(BaseCNN):
         Args:
             X (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (i.e., class labels).
-            inbalance_correction (bool): Whether to apply correction to class imbalances.
+            imbalance_correction (bool): `True` if correction for imbalance should be applied to the metrics; `False` otherwise.
 
         Returns:
             tuple: Returns a tuple containing the area under the ROC curve (AUC), accuracy, sensitivity, and sensitivity.
@@ -296,7 +296,7 @@ class CNNClassification(BaseCNN):
             This function can be used for both binary and multiclass classification.
         """
         y_probs, y_pred = self.predict(X)
-        auc_value, accuracy, sensitivity, specificity = metrics_multiclass(y, y_probs, self.n_outputs, imbalance_correction=inbalance_correction)
+        auc_value, accuracy, sensitivity, specificity = metrics_multiclass(y, y_probs, self.n_outputs, imbalance_correction=imbalance_correction)
         return auc_value, accuracy, sensitivity, specificity
 
     def predict(self, X, **kwargs):
@@ -334,24 +334,24 @@ class CNNClassification(BaseCNN):
         Returns:
             dict: Dictonary with the parameter names mapped to their values.
         """
-        dict = {'n_outputs':                 self.n_outputs,
-                'n_kernels':                 self.n_kernels,
-                'n_neurons_dense_layer':     self.n_neurons_dense_layer,
-                'optimizer':                 self.optimizer,
-                'metrics':                   self.metrics,
-                'cnn_dim':                   self.cnn_dim,
-                'kernel_size':               self.kernel_size,
-                'pool_size':                 self.pool_size,
-                'strides_convolution':       self.strides_convolution,
-                'strides_pooling':           self.strides_pooling,
-                'padding':                   self.padding,
-                'dropout_percentage':        self.dropout_percentage,
-                'activation_function_gol':   self.activation_function_gol,
-                'activation_function_dense': self.activation_function_dense,
-                'batch_size':                self.batch_size,
-                'epochs':                    self.epochs,
-                'patience':                  self.patience}
-        return dict
+        parameters = {'n_outputs':                 self.n_outputs,
+                      'n_kernels':                 self.n_kernels,
+                      'n_neurons_dense_layer':     self.n_neurons_dense_layer,
+                      'optimizer':                 self.optimizer,
+                      'metrics':                   self.metrics,
+                      'cnn_dim':                   self.cnn_dim,
+                      'kernel_size':               self.kernel_size,
+                      'pool_size':                 self.pool_size,
+                      'strides_convolution':       self.strides_convolution,
+                      'strides_pooling':           self.strides_pooling,
+                      'padding':                   self.padding,
+                      'dropout_percentage':        self.dropout_percentage,
+                      'activation_function_gol':   self.activation_function_gol,
+                      'activation_function_dense': self.activation_function_dense,
+                      'batch_size':                self.batch_size,
+                      'epochs':                    self.epochs,
+                      'patience':                  self.patience}
+        return parameters
 
 
 class CNNRegression(BaseCNN):
@@ -453,7 +453,7 @@ class CNNRegression(BaseCNN):
             tensorflow.keras.Sequential: Returns a trained TensorFlow model.
         """
         callback = EarlyStoppingAtMinLoss
-        super().aux_fit(X, y, callback, validation_size, rtol, atol, class_weights=None, inbalance_correction=None, **kwargs)
+        super().aux_fit(X, y, callback, validation_size, rtol, atol, class_weights=None, imbalance_correction=None, **kwargs)
 
     def score(self, X, y, **kwargs):
         """
@@ -507,21 +507,21 @@ class CNNRegression(BaseCNN):
         Returns:
             dict: Dictonary with the parameter names mapped to their values.
         """
-        dict = {'n_outputs':                 self.n_outputs,
-                'n_kernels':                 self.n_kernels,
-                'n_neurons_dense_layer':     self.n_neurons_dense_layer,
-                'optimizer':                 self.optimizer,
-                'metrics':                   self.metrics,
-                'cnn_dim':                   self.cnn_dim,
-                'kernel_size':               self.kernel_size,
-                'pool_size':                 self.pool_size,
-                'strides_convolution':       self.strides_convolution,
-                'strides_pooling':           self.strides_pooling,
-                'padding':                   self.padding,
-                'dropout_percentage':        self.dropout_percentage,
-                'activation_function_gol':   self.activation_function_gol,
-                'activation_function_dense': self.activation_function_dense,
-                'batch_size':                self.batch_size,
-                'epochs':                    self.epochs,
-                'patience':                  self.patience}
-        return dict
+        parameters = {'n_outputs':                 self.n_outputs,
+                      'n_kernels':                 self.n_kernels,
+                      'n_neurons_dense_layer':     self.n_neurons_dense_layer,
+                      'optimizer':                 self.optimizer,
+                      'metrics':                   self.metrics,
+                      'cnn_dim':                   self.cnn_dim,
+                      'kernel_size':               self.kernel_size,
+                      'pool_size':                 self.pool_size,
+                      'strides_convolution':       self.strides_convolution,
+                      'strides_pooling':           self.strides_pooling,
+                      'padding':                   self.padding,
+                      'dropout_percentage':        self.dropout_percentage,
+                      'activation_function_gol':   self.activation_function_gol,
+                      'activation_function_dense': self.activation_function_dense,
+                      'batch_size':                self.batch_size,
+                      'epochs':                    self.epochs,
+                      'patience':                  self.patience}
+        return parameters

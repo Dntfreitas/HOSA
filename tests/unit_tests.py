@@ -10,13 +10,13 @@ from tensorflow import keras, random
 from tensorflow.keras.datasets import imdb
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
+from hosa.Helpers.functions import create_overlapping
 from hosa.Models.CNN.cnn_models import CNNClassification, CNNRegression
 from hosa.Models.RNN import RNNClassification, RNNRegression
-from hosa.Optimization.hosa import HOSA
-from hosa.Helpers.functions import create_overlapping
+from hosa.Optimization.hosa import BaseHOSA
 
 
-def run_binary_classification_cnn(inbalance_correction):
+def run_binary_classification_cnn(imbalance_correction):
     try:
         X, y = load_breast_cancer(return_X_y=True)
         X = X[:, :10]
@@ -27,7 +27,7 @@ def run_binary_classification_cnn(inbalance_correction):
         clf = CNNClassification(2, 10, [3, 2], epochs=200, patience=3)
         clf.prepare(X_train, y_train)
         clf.compile()
-        clf.fit(X_train, y_train, inbalance_correction=inbalance_correction, verbose=0)
+        clf.fit(X_train, y_train, imbalance_correction=imbalance_correction, verbose=0)
         clf.predict(X_test)
         return True
     except Exception as e:
@@ -35,7 +35,7 @@ def run_binary_classification_cnn(inbalance_correction):
         return False
 
 
-def run_multiclass_classification_cnn(inbalance_correction):
+def run_multiclass_classification_cnn(imbalance_correction):
     try:
         fashion_mnist = keras.datasets.fashion_mnist
         (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
@@ -49,7 +49,7 @@ def run_multiclass_classification_cnn(inbalance_correction):
         clf = CNNClassification(10, 10, [3], epochs=5, strides_convolution=2, strides_pooling=2, padding='same')
         clf.prepare(train_images, train_labels)
         clf.compile()
-        clf.fit(train_images, train_labels, inbalance_correction=inbalance_correction, verbose=0)
+        clf.fit(train_images, train_labels, imbalance_correction=imbalance_correction, verbose=0)
         clf.predict(test_images)
         return True
     except Exception as e:
@@ -190,11 +190,11 @@ def run_hosa_classification():
                 'timesteps':             [1, 2],
                 'model_type':            ['lstm', 'gru']
         }
-        clf = HOSA(X, y, CNNClassification, 2, param_grid, 0.1, n_splits=2, apply_rsv=True)
-        clf.fit_cnn(inbalance_correction=True, validation_size=0.5, verbose=0)
+        clf = BaseHOSA(X, y, CNNClassification, 2, param_grid, 0.1, n_splits=2, apply_rsv=True)
+        clf.fit_cnn(imbalance_correction=True, validation_size=0.5, verbose=0)
         clf.score(X, y)
-        clf = HOSA(X, y, RNNClassification, 2, param_grid, 0.1, apply_rsv=False)
-        clf.fit_cnn(inbalance_correction=False, verbose=0)
+        clf = BaseHOSA(X, y, RNNClassification, 2, param_grid, 0.1, apply_rsv=False)
+        clf.fit_cnn(imbalance_correction=False, verbose=0)
         clf.score(X, y)
         return True
     except Exception as e:
@@ -221,11 +221,11 @@ def run_hosa_regression():
                 'overlapping_epochs':    [3],
                 'model_type':            ['lstm', 'gru']
         }
-        clf = HOSA(X, y, CNNRegression, 1, param_grid, 0.1, apply_rsv=False)
+        clf = BaseHOSA(X, y, CNNRegression, 1, param_grid, 0.1, apply_rsv=False)
         clf.fit_cnn(validation_size=0.5, verbose=0)
         clf.score(X, y)
         param_grid[0]['timesteps'] = [1]
-        clf = HOSA(X, y, RNNRegression, 1, param_grid, 0.1, apply_rsv=False)
+        clf = BaseHOSA(X, y, RNNRegression, 1, param_grid, 0.1, apply_rsv=False)
         clf.fit_cnn(verbose=0)
         clf.predict(X)
         return True

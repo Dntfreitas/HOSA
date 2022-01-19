@@ -4,10 +4,10 @@ import numpy as np
 from sklearn.model_selection import ShuffleSplit
 from tqdm import tqdm
 
-from hosa.Helpers.functions import create_parameter_grid, n_points, create_overlapping, prepare_param_overlapping
+from hosa.Helpers.functions import create_parameter_grid, create_overlapping, prepare_param_overlapping
 
 
-class HOSA:
+class BaseHOSA:
     def __init__(self, X, y, model, n_outputs, parameters, tr, apply_rsv=True, validation_size=.25, n_splits=10):
         """ Heuristic Oriented Search Algorithm (HOSA)
 
@@ -217,7 +217,7 @@ class HOSA:
         Args:
             X (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (class labels in classification, real numbers in regression).
-            **kwargs: Only used for classification, in order to set the value of the parameter ``inbalance_correction``.
+            **kwargs: Only used for classification, in order to set the value of the parameter ``imbalance_correction``.
 
         Returns:
             tuple: Returns a tuple containing the performance metric according to the type of model.
@@ -237,7 +237,7 @@ class HOSA:
         raise NotImplementedError
 
 
-class HOSACNN(HOSA):
+class HOSACNN(BaseHOSA):
 
     def __init__(self, X, y, model, n_outputs, parameters, tr, apply_rsv=True, validation_size=.25, n_splits=10):
         """ Heuristic Oriented Search Algorithm (HOSA) for CNNs.
@@ -325,7 +325,7 @@ class HOSACNN(HOSA):
         return self.best_model, self.best_metric, self.best_specification
 
 
-class HOSARNN(HOSA):
+class HOSARNN(BaseHOSA):
 
     def __init__(self, X, y, model, n_outputs, parameters, tr, apply_rsv=True, validation_size=.25, n_splits=10):
         """ Heuristic Oriented Search Algorithm (HOSA) for RNNs.

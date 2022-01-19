@@ -9,26 +9,29 @@ The HOSA library is split into three modules:
 * ``Hosa.Callbacks``: for implementing early stopping callbacks for halting the model's training.
 
 HOSA
-~~~~~~~~~~
+----
 
 .. automodule:: hosa.Optimization
 
+Models
+------
+
 CNN
-~~~~~~~~~~
+^^^
 
 .. automodule:: hosa.Models.CNN
 
 RNN
-~~~~~~~~~~
+^^^
 
 .. automodule:: hosa.Models.RNN
 
 Callbacks
-~~~~~~~~~~
+---------
 
 .. automodule:: hosa.Callbacks
 
 Helpers
-~~~~~~~~~~
+-------
 
 .. automodule:: hosa.Helpers

@@ -1,7 +1,7 @@
 import pandas as pd
 
 from hosa.Models.CNN import CNNRegression
-from hosa.Optimization import HOSA
+from hosa.Optimization import BaseHOSA
 
 # 1 - Download, load, and split the data
 dataset = pd.read_csv('https://raw.githubusercontent.com/jbrownlee/Datasets/master/airline-passengers.csv', header=0, index_col=0)
@@ -16,7 +16,7 @@ param_grid = {
         'stride':                [1],
 }
 # 3 - Create a HOSA instance and find the best set of parameters
-clf = HOSA(X, y, CNNRegression, 1, param_grid, 0.1, apply_rsv=True, n_splits=3)
+clf = BaseHOSA(X, y, CNNRegression, 1, param_grid, 0.1, apply_rsv=True, n_splits=3)
 clf.fit_cnn(verbose=0)
 # 4 - Save the best model
 best_parms = clf.get_params()
