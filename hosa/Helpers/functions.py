@@ -51,49 +51,49 @@ def create_overlapping(X, y, model, n_overlapping_epochs=0, overlapping_type=Non
 
     """
 
-    def cnn(X, y, overlapping_epochs, overlapping_type, stride):
-        if overlapping_epochs < 0:
+    def cnn(X, y, n_overlapping_epochs, overlapping_type, n_stride):
+        if n_overlapping_epochs < 0:
             raise ValueError('The number of overlapping epochs should be zero or a positive number.')
         epochs, n_points = X.shape
-        if overlapping_epochs == 0:
+        if n_overlapping_epochs == 0:
             window_size = n_points
-            y_windowed = y[::stride] if y is not None else None
+            y_windowed = y[::n_stride] if y is not None else None
         elif overlapping_type == 'central':
-            window_size = n_points * (2 * overlapping_epochs + 1)
-            y_windowed = y[overlapping_epochs:-overlapping_epochs:stride] if y is not None else None
+            window_size = n_points * (2 * n_overlapping_epochs + 1)
+            y_windowed = y[n_overlapping_epochs:-n_overlapping_epochs:n_stride] if y is not None else None
         elif overlapping_type == 'left':
-            window_size = n_points * (overlapping_epochs + 1)
-            y_windowed = y[overlapping_epochs::stride] if y is not None else None
+            window_size = n_points * (n_overlapping_epochs + 1)
+            y_windowed = y[n_overlapping_epochs::n_stride] if y is not None else None
         elif overlapping_type == 'right':
-            window_size = n_points * (overlapping_epochs + 1)
-            y_windowed = y[:-overlapping_epochs:stride] if y is not None else None
+            window_size = n_points * (n_overlapping_epochs + 1)
+            y_windowed = y[:-n_overlapping_epochs:n_stride] if y is not None else None
         else:
             raise ValueError(f'`{overlapping_type}` is not a valid type. The available types are: `central`, `left` and `right`.')
         x_flatten = X.flatten()
         if window_size > len(x_flatten):
             raise ValueError('Not enough data to create the overlapping window.')
         idx = np.arange(len(x_flatten))
-        idx_win = sliding_window(idx, window_size)[::n_points * stride]
+        idx_win = sliding_window(idx, window_size)[::n_points * n_stride]
         X_windowed = x_flatten[idx_win]
         return X_windowed, y_windowed
 
-    def rnn(X, y, timesteps, overlapping_epochs, overlapping_type, stride):
-        if timesteps is None:
+    def rnn(X, y, n_timesteps, n_overlapping_epochs, overlapping_type, n_stride):
+        if n_timesteps is None:
             raise ValueError('`timesteps` must be defined.')
-        X_windowed, y_windowed = cnn(X, y, overlapping_epochs, overlapping_type, stride)
-        y_windowed = y_windowed[timesteps - 1:] if y_windowed is not None else None
+        X_windowed, y_windowed = cnn(X, y, n_overlapping_epochs, overlapping_type, n_stride)
+        y_windowed = y_windowed[n_timesteps - 1:] if y_windowed is not None else None
         idx = np.arange(len(X_windowed))
-        idx_win = sliding_window(idx, timesteps)
+        idx_win = sliding_window(idx, n_timesteps)
         X_windowed = X_windowed[idx_win]
         return X_windowed, y_windowed
 
     # According to the model, initialize the overlapping function
     if 'CNN' in str(model):
-        return cnn(X, y, overlapping_type, n_overlapping_epochs, n_stride)
+        return cnn(X, y, n_overlapping_epochs, overlapping_type, n_stride)
     elif 'RNN' in str(model):
-        return rnn(X, y, n_timesteps, overlapping_type, n_overlapping_epochs, n_stride)
+        return rnn(X, y, n_timesteps, n_overlapping_epochs, overlapping_type, n_stride)
     else:
-        raise TypeError('The type of the model is invalid.')
+        raise ValueError('The type of the model is invalid.')
 
 
 def metrics_multiclass(y_true, y_probs, n_classes, imbalance_correction=False):

@@ -45,7 +45,7 @@ class BaseHOSA:
             self.compare_function = np.greater
             self.stop_check = self.__stop_check_increase
         else:
-            raise TypeError('The type of the model is invalid.')
+            raise ValueError('The type of the model is invalid.')
 
     def __stop_check_increase(self, best_metric_current, best_metric_prev):
         """

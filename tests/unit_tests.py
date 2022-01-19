@@ -24,7 +24,7 @@ def run_binary_classification_cnn(imbalance_correction):
         scaler = StandardScaler()
         X_train = scaler.fit_transform(X_train)
         X_test = scaler.transform(X_test)
-        clf = CNNClassification(2, 10, [3, 2], epochs=200, patience=3)
+        clf = CNNClassification(2, [3, 2], epochs=200, patience=3)
         clf.prepare(X_train, y_train)
         clf.compile()
         clf.fit(X_train, y_train, imbalance_correction=imbalance_correction, verbose=0)
@@ -46,7 +46,7 @@ def run_multiclass_classification_cnn(imbalance_correction):
         test_images = test_images / 255.0
         train_images = train_images.reshape((-1, 28 * 28))
         test_images = test_images.reshape((-1, 28 * 28))
-        clf = CNNClassification(10, 10, [3], epochs=5, strides_convolution=2, strides_pooling=2, padding='same')
+        clf = CNNClassification(10, [3], epochs=5, strides_convolution=2, strides_pooling=2, padding='same')
         clf.prepare(train_images, train_labels)
         clf.compile()
         clf.fit(train_images, train_labels, imbalance_correction=imbalance_correction, verbose=0)
@@ -66,7 +66,7 @@ def run_multiclass_classification_2dcnn():
         test_images = test_images[:250]
         train_images = train_images / 255.0
         test_images = test_images / 255.0
-        clf = CNNClassification(10, 10, [3], epochs=5, cnn_dim=2)
+        clf = CNNClassification(10, [3], epochs=5, cnn_dim=2)
         clf.prepare(train_images, train_labels)
         clf.compile()
         clf.fit(train_images, train_labels, verbose=0)
@@ -84,7 +84,7 @@ def run_multiclass_classification_3dcnn():
         X = random.normal(input_shape).numpy()
         y = np.random.randint(0, n_classes, input_shape[0])
         X_train, X_test, y_train, y_test = train_test_split(X, y)
-        clf = CNNClassification(n_classes, 10, [3], epochs=5, cnn_dim=3)
+        clf = CNNClassification(n_classes,  [3], epochs=5, cnn_dim=3)
         clf.prepare(X_train, y_train)
         clf.compile()
         clf.fit(X_train, y_train, verbose=0)
@@ -106,9 +106,9 @@ def run_regression_cnn():
         scaler = StandardScaler()
         X_train = scaler.fit_transform(X_train)
         X_test = scaler.transform(X_test)
-        X_train, y_train = create_overlapping(X_train, y_train, CNNRegression, 'central', 3, n_stride=1, n_timesteps=2)
-        X_test, y_test = create_overlapping(X_test, y_test, CNNRegression, 'central', 3, n_stride=1, n_timesteps=2)
-        reg = CNNRegression(1, 10, [3, 5], patience=2, epochs=5, kernel_size=2, pool_size=1, strides_pooling=1)
+        X_train, y_train = create_overlapping(X_train, y_train, CNNRegression, 3, 'central', n_stride=1, n_timesteps=2)
+        X_test, y_test = create_overlapping(X_test, y_test, CNNRegression, 3, 'central', n_stride=1, n_timesteps=2)
+        reg = CNNRegression(1, [3, 5], patience=2, epochs=5, kernel_size=2, pool_size=1, strides_pooling=1)
         reg.prepare(X_train, y_train)
         reg.compile()
         reg.fit(X_train, y_train, verbose=0)
@@ -133,8 +133,8 @@ def run_multiclass_classification_rnn(is_bidirectional=False, overlapping_epochs
         X_test = X_test[:250]
         X_train = pad_sequences(X_train, maxlen=max_sequence_length, value=0.0)
         X_test = pad_sequences(X_test, maxlen=max_sequence_length, value=0.0)
-        X_train, y_train = create_overlapping(X_train, y_train, RNNClassification, 'central', overlapping_epochs, n_stride=1, n_timesteps=2)
-        X_test, y_test = create_overlapping(X_test, y_test, RNNClassification, 'central', overlapping_epochs, n_stride=1, n_timesteps=2)
+        X_train, y_train = create_overlapping(X_train, y_train, RNNClassification, overlapping_epochs, 'central', n_stride=1, n_timesteps=2)
+        X_test, y_test = create_overlapping(X_test, y_test, RNNClassification, overlapping_epochs, 'central', n_stride=1, n_timesteps=2)
         for model in ['lstm', 'gru']:
             clf = RNNClassification(number_classes, n_neurons_dense_layer, is_bidirectional=is_bidirectional, n_units=n_units, n_subs_layers=n_subs_layers, model_type=model, patience=2, epochs=5)
             clf.prepare(X_train, y_train)
@@ -157,7 +157,7 @@ def run_regression_rnn(is_bidirectional, overlapping_type, overlapping_epochs=5,
         values = values.astype('float32')
         X = values[:, 1:]
         y = values[:, 0]
-        X, y = create_overlapping(X, y, RNNRegression, overlapping_type, overlapping_epochs, n_stride=stride, n_timesteps=timesteps)
+        X, y = create_overlapping(X, y, RNNRegression, overlapping_epochs, overlapping_type, n_stride=stride, n_timesteps=timesteps)
         np.nan_to_num(X, copy=False)
         np.nan_to_num(y, copy=False)
         X_train, X_test, y_train, y_test = train_test_split(X, y)
@@ -257,9 +257,3 @@ class ModelTesting(unittest.TestCase):
         self.assertEqual(run_regression_rnn(False, 'left', stride=2, timesteps=1), True)
         self.assertEqual(run_regression_rnn(False, 'right', stride=2, timesteps=1), True)
         self.assertEqual(run_regression_rnn(False, 'central', stride=2, timesteps=1), True)
-
-    def test_hosa_classification(self):
-        self.assertEqual(run_hosa_classification(), True)
-
-    def test_hosa_regression(self):
-        self.assertEqual(run_hosa_regression(), True)
