@@ -157,7 +157,7 @@ class BaseHOSA:
             changed = overlapping_type != overlapping_type_new or overlapping_epochs != overlapping_epochs_new or stride != stride_new or timesteps != timesteps_new
             if changed:
                 overlapping_type, overlapping_epochs, stride, timesteps = overlapping_type_new, overlapping_epochs_new, stride_new, timesteps_new
-                X_win, y_win = create_overlapping(self.X, self.y, self.model, overlapping_type, overlapping_epochs, n_stride=stride, n_timesteps=timesteps)
+                X_win, y_win = create_overlapping(self.X, self.y, self.model, overlapping_epochs, overlapping_type, n_stride=stride, n_timesteps=timesteps)
             # Generate the model
             if self.is_cnn:
                 model = self.model(n_kernels=n_kernels, n_outputs=self.n_outputs, **specification)
@@ -207,7 +207,7 @@ class BaseHOSA:
             numpy.ndarray: Returns an array containing the estimates that were obtained on the best-fitted model found.
         """
         overlapping_type, overlapping_epochs, stride, timesteps = prepare_param_overlapping(self.get_params())
-        X, y = create_overlapping(X, None, self.best_model, overlapping_type, overlapping_epochs, n_stride=stride, n_timesteps=timesteps)
+        X, y = create_overlapping(X, None, self.best_model, overlapping_epochs, overlapping_type, n_stride=stride, n_timesteps=timesteps)
         return self.best_model.predict(X, **kwargs)
 
     def score(self, X, y, **kwargs):
@@ -223,7 +223,7 @@ class BaseHOSA:
             tuple: Returns a tuple containing the performance metric according to the type of model.
         """
         overlapping_type, overlapping_epochs, stride, timesteps = prepare_param_overlapping(self.get_params())
-        X, y = create_overlapping(X, y, self.best_model, overlapping_type, overlapping_epochs, n_stride=stride, n_timesteps=timesteps)
+        X, y = create_overlapping(X, y, self.best_model, overlapping_epochs, overlapping_type, n_stride=stride, n_timesteps=timesteps)
         return self.best_model.score(X, y, **kwargs)
 
     @abc.abstractmethod
@@ -343,11 +343,11 @@ class HOSARNN(BaseHOSA):
             validation_size (float): Proportion of the dataset to include in the validation split on the random sub-sampling validation. **Ignored if ``apply_rsv = False``**.
             n_splits (int): Number of splits used in the random sub-sampling validation. **Ignored if ``apply_rsv = False``**.
         """
-        self.required_parameters = ['n_hidden_units', 'mults']
+        self.required_parameters = ['n_units', 'mults']
         super().__init__(X, y, model, n_outputs, parameters, tr, apply_rsv, validation_size, n_splits)
-        self.n_hidden_units = self.parameters[0]['n_hidden_units']
+        self.n_units = self.parameters[0]['n_units']
         self.mults = self.parameters[0]['mults']
-        del (self.parameters[0]['n_hidden_units'])
+        del (self.parameters[0]['n_units'])
         del (self.parameters[0]['mults'])
 
     def fit(self, max_n_subs_layers, show_progress=True, **kwargs):
@@ -375,7 +375,7 @@ class HOSARNN(BaseHOSA):
                 best_metric_current = self.initial_metric_value
                 best_model_current = best_specification_current = None
                 # Test each number of hidden units
-                for n_units in self.n_hidden_units:
+                for n_units in self.n_units:
                     # Test each number of units in the dense layer
                     for mult in self.mults:
                         # Run grid search
@@ -403,7 +403,7 @@ class HOSARNN(BaseHOSA):
                     n_subs_layers_construction = n_subs_layers_construction + 1
                 # Update progress bar
                 best_specification_complete = best_model.__dict__()
-                pbar_all.set_postfix(n_subs_layers=best_specification_complete['n_subs_layers'], n_hidden_units=best_specification_complete['n_units'], n_hidden_dense=best_specification_complete['n_neurons_dense_layer'])
+                pbar_all.set_postfix(n_subs_layers=best_specification_complete['n_subs_layers'], n_units=best_specification_complete['n_units'], n_hidden_dense=best_specification_complete['n_neurons_dense_layer'])
                 pbar_all.update(1)
         self.best_model, self.best_metric, self.best_specification = best_model, best_metric, best_specification
         return self.best_model, self.best_metric, self.best_specification
