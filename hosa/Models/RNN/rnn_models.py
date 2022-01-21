@@ -60,7 +60,7 @@ class BaseRNN:
             layer_type = tf.keras.layers.GRU
         else:
             raise ValueError('Type of RNN model invalid. Available options are ``lstm``, for a Long Short-Term Memory model, or ``gru``, for a Gated Recurrent Unit model.')
-        # Input layer
+        # Input layer (no. of timesteps and no. of features)
         self.model.add(tf.keras.layers.InputLayer(input_shape=X.shape[1:]))
         if self.is_bidirectional:
             self.model.add(tf.keras.layers.Bidirectional(layer_type(self.n_units, return_sequences=self.n_subs_layers > 0)))
@@ -77,7 +77,7 @@ class BaseRNN:
         # Dense layer
         self.model.add(tf.keras.layers.Dense(self.n_neurons_dense_layer, kernel_initializer=self.kernel_initializer, activation=self.activation_function_dense))
 
-    def aux_fit(self, X, y, callback, validation_size, rtol=1e-03, atol=1e-04, class_weights=None, imbalance_correction=None, **kwargs):
+    def aux_fit(self, X, y, callback, validation_size, rtol=1e-03, atol=1e-04, class_weights=None, imbalance_correction=None, shuffle=True, **kwargs):
         """
         Auxiliar function for classification and regression models compatibility.
 
@@ -93,10 +93,11 @@ class BaseRNN:
             rtol (float): Relative tolerance used for early stopping based on the performance metric.
             class_weights (None or dict): Dictionary mapping class indices (integers) to a weight (float) value, used for weighting the loss function (during training only). **Only used for classification problems. Ignored for regression.**
             imbalance_correction (None or bool): Whether to apply correction to class imbalances. **Only used for classification problems. Ignored for regression.**
+            shuffle (bool): Whether to shuffle the data before splitting.
             **kwargs: Extra arguments used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
         """
 
-        X_train, X_validation, y_train, y_validation = train_test_split(X, y, test_size=validation_size)
+        X_train, X_validation, y_train, y_validation = train_test_split(X, y, test_size=validation_size, shuffle=shuffle)
         callbacks = [callback(self, self.patience, (X_validation, y_validation), imbalance_correction, rtol, atol)]
         self.model.fit(X_train, y_train, batch_size=self.batch_size, epochs=self.epochs, validation_data=(X_validation, y_validation), callbacks=callbacks, class_weight=class_weights, **kwargs)
 
@@ -228,7 +229,7 @@ class RNNClassification(BaseRNN):
         super().prepare(X, y)
         self.model.add(tf.keras.layers.Dense(self.n_outputs, activation='softmax'))
 
-    def fit(self, X, y, validation_size=0.33, rtol=1e-03, atol=1e-04, class_weights=None, imbalance_correction=False, **kwargs):
+    def fit(self, X, y, validation_size=0.33, shuffle=True, rtol=1e-03, atol=1e-04, class_weights=None, imbalance_correction=False, **kwargs):
         """
 
         Fits the model to data matrix X and target(s) y.
@@ -238,6 +239,7 @@ class RNNClassification(BaseRNN):
             y (numpy.ndarray): Target values (i.e., class labels).
             class_weights (dict): Dictionary mapping class indices (integers) to a weight (float) value, used for weighting the loss function (during training only).
             validation_size (float or int): Proportion of the train dataset to include in the validation split.
+            shuffle (bool): Whether to shuffle the data before splitting.
             atol (float): Absolute tolerance used for early stopping based on the performance metric.
             rtol (float): Relative tolerance used for early stopping based on the performance metric.
             class_weights (None or dict): Dictionary mapping class indices (integers) to a weight (float) value, used for weighting the loss function (during training only).
@@ -248,7 +250,7 @@ class RNNClassification(BaseRNN):
             tensorflow.keras.Sequential: Returns a trained TensorFlow model.
         """
         callback = EarlyStoppingAtMinLoss
-        super().aux_fit(X, y, callback, validation_size, rtol, atol, class_weights, imbalance_correction, **kwargs)
+        super().aux_fit(X, y, callback, validation_size, rtol, atol, class_weights, imbalance_correction, shuffle, **kwargs)
         return self.model
 
     def score(self, X, y, imbalance_correction=False):
@@ -395,7 +397,7 @@ class RNNRegression(BaseRNN):
         super().prepare(X, y)
         self.model.add(tf.keras.layers.Dense(self.n_outputs, activation='linear'))
 
-    def fit(self, X, y, validation_size=0.33, rtol=1e-03, atol=1e-04, **kwargs):
+    def fit(self, X, y, validation_size=0.33, atol=1e-04, rtol=1e-03, shuffle=True, **kwargs):
         """
 
         Fits the model to data matrix X and target(s) y.
@@ -406,13 +408,14 @@ class RNNRegression(BaseRNN):
             validation_size (float or int): Proportion of the train dataset to include in the validation split.
             atol (float): Absolute tolerance used for early stopping based on the performance metric.
             rtol (float): Relative tolerance used for early stopping based on the performance metric.
+            shuffle (bool): Whether to shuffle the data before splitting.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
 
         Returns:
             tensorflow.keras.Sequential: Returns a trained TensorFlow model.
         """
         callback = EarlyStoppingAtMinLoss
-        super().aux_fit(X, y, callback, validation_size, rtol, atol, class_weights=None, imbalance_correction=None, **kwargs)
+        super().aux_fit(X, y, callback, validation_size, rtol, atol, class_weights=None, imbalance_correction=None, shuffle=shuffle, **kwargs)
 
     def score(self, X, y, **kwargs):
         """
