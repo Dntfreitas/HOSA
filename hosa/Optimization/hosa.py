@@ -389,7 +389,7 @@ class HOSARNN(BaseHOSA):
                 from hosa.Optimization.hosa import HOSARNN
 
                 # 1 - Load the dataset
-                dataset = np.loadtxt('datasets/occupancy.txt', delimiter=',')
+                dataset = np.loadtxt('...', delimiter=',')
                 X = dataset[:, :-1]
                 y = dataset[:, -1]
                 # 2 - Split the data in train and test dataset
