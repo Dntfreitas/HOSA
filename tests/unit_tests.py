@@ -1,11 +1,9 @@
 import unittest
 
 import numpy as np
-import pandas as pd
-from pandas import read_csv
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.preprocessing import StandardScaler
 from tensorflow import keras, random
 from tensorflow.keras.datasets import imdb
 from tensorflow.keras.preprocessing.sequence import pad_sequences
@@ -97,11 +95,9 @@ def run_multiclass_classification_3dcnn():
 
 def run_regression_cnn():
     try:
-        data = pd.read_csv('https://raw.githubusercontent.com/ageron/handson-ml/master/datasets/housing/housing.csv')
-        X = data[['longitude', 'latitude', 'housing_median_age', 'total_rooms', 'total_bedrooms', 'population']]
-        y = data['median_house_value']
-        X = X[:500].fillna(0)
-        y = y[:500].fillna(0)
+        dataset = np.loadtxt('tests/datasets/housing.txt', delimiter=',')
+        X = dataset[:, :-1]
+        y = dataset[:, -1]
         X_train, X_test, y_train, y_test = train_test_split(X, y)
         scaler = StandardScaler()
         X_train = scaler.fit_transform(X_train)
@@ -149,14 +145,9 @@ def run_multiclass_classification_rnn(is_bidirectional=False, overlapping_epochs
 
 def run_regression_rnn(is_bidirectional, overlapping_type, overlapping_epochs=5, stride=1, timesteps=1):
     try:
-        dataset = read_csv('https://raw.githubusercontent.com/jbrownlee/Datasets/master/pollution.csv', header=0, index_col=0)
-        dataset = dataset.head(200).copy()
-        values = dataset.values[:, 4:]
-        encoder = LabelEncoder()
-        values[:, 4] = encoder.fit_transform(values[:, 4])
-        values = values.astype('float32')
-        X = values[:, 1:]
-        y = values[:, 0]
+        dataset = np.loadtxt('tests/datasets/pollution.txt', delimiter=',')
+        X = dataset[:, :-1]
+        y = dataset[:, -1]
         X, y = create_overlapping(X, y, RNNRegression, overlapping_epochs, overlapping_type, n_stride=stride, n_timesteps=timesteps)
         np.nan_to_num(X, copy=False)
         np.nan_to_num(y, copy=False)
@@ -179,7 +170,7 @@ def run_regression_rnn(is_bidirectional, overlapping_type, overlapping_epochs=5,
 
 def run_hosa_classification():
     try:
-        dataset = np.loadtxt('datasets/occupancy.txt', delimiter=',')
+        dataset = np.loadtxt('tests/datasets/occupancy.txt', delimiter=',')
         X = dataset[:, :-1]
         y = dataset[:, -1]
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.1, shuffle=False)
@@ -220,7 +211,7 @@ def run_hosa_classification():
 
 def run_hosa_regression():
     try:
-        dataset = np.loadtxt('datasets/pollution.txt', delimiter=',')
+        dataset = np.loadtxt('tests/datasets/pollution.txt', delimiter=',')
         X = dataset[:, :-1]
         y = dataset[:, -1]
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.3, shuffle=False)
