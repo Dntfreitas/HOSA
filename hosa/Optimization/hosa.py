@@ -77,7 +77,7 @@ class BaseHOSA:
         """
         return best_metric_prev - best_metric_current <= self.tr
 
-    def __fit_assess_model(self, model, X_win, y_win, **kwargs):
+    def __fit_assess_model(self, model, X_win, y_win, imbalance_correction=None, **kwargs):
         """
 
         Fits the model and computes the chosen performance metric of the target values based on the inputs.
@@ -86,6 +86,7 @@ class BaseHOSA:
             model (tensorflow.keras.Sequential): Model to be fitted and assessed.
             X_win (numpy.ndarray): Windowed input data.
             y_win (numpy.ndarray): Windowed target values (class labels in classification, real numbers in regression).
+            imbalance_correction (None or bool): Whether to apply correction to class imbalances. **Only used for classification problems. Ignored for regression.**
             **kwargs: Extra arguments explicitly used for regression or classification models, including the additional arguments that are used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
 
         Returns:
@@ -103,14 +104,14 @@ class BaseHOSA:
                 X_win_validation, y_win_validation = X_win[validation_index], y_win[validation_index]
                 model.fit(X_win_train, y_win_train, **kwargs)
                 # Collect metrics about the model
-                metric, *_ = model.score(X_win_validation, y_win_validation)
+                metric, *_ = model.score(X_win_validation, y_win_validation, imbalance_correction=imbalance_correction)
                 metrics[i] = metric
                 i = i + 1
             return np.mean(metrics)
         else:
             model.fit(X_win, y_win, **kwargs)
             # Collect metrics about the model
-            metric, *_ = model.score(X_win, y_win)
+            metric, *_ = model.score(X_win, y_win, imbalance_correction=imbalance_correction)
             return metric
 
     def __check_params(self):
@@ -126,7 +127,7 @@ class BaseHOSA:
             if parameter not in self.parameters[0]:
                 raise ValueError('The parameter `' + parameter + '` must be specified in the `parameters` dictionary.')
 
-    def grid_search(self, n_kernels=None, n_neurons_dense_layer=None, n_units=None, n_subs_layers=None, **kwargs):
+    def grid_search(self, n_kernels=None, n_neurons_dense_layer=None, n_units=None, n_subs_layers=None, imbalance_correction=None, **kwargs):
         """
         Runs a grid search on the remaining moldel's parameters.
 
@@ -135,6 +136,7 @@ class BaseHOSA:
             n_neurons_dense_layer (int or None): Number of neurons units of the penultimate dense layer (i.e., before the output layer). **Ignored in the case of optimizing an CNN**.
             n_units (int or None): Dimensionality of the output space, i.e., the dimensionality of the hidden state. **Ignored in the case of optimizing an CNN**.
             n_subs_layers (int or None): **Ignored in the case of optimizing an CNN**.
+            imbalance_correction (None or bool): Whether to apply correction to class imbalances. **Only used for classification problems. Ignored for regression.**
             **kwargs: Extra arguments explicitly used for regression or classification models, including the additional arguments that are used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
 
         Returns:
@@ -166,7 +168,7 @@ class BaseHOSA:
             model.prepare(X_win, y_win)
             model.compile()
             # Fit and asses the model
-            metric = self.__fit_assess_model(model, X_win, y_win, **kwargs)
+            metric = self.__fit_assess_model(model, X_win, y_win, imbalance_correction, **kwargs)
             # Compare with the current metrics
             if self.compare_function(metric, best_metric):
                 best_metric = metric
@@ -254,6 +256,37 @@ class HOSACNN(BaseHOSA):
             apply_rsv (bool): ``True`` if random sub-sampling validation should be used during the optimization procedure.
             validation_size (float): Proportion of the dataset to include in the validation split on the random sub-sampling validation. **Ignored if ``apply_rsv = False``**.
             n_splits (int): Number of splits used in the random sub-sampling validation. **Ignored if ``apply_rsv = False``**.
+
+        Examples:
+            .. code-block:: python
+                :linenos:
+
+                import numpy as np
+                from sklearn.model_selection import train_test_split
+
+                from hosa.Models.CNN import CNNRegression
+                from hosa.Optimization.hosa import HOSACNN
+
+                # 1 - Load the dataset
+                dataset = np.loadtxt('...', delimiter=',')
+                X = dataset[:, :-1]
+                y = dataset[:, -1]
+                # 2 - Split the data in train and test dataset
+                X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.3, shuffle=False)
+                # 3 - Set the parameters to optimize
+                param_grid_rnn = {
+                        'overlapping_type':          ['central', 'left'],
+                        'overlapping_epochs':        [1],
+                        'n_kernels_first_gol':       [16, 32],
+                        'activation_function_dense': ['relu'],
+                        'mults':                     [1, 2],
+                        'optimizer':                 ['adam'],
+                        'batch_size':                [32],
+                }
+                # 4 - Create a HOSA instance and find the best model
+                regr = HOSACNN(X_train, y_train, CNNRegression, 1, param_grid_rnn, 0.01, apply_rsv=False)
+                regr.fit(max_gol_sizes=4, show_progress=True, verbose=1, shuffle=False)
+                score = regr.score(X_test, y_test)
         """
         self.required_parameters = ['n_kernels_first_gol', 'mults']
         super().__init__(X, y, model, n_outputs, parameters, tr, apply_rsv, validation_size, n_splits)
@@ -262,13 +295,15 @@ class HOSACNN(BaseHOSA):
         del (self.parameters[0]['n_kernels_first_gol'])
         del (self.parameters[0]['mults'])
 
-    def fit(self, max_gol_sizes, show_progress=True, **kwargs):
+    def fit(self, max_gol_sizes, show_progress=True, imbalance_correction=None, **kwargs):
         """
         Optimize the model following the HOSA approach with all sets of parameters.
 
         Args:
             max_gol_sizes (int): Maximum number of GofLayers to add to the model.
             show_progress (bool): `True` to show a progress bar; `False` otherwise.
+            imbalance_correction (bool): Whether to apply correction to class imbalances.
+            imbalance_correction (None or bool): Whether to apply correction to class imbalances. **Only used for classification problems. Ignored for regression.**
             **kwargs: Extra arguments explicitly used for regression or classification models, including the additional arguments that are used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
 
         Returns:
@@ -294,7 +329,7 @@ class HOSACNN(BaseHOSA):
                 # Test each kernel size
                 for n_kernel in n_kernels_test:
                     # Run grid search
-                    specification, model, metric = self.grid_search(n_kernel, **kwargs)
+                    specification, model, metric = self.grid_search(n_kernel, imbalance_correction, **kwargs)
                     # Compare with the current metrics, and update the current best values if necessary
                     if self.compare_function(metric, best_metric_current):
                         best_model_current = model
@@ -342,6 +377,39 @@ class HOSARNN(BaseHOSA):
             apply_rsv (bool): ``True`` if random sub-sampling validation should be used during the optimization procedure.
             validation_size (float): Proportion of the dataset to include in the validation split on the random sub-sampling validation. **Ignored if ``apply_rsv = False``**.
             n_splits (int): Number of splits used in the random sub-sampling validation. **Ignored if ``apply_rsv = False``**.
+
+        Examples:
+            .. code-block:: python
+                :linenos:
+
+                import numpy as np
+                from sklearn.model_selection import train_test_split
+
+                from hosa.Models.RNN import RNNClassification
+                from hosa.Optimization.hosa import HOSARNN
+
+                # 1 - Load the dataset
+                dataset = np.loadtxt('datasets/occupancy.txt', delimiter=',')
+                X = dataset[:, :-1]
+                y = dataset[:, -1]
+                # 2 - Split the data in train and test dataset
+                X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.1, shuffle=False)
+                # 3 - Set the parameters to optimize
+                param_grid_rnn = {
+                        'overlapping_type':          ['central', 'left'],
+                        'model_type':                ['lstm', 'gru'],
+                        'overlapping_epochs':        [1],
+                        'timesteps':                 [1],
+                        'activation_function_dense': ['relu'],
+                        'n_units':                   [10, 12],
+                        'mults':                     [1, 2],
+                        'optimizer':                 ['adam'],
+                        'batch_size':                [32],
+                }
+                # 4 - Create a HOSA instance and find the best model
+                regr = HOSARNN(X_train, y_train, RNNClassification, 2, param_grid_rnn, 0.01, validation_size=.05, apply_rsv=False)
+                regr.fit(max_n_subs_layers=4, show_progress=True, verbose=0, shuffle=False, imbalance_correction=True)
+                score = regr.score(X_test, y_test)
         """
         self.required_parameters = ['n_units', 'mults']
         super().__init__(X, y, model, n_outputs, parameters, tr, apply_rsv, validation_size, n_splits)
@@ -350,13 +418,14 @@ class HOSARNN(BaseHOSA):
         del (self.parameters[0]['n_units'])
         del (self.parameters[0]['mults'])
 
-    def fit(self, max_n_subs_layers, show_progress=True, **kwargs):
+    def fit(self, max_n_subs_layers, show_progress=True, imbalance_correction=None, **kwargs):
         """
         Optimize the model following the HOSA approach with all sets of parameters.
 
         Args:
             max_n_subs_layers (int): Maximum number of subsequent layers to add to the model.
             show_progress (bool): `True` to show a progress bar; `False` otherwise.
+            imbalance_correction (None or bool): Whether to apply correction to class imbalances. **Only used for classification problems. Ignored for regression.**
             **kwargs: Extra arguments explicitly used for regression or classification models, including the additional arguments that are used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
 
         Returns:
@@ -379,7 +448,7 @@ class HOSARNN(BaseHOSA):
                     # Test each number of units in the dense layer
                     for mult in self.mults:
                         # Run grid search
-                        specification, model, metric = self.grid_search(n_neurons_dense_layer=np.floor(n_units * mult), n_units=n_units, n_subs_layers=n_subs_layers_construction, **kwargs)
+                        specification, model, metric = self.grid_search(n_neurons_dense_layer=np.floor(n_units * mult), n_units=n_units, n_subs_layers=n_subs_layers_construction, imbalance_correction=imbalance_correction, **kwargs)
                         # Compare with the current metrics, and update the current best values if necessary
                         if self.compare_function(metric, best_metric_current):
                             best_model_current = model

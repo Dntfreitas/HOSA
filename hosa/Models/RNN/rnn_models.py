@@ -425,7 +425,7 @@ class RNNRegression(BaseRNN):
         Args:
             X (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (i.e., real numbers).
-            **kwargs: *Ignored*. Only included here for compatibility with :class:`.CNNClassification`.
+            **kwargs: *Ignored*. Only included here for compatibility with :class:`.RNNClassification`.
 
         Returns:
             tuple: Returns a tuple containing the mean squared error (MSE) and coefficient of determination (:math:`R^2`).
