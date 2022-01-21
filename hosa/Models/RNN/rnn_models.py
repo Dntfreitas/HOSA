@@ -250,7 +250,7 @@ class RNNClassification(BaseRNN):
             tensorflow.keras.Sequential: Returns a trained TensorFlow model.
         """
         callback = EarlyStoppingAtMinLoss
-        super().aux_fit(X, y, callback, validation_size, rtol, atol, class_weights, imbalance_correction, shuffle, **kwargs)
+        super().aux_fit(X, y, callback, validation_size, rtol=rtol, atol=atol, class_weights=class_weights, imbalance_correction=imbalance_correction, shuffle=shuffle, **kwargs)
         return self.model
 
     def score(self, X, y, imbalance_correction=False):
@@ -415,7 +415,7 @@ class RNNRegression(BaseRNN):
             tensorflow.keras.Sequential: Returns a trained TensorFlow model.
         """
         callback = EarlyStoppingAtMinLoss
-        super().aux_fit(X, y, callback, validation_size, rtol, atol, class_weights=None, imbalance_correction=None, shuffle=shuffle, **kwargs)
+        super().aux_fit(X, y, callback, validation_size, atol=atol, rtol=rtol, class_weights=None, imbalance_correction=None, shuffle=shuffle, **kwargs)
 
     def score(self, X, y, **kwargs):
         """

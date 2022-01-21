@@ -46,9 +46,9 @@ autodoc_default_options = {
 }
 
 intersphinx_mapping = {
-        'numpy':      ('https://numpy.org/doc/stable/', None),
-        'python':     ('https://docs.python.org/3/', None),
-        'scipy':      ('https://docs.scipy.org/doc/scipy/reference/', None),
+        'numpy':  ('https://numpy.org/doc/stable/', None),
+        'python': ('https://docs.python.org/3/', None),
+        'scipy':  ('https://docs.scipy.org/doc/scipy/reference/', None),
 }
 
 autosummary_generate = True  # Make _autosummary files and include them

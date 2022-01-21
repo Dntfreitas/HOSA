@@ -99,7 +99,7 @@ class BaseCNN:
             raise ValueError('`cnn_dim` parameter must be 1, 2 or 3.')
         self.model.add(tf.keras.layers.Dropout(self.dropout_percentage))
 
-    def aux_fit(self, X, y, callback, validation_size, rtol=1e-03, atol=1e-04, class_weights=None, imbalance_correction=None, **kwargs):
+    def aux_fit(self, X, y, callback, validation_size, atol=1e-04, rtol=1e-03, class_weights=None, imbalance_correction=None, shuffle=True, **kwargs):
         """
         Auxiliar function for classification and regression models compatibility.
 
@@ -115,10 +115,11 @@ class BaseCNN:
             rtol (float): Relative tolerance used for early stopping based on the performance metric.
             class_weights (None or dict): Dictionary mapping class indices (integers) to a weight (float) value, used for weighting the loss function (during training only). **Only used for classification problems. Ignored for regression.**
             imbalance_correction (None or bool): Whether to apply correction to class imbalances. **Only used for classification problems. Ignored for regression.**
+            shuffle (bool): Whether to shuffle the data before splitting.
             **kwargs: Extra arguments used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
         """
 
-        X_train, X_validation, y_train, y_validation = train_test_split(X, y, test_size=validation_size)
+        X_train, X_validation, y_train, y_validation = train_test_split(X, y, test_size=validation_size, shuffle=shuffle)
         X_train = np.expand_dims(X_train, axis=-1)
         X_validation = np.expand_dims(X_validation, axis=-1)
         callbacks = [callback(self, self.patience, (X_validation, y_validation), imbalance_correction, rtol, atol)]
@@ -257,7 +258,7 @@ class CNNClassification(BaseCNN):
         super().prepare(X, y)
         self.model.add(tf.keras.layers.Dense(self.n_outputs, activation='softmax'))
 
-    def fit(self, X, y, validation_size=0.33, rtol=1e-03, atol=1e-04, class_weights=None, imbalance_correction=False, **kwargs):
+    def fit(self, X, y, validation_size=0.33, shuffle=True, atol=1e-04, rtol=1e-03, class_weights=None, imbalance_correction=False, **kwargs):
         """
 
         Fits the model to data matrix X and target(s) y.
@@ -266,6 +267,7 @@ class CNNClassification(BaseCNN):
             X (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (i.e., class labels).
             validation_size (float or int): Proportion of the train dataset to include in the validation split.
+            shuffle (bool): Whether to shuffle the data before splitting.
             atol (float): Absolute tolerance used for early stopping based on the performance metric.
             rtol (float): Relative tolerance used for early stopping based on the performance metric.
             class_weights (None or dict): Dictionary mapping class indices (integers) to a weight (float) value, used for weighting the loss function (during training only).
@@ -276,7 +278,7 @@ class CNNClassification(BaseCNN):
             tensorflow.keras.Sequential: Returns a trained TensorFlow model.
         """
         callback = EarlyStoppingAtMinLoss
-        super().aux_fit(X, y, callback, validation_size, rtol, atol, class_weights, imbalance_correction, **kwargs)
+        super().aux_fit(X, y, callback, validation_size, atol=atol, rtol=rtol, class_weights=class_weights, imbalance_correction=imbalance_correction, shuffle=shuffle, **kwargs)
         return self.model
 
     def score(self, X, y, imbalance_correction=False):
@@ -436,7 +438,7 @@ class CNNRegression(BaseCNN):
         super().prepare(X, y)
         self.model.add(tf.keras.layers.Dense(self.n_outputs, activation='linear'))
 
-    def fit(self, X, y, validation_size=0.33, rtol=1e-03, atol=1e-04, **kwargs):
+    def fit(self, X, y, validation_size=0.33, shuffle=True, atol=1e-04, rtol=1e-03, **kwargs):
         """
 
         Fits the model to data matrix X and target(s) y.
@@ -445,6 +447,7 @@ class CNNRegression(BaseCNN):
             X (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (i.e., real numbers).
             validation_size (float or int): Proportion of the train dataset to include in the validation split.
+            shuffle (bool): Whether to shuffle the data before splitting.
             atol (float): Absolute tolerance used for early stopping based on the performance metric.
             rtol (float): Relative tolerance used for early stopping based on the performance metric.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``fit`` function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
@@ -453,7 +456,7 @@ class CNNRegression(BaseCNN):
             tensorflow.keras.Sequential: Returns a trained TensorFlow model.
         """
         callback = EarlyStoppingAtMinLoss
-        super().aux_fit(X, y, callback, validation_size, rtol, atol, class_weights=None, imbalance_correction=None, **kwargs)
+        super().aux_fit(X, y, callback, validation_size, atol=atol, rtol=rtol, class_weights=None, imbalance_correction=None, shuffle=shuffle, **kwargs)
 
     def score(self, X, y, **kwargs):
         """

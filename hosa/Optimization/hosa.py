@@ -407,9 +407,9 @@ class HOSARNN(BaseHOSA):
                         'batch_size':                [32],
                 }
                 # 4 - Create a HOSA instance and find the best model
-                regr = HOSARNN(X_train, y_train, RNNClassification, 2, param_grid_rnn, 0.01, validation_size=.05, apply_rsv=False)
-                regr.fit(max_n_subs_layers=4, show_progress=True, verbose=0, shuffle=False, imbalance_correction=True)
-                score = regr.score(X_test, y_test)
+                clf = HOSARNN(X_train, y_train, RNNClassification, 2, param_grid_rnn, 0.01, validation_size=.05, apply_rsv=False)
+                clf.fit(max_n_subs_layers=4, show_progress=True, verbose=0, shuffle=False, imbalance_correction=True)
+                score = clf.score(X_test, y_test)
         """
         self.required_parameters = ['n_units', 'mults']
         super().__init__(X, y, model, n_outputs, parameters, tr, apply_rsv, validation_size, n_splits)
