@@ -22,7 +22,7 @@ def run_binary_classification_cnn(imbalance_correction):
         scaler = StandardScaler()
         X_train = scaler.fit_transform(X_train)
         X_test = scaler.transform(X_test)
-        clf = CNNClassification(2, [3, 2], epochs=200, patience=3)
+        clf = CNNClassification(2, [3, 2], epochs=5, patience=3)
         clf.prepare(X_train, y_train)
         clf.compile()
         clf.fit(X_train, y_train, imbalance_correction=imbalance_correction, verbose=0)
@@ -183,6 +183,7 @@ def run_hosa_classification():
                 'mults':                     [1, 2],
                 'optimizer':                 ['adam'],
                 'batch_size':                [32],
+                'epochs':                    [5]
         }
         clf = HOSACNN(X_train, y_train, CNNClassification, 2, param_grid_rnn, 0.01, validation_size=.05, apply_rsv=False)
         clf.fit(max_gol_sizes=4, show_progress=True, verbose=1, shuffle=False, imbalance_correction=True)
@@ -199,6 +200,7 @@ def run_hosa_classification():
                 'mults':                     [1, 2],
                 'optimizer':                 ['adam'],
                 'batch_size':                [32],
+                'epochs':                    [5]
         }
         clf = HOSARNN(X_train, y_train, RNNClassification, 2, param_grid_rnn, 0.01, validation_size=.05, apply_rsv=False)
         clf.fit(max_n_subs_layers=4, show_progress=True, verbose=0, shuffle=False, imbalance_correction=True)
@@ -224,6 +226,7 @@ def run_hosa_regression():
                 'mults':                     [1, 2],
                 'optimizer':                 ['adam'],
                 'batch_size':                [32],
+                'epochs':                    [5]
         }
         regr = HOSACNN(X_train, y_train, CNNRegression, 1, param_grid_rnn, 0.01, apply_rsv=False)
         regr.fit(max_gol_sizes=4, show_progress=True, verbose=1, shuffle=False)
@@ -240,6 +243,7 @@ def run_hosa_regression():
                 'mults':                     [1, 2],
                 'optimizer':                 ['adam'],
                 'batch_size':                [32],
+                'epochs':                    [5]
         }
         regr = HOSARNN(X_train, y_train, RNNRegression, 1, param_grid_rnn, 0.01, apply_rsv=False)
         regr.fit(max_n_subs_layers=4, show_progress=True, verbose=1, shuffle=False)
