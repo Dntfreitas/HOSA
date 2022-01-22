@@ -186,7 +186,7 @@ def run_hosa_classification():
                 'epochs':                    [5]
         }
         clf = HOSACNN(X_train, y_train, CNNClassification, 2, param_grid_rnn, 0.01, validation_size=.05, apply_rsv=False)
-        clf.fit(max_gol_sizes=4, show_progress=True, verbose=1, shuffle=False, imbalance_correction=True)
+        clf.fit(max_gol_sizes=4, show_progress=False, verbose=0, shuffle=False, imbalance_correction=True)
         score = clf.score(X_test, y_test)
         all_parameters = clf.get_model().__dict__
         # RNN
@@ -203,7 +203,7 @@ def run_hosa_classification():
                 'epochs':                    [5]
         }
         clf = HOSARNN(X_train, y_train, RNNClassification, 2, param_grid_rnn, 0.01, validation_size=.05, apply_rsv=False)
-        clf.fit(max_n_subs_layers=4, show_progress=True, verbose=0, shuffle=False, imbalance_correction=True)
+        clf.fit(max_n_subs_layers=4, show_progress=False, verbose=0, shuffle=False, imbalance_correction=True)
         score = clf.score(X_test, y_test)
         all_parameters = clf.get_model().__dict__
     except Exception as e:
@@ -229,7 +229,7 @@ def run_hosa_regression():
                 'epochs':                    [5]
         }
         regr = HOSACNN(X_train, y_train, CNNRegression, 1, param_grid_rnn, 0.01, apply_rsv=False)
-        regr.fit(max_gol_sizes=4, show_progress=True, verbose=1, shuffle=False)
+        regr.fit(max_gol_sizes=4, show_progress=False, verbose=0, shuffle=False)
         score = regr.score(X_test, y_test)
         all_parameters = regr.get_model().__dict__
         # RNN
@@ -246,7 +246,7 @@ def run_hosa_regression():
                 'epochs':                    [5]
         }
         regr = HOSARNN(X_train, y_train, RNNRegression, 1, param_grid_rnn, 0.01, apply_rsv=False)
-        regr.fit(max_n_subs_layers=4, show_progress=True, verbose=1, shuffle=False)
+        regr.fit(max_n_subs_layers=4, show_progress=False, verbose=0, shuffle=False)
         score = regr.score(X_test, y_test)
         all_parameters = regr.get_model().__dict__
         return True
