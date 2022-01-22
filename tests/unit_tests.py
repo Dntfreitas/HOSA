@@ -1,22 +1,20 @@
 import unittest
 
 import numpy as np
-import pandas as pd
-from pandas import read_csv
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.preprocessing import StandardScaler
 from tensorflow import keras, random
 from tensorflow.keras.datasets import imdb
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
+from hosa.Helpers.functions import create_overlapping
 from hosa.Models.CNN.cnn_models import CNNClassification, CNNRegression
 from hosa.Models.RNN import RNNClassification, RNNRegression
-from hosa.Optimization.hosa import HOSA
-from hosa.aux import create_overlapping
+from hosa.Optimization.hosa import HOSACNN, HOSARNN
 
 
-def run_binary_classification_cnn(inbalance_correction):
+def run_binary_classification_cnn(imbalance_correction):
     try:
         X, y = load_breast_cancer(return_X_y=True)
         X = X[:, :10]
@@ -24,10 +22,10 @@ def run_binary_classification_cnn(inbalance_correction):
         scaler = StandardScaler()
         X_train = scaler.fit_transform(X_train)
         X_test = scaler.transform(X_test)
-        clf = CNNClassification(2, 10, [3, 2], epochs=200, patientece=3)
+        clf = CNNClassification(2, [3, 2], epochs=5, patience=3)
         clf.prepare(X_train, y_train)
         clf.compile()
-        clf.fit(X_train, y_train, inbalance_correction=inbalance_correction, verbose=0)
+        clf.fit(X_train, y_train, imbalance_correction=imbalance_correction, verbose=0)
         clf.predict(X_test)
         return True
     except Exception as e:
@@ -35,7 +33,7 @@ def run_binary_classification_cnn(inbalance_correction):
         return False
 
 
-def run_multiclass_classification_cnn(inbalance_correction):
+def run_multiclass_classification_cnn(imbalance_correction):
     try:
         fashion_mnist = keras.datasets.fashion_mnist
         (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
@@ -46,10 +44,10 @@ def run_multiclass_classification_cnn(inbalance_correction):
         test_images = test_images / 255.0
         train_images = train_images.reshape((-1, 28 * 28))
         test_images = test_images.reshape((-1, 28 * 28))
-        clf = CNNClassification(10, 10, [3], epochs=5, strides_convolution=2, strides_pooling=2, padding='same')
+        clf = CNNClassification(10, [3], epochs=5, strides_convolution=2, strides_pooling=2, padding='same')
         clf.prepare(train_images, train_labels)
         clf.compile()
-        clf.fit(train_images, train_labels, inbalance_correction=inbalance_correction, verbose=0)
+        clf.fit(train_images, train_labels, imbalance_correction=imbalance_correction, verbose=0)
         clf.predict(test_images)
         return True
     except Exception as e:
@@ -66,7 +64,7 @@ def run_multiclass_classification_2dcnn():
         test_images = test_images[:250]
         train_images = train_images / 255.0
         test_images = test_images / 255.0
-        clf = CNNClassification(10, 10, [3], epochs=5, cnn_dim=2)
+        clf = CNNClassification(10, [3], epochs=5, cnn_dim=2)
         clf.prepare(train_images, train_labels)
         clf.compile()
         clf.fit(train_images, train_labels, verbose=0)
@@ -84,7 +82,7 @@ def run_multiclass_classification_3dcnn():
         X = random.normal(input_shape).numpy()
         y = np.random.randint(0, n_classes, input_shape[0])
         X_train, X_test, y_train, y_test = train_test_split(X, y)
-        clf = CNNClassification(n_classes, 10, [3], epochs=5, cnn_dim=3)
+        clf = CNNClassification(n_classes, [3], epochs=5, cnn_dim=3)
         clf.prepare(X_train, y_train)
         clf.compile()
         clf.fit(X_train, y_train, verbose=0)
@@ -97,18 +95,16 @@ def run_multiclass_classification_3dcnn():
 
 def run_regression_cnn():
     try:
-        data = pd.read_csv('https://raw.githubusercontent.com/ageron/handson-ml/master/datasets/housing/housing.csv')
-        X = data[['longitude', 'latitude', 'housing_median_age', 'total_rooms', 'total_bedrooms', 'population']]
-        y = data['median_house_value']
-        X = X[:500].fillna(0)
-        y = y[:500].fillna(0)
+        dataset = np.loadtxt('datasets/housing.txt', delimiter=',')
+        X = dataset[:, :-1]
+        y = dataset[:, -1]
         X_train, X_test, y_train, y_test = train_test_split(X, y)
         scaler = StandardScaler()
         X_train = scaler.fit_transform(X_train)
         X_test = scaler.transform(X_test)
-        X_train, y_train = create_overlapping(X_train, y_train, CNNRegression, 'central', 3, stride=1, timesteps=2)
-        X_test, y_test = create_overlapping(X_test, y_test, CNNRegression, 'central', 3, stride=1, timesteps=2)
-        reg = CNNRegression(1, 10, [3, 5], patientece=2, epochs=5, kernel_size=2, pool_size=1, strides_pooling=1)
+        X_train, y_train = create_overlapping(X_train, y_train, CNNRegression, 3, 'central', n_stride=1, n_timesteps=2)
+        X_test, y_test = create_overlapping(X_test, y_test, CNNRegression, 3, 'central', n_stride=1, n_timesteps=2)
+        reg = CNNRegression(1, [3, 5], patience=2, epochs=5, kernel_size=2, pool_size=1, strides_pooling=1)
         reg.prepare(X_train, y_train)
         reg.compile()
         reg.fit(X_train, y_train, verbose=0)
@@ -126,17 +122,17 @@ def run_multiclass_classification_rnn(is_bidirectional=False, overlapping_epochs
         number_classes = 2
         n_units = 2
         n_subs_layers = 2
-        n_neurons_last_dense_layer = 10
+        n_neurons_dense_layer = 10
         (X_train, y_train), (X_test, y_test) = imdb.load_data(num_words=num_distinct_words)
         X_train = X_train[:500]
         y_train = y_train[:500]
         X_test = X_test[:250]
         X_train = pad_sequences(X_train, maxlen=max_sequence_length, value=0.0)
         X_test = pad_sequences(X_test, maxlen=max_sequence_length, value=0.0)
-        X_train, y_train = create_overlapping(X_train, y_train, RNNRegression, 'central', overlapping_epochs, stride=1, timesteps=2)
-        X_test, y_test = create_overlapping(X_test, y_test, RNNRegression, 'central', overlapping_epochs, stride=1, timesteps=2)
+        X_train, y_train = create_overlapping(X_train, y_train, RNNClassification, overlapping_epochs, 'central', n_stride=1, n_timesteps=2)
+        X_test, y_test = create_overlapping(X_test, y_test, RNNClassification, overlapping_epochs, 'central', n_stride=1, n_timesteps=2)
         for model in ['lstm', 'gru']:
-            clf = RNNClassification(number_classes, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type=model, patientece=2, epochs=5)
+            clf = RNNClassification(number_classes, n_neurons_dense_layer, is_bidirectional=is_bidirectional, n_units=n_units, n_subs_layers=n_subs_layers, model_type=model, patience=2, epochs=5)
             clf.prepare(X_train, y_train)
             clf.compile()
             clf.fit(X_train, y_train, verbose=0)
@@ -149,24 +145,19 @@ def run_multiclass_classification_rnn(is_bidirectional=False, overlapping_epochs
 
 def run_regression_rnn(is_bidirectional, overlapping_type, overlapping_epochs=5, stride=1, timesteps=1):
     try:
-        dataset = read_csv('https://raw.githubusercontent.com/jbrownlee/Datasets/master/pollution.csv', header=0, index_col=0)
-        dataset = dataset.head(200).copy()
-        values = dataset.values[:, 4:]
-        encoder = LabelEncoder()
-        values[:, 4] = encoder.fit_transform(values[:, 4])
-        values = values.astype('float32')
-        X = values[:, 1:]
-        y = values[:, 0]
-        X, y = create_overlapping(X, y, RNNRegression, overlapping_type, overlapping_epochs, stride=stride, timesteps=timesteps)
+        dataset = np.loadtxt('datasets/pollution.txt', delimiter=',')
+        X = dataset[:, :-1]
+        y = dataset[:, -1]
+        X, y = create_overlapping(X, y, RNNRegression, overlapping_epochs, overlapping_type, n_stride=stride, n_timesteps=timesteps)
         np.nan_to_num(X, copy=False)
         np.nan_to_num(y, copy=False)
         X_train, X_test, y_train, y_test = train_test_split(X, y)
         number_outputs = 1
         n_units = 2
         n_subs_layers = 2
-        n_neurons_last_dense_layer = 10
+        n_neurons_dense_layer = 10
         for model in ['lstm', 'gru']:
-            reg = RNNRegression(number_outputs, is_bidirectional, n_units, n_subs_layers, n_neurons_last_dense_layer, model_type=model, patientece=2, epochs=5)
+            reg = RNNRegression(number_outputs, n_neurons_dense_layer, is_bidirectional=is_bidirectional, n_units=n_units, n_subs_layers=n_subs_layers, model_type=model, patience=2, epochs=5)
             reg.prepare(X_train, y_train)
             reg.compile()
             reg.fit(X_train, y_train, verbose=0)
@@ -179,24 +170,42 @@ def run_regression_rnn(is_bidirectional, overlapping_type, overlapping_epochs=5,
 
 def run_hosa_classification():
     try:
-        X, y = load_breast_cancer(return_X_y=True)
-        X = X[:, :5]
-        param_grid = [{
-                'n_neurons_first_dense_layer': [5, 10],
-                'gol_sizes':                   [[3]],
-                'overlapping_type':            ['central', 'right'],
-                'overlapping_epochs':          [3],
-                'stride':                      [1],
-                'timesteps':                   [1, 2],
-                'model_type':                  ['lstm', 'gru']
-        }]
-        clf = HOSA(CNNClassification, 2, param_grid, X, y, 0.1, n_splits=2, apply_rsv=True)
-        clf.fit(inbalance_correction=True, validation_size=0.5, verbose=0)
-        clf.score(X, y)
-        clf = HOSA(RNNClassification, 2, param_grid, X, y, 0.1, apply_rsv=False)
-        clf.fit(inbalance_correction=False, verbose=0)
-        clf.score(X, y)
-        return True
+        dataset = np.loadtxt('datasets/occupancy.txt', delimiter=',')
+        X = dataset[:, :-1]
+        y = dataset[:, -1]
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.1, shuffle=False)
+        # CNN
+        param_grid_rnn = {
+                'overlapping_type':          ['central', 'left'],
+                'overlapping_epochs':        [1],
+                'n_kernels_first_gol':       [16, 32],
+                'activation_function_dense': ['relu'],
+                'mults':                     [1, 2],
+                'optimizer':                 ['adam'],
+                'batch_size':                [32],
+                'epochs':                    [5]
+        }
+        clf = HOSACNN(X_train, y_train, CNNClassification, 2, param_grid_rnn, 0.01, validation_size=.05, apply_rsv=False)
+        clf.fit(max_gol_sizes=4, show_progress=True, verbose=1, shuffle=False, imbalance_correction=True)
+        score = clf.score(X_test, y_test)
+        all_parameters = clf.get_model().__dict__
+        # RNN
+        param_grid_rnn = {
+                'overlapping_type':          ['central', 'left'],
+                'model_type':                ['lstm', 'gru'],
+                'overlapping_epochs':        [1],
+                'timesteps':                 [1],
+                'activation_function_dense': ['relu'],
+                'n_units':                   [10, 12],
+                'mults':                     [1, 2],
+                'optimizer':                 ['adam'],
+                'batch_size':                [32],
+                'epochs':                    [5]
+        }
+        clf = HOSARNN(X_train, y_train, RNNClassification, 2, param_grid_rnn, 0.01, validation_size=.05, apply_rsv=False)
+        clf.fit(max_n_subs_layers=4, show_progress=True, verbose=0, shuffle=False, imbalance_correction=True)
+        score = clf.score(X_test, y_test)
+        all_parameters = clf.get_model().__dict__
     except Exception as e:
         print(e)
         return False
@@ -204,30 +213,42 @@ def run_hosa_classification():
 
 def run_hosa_regression():
     try:
-        dataset = read_csv('https://raw.githubusercontent.com/jbrownlee/Datasets/master/pollution.csv', header=0, index_col=0)
-        dataset = dataset.head(200).copy()
-        values = dataset.values[:, 4:]
-        encoder = LabelEncoder()
-        values[:, 4] = encoder.fit_transform(values[:, 4])
-        values = values.astype('float32')
-        X = values[:, 1:]
-        y = values[:, 0]
-        np.nan_to_num(X, copy=False)
-        np.nan_to_num(y, copy=False)
-        param_grid = [{
-                'n_neurons_first_dense_layer': [5, 10],
-                'gol_sizes':                   [[3]],
-                'overlapping_type':            ['central', 'left'],
-                'overlapping_epochs':          [3],
-                'model_type':                  ['lstm', 'gru']
-        }]
-        clf = HOSA(CNNRegression, 1, param_grid, X, y, 0.1, apply_rsv=False)
-        clf.fit(validation_size=0.5, verbose=0)
-        clf.score(X, y)
-        param_grid[0]['timesteps'] = [1]
-        clf = HOSA(RNNRegression, 1, param_grid, X, y, 0.1, apply_rsv=False)
-        clf.fit(verbose=0)
-        clf.predict(X)
+        dataset = np.loadtxt('datasets/pollution.txt', delimiter=',')
+        X = dataset[:, :-1]
+        y = dataset[:, -1]
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.3, shuffle=False)
+        # CNN
+        param_grid_rnn = {
+                'overlapping_type':          ['central', 'left'],
+                'overlapping_epochs':        [1],
+                'n_kernels_first_gol':       [16, 32],
+                'activation_function_dense': ['relu'],
+                'mults':                     [1, 2],
+                'optimizer':                 ['adam'],
+                'batch_size':                [32],
+                'epochs':                    [5]
+        }
+        regr = HOSACNN(X_train, y_train, CNNRegression, 1, param_grid_rnn, 0.01, apply_rsv=False)
+        regr.fit(max_gol_sizes=4, show_progress=True, verbose=1, shuffle=False)
+        score = regr.score(X_test, y_test)
+        all_parameters = regr.get_model().__dict__
+        # RNN
+        param_grid_rnn = {
+                'overlapping_type':          ['central', 'left'],
+                'model_type':                ['lstm', 'gru'],
+                'overlapping_epochs':        [1],
+                'timesteps':                 [1],
+                'activation_function_dense': ['relu'],
+                'n_units':                   [10, 12],
+                'mults':                     [1, 2],
+                'optimizer':                 ['adam'],
+                'batch_size':                [32],
+                'epochs':                    [5]
+        }
+        regr = HOSARNN(X_train, y_train, RNNRegression, 1, param_grid_rnn, 0.01, apply_rsv=False)
+        regr.fit(max_n_subs_layers=4, show_progress=True, verbose=1, shuffle=False)
+        score = regr.score(X_test, y_test)
+        all_parameters = regr.get_model().__dict__
         return True
     except Exception as e:
         print(e)
@@ -258,8 +279,8 @@ class ModelTesting(unittest.TestCase):
         self.assertEqual(run_regression_rnn(False, 'right', stride=2, timesteps=1), True)
         self.assertEqual(run_regression_rnn(False, 'central', stride=2, timesteps=1), True)
 
-    def test_hosa_classification(self):
-        self.assertEqual(run_hosa_classification(), True)
-
     def test_hosa_regression(self):
         self.assertEqual(run_hosa_regression(), True)
+
+    def test_hosa_classification(self):
+        self.assertEqual(run_hosa_classification(), True)

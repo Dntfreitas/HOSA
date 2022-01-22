@@ -1,0 +1,23 @@
+{
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  "@type": "Code",
+  "author": [
+    {
+      "@id": "",
+      "@type": "Person",
+      "email": "diogo.nt.freitas@gmail.com",
+      "name": "Diogo Freitas",
+      "affiliation": "https://orcid.org/0000-0002-2351-8676"
+    }
+  ],
+  "identifier": "",
+  "codeRepository": "https://github.com/Dntfreitas/HOSA/",
+  "datePublished": "2022-01-22",
+  "dateModified": "2022-01-22",
+  "dateCreated": "2022-01-22",
+  "description": "Heuristic Oriented Search Algorithm",
+  "keywords": "k1, k2, k3",
+  "license": "MIT",
+  "title": "HOSA",
+  "version": "v1.0.0"
+}

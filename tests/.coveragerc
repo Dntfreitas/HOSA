@@ -1,0 +1,10 @@
+[report]
+exclude_lines =
+    raise AssertionError
+    raise NotImplementedError
+    raise ValueError
+
+[run]
+omit =
+    /docs/*
+    /tests/*

@@ -18,8 +18,8 @@ sys.path.insert(0, os.path.abspath('../../'))
 # -- Project information -----------------------------------------------------
 
 project = 'Optimization'
-copyright = '2022, Mendonça et al'
-author = 'Mendonça et al.'
+copyright = '2022, Freitas et al'
+author = 'Freitas et al.'
 
 # The full version, including alpha/beta/rc tags
 release = '0.1'
@@ -46,12 +46,9 @@ autodoc_default_options = {
 }
 
 intersphinx_mapping = {
-        'numpy':      ('https://numpy.org/doc/stable/', None),
-        'python':     ('https://docs.python.org/3/', None),
-        'pydagogue':  ('https://matthew-brett.github.io/pydagogue/', None),
-        'matplotlib': ('https://matplotlib.org/', None),
-        'scipy':      ('https://docs.scipy.org/doc/scipy/reference/', None),
-        'pandas':     ('https://pandas.pydata.org/pandas-docs/stable/', None),
+        'numpy':  ('https://numpy.org/doc/stable/', None),
+        'python': ('https://docs.python.org/3/', None),
+        'scipy':  ('https://docs.scipy.org/doc/scipy/reference/', None),
 }
 
 autosummary_generate = True  # Make _autosummary files and include them
