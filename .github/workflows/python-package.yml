@@ -38,7 +38,7 @@ jobs:
     - name: Test with pytest
       run: |
         pip install coverage
-        coverage run tests/unit_tests.py
+        coverage run unit_tests.py
         coverage xml
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v2
