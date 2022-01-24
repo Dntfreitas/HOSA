@@ -96,7 +96,7 @@ def run_multiclass_classification_3dcnn():
 
 def run_regression_cnn():
     try:
-        dataset = np.loadtxt('tests/datasets/housing.txt', delimiter=',')
+        dataset = np.loadtxt('datasets/housing.txt', delimiter=',')
         x = dataset[:, :-1]
         y = dataset[:, -1]
         x_train, X_test, y_train, y_test = train_test_split(x, y)
@@ -156,7 +156,7 @@ def run_multiclass_classification_rnn(is_bidirectional=False, overlapping_epochs
 def run_regression_rnn(is_bidirectional, overlapping_type, overlapping_epochs=5, stride=1,
                        timesteps=1):
     try:
-        dataset = np.loadtxt('tests/datasets/pollution.txt', delimiter=',')
+        dataset = np.loadtxt('datasets/pollution.txt', delimiter=',')
         x = dataset[:, :-1]
         y = dataset[:, -1]
         x, y = create_overlapping(x, y, RNNRegression, overlapping_epochs, overlapping_type,
@@ -231,7 +231,7 @@ def run_hosa_classification():
 
 def run_hosa_regression():
     try:
-        dataset = np.loadtxt('tests/datasets/pollution.txt', delimiter=',')
+        dataset = np.loadtxt('datasets/pollution.txt', delimiter=',')
         x = dataset[:, :-1]
         y = dataset[:, -1]
         x_train, X_test, y_train, y_test = train_test_split(x, y, test_size=.3, shuffle=False)
