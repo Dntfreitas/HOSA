@@ -1,3 +1,5 @@
+import unittest
+
 import numpy as np
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
@@ -271,4 +273,8 @@ def run_hosa_regression():
         return False
 
 
-run_hosa_classification()
+class ModelTesting(unittest.TestCase):
+
+
+    def test_cnn_regression(self):
+        self.assertEqual(run_regression_cnn(), True)
