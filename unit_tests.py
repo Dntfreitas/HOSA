@@ -231,7 +231,7 @@ def run_hosa_classification():
 
 def run_hosa_regression():
     try:
-        dataset = np.loadtxt('datasets/pollution.txt', delimiter=',')
+        dataset = np.loadtxt('dastasets/pollution.txt', delimiter=',')
         x = dataset[:, :-1]
         y = dataset[:, -1]
         x_train, X_test, y_train, y_test = train_test_split(x, y, test_size=.3, shuffle=False)
