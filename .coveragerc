@@ -8,3 +8,4 @@ exclude_lines =
 omit =
     /docs/*
     /tests/*
+source=hosa
