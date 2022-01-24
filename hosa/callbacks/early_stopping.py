@@ -12,8 +12,7 @@ class EarlyStoppingAtMinLoss(tf.keras.callbacks.Callback):
     Args:
         class_model: Class of the object to be optimized. Available options are:
         :class:`.RNNClassification`, :class:`.RNNRegression`, :class:`.CNNClassification`
-        and
-        :class:`.CNNRegression`.
+        and :class:`.CNNRegression`.
         patience (int): Number of epochs with no improvement after which training will be
         stopped.
         validation_data (numpy.ndarray): Input data extracted from the validation dataset (

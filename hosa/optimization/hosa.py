@@ -45,8 +45,8 @@ class BaseHOSA:
     def __init__(self, x, y, model, n_outputs, parameters, tr, apply_rsv=True, validation_size=.25,
                  n_splits=10):
         self.model, self.n_outputs, self.parameters, self.x, self.y, self.tr, self.apply_rsv, \
-        self.validation_size, self.n_splits = model, n_outputs, [
-                parameters], x, y, tr, apply_rsv, validation_size, n_splits
+        self.validation_size, self.n_splits = model, n_outputs, [parameters], x, y, tr, apply_rsv, \
+                                              validation_size, n_splits
         # Check the type of the model
         self.is_cnn = 'CNNRegression' in str(self.model) or 'CNNClassification' in str(self.model)
         self.is_rnn = 'RNNRegression' in str(self.model) or 'RNNClassification' in str(self.model)
@@ -166,12 +166,12 @@ class BaseHOSA:
         Args:
             n_kernels (list or None): *i*-th element represents the number of output filters of
             the convolution layer in the *i*-th GofLayer. **Ignored in the case of optimizing an
-            rnn**.
-            n_neurons_dense_layer (int or None): Number of neurons units of the penultimate dense
-            layer (i.e., before the output layer). **Ignored in the case of optimizing an cnn**.
+            RNN**.
+            n_neurons_dense_layer (int or None): Number of neurons of the penultimate dense layer
+            (i.e., before the output layer). **Ignored in the case of optimizing an CNN**.
             n_units (int or None): Dimensionality of the output space, i.e., the dimensionality
-            of the hidden state. **Ignored in the case of optimizing an cnn**.
-            n_subs_layers (int or None): **Ignored in the case of optimizing an cnn**.
+            of the hidden state. **Ignored in the case of optimizing an CNN**.
+            n_subs_layers (int or None): **Ignored in the case of optimizing an CNN**.
             imbalance_correction (None or bool): Whether to apply correction to class imbalances.
             **Only used for classification problems. Ignored for regression.**
             **kwargs: Extra arguments explicitly used for regression or classification models,

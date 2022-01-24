@@ -15,7 +15,7 @@ from hosa.helpers.functions import metrics_multiclass
 class BaseRNN:
     """Base class for Recurrent Neural Network (RNN) models for classification and regression.
 
-    Each RNN model comprises an input layer (a RNN or a bidirectional RNN cell),
+    Each RNN model comprises an input layer (an RNN or a bidirectional RNN cell),
     ``n_subs_layers`` subsequent layers (similar to the input cell), a dropout layer,
     a dense layer, and an output layer. The output layer is a dense layer with ``n_outputs``
     units, with the linear activation function.
@@ -219,7 +219,7 @@ class BaseRNN:
 class RNNClassification(BaseRNN):
     """Recurrent Neural Network (RNN) model classifier.
 
-    The model comprises an input layer (a RNN or a bidirectional RNN cell),
+    The model comprises an input layer (an RNN or a bidirectional RNN cell),
     ``n_subs_layers`` subsequent layers (similar to the input cell), a dropout layer,
     a dense layer, and an output layer.
 
@@ -429,7 +429,7 @@ class RNNClassification(BaseRNN):
 class RNNRegression(BaseRNN):
     """Recurrent Neural Network (RNN) model regressor.
 
-    The model comprises an input layer (a RNN or a bidirectional RNN cell),
+    The model comprises an input layer (an RNN or a bidirectional RNN cell),
     ``n_subs_layers`` subsequent layers (similar to the input cell), a dropout layer,
     a dense layer, and an output layer.
 
