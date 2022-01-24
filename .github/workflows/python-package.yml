@@ -38,6 +38,7 @@ jobs:
     - name: Test with pytest
       run: |
         pip install coverage
+        coverage erase
         coverage run unit_tests.py
         coverage xml
     - name: Upload coverage to Codecov
