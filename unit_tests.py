@@ -276,7 +276,7 @@ def run_hosa_regression():
 class ModelTesting(unittest.TestCase):
 
     def test_cnn_regression(self):
-        self.assertEqual(run_regression_cnn(), False)
+        self.assertEqual(run_regression_cnn(), True)
 
 
 if __name__ == '__main__':
