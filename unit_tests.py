@@ -280,4 +280,5 @@ class ModelTesting(unittest.TestCase):
 
 
 if __name__ == '__main__':
+    print('aaaaaaaaaa')
     unittest.main()
