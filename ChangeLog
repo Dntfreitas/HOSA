@@ -1,0 +1,130 @@
+CHANGES
+=======
+
+0.0.1
+-----
+
+* Updated files for package creation
+* Updated files for package creation
+* Update README.md
+* Updated files for automated testing
+* Updated files for automated testing
+* Updated files for automated testing
+* Updated files for automated testing
+* Updated files for automated testing
+* Updated files for automated testing
+* Updated files for automated testing
+* Updated files for automated testing
+* Updated files for automated testing
+* Updated files for automated testing
+* Updated .coveragerc + python workflow
+* Updated .coveragerc
+* Updated python-package.yaml
+* Updated python-package.yaml
+* Updated path of datasets
+* Updated path of tests
+* Updated setup.py
+* Improved requirements
+* Improved requirements and updated Python workflow
+* Added GitHub workflow test coverage report
+* Code improvement and standardization
+* Code improvement and standardization
+* Update unit\_tests.py
+* Update unit\_tests.py
+* Update requirements.txt
+* Create CODE\_OF\_CONDUCT.md
+* Create contributing.md
+* Update python-package.yml
+* Added files for deploy
+* Update README.md
+* Delete .circleci directory
+* Create python-package.yml
+* Added codemeta.json
+* Updated pdf path
+* Removed figure from sample paper
+* Updated paper path
+* Added Open Journals PDF Generator github action
+* Added sample paper
+* Updated number of epochs
+* Updated path of files
+* Updated path of files. Removed pandas dependency
+* Updated documentation
+* Parameter normalization
+* Updated tests
+* Added shuffle option for data split to RNN
+* Fixed parameters of \`create\_overlapping\` in hosa.py
+* Improved unit tests
+* Updated documentation
+* Added documentation about helper functions
+* Added progress bar
+* Implmented the to\_dict method on the models
+* Updated documentation
+* Fixed issues with HOSARNN
+* HOSA for RNN
+* HOSA for CNN
+* Improved documentation and examples
+* Improved documentation
+* Created module for tests
+* Improved file structure
+* Improved gitignore
+* Improved gitignore
+* Unit tests for HOSA regression
+* Unit tests for HOSA classification
+* CNN OK now
+* RNN OK now
+* File organization
+* Improved HOSA with stopping criterion
+* First version of HOSA
+* First version of HOSA
+* First version of HOSA
+* Updated config.yml
+* Update config.yml
+* Added overlapping for RNN
+* Create LICENSE
+* Added more unit tests; Compability with GRU; Fized overlapping creation
+* Removed datasets
+* Added more tests and bug fixes
+* Fixed path for dataset
+* Added requirements
+* Bug fixes for LSTM
+* Updated README.md
+* CircleCI implementation
+* CircleCI implementation
+* Deleted travis
+* Updated requirements
+* Added unity tests
+* CI implementation
+* LSTM implementation
+* Updated documentation
+* Updated documentation
+* Updated documentation
+* Updated documentation
+* Updated multiclass metrics
+* Added website configurations
+* Added website configurations
+* Updated requirementes
+* Added requirementes
+* Fixed the path
+* Fixed the path
+* Fixed the path
+* Fixed the path
+* Fixed the path
+* Fixed the path
+* Fixed the path
+* Corrected the path
+* Updated theme
+* Documentation website
+* CNN is almost OK now, both regression and classification
+* Bug fix
+* Overlap creation and train/test split outside the loop
+* Added new algorithm proposal
+* Solved TODOs
+* First executable HOSA for CNN
+* File organization
+* Added file for LSTM
+* Code refactoring
+* Delete .idea directory
+* Code refactoring
+* Code refactoring
+* Initial Commit
+* Initial commit

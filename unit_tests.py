@@ -237,8 +237,7 @@ def run_hosa_regression():
         x_train, X_test, y_train, y_test = train_test_split(x, y, test_size=.3, shuffle=False)
         # cnn
         param_grid_rnn = {
-                'overlapping_type':          ['central', 'left'],
-                'overlapping_epochs':        [1],
+                'stride':                    [1, 2],
                 'n_kernels_first_gol':       [16, 32],
                 'activation_function_dense': ['relu'],
                 'mults':                     [1, 2],
@@ -246,9 +245,10 @@ def run_hosa_regression():
                 'batch_size':                [32],
                 'epochs':                    [5]
         }
-        regr = HOSACNN(x_train, y_train, CNNRegression, 1, param_grid_rnn, 0.01, apply_rsv=False)
+        regr = HOSACNN(x_train, y_train, CNNRegression, 1, param_grid_rnn, 0.01, apply_rsv=True)
         regr.fit(max_gol_sizes=4, show_progress=False, verbose=0, shuffle=False)
         score = regr.score(X_test, y_test)
+        prediction = regr.predict(x_train)
         all_parameters = regr.get_model().__dict__
         # rnn
         param_grid_rnn = {

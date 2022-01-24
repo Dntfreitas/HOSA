@@ -54,11 +54,11 @@ def create_overlapping(x, y, model, n_overlapping_epochs=0, overlapping_type=Non
         :class:`.CNNRegression`.
         n_overlapping_epochs (int): Number of epochs to be overlapped (in other words,
         the overlap duration).
-        overlapping_type (str): Type of overlapping to perform on the data. Available options are
+        overlapping_type (str or None): Type of overlapping to perform on the data. Available options are
         `central`, where the target value corresponds to the central epoch of the overlapping
         window; `left`, where the target value corresponds to the rightmost epoch of the
         overlapping window and `right`, where the target value corresponds to the leftmost epoch
-        of the overlapping window.
+        of the overlapping window. When `n_overlapping_epochs=0`, this parameter is ignored.
         n_stride (int): Number of strides to apply to the data.
         n_timesteps (int): Number of timesteps to apply to the data for recurrent models,
         in other words, the number of lagged observations to be used in the model. **Only used
