@@ -2,6 +2,5 @@ from setuptools import setup
 
 setup(
         setup_requires=['pbr'],
-        pbr=True,
-        packages=['hosa']
+        pbr=True
 )
