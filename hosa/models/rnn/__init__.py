@@ -1,4 +1,6 @@
-"""This module implements classification and regression models using Recurrent Neural Networks (RNNs).
+"""
+This module implements classification and regression models using Recurrent Neural Networks (
+RNNs).
 
 .. autosummary::
     :toctree: _autosummary

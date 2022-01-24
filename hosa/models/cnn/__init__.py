@@ -1,4 +1,6 @@
-"""This module implements classification and regression models using Convolutional Neural Networks (CNN).
+"""
+This module implements classification and regression models using Convolutional Neural
+Networks (cnn).
 
 .. autosummary::
     :toctree: _autosummary

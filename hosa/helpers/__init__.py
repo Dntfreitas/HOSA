@@ -1,4 +1,5 @@
-"""This module implements all the helper functions required to prepare data, access models, and prepare the parameter grid for HOSA.
+"""This module implements all the helper functions required to prepare data, access models,
+and prepare the parameter grid for HOSA.
 
 .. autosummary::
     :toctree: _autosummary
