@@ -275,8 +275,35 @@ def run_hosa_regression():
 
 class ModelTesting(unittest.TestCase):
 
+    def test_cnn_binary_classification(self):
+        self.assertEqual(run_binary_classification_cnn(True), True)
+        self.assertEqual(run_binary_classification_cnn(False), True)
+
+    def test_cnn_multiclass_classification(self):
+        self.assertEqual(run_multiclass_classification_cnn(True), True)
+        self.assertEqual(run_multiclass_classification_cnn(False), True)
+        self.assertEqual(run_multiclass_classification_2dcnn(), True)
+        self.assertEqual(run_multiclass_classification_3dcnn(), True)
+
     def test_cnn_regression(self):
         self.assertEqual(run_regression_cnn(), True)
+
+    def test_rnn_multiclass_classification(self):
+        self.assertEqual(run_multiclass_classification_rnn(is_bidirectional=False), True)
+        self.assertEqual(
+                run_multiclass_classification_rnn(is_bidirectional=True, overlapping_epochs=0),
+                True)
+
+    def test_rnn_regression(self):
+        self.assertEqual(run_regression_rnn(False, 'left', stride=2, timesteps=1), True)
+        self.assertEqual(run_regression_rnn(False, 'right', stride=2, timesteps=1), True)
+        self.assertEqual(run_regression_rnn(False, 'central', stride=2, timesteps=1), True)
+
+    def test_hosa_regression(self):
+        self.assertEqual(run_hosa_regression(), True)
+
+    def test_hosa_classification(self):
+        self.assertEqual(run_hosa_classification(), True)
 
 
 if __name__ == '__main__':
