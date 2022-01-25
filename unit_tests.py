@@ -224,6 +224,7 @@ def run_hosa_classification():
                 imbalance_correction=True)
         score = clf.score(X_test, y_test)
         all_parameters = clf.get_model().__dict__
+        return True
     except Exception as e:
         print(e)
         return False
