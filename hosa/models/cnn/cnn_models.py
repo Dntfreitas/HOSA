@@ -16,8 +16,8 @@ class BaseCNN:
     """Base class for Convolutional Neural Network (CNN) models for classification and
     regression.
 
-    Each CNN model comprises an input layer, a set of groups of layers (GofLayers [
-    Men20]_)—where each group is composed of one convolution layer, followed by one pooling
+    Each CNN model comprises an input layer, a set of groups of layers (GofLayers [Men20]_)—where
+    each group is composed of one convolution layer, followed by one pooling
     layer and a dropout layer—, a dense layer, and an output layer. The output layer is a
     dense layer with ``n_outputs`` units, and with the softmax activation function (for
     classification) or the linear activation function (for regression).
@@ -34,62 +34,58 @@ class BaseCNN:
 
     Args:
         n_outputs (int): Number of class labels in classification, or the number of numerical
-        values to predict in regression.
+            values to predict in regression.
         n_kernels (list): *i*-th element represents the number of output filters of the
-        convolution layer in the *i*-th GofLayer.
+            convolution layer in the *i*-th GofLayer.
         n_neurons_dense_layer (int): Number of neuron units in the dense layer (i.e.,
-        the dense layer after the set of groups of layers).
+            the dense layer after the set of groups of layers).
         optimizer (str): Name of the optimizer. See `tensorflow.keras.optimizers
-        <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers>`_.
+            <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers>`_.
         cnn_dim (int): Number of dimensions applicable to *all* the convolution layers of the
-        GofLayers.
+            GofLayers.
         kernel_size (int or tuple): Integer or tuple/list of integers, specifying the length
-        (for ``cnn_dim`` = 1), the height and width (for ``cnn_dim`` = 2), or  the depth,
-        height and width (for ``cnn_dim`` = 3) of the convolution window. It can also be a
-        single integer to specify the same value for all spatial dimensions. This applies to
-        *all* the convolution layers of the GofLayers.
+            (for ``cnn_dim`` = 1), the height and width (for ``cnn_dim`` = 2), or  the depth,
+            height and width (for ``cnn_dim`` = 3) of the convolution window. It can also be a
+            single integer to specify the same value for all spatial dimensions. This applies to
+            *all* the convolution layers of the GofLayers.
         pool_size (int or tuple): Size of the max-pooling window applicable to *all* the
-        max-pooling layers of the GofLayers. For ``cnn_dim`` = 1, use a tuple with 1 integer;
-        For ``cnn_dim`` = 2, a tuple with 2 integers and for ``cnn_dim`` = 3, a tuple with 3
-        integers. It can also be a single integer to specify the same value for all spatial
-        dimensions.
+            max-pooling layers of the GofLayers. For ``cnn_dim`` = 1, use a tuple with 1 integer;
+            For ``cnn_dim`` = 2, a tuple with 2 integers and for ``cnn_dim`` = 3, a tuple with 3
+            integers. It can also be a single integer to specify the same value for all spatial
+            dimensions.
         strides_convolution (int or tuple): Integer or tuple/list of integers, specifying the
-        strides of the convolution. For ``cnn_dim`` = 1, use a tuple with 1 integer; For
-        ``cnn_dim`` = 2, a tuple with 2 integers and for ``cnn_dim`` = 3, a tuple with 3
-        integers. It can also be a single integer to specify the same value for all spatial
-        dimensions. This applies to *all* the convolution layers of the GofLayers.
+            strides of the convolution. For ``cnn_dim`` = 1, use a tuple with 1 integer; For
+            ``cnn_dim`` = 2, a tuple with 2 integers and for ``cnn_dim`` = 3, a tuple with 3
+            integers. It can also be a single integer to specify the same value for all spatial
+            dimensions. This applies to *all* the convolution layers of the GofLayers.
         strides_pooling (int or tuple): Integer or tuple/list of integers, specifying the
-        strides of the pooling. For ``cnn_dim`` = 1, use a tuple with 1 integer; For
-        ``cnn_dim`` = 2, a tuple with 2 integers and for ``cnn_dim`` = 3, a tuple with 3
-        integers. It can also be a single integer to specify the same value for all spatial
-        dimensions. This applies to *all* the pooling layers of the GofLayers.
+            strides of the pooling. For ``cnn_dim`` = 1, use a tuple with 1 integer; For
+            ``cnn_dim`` = 2, a tuple with 2 integers and for ``cnn_dim`` = 3, a tuple with 3
+            integers. It can also be a single integer to specify the same value for all spatial
+            dimensions. This applies to *all* the pooling layers of the GofLayers.
         padding (str): Available options are ``valid`` or ``same``. ``valid`` means no
-        padding. ``same`` results in padding evenly to the left/right or up/down of the input
-        such that output has the same height/width dimension as the input. This applies to
-        *all* the pooling layers of the GofLayers.
+            padding. ``same`` results in padding evenly to the left/right or up/down of the input
+            such that output has the same height/width dimension as the input. This applies to
+            *all* the pooling layers of the GofLayers.
         dropout_percentage (float): Fraction of the input units to drop. This applies to
-        *all* the dropout layers of the GofLayers.
+            *all* the dropout layers of the GofLayers.
         activation_function_gol (str or None): Activation function to use in the convolution
-        layers of the GofLayers. If not specified, no activation is applied (i.e., uses the
-        linear activation function). See `tensorflow.keras.activations
-        <https://www.tensorflow.org/api_docs/python/tf/keras/activations>`_. This applies to
-        *all* the convolution layers of the GofLayers.
+            layers of the GofLayers. If not specified, no activation is applied (i.e., uses the
+            linear activation function). See `tensorflow.keras.activations
+            <https://www.tensorflow.org/api_docs/python/tf/keras/activations>`_. This applies to
+            *all* the convolution layers of the GofLayers.
         activation_function_dense (str or None): Activation function to use on the dense
-        layer (i.e., the dense layer after the set of groups of layers). If not specified,
-        no activation is applied (i.e., uses the linear activation function). See
-        `tensorflow.keras.activations
-        <https://www.tensorflow.org/api_docs/python/tf/keras/activations>`_.
+            layer (i.e., the dense layer after the set of groups of layers). If not specified,
+            no activation is applied (i.e., uses the linear activation function). See
+            `tensorflow.keras.activations
+            <https://www.tensorflow.org/api_docs/python/tf/keras/activations>`_.
         batch_size (int or None): Number of samples per batch of computation. If ``None``,
-        ``batch_size`` will default to 32.
+            ``batch_size`` will default to 32.
         epochs (int): Maximum number of epochs to train the model.
         patience (int): Number of epochs with no improvement after which training will be
-        stopped.
+            stopped.
         **kwargs: *Ignored*. Extra arguments that are used for compatibility’s sake.
 
-    References:
-        .. [Men20] Mendonça, F.; Mostafa, S.; Morgado-Dias, F.; Juliá-Serdá,
-        G.; Ravelo-García, A. A Method for Sleep Quality Analysis Based on CNN Ensemble With
-        Implementation in a Portable Wireless Device. *IEEE Access* **2020**, 8, 158523–158537.
    """
 
     def __init__(self, n_outputs, n_kernels, n_neurons_dense_layer=50,
@@ -98,12 +94,23 @@ class BaseCNN:
                  activation_function_gol='relu', activation_function_dense='relu', batch_size=1000,
                  epochs=50, patience=5,
                  **kwargs):
-        self.n_outputs, self.n_kernels, self.n_neurons_dense_layer, self.optimizer, self.cnn_dim, \
-        self.kernel_size, self.pool_size, self.strides_convolution, self.strides_pooling, \
-        self.padding, self.dropout_percentage, self.activation_function_gol, \
-        self.activation_function_dense, self.batch_size, self.epochs, self.patience = n_outputs, \
-                                                                                      n_kernels, \
-                                                                                      n_neurons_dense_layer, optimizer, cnn_dim, kernel_size, pool_size, strides_convolution, strides_pooling, padding, dropout_percentage, activation_function_gol, activation_function_dense, batch_size, epochs, patience
+        self.n_outputs = n_outputs
+        self.n_kernels = n_kernels
+        self.n_neurons_dense_layer = n_neurons_dense_layer
+        self.optimizer = optimizer
+        self.cnn_dim = cnn_dim
+        self.kernel_size = kernel_size
+        self.pool_size = pool_size
+        self.strides_convolution = strides_convolution
+        self.strides_pooling = strides_pooling
+        self.padding = padding
+        self.dropout_percentage = dropout_percentage
+        self.activation_function_gol = activation_function_gol
+        self.activation_function_dense = activation_function_dense
+        self.batch_size = batch_size
+        self.epochs = epochs
+        self.patience = patience
+
         self.model = tf.keras.models.Sequential()
 
     def prepare(self, x, y):
@@ -184,22 +191,22 @@ class BaseCNN:
         Args:
             x (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (class labels in classification, real numbers in
-            regression).
+                regression).
             callback (object): Early stopping callback for halting the model's training.
             validation_size (float or int): Proportion of the training dataset that will be used
-            the validation split.
+                the validation split.
             atol (float): Absolute tolerance used for early stopping based on the performance
-            metric.
+                metric.
             rtol (float): Relative tolerance used for early stopping based on the performance
-            metric.
+                metric.
             class_weights (None or dict): Dictionary mapping class indices (integers) to a weight
-            (float) value, used for weighting the loss function (during training only). **Only
-            used for classification problems. Ignored for regression.**
-            imbalance_correction (None or bool): Whether to apply correction to class imbalances.
-            **Only used for classification problems. Ignored for regression.**
+                (float) value, used for weighting the loss function (during training only). **Only
+                used for classification problems. Ignored for regression.**
+            imbalance_correction (None or bool): Whether to apply correction to class
+                imbalances. **Only used for classification problems. Ignored for regression.**
             shuffle (bool): Whether to shuffle the data before splitting.
             **kwargs: Extra arguments used in the TensorFlow's model ``fit`` function. See `here
-            <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
+                <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
         """
 
         x_train, x_validation, y_train, y_validation = train_test_split(x, y,
@@ -223,7 +230,7 @@ class BaseCNN:
         Args:
             x (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (class labels in classification, real numbers in
-            regression).
+                regression).
             **kwargs: Extra arguments explicitly used for regression or classification models.
         """
         raise NotImplementedError
@@ -246,7 +253,7 @@ class BaseCNN:
         Args:
             x (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (class labels in classification, real numbers in
-            regression).
+                regression).
             **kwargs: Extra arguments that are explicitly used for regression or classification
             models.
         """
@@ -261,8 +268,8 @@ class BaseCNN:
         Args:
             x (numpy.ndarray): Input data.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``predict``
-            function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model
-            #predict>`_.
+                function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model
+                #predict>`_.
         """
         raise NotImplementedError
 
@@ -291,65 +298,60 @@ class CNNClassification(BaseCNN):
     Args:
         n_outputs (int): Number of class labels to predict.
         n_kernels (list): *i*-th element represents the number of output filters of the
-        convolution layer in the *i*-th GofLayer.
+            convolution layer in the *i*-th GofLayer.
         n_neurons_dense_layer (int): Number of neuron units in the dense layer (i.e.,
-        the dense layer after the set of groups of layers).
+            the dense layer after the set of groups of layers).
         optimizer (str): Name of the optimizer. See `tensorflow.keras.optimizers
-        <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers>`_.
+            <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers>`_.
         metrics (list): List of metrics to be evaluated by the model during training and
-        testing. Each item of the list can be a string (name of a TensorFlow's built-in
-        function), function, or a `tf.keras.metrics.Metric
-        <https://www.tensorflow.org/api_docs/python/tf/keras/metrics/Metric>`_ instance. If
-        ``None``, ``metrics`` will default to ``['accuracy']``.
+            testing. Each item of the list can be a string (name of a TensorFlow's built-in
+            function), function, or a `tf.keras.metrics.Metric
+            <https://www.tensorflow.org/api_docs/python/tf/keras/metrics/Metric>`_ instance. If
+            ``None``, ``metrics`` will default to ``['accuracy']``.
         cnn_dim (int): Number of dimensions applicable to *all* the convolution layers of the
-        GofLayers.
+            GofLayers.
         kernel_size (int or tuple): Integer or tuple/list of integers, specifying the length
-        (for ``cnn_dim`` = 1), the height and width (for ``cnn_dim`` = 2), or  the depth,
-        height and width (for ``cnn_dim`` = 3) of the convolution window. It can also be a
-        single integer to specify the same value for all spatial dimensions. This applies to
-        *all* the convolution layers of the GofLayers.
+            (for ``cnn_dim`` = 1), the height and width (for ``cnn_dim`` = 2), or  the depth,
+            height and width (for ``cnn_dim`` = 3) of the convolution window. It can also be a
+            single integer to specify the same value for all spatial dimensions. This applies to
+            *all* the convolution layers of the GofLayers.
         pool_size (int or tuple): Size of the max-pooling window applicable to *all* the
-        max-pooling layers of the GofLayers. For ``cnn_dim`` = 1, use a tuple with 1 integer;
-        For ``cnn_dim`` = 2, a tuple with 2 integers and for ``cnn_dim`` = 3, a tuple with 3
-        integers. It can also be a single integer to specify the same value for all spatial
-        dimensions.
+            max-pooling layers of the GofLayers. For ``cnn_dim`` = 1, use a tuple with 1 integer;
+            For ``cnn_dim`` = 2, a tuple with 2 integers and for ``cnn_dim`` = 3, a tuple with 3
+            integers. It can also be a single integer to specify the same value for all spatial
+            dimensions.
         strides_convolution (int or tuple): Integer or tuple/list of integers, specifying the
-        strides of the convolution. For ``cnn_dim`` = 1, use a tuple with 1 integer; For
-        ``cnn_dim`` = 2, a tuple with 2 integers and for ``cnn_dim`` = 3, a tuple with 3
-        integers. It can also be a single integer to specify the same value for all spatial
-        dimensions. This applies to *all* the convolution layers of the GofLayers.
+            strides of the convolution. For ``cnn_dim`` = 1, use a tuple with 1 integer; For
+            ``cnn_dim`` = 2, a tuple with 2 integers and for ``cnn_dim`` = 3, a tuple with 3
+            integers. It can also be a single integer to specify the same value for all spatial
+            dimensions. This applies to *all* the convolution layers of the GofLayers.
         strides_pooling (int or tuple): Integer or tuple/list of integers, specifying the
-        strides of the pooling. For ``cnn_dim`` = 1, use a tuple with 1 integer; For
-        ``cnn_dim`` = 2, a tuple with 2 integers and for ``cnn_dim`` = 3, a tuple with 3
-        integers. It can also be a single integer to specify the same value for all spatial
-        dimensions. This applies to *all* the pooling layers of the GofLayers.
+            strides of the pooling. For ``cnn_dim`` = 1, use a tuple with 1 integer; For
+            ``cnn_dim`` = 2, a tuple with 2 integers and for ``cnn_dim`` = 3, a tuple with 3
+            integers. It can also be a single integer to specify the same value for all spatial
+            dimensions. This applies to *all* the pooling layers of the GofLayers.
         padding (str): Available options are ``valid`` or ``same``. ``valid`` means no
-        padding. ``same`` results in padding evenly to the left/right or up/down of the input
-        such that output has the same height/width dimension as the input. This applies to
-        *all* the pooling layers of the GofLayers.
+            padding. ``same`` results in padding evenly to the left/right or up/down of the input
+            such that output has the same height/width dimension as the input. This applies to
+            *all* the pooling layers of the GofLayers.
         dropout_percentage (float): Fraction of the input units to drop. This applies to
-        *all* the dropout layers of the GofLayers.
+            *all* the dropout layers of the GofLayers.
         activation_function_gol (str or None): Activation function to use in the convolution
-        layers of the GofLayers. If not specified, no activation is applied (i.e., uses the
-        linear activation function). See `tensorflow.keras.activations
-        <https://www.tensorflow.org/api_docs/python/tf/keras/activations>`_. This applies to
-        *all* the convolution layers of the GofLayers.
+            layers of the GofLayers. If not specified, no activation is applied (i.e., uses the
+            linear activation function). See `tensorflow.keras.activations
+            <https://www.tensorflow.org/api_docs/python/tf/keras/activations>`_. This applies to
+            *all* the convolution layers of the GofLayers.
         activation_function_dense (str or None): Activation function to use on the dense
-        layer (i.e., the dense layer after the set of groups of layers). If not specified,
-        no activation is applied (i.e., uses the linear activation function). See
-        `tensorflow.keras.activations
-        <https://www.tensorflow.org/api_docs/python/tf/keras/activations>`_.
+            layer (i.e., the dense layer after the set of groups of layers). If not specified,
+            no activation is applied (i.e., uses the linear activation function). See
+            `tensorflow.keras.activations
+            <https://www.tensorflow.org/api_docs/python/tf/keras/activations>`_.
         batch_size (int or None): Number of samples per batch of computation. If ``None``,
-        ``batch_size`` will default to 32.
+            ``batch_size`` will default to 32.
         epochs (int): Maximum number of epochs to train the model.
         patience (int): Number of epochs with no improvement after which training will be
-        stopped.
+            stopped.
         **kwargs: *Ignored*. Extra arguments that are used for compatibility’s sake.
-
-    References:
-        .. [Men20] Mendonça, F.; Mostafa, S.; Morgado-Dias, F.; Juliá-Serdá,
-        G.; Ravelo-García, A. A Method for Sleep Quality Analysis Based on CNN Ensemble With
-        Implementation in a Portable Wireless Device. *IEEE Access* **2020**, 8, 158523–158537.
 
     Examples:
         .. code-block:: python
@@ -416,18 +418,18 @@ class CNNClassification(BaseCNN):
             x (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (i.e., class labels).
             validation_size (float or int): Proportion of the train dataset to include in the
-            validation split.
+                validation split.
             shuffle (bool): Whether to shuffle the data before splitting.
             atol (float): Absolute tolerance used for early stopping based on the performance
-            metric.
+                metric.
             rtol (float): Relative tolerance used for early stopping based on the performance
-            metric.
+                metric.
             class_weights (None or dict): Dictionary mapping class indices (integers) to a weight
-            (float) value, used for weighting the loss function (during training only).
+                (float) value, used for weighting the loss function (during training only).
             imbalance_correction (bool): `True` if correction for imbalance should be applied to
-            the metrics; `False` otherwise.
+                the metrics; `False` otherwise.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``fit`` function.
-            See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
+                See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
 
         Returns:
             tensorflow.keras.Sequential: Returns a trained TensorFlow model.
@@ -447,12 +449,12 @@ class CNNClassification(BaseCNN):
             x (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (i.e., class labels).
             imbalance_correction (bool): `True` if correction for imbalance should be applied to
-            the metrics; `False` otherwise.
+                the metrics; `False` otherwise.
             **kwargs: *Ignored*. Only included here for compatibility’s sake.
 
         Returns:
             tuple: Returns a tuple containing the area under the ROC curve (AUC), accuracy,
-            sensitivity, and sensitivity.
+                sensitivity, and sensitivity.
 
         .. note::
             This function can be used for both binary and multiclass classification.
@@ -471,12 +473,13 @@ class CNNClassification(BaseCNN):
         Args:
             x (numpy.ndarray): Input data.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``predict``
-            function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model
-            #predict>`_.
+                function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model
+                #predict>`_.
 
-       Returns:
+        Returns:
             tuple: Returns a tuple containing the probability estimates and predicted classes.
-       """
+        """
+
         x = np.expand_dims(x, axis=-1)
         y_probs = self.model.predict(x, **kwargs)
         y_pred_labels = np.argmax(y_probs, axis=1)
@@ -538,65 +541,60 @@ class CNNRegression(BaseCNN):
     Args:
         n_outputs (int): Number of numerical values to predict in regression.
         n_kernels (list): *i*-th element represents the number of output filters of the
-        convolution layer in the *i*-th GofLayer.
+            convolution layer in the *i*-th GofLayer.
         n_neurons_dense_layer (int): Number of neuron units in the dense layer (i.e.,
-        the dense layer after the set of groups of layers).
+            the dense layer after the set of groups of layers).
         optimizer (str): Name of the optimizer. See `tensorflow.keras.optimizers
-        <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers>`_.
+            <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers>`_.
         metrics (list): List of metrics to be evaluated by the model during training and
-        testing. Each item of the list can be a string (name of a TensorFlow's built-in
-        function), function, or a `tf.keras.metrics.Metric
-        <https://www.tensorflow.org/api_docs/python/tf/keras/metrics/Metric>`_ instance. If
-        ``None``, ``metrics`` will default to ``['mean_squared_error']``.
+            testing. Each item of the list can be a string (name of a TensorFlow's built-in
+            function), function, or a `tf.keras.metrics.Metric
+            <https://www.tensorflow.org/api_docs/python/tf/keras/metrics/Metric>`_ instance. If
+            ``None``, ``metrics`` will default to ``['mean_squared_error']``.
         cnn_dim (int): Number of dimensions applicable to *all* the convolution layers of the
-        GofLayers.
+            GofLayers.
         kernel_size (int or tuple): Integer or tuple/list of integers, specifying the length
-        (for ``cnn_dim`` = 1), the height and width (for ``cnn_dim`` = 2), or  the depth,
-        height and width (for ``cnn_dim`` = 3) of the convolution window. It can also be a
-        single integer to specify the same value for all spatial dimensions. This applies to
-        *all* the convolution layers of the GofLayers.
+            (for ``cnn_dim`` = 1), the height and width (for ``cnn_dim`` = 2), or  the depth,
+            height and width (for ``cnn_dim`` = 3) of the convolution window. It can also be a
+            single integer to specify the same value for all spatial dimensions. This applies to
+            *all* the convolution layers of the GofLayers.
         pool_size (int or tuple): Size of the max-pooling window applicable to *all* the
-        max-pooling layers of the GofLayers. For ``cnn_dim`` = 1, use a tuple with 1 integer;
-        For ``cnn_dim`` = 2, a tuple with 2 integers and for ``cnn_dim`` = 3, a tuple with 3
-        integers. It can also be a single integer to specify the same value for all spatial
-        dimensions.
+            max-pooling layers of the GofLayers. For ``cnn_dim`` = 1, use a tuple with 1 integer;
+            For ``cnn_dim`` = 2, a tuple with 2 integers and for ``cnn_dim`` = 3, a tuple with 3
+            integers. It can also be a single integer to specify the same value for all spatial
+            dimensions.
         strides_convolution (int or tuple): Integer or tuple/list of integers, specifying the
-        strides of the convolution. For ``cnn_dim`` = 1, use a tuple with 1 integer; For
-        ``cnn_dim`` = 2, a tuple with 2 integers and for ``cnn_dim`` = 3, a tuple with 3
-        integers. It can also be a single integer to specify the same value for all spatial
-        dimensions. This applies to *all* the convolution layers of the GofLayers.
+            strides of the convolution. For ``cnn_dim`` = 1, use a tuple with 1 integer; For
+            ``cnn_dim`` = 2, a tuple with 2 integers and for ``cnn_dim`` = 3, a tuple with 3
+            integers. It can also be a single integer to specify the same value for all spatial
+            dimensions. This applies to *all* the convolution layers of the GofLayers.
         strides_pooling (int or tuple): Integer or tuple/list of integers, specifying the
-        strides of the pooling. For ``cnn_dim`` = 1, use a tuple with 1 integer; For
-        ``cnn_dim`` = 2, a tuple with 2 integers and for ``cnn_dim`` = 3, a tuple with 3
-        integers. It can also be a single integer to specify the same value for all spatial
-        dimensions. This applies to *all* the pooling layers of the GofLayers.
+            strides of the pooling. For ``cnn_dim`` = 1, use a tuple with 1 integer; For
+            ``cnn_dim`` = 2, a tuple with 2 integers and for ``cnn_dim`` = 3, a tuple with 3
+            integers. It can also be a single integer to specify the same value for all spatial
+            dimensions. This applies to *all* the pooling layers of the GofLayers.
         padding (str): Available options are ``valid`` or ``same``. ``valid`` means no
-        padding. ``same`` results in padding evenly to the left/right or up/down of the input
-        such that output has the same height/width dimension as the input. This applies to
-        *all* the pooling layers of the GofLayers.
+            padding. ``same`` results in padding evenly to the left/right or up/down of the input
+            such that output has the same height/width dimension as the input. This applies to
+            *all* the pooling layers of the GofLayers.
         dropout_percentage (float): Fraction of the input units to drop. This applies to
-        *all* the dropout layers of the GofLayers.
+            *all* the dropout layers of the GofLayers.
         activation_function_gol (str or None): Activation function to use in the convolution
-        layers of the GofLayers. If not specified, no activation is applied (i.e., uses the
-        linear activation function). See `tensorflow.keras.activations
-        <https://www.tensorflow.org/api_docs/python/tf/keras/activations>`_. This applies to
-        *all* the convolution layers of the GofLayers.
+            layers of the GofLayers. If not specified, no activation is applied (i.e., uses the
+            linear activation function). See `tensorflow.keras.activations
+            <https://www.tensorflow.org/api_docs/python/tf/keras/activations>`_. This applies to
+            *all* the convolution layers of the GofLayers.
         activation_function_dense (str or None): Activation function to use on the dense
-        layer (i.e., the dense layer after the set of groups of layers). If not specified,
-        no activation is applied (i.e., uses the linear activation function). See
-        `tensorflow.keras.activations
-        <https://www.tensorflow.org/api_docs/python/tf/keras/activations>`_.
+            layer (i.e., the dense layer after the set of groups of layers). If not specified,
+            no activation is applied (i.e., uses the linear activation function). See
+            `tensorflow.keras.activations
+            <https://www.tensorflow.org/api_docs/python/tf/keras/activations>`_.
         batch_size (int or None): Number of samples per batch of computation. If ``None``,
-        ``batch_size`` will default to 32.
+            ``batch_size`` will default to 32.
         epochs (int): Maximum number of epochs to train the model.
         patience (int): Number of epochs with no improvement after which training will be
-        stopped.
+            stopped.
         **kwargs: *Ignored*. Extra arguments that are used for compatibility’s sake.
-
-    References:
-        .. [Men20] Mendonça, F.; Mostafa, S.; Morgado-Dias, F.; Juliá-Serdá,
-        G.; Ravelo-García, A. A Method for Sleep Quality Analysis Based on CNN Ensemble With
-        Implementation in a Portable Wireless Device. *IEEE Access* **2020**, 8, 158523–158537.
 
     Examples:
         .. code-block:: python
@@ -666,14 +664,14 @@ class CNNRegression(BaseCNN):
             x (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (i.e., real numbers).
             validation_size (float or int): Proportion of the train dataset to include in the
-            validation split.
+                validation split.
             shuffle (bool): Whether to shuffle the data before splitting.
             atol (float): Absolute tolerance used for early stopping based on the performance
-            metric.
+                metric.
             rtol (float): Relative tolerance used for early stopping based on the performance
-            metric.
+                metric.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``fit`` function.
-            See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
+                See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
 
         Returns:
             tensorflow.keras.Sequential: Returns a trained TensorFlow model.
@@ -694,7 +692,7 @@ class CNNRegression(BaseCNN):
 
         Returns:
             tuple: Returns a tuple containing the mean squared error (MSE) and coefficient of
-            determination (:math:`R^2`).
+                determination (:math:`R^2`).
 
         """
         y_pred = self.predict(x)
@@ -710,8 +708,8 @@ class CNNRegression(BaseCNN):
         Args:
             x (numpy.ndarray): Input data.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``predict``
-            function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model
-            #predict>`_.
+                function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model
+                #predict>`_.
 
         Returns:
             numpy.ndarray: Returns an array containing the estimates.

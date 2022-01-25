@@ -1,17 +1,18 @@
 API Reference
 =============
 
-The HOSA library is split into three modules:
+The HOSA library is split into five modules:
 
-* ``Hosa.Models.CNN.cnn_models``: for implementing classification and regression models using Convolutional Neural Networks (CNN).
-* ``Hosa.Models.CNN.cnn_models``: for implementing classification and regression models using Convolutional Neural Networks (CNN).
-* ``Hosa.Models.RNN.rnn_models``: for implementing classification and regression models using Recurrent Neural Network (RNNs).
-* ``Hosa.Callbacks``: for implementing early stopping callbacks for halting the model's training.
+* :py:mod:`hosa.optimization`—for implementing the HOSA.
+* :py:mod:`hosa.models.cnn`—for implementing classification and regression models using Convolutional Neural Networks (CNN).
+* :py:mod:`hosa.models.rnn`—for implementing classification and regression models using Recurrent Neural Network (RNNs).
+* :py:mod:`hosa.callbacks`—for implementing early stopping callbacks for halting the model's training.
+* :py:mod:`hosa.helpers`—for implementing helper functions for the package.
 
 HOSA
 ----
 
-.. automodule:: hosa.Optimization
+.. automodule:: hosa.optimization
 
 Models
 ------
@@ -19,19 +20,19 @@ Models
 CNN
 ^^^
 
-.. automodule:: hosa.Models.CNN
+.. automodule:: hosa.models.cnn
 
 RNN
 ^^^
 
-.. automodule:: hosa.Models.RNN
+.. automodule:: hosa.models.rnn
 
 Callbacks
 ---------
 
-.. automodule:: hosa.Callbacks
+.. automodule:: hosa.callbacks
 
 Helpers
 -------
 
-.. automodule:: hosa.Helpers
+.. automodule:: hosa.helpers

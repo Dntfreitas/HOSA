@@ -5,8 +5,8 @@ from itertools import product
 
 import numpy as np
 from numpy.lib.stride_tricks import as_strided
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import multilabel_confusion_matrix, roc_auc_score, balanced_accuracy_score
+from sklearn.metrics import accuracy_score, multilabel_confusion_matrix, roc_auc_score, \
+    balanced_accuracy_score
 
 
 def sliding_window(x, window_size):
@@ -48,25 +48,26 @@ def create_overlapping(x, y, model, n_overlapping_epochs=0, overlapping_type=Non
     Args:
         x (numpy.ndarray): Input data.
         y (numpy.ndarray or None): Target values (class labels in classification, real numbers in
-        regression). If `None`, the parameter will be ingored.
+            regression). If `None`, the parameter will be ingored.
         model (object): Class of the object to be optimized. Available options are:
-        :class:`.RNNClassification`, :class:`.RNNRegression`, :class:`.CNNClassification` and
-        :class:`.CNNRegression`.
+            :class:`.RNNClassification`, :class:`.RNNRegression`, :class:`.CNNClassification` and
+            :class:`.CNNRegression`.
         n_overlapping_epochs (int): Number of epochs to be overlapped (in other words,
-        the overlap duration).
-        overlapping_type (str or None): Type of overlapping to perform on the data. Available options are
-        `central`, where the target value corresponds to the central epoch of the overlapping
-        window; `left`, where the target value corresponds to the rightmost epoch of the
-        overlapping window and `right`, where the target value corresponds to the leftmost epoch
-        of the overlapping window. When `n_overlapping_epochs=0`, this parameter is ignored.
+            the overlap duration).
+        overlapping_type (str or None): Type of overlapping to perform on the data. Available
+        options are
+            `central`, where the target value corresponds to the central epoch of the overlapping
+            window; `left`, where the target value corresponds to the rightmost epoch of the
+            overlapping window and `right`, where the target value corresponds to the leftmost epoch
+            of the overlapping window. When `n_overlapping_epochs=0`, this parameter is ignored.
         n_stride (int): Number of strides to apply to the data.
         n_timesteps (int): Number of timesteps to apply to the data for recurrent models,
-        in other words, the number of lagged observations to be used in the model. **Only used
-        when `model=RNNClassification` or `model=RNNRegression`.**
+            in other words, the number of lagged observations to be used in the model. **Only used
+            when `model=RNNClassification` or `model=RNNRegression`.**
 
     Returns:
         tuple: Returns a tuple with the input data (`x`) and target values (`y`)—or `None` if
-        `y=None`—, both in segmented window view.
+            `y=None`—, both in segmented window view.
 
     """
 

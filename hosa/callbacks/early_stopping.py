@@ -11,28 +11,30 @@ class EarlyStoppingAtMinLoss(tf.keras.callbacks.Callback):
 
     Args:
         class_model: Class of the object to be optimized. Available options are:
-        :class:`.RNNClassification`, :class:`.RNNRegression`, :class:`.CNNClassification`
-        and :class:`.CNNRegression`.
+            :class:`.RNNClassification`, :class:`.RNNRegression`, :class:`.CNNClassification`
+            and :class:`.CNNRegression`.
         patience (int): Number of epochs with no improvement after which training will be
-        stopped.
+            stopped.
         validation_data (numpy.ndarray): Input data extracted from the validation dataset (
-        which was itself extracted from the training dataset).
+            which was itself extracted from the training dataset).
         imbalance_correction (bool): `True` if correction for imbalance should be applied to
-        the metrics; `False` otherwise.
+            the metrics; `False` otherwise.
         rtol (float): The relative tolerance parameter, as used in `numpy.isclose`. See
-        `numpy.isclose <https://numpy.org/doc/stable/reference/generated/numpy.isclose
-        .html>`_.
+            `numpy.isclose <https://numpy.org/doc/stable/reference/generated/numpy.isclose
+            .html>`_.
         atol (float): The absolute tolerance parameter, as used in `numpy.isclose`. See
-        `numpy.isclose <https://numpy.org/doc/stable/reference/generated/numpy.isclose
-        .html>`_.
+            `numpy.isclose <https://numpy.org/doc/stable/reference/generated/numpy.isclose
+            .html>`_.
     """
 
     def __init__(self, class_model, patience, validation_data, imbalance_correction=False,
                  rtol=1e-03, atol=1e-04):
         super().__init__()
         self.class_model = class_model
-        self.model, self.patience, self.imbalance_correction = self.class_model.model, patience, \
-                                                               imbalance_correction
+        self.model = self.class_model.model
+        self.patience = patience
+        self.imbalance_correction = imbalance_correction
+
         self.x_validation, self.y_validation = validation_data
         self.best_weights = self.wait = self.stopped_epoch = self.best_metric_value = \
             self.compare_function = None
