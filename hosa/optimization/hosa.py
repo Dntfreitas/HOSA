@@ -25,28 +25,35 @@ class BaseHOSA:
     Args:
         x (numpy.ndarray): Input data.
         y (numpy.ndarray): Target values (class labels in classification, real numbers in
-        regression).
+            regression).
         model (object): Class of the object to be optimized. Available options are:
-        :class:`.RNNClassification`, :class:`.RNNRegression`, :class:`.CNNClassification` and
-        :class:`.CNNRegression`.
+            :class:`.RNNClassification`, :class:`.RNNRegression`, :class:`.CNNClassification` and
+            :class:`.CNNRegression`.
         n_outputs (int): Number of class labels in classification, or the number of numerical
-        values to predict in regression.
+            values to predict in regression.
         parameters (dict): Dictionary with parameters names (str) as keys and lists of
-        parameter settings to try as values.
+            parameter settings to try as values.
         tr (float): Minimum threshold of improvement of the performance metric.
         apply_rsv (bool): ``True`` if random sub-sampling validation should be used during
-        the optimization procedure.
+            the optimization procedure.
         validation_size (float): Proportion of the dataset to include in the validation split
-        on the random sub-sampling validation. **Ignored if ``apply_rsv = False``**.
+            on the random sub-sampling validation. **Ignored if ``apply_rsv = False``**.
         n_splits (int): Number of splits used in the random sub-sampling validation.
-        **Ignored if ``apply_rsv = False``**.
+            **Ignored if ``apply_rsv = False``**.
     """
 
     def __init__(self, x, y, model, n_outputs, parameters, tr, apply_rsv=True, validation_size=.25,
                  n_splits=10):
-        self.model, self.n_outputs, self.parameters, self.x, self.y, self.tr, self.apply_rsv, \
-        self.validation_size, self.n_splits = model, n_outputs, [parameters], x, y, tr, apply_rsv, \
-                                              validation_size, n_splits
+        self.x = x
+        self.y = y
+        self.model = model
+        self.n_outputs = n_outputs
+        self.parameters = [parameters]
+        self.tr = tr
+        self.apply_rsv = apply_rsv
+        self.validation_size = validation_size
+        self.n_splits = n_splits
+
         # Check the type of the model
         self.is_cnn = 'CNNRegression' in str(self.model) or 'CNNClassification' in str(self.model)
         self.is_rnn = 'RNNRegression' in str(self.model) or 'RNNClassification' in str(self.model)
@@ -108,12 +115,13 @@ class BaseHOSA:
             model (tensorflow.keras.Sequential): Model to be fitted and assessed.
             x_win (numpy.ndarray): Windowed input data.
             y_win (numpy.ndarray): Windowed target values (class labels in classification,
-            real numbers in regression).
+                real numbers in regression).
             imbalance_correction (None or bool): Whether to apply correction to class imbalances.
-            **Only used for classification problems. Ignored for regression.**
+                **Only used for classification problems. Ignored for regression.**
             **kwargs: Extra arguments explicitly used for regression or classification models,
-            including the additional arguments that are used in the TensorFlow's model ``fit``
-            function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
+                including the additional arguments that are used in the TensorFlow's model ``fit``
+                function. See `here
+                <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
 
         Returns:
             float: Returns the value of the chosen performance metric on the fitted model.
@@ -165,18 +173,19 @@ class BaseHOSA:
 
         Args:
             n_kernels (list or None): *i*-th element represents the number of output filters of
-            the convolution layer in the *i*-th GofLayer. **Ignored in the case of optimizing an
-            RNN**.
+                the convolution layer in the *i*-th GofLayer. **Ignored in the case of optimizing an
+                RNN**.
             n_neurons_dense_layer (int or None): Number of neurons of the penultimate dense layer
-            (i.e., before the output layer). **Ignored in the case of optimizing an CNN**.
+                (i.e., before the output layer). **Ignored in the case of optimizing an CNN**.
             n_units (int or None): Dimensionality of the output space, i.e., the dimensionality
-            of the hidden state. **Ignored in the case of optimizing an CNN**.
+                of the hidden state. **Ignored in the case of optimizing an CNN**.
             n_subs_layers (int or None): **Ignored in the case of optimizing an CNN**.
             imbalance_correction (None or bool): Whether to apply correction to class imbalances.
-            **Only used for classification problems. Ignored for regression.**
+                **Only used for classification problems. Ignored for regression.**
             **kwargs: Extra arguments explicitly used for regression or classification models,
-            including the additional arguments that are used in the TensorFlow's model ``fit``
-            function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
+                including the additional arguments that are used in the TensorFlow's model ``fit``
+                function. See `here
+                <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
 
         Returns:
             tensorflow.keras.Sequential: Returns the best TensorFlow model found.
@@ -200,9 +209,10 @@ class BaseHOSA:
             changed = overlapping_type != overlapping_type_new or overlapping_epochs != \
                       overlapping_epochs_new or stride != stride_new or timesteps != timesteps_new
             if changed:
-                overlapping_type, overlapping_epochs, stride, timesteps = overlapping_type_new, \
-                                                                          overlapping_epochs_new, \
-                                                                          stride_new, timesteps_new
+                overlapping_type = overlapping_type_new
+                overlapping_epochs = overlapping_epochs_new
+                stride = stride_new
+                timesteps = timesteps_new
                 x_win, y_win = create_overlapping(self.x, self.y, self.model, overlapping_epochs,
                                                   overlapping_type, n_stride=stride,
                                                   n_timesteps=timesteps)
@@ -252,8 +262,8 @@ class BaseHOSA:
         Args:
             x (numpy.ndarray): Input data.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``predict``
-            function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model
-            #predict>`_.
+                function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model
+                #predict>`_.
 
         Returns:
             numpy.ndarray: Returns an array containing the estimates that were obtained on the
@@ -273,9 +283,9 @@ class BaseHOSA:
         Args:
             x (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (class labels in classification, real numbers in
-            regression).
+                regression).
             **kwargs: Only used for classification, in order to set the value of the parameter
-            ``imbalance_correction``.
+                ``imbalance_correction``.
 
         Returns:
             tuple: Returns a tuple containing the performance metric according to the type of model.
@@ -307,21 +317,21 @@ class HOSACNN(BaseHOSA):
     Args:
         x (numpy.ndarray): Input data.
         y (numpy.ndarray): Target values (class labels in classification, real numbers in
-        regression).
+            regression).
         model (object): Class of the object to be optimized. Available options are:
-        :class:`.RNNClassification`, :class:`.RNNRegression`, :class:`.CNNClassification` and
-        :class:`.CNNRegression`.
+            :class:`.RNNClassification`, :class:`.RNNRegression`, :class:`.CNNClassification` and
+            :class:`.CNNRegression`.
         n_outputs (int): Number of class labels in classification, or the number of numerical
-        values to predict in regression.
+            values to predict in regression.
         parameters (dict): Dictionary with parameters names (str) as keys and lists of
-        parameter settings to try as values.
+            parameter settings to try as values.
         tr (float): Minimum threshold of improvement of the performance metric.
         apply_rsv (bool): ``True`` if random sub-sampling validation should be used during
-        the optimization procedure.
+            the optimization procedure.
         validation_size (float): Proportion of the dataset to include in the validation split
-        on the random sub-sampling validation. **Ignored if ``apply_rsv = False``**.
+            on the random sub-sampling validation. **Ignored if ``apply_rsv = False``**.
         n_splits (int): Number of splits used in the random sub-sampling validation.
-        **Ignored if ``apply_rsv = False``**.
+            **Ignored if ``apply_rsv = False``**.
 
     Examples:
         .. code-block:: python
@@ -376,10 +386,11 @@ class HOSACNN(BaseHOSA):
             show_progress (bool): `True` to show a progress bar; `False` otherwise.
             imbalance_correction (bool): Whether to apply correction to class imbalances.
             imbalance_correction (None or bool): Whether to apply correction to class imbalances.
-            **Only used for classification problems. Ignored for regression.**
+                **Only used for classification problems. Ignored for regression.**
             **kwargs: Extra arguments explicitly used for regression or classification models,
-            including the additional arguments that are used in the TensorFlow's model ``fit``
-            function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
+                including the additional arguments that are used in the TensorFlow's model ``fit``
+                function. See `here
+                <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
 
         Returns:
             tuple: Returns a tuple containing the object of the best model found and respective
@@ -438,8 +449,9 @@ class HOSACNN(BaseHOSA):
                                      no_kernels=best_specification_complete['n_kernels'])
                 pbar_all.update(1)
         best_specification.update(self.best_model.__dict__())
-        self.best_model, self.best_metric, self.best_specification = best_model, best_metric, \
-                                                                     best_specification
+        self.best_model = best_model
+        self.best_metric = best_metric
+        self.best_specification = best_specification
         return self.best_model, self.best_metric, self.best_specification
 
 
@@ -453,21 +465,21 @@ class HOSARNN(BaseHOSA):
     Args:
         x (numpy.ndarray): Input data.
         y (numpy.ndarray): Target values (class labels in classification, real numbers in
-        regression).
+            regression).
         model (object): Class of the object to be optimized. Available options are:
-        :class:`.RNNClassification`, :class:`.RNNRegression`, :class:`.CNNClassification` and
-        :class:`.CNNRegression`.
+            :class:`.RNNClassification`, :class:`.RNNRegression`, :class:`.CNNClassification` and
+            :class:`.CNNRegression`.
         n_outputs (int): Number of class labels in classification, or the number of numerical
-        values to predict in regression.
+            values to predict in regression.
         parameters (dict): Dictionary with parameters names (str) as keys and lists of
-        parameter settings to try as values.
+            parameter settings to try as values.
         tr (float): Minimum threshold of improvement of the performance metric.
         apply_rsv (bool): ``True`` if random sub-sampling validation should be used during
-        the optimization procedure.
+            the optimization procedure.
         validation_size (float): Proportion of the dataset to include in the validation split
-        on the random sub-sampling validation. **Ignored if ``apply_rsv = False``**.
+            on the random sub-sampling validation. **Ignored if ``apply_rsv = False``**.
         n_splits (int): Number of splits used in the random sub-sampling validation.
-        **Ignored if ``apply_rsv = False``**.
+            **Ignored if ``apply_rsv = False``**.
 
     Examples:
         .. code-block:: python
@@ -524,10 +536,11 @@ class HOSARNN(BaseHOSA):
             max_n_subs_layers (int): Maximum number of subsequent layers to add to the model.
             show_progress (bool): `True` to show a progress bar; `False` otherwise.
             imbalance_correction (None or bool): Whether to apply correction to class imbalances.
-            **Only used for classification problems. Ignored for regression.**
+                **Only used for classification problems. Ignored for regression.**
             **kwargs: Extra arguments explicitly used for regression or classification models,
-            including the additional arguments that are used in the TensorFlow's model ``fit``
-            function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
+                including the additional arguments that are used in the TensorFlow's model ``fit``
+                function. See `here
+                <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
 
         Returns:
             tuple: Returns a tuple containing the object of the best model found and respective
@@ -583,6 +596,7 @@ class HOSARNN(BaseHOSA):
                                      n_hidden_dense=best_specification_complete[
                                          'n_neurons_dense_layer'])
                 pbar_all.update(1)
-        self.best_model, self.best_metric, self.best_specification = best_model, best_metric, \
-                                                                     best_specification
+        self.best_model = best_model
+        self.best_metric = best_metric
+        self.best_specification = best_specification
         return self.best_model, self.best_metric, self.best_specification

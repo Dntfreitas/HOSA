@@ -32,31 +32,31 @@ class BaseRNN:
 
     Args:
         n_outputs (int): Number of class labels in classification, or the number of numerical
-        values to predict in regression.
+            values to predict in regression.
         n_neurons_dense_layer (int): Number of neurons units of the penultimate dense layer (
-        i.e., before the output layer).
+            i.e., before the output layer).
         n_units (int): Dimensionality of the output space, i.e., the dimensionality of the
-        hidden state.
+            hidden state.
         n_subs_layers (int): Number of subsequent recurrent layers beteween the input and
-        output layers.
+            output layers.
         is_bidirectional (bool): If ``true``, then bidirectional layers will be used to build
-        the RNN model.
+            the RNN model.
         model_type(str): Type of RNN model to be used. Available options are ``lstm``,
-        for a Long Short-Term Memory model, or ``gru``, for a Gated Recurrent Unit model.
+            for a Long Short-Term Memory model, or ``gru``, for a Gated Recurrent Unit model.
         optimizer (str): Name of the optimizer. See `tensorflow.keras.optimizers
-        <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers>`_.
+            <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers>`_.
         dropout_percentage (float): Fraction of the input units to drop.
         activation_function_dense (str): Activation function to use on the penultimate dense
-        layer. If not specified, no activation is applied (i.e., uses the linear activation
-        function). See `tensorflow.keras.activations
-        <https://www.tensorflow.org/api_docs/python/tf/keras/activations>`_.
+            layer. If not specified, no activation is applied (i.e., uses the linear activation
+            function). See `tensorflow.keras.activations
+            <https://www.tensorflow.org/api_docs/python/tf/keras/activations>`_.
         kernel_initializer (str): Initializer for the kernel weights matrix, used for the
-        linear transformation of the inputs.
+            linear transformation of the inputs.
         batch_size (int or None): Number of samples per batch of computation. If ``None``,
-        ``batch_size`` will default to 32.
+            ``batch_size`` will default to 32.
         epochs (int): Maximum number of epochs to train the model.
         patience (int): Number of epochs with no improvement after which training will be
-        stopped.
+            stopped.
         **kwargs: *Ignored*. Extra arguments that are used for compatibility’s sake.
     """
 
@@ -65,12 +65,20 @@ class BaseRNN:
                  model_type='lstm', optimizer='adam', dropout_percentage=0.1,
                  activation_function_dense='relu', kernel_initializer='normal',
                  batch_size=1000, epochs=50, patience=5, **kwargs):
-        self.n_outputs, self.n_neurons_dense_layer, self.n_units, self.is_bidirectional, \
-        self.n_subs_layers, self.model_type, self.optimizer, self.dropout_percentage, \
-        self.activation_function_dense, self.kernel_initializer, self.batch_size, self.epochs, \
-        self.patience = n_outputs, n_neurons_dense_layer, n_units, is_bidirectional, \
-                        n_subs_layers, model_type, optimizer, dropout_percentage, \
-                        activation_function_dense, kernel_initializer, batch_size, epochs, patience
+        self.n_outputs = n_outputs
+        self.n_neurons_dense_layer = n_neurons_dense_layer
+        self.n_units = n_units
+        self.n_subs_layers = n_subs_layers
+        self.is_bidirectional = is_bidirectional
+        self.model_type = model_type
+        self.optimizer = optimizer
+        self.dropout_percentage = dropout_percentage
+        self.activation_function_dense = activation_function_dense
+        self.kernel_initializer = kernel_initializer
+        self.batch_size = batch_size
+        self.epochs = epochs
+        self.patience = patience
+
         self.model = tf.keras.models.Sequential()
 
     def prepare(self, x, y):
@@ -82,7 +90,7 @@ class BaseRNN:
         Args:
             x (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (class labels in classification, real numbers in
-            regression).
+                regression).
         """
         # Choose type of layer based on the model choosen by the user
         if self.model_type == 'lstm':
@@ -127,22 +135,22 @@ class BaseRNN:
         Args:
             x (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (class labels in classification, real numbers in
-            regression).
+                regression).
             callback (object): Early stopping callback for halting the model's training.
             validation_size (float or int): Proportion of the training dataset that will be used
-            the validation split.
+                the validation split.
             atol (float): Absolute tolerance used for early stopping based on the performance
-            metric.
+                metric.
             rtol (float): Relative tolerance used for early stopping based on the performance
-            metric.
+                metric.
             class_weights (None or dict): Dictionary mapping class indices (integers) to a weight
-            (float) value, used for weighting the loss function (during training only). **Only
-            used for classification problems. Ignored for regression.**
+                (float) value, used for weighting the loss function (during training only). **Only
+                used for classification problems. Ignored for regression.**
             imbalance_correction (None or bool): Whether to apply correction to class imbalances.
-            **Only used for classification problems. Ignored for regression.**
+                **Only used for classification problems. Ignored for regression.**
             shuffle (bool): Whether to shuffle the data before splitting.
             **kwargs: Extra arguments used in the TensorFlow's model ``fit`` function. See `here
-            <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
+                <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
         """
 
         x_train, x_validation, y_train, y_validation = train_test_split(x, y,
@@ -164,7 +172,7 @@ class BaseRNN:
         Args:
             x (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (class labels in classification, real numbers in
-            regression).
+                regression).
             **kwargs: Extra arguments explicitly used for regression or classification models.
         """
         raise NotImplementedError
@@ -188,9 +196,9 @@ class BaseRNN:
         Args:
             x (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (class labels in classification, real numbers in
-            regression).
+                regression).
             **kwargs: Extra arguments that are explicitly used for regression or classification
-            models.
+                models.
         """
         raise NotImplementedError
 
@@ -203,8 +211,8 @@ class BaseRNN:
         Args:
             x (numpy.ndarray): Input data.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``predict``
-            function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model
-            #predict>`_.
+                function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model
+                #predict>`_.
         """
         raise NotImplementedError
 
@@ -226,33 +234,33 @@ class RNNClassification(BaseRNN):
     Args:
         n_outputs (int): Number of class labels to predict.
         n_neurons_dense_layer (int): Number of neurons units of the penultimate dense layer (
-        i.e., before the output layer).
+            i.e., before the output layer).
         n_units (int): Dimensionality of the output space, i.e., the dimensionality of the
-        hidden state.
+            hidden state.
         n_subs_layers (int): Number of subsequent layers beteween the input and output layers.
         is_bidirectional (bool): If ``true``, then bidirectional layers will be used to build
-        the RNN model.
+            the RNN model.
         model_type(str): Type of RNN model to be used. Available options are ``lstm``,
-        for a Long Short-Term Memory model, or ``gru``, for a Gated Recurrent Unit model.
+            for a Long Short-Term Memory model, or ``gru``, for a Gated Recurrent Unit model.
         optimizer (str): Name of the optimizer. See `tensorflow.keras.optimizers
-        <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers>`_.
+            <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers>`_.
         dropout_percentage (float): Fraction of the input units to drop.
         metrics (list): List of metrics to be evaluated by the model during training and
-        testing. Each item of the list can be a string (name of a TensorFlow's built-in
-        function), function, or a `tf.keras.metrics.Metric
-        <https://www.tensorflow.org/api_docs/python/tf/keras/metrics/Metric>`_ instance. If
-        ``None``, ``metrics`` will default to ``['accuracy']``.
+            testing. Each item of the list can be a string (name of a TensorFlow's built-in
+            function), function, or a `tf.keras.metrics.Metric
+            <https://www.tensorflow.org/api_docs/python/tf/keras/metrics/Metric>`_ instance. If
+            ``None``, ``metrics`` will default to ``['accuracy']``.
         activation_function_dense (str): Activation function to use on the penultimate dense
-        layer. If not specified, no activation is applied (i.e., uses the linear activation
-        function). See `tensorflow.keras.activations
-        <https://www.tensorflow.org/api_docs/python/tf/keras/activations>`_.
+            layer. If not specified, no activation is applied (i.e., uses the linear activation
+            function). See `tensorflow.keras.activations
+            <https://www.tensorflow.org/api_docs/python/tf/keras/activations>`_.
         kernel_initializer (str): Initializer for the kernel weights matrix, used for the
-        linear transformation of the inputs.
+            linear transformation of the inputs.
         batch_size (int or None): Number of samples per batch of computation. If ``None``,
-        ``batch_size`` will default to 32.
+            ``batch_size`` will default to 32.
         epochs (int): Maximum number of epochs to train the model.
         patience (int): Number of epochs with no improvement after which training will be
-        stopped.
+            stopped.
         **kwargs: *Ignored*. Extra arguments that are used for compatibility’s sake.
 
     Examples:
@@ -323,20 +331,20 @@ class RNNClassification(BaseRNN):
             x (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (i.e., class labels).
             class_weights (dict): Dictionary mapping class indices (integers) to a weight (float)
-            value, used for weighting the loss function (during training only).
+                value, used for weighting the loss function (during training only).
             validation_size (float or int): Proportion of the train dataset to include in the
-            validation split.
+                validation split.
             shuffle (bool): Whether to shuffle the data before splitting.
             atol (float): Absolute tolerance used for early stopping based on the performance
-            metric.
+                metric.
             rtol (float): Relative tolerance used for early stopping based on the performance
-            metric.
+                metric.
             class_weights (None or dict): Dictionary mapping class indices (integers) to a weight
-            (float) value, used for weighting the loss function (during training only).
-            imbalance_correction (bool): `True` if correction for imbalance should be applied to
-            the metrics; `False` otherwise.
+                (float) value, used for weighting the loss function (during training only).
+                imbalance_correction (bool): `True` if correction for imbalance should be applied to
+                the metrics; `False` otherwise.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``fit`` function.
-            See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
+                See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
 
         Returns:
             tensorflow.keras.Sequential: Returns a trained TensorFlow model.
@@ -356,7 +364,7 @@ class RNNClassification(BaseRNN):
             x (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (i.e., class labels).
             imbalance_correction (bool): `True` if correction for imbalance should be applied to
-            the metrics; `False` otherwise.
+                the metrics; `False` otherwise.
 
         Returns:
             tuple: Returns a tuple containing the area under the ROC curve (AUC), accuracy,
@@ -379,8 +387,8 @@ class RNNClassification(BaseRNN):
         Args:
             x (numpy.ndarray): Input data.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``predict``
-            function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model
-            #predict>`_.
+                function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model
+                #predict>`_.
 
         Returns:
             tuple: Returns a tuple containing the probability estimates and predicted classes.
@@ -436,33 +444,33 @@ class RNNRegression(BaseRNN):
     Args:
         n_outputs (int): Number of numerical values to predict in regression.
         n_neurons_dense_layer (int): Number of neurons units of the penultimate dense layer (
-        i.e., before the output layer).
+            i.e., before the output layer).
         n_units (int): Dimensionality of the output space, i.e., the dimensionality of the
-        hidden state.
+            hidden state.
         n_subs_layers (int): Number of subsequent layers beteween the input and output layers.
         is_bidirectional (bool): If ``true``, then bidirectional layers will be used to build
-        the RNN model.
+            the RNN model.
         model_type(str): Type of RNN model to be used. Available options are ``lstm``,
-        for a Long Short-Term Memory model, or ``gru``, for a Gated Recurrent Unit model.
+            for a Long Short-Term Memory model, or ``gru``, for a Gated Recurrent Unit model.
         optimizer (str): Name of the optimizer. See `tensorflow.keras.optimizers
-        <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers>`_.
+            <https://www.tensorflow.org/api_docs/python/tf/keras/optimizers>`_.
         dropout_percentage (float): Fraction of the input units to drop.
         metrics (list): List of metrics to be evaluated by the model during training and
-        testing. Each item of the list can be a string (name of a TensorFlow's built-in
-        function), function, or a `tf.keras.metrics.Metric
-        <https://www.tensorflow.org/api_docs/python/tf/keras/metrics/Metric>`_ instance. If
-        ``None``, ``metrics`` will default to ``['mean_squared_error']``.
+            testing. Each item of the list can be a string (name of a TensorFlow's built-in
+            function), function, or a `tf.keras.metrics.Metric
+            <https://www.tensorflow.org/api_docs/python/tf/keras/metrics/Metric>`_ instance. If
+            ``None``, ``metrics`` will default to ``['mean_squared_error']``.
         activation_function_dense (str): Activation function to use on the penultimate dense
-        layer. If not specified, no activation is applied (i.e., uses the linear activation
-        function). See `tensorflow.keras.activations
-        <https://www.tensorflow.org/api_docs/python/tf/keras/activations>`_.
+            layer. If not specified, no activation is applied (i.e., uses the linear activation
+            function). See `tensorflow.keras.activations
+            <https://www.tensorflow.org/api_docs/python/tf/keras/activations>`_.
         kernel_initializer (str): Initializer for the kernel weights matrix, used for the
-        linear transformation of the inputs.
+            linear transformation of the inputs.
         batch_size (int or None): Number of samples per batch of computation. If ``None``,
-        ``batch_size`` will default to 32.
+            ``batch_size`` will default to 32.
         epochs (int): Maximum number of epochs to train the model.
         patience (int): Number of epochs with no improvement after which training will be
-        stopped.
+            stopped.
         **kwargs: *Ignored*. Extra arguments that are used for compatibility’s sake.
 
     Examples:
@@ -500,10 +508,9 @@ class RNNRegression(BaseRNN):
     """
 
     def __init__(self, n_outputs, n_neurons_dense_layer, n_units, n_subs_layers,
-                 is_bidirectional=False,
-                 model_type='lstm', optimizer='adam', dropout_percentage=0.1, metrics=None,
-                 activation_function_dense='relu', kernel_initializer='normal',
-                 batch_size=1000, epochs=50, patience=5, **kwargs):
+                 is_bidirectional=False, model_type='lstm', optimizer='adam',
+                 dropout_percentage=0.1, metrics=None, activation_function_dense='relu',
+                 kernel_initializer='normal', batch_size=1000, epochs=50, patience=5, **kwargs):
         if metrics is None:
             metrics = ['mean_squared_error']
         self.metrics = metrics
@@ -533,14 +540,14 @@ class RNNRegression(BaseRNN):
             x (numpy.ndarray): Input data.
             y (numpy.ndarray): Target values (i.e., real numbers).
             validation_size (float or int): Proportion of the train dataset to include in the
-            validation split.
+                validation split.
             atol (float): Absolute tolerance used for early stopping based on the performance
-            metric.
+                metric.
             rtol (float): Relative tolerance used for early stopping based on the performance
-            metric.
+                metric.
             shuffle (bool): Whether to shuffle the data before splitting.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``fit`` function.
-            See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
+                See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit>`_.
 
         Returns:
             tensorflow.keras.Sequential: Returns a trained TensorFlow model.
@@ -577,8 +584,8 @@ class RNNRegression(BaseRNN):
         Args:
             x (numpy.ndarray): Input data.
             **kwargs: Extra arguments that are used in the TensorFlow's model ``predict``
-            function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model
-            #predict>`_.
+                function. See `here <https://www.tensorflow.org/api_docs/python/tf/keras/Model
+                #predict>`_.
 
         Returns:
             numpy.ndarray: Returns an array containing the estimates.
