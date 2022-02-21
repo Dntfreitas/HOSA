@@ -17,7 +17,9 @@ total_run = 50
 iteration = 0
 
 # Logging option
-FORMAT = '%(levelname)s — %(asctime)s — %(message)s'
+FORMAT = '%(levelname)s — %(asctime)s — %(message)s: Iteration: %(iteration)s — Run: %(run)s/%(' \
+         'total_run)s — Best parameters: %(best_parameters)s — Best parameters fitness: ' \
+         '%(best_parameters_fitness)s — Duration: %(duration)s'
 logging.basicConfig(level=logging.INFO, filename='app.log', filemode='w', format=FORMAT)
 
 
@@ -139,11 +141,11 @@ def on_generation(ga_instance):
 
 
 def on_fitness(ga_instance, solutions_fitness):
-    run_log = str(int(ga_instance.generations_completed)) + "/" + str(int(run))
     solution_fitness = np.max(solutions_fitness)
     solution = ga_instance.best_solutions[-1]
-    d = format_log(iteration, run_log, total_run, solution_fitness, solution, None)
-    logging.warning("Current best solution", exc_info=True, extra=d)
+    d = format_log(ga_instance.generations_completed + 1, run, total_run, solution_fitness,
+                   solution, None)
+    logging.warning("Current best solution", extra=d)
 
 
 def fitness_func(solution, solution_idx):
@@ -158,11 +160,11 @@ def fitness_func(solution, solution_idx):
     # Create the model and fit
     clf = RNNClassification(n_outputs=2, n_neurons_dense_layer=n_neurons_dense_layer,
                             is_bidirectional=is_bidirectional, n_units=n_units,
-                            n_subs_layers=n_subs_layers, model_type='lstm', epochs=2)  # TODO:
+                            n_subs_layers=n_subs_layers, model_type='lstm')
     # epochs=2
     clf.prepare(x_train_overlapped, y_train_overlapped)
     clf.compile()
-    clf.fit(x_train_overlapped, y_train_overlapped, verbose=1)
+    clf.fit(x_train_overlapped, y_train_overlapped, verbose=0)
     fitness, *_ = clf.score(x_train_overlapped, y_train_overlapped)
     return fitness
 
@@ -170,10 +172,10 @@ def fitness_func(solution, solution_idx):
 def run_ga(run):
     # Stop criteria: patience value or number of generations
     stop_criteria = 'saturate_10'
-    num_generations = 5  # TODO: 50
+    num_generations = 50
     # Population
     num_genes = 14
-    sol_per_pop = 5  # TODO: 15
+    sol_per_pop = 15
     init_range_low = 0
     init_range_high = 2
     gene_type = int
@@ -233,10 +235,23 @@ def format_log(iteration, run, total_run, best_parameters_fitness, best_paramete
 
 # Load the data
 prepare_data()
+# Prepare to store the information about the best global solution
+solution_best_global = None
+solution_fitness_best_global = -np.inf
+solution_idx_best_global = None
+duration_best_global = None
 # Run GA several times
 for run in range(1, total_run + 1):
     d = format_log(None, run, total_run, None, None, None)
     logging.info('**** Starting the GA ****', extra=d)
     solution, solution_fitness, solution_idx, duration = run_ga(run)
-    d = format_log(None, run, total_run, solution, solution_fitness, duration)
+    d = format_log(None, run, total_run, solution_fitness, solution, duration)
     logging.info('**** Finishing the GA ****', extra=d)
+    if solution_fitness > solution_fitness_best_global:
+        solution_best_global = solution
+        solution_fitness_best_global = solution_fitness
+        solution_idx_best_global = solution_idx
+        duration_best_global = duration
+d = format_log(None, None, None, solution_fitness_best_global, solution_best_global,
+               duration_best_global)
+logging.info('**** Best solution of the GA ****', extra=d)
