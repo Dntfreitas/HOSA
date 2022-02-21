@@ -1,3 +1,6 @@
+import logging
+import time
+
 import numpy as np
 import pygad
 from keras.datasets import imdb
@@ -10,6 +13,12 @@ x_train = None
 y_train = None
 x_test = None
 y_test = None
+total_run = 50
+iteration = 0
+
+# Logging option
+FORMAT = '%(levelname)s — %(asctime)s — %(message)s'
+logging.basicConfig(level=logging.INFO, filename='app.log', filemode='w', format=FORMAT)
 
 
 def prepare_data():
@@ -58,7 +67,7 @@ def decode(chromosome):
         n_subs_layers = 4
     else:
         n_subs_layers = 5
-    # Decode is bidirectional?
+    # Decode "is bidirectional?"
     if is_bidirectional == 0:
         is_bidirectional = False
     else:
@@ -129,6 +138,14 @@ def on_generation(ga_instance):
     ga_instance.mutation_probability = mutation_rate
 
 
+def on_fitness(ga_instance, solutions_fitness):
+    run_log = str(int(ga_instance.generations_completed)) + "/" + str(int(run))
+    solution_fitness = np.max(solutions_fitness)
+    solution = ga_instance.best_solutions[-1]
+    d = format_log(iteration, run_log, total_run, solution_fitness, solution, None)
+    logging.warning("Current best solution", exc_info=True, extra=d)
+
+
 def fitness_func(solution, solution_idx):
     global x_train, y_train, x_test, y_test
     n_timesteps, n_units, n_subs_layers, is_bidirectional, overlapping_type, \
@@ -141,32 +158,31 @@ def fitness_func(solution, solution_idx):
     # Create the model and fit
     clf = RNNClassification(n_outputs=2, n_neurons_dense_layer=n_neurons_dense_layer,
                             is_bidirectional=is_bidirectional, n_units=n_units,
-                            n_subs_layers=n_subs_layers, model_type='lstm')
+                            n_subs_layers=n_subs_layers, model_type='lstm', epochs=2)  # TODO:
+    # epochs=2
     clf.prepare(x_train_overlapped, y_train_overlapped)
     clf.compile()
     clf.fit(x_train_overlapped, y_train_overlapped, verbose=1)
-    fitness = clf.score(x_train_overlapped, y_train_overlapped)
+    fitness, *_ = clf.score(x_train_overlapped, y_train_overlapped)
     return fitness
 
 
-def run_ga():
-    # Load the data
-    prepare_data()
+def run_ga(run):
     # Stop criteria: patience value or number of generations
     stop_criteria = 'saturate_10'
-    num_generations = 50
+    num_generations = 5  # TODO: 50
     # Population
     num_genes = 14
-    sol_per_pop = 15
+    sol_per_pop = 5  # TODO: 15
     init_range_low = 0
     init_range_high = 2
     gene_type = int
+    # Elitism
+    keep_parents = 2
     # Crossover
     crossover_probability = 0.9
     parent_selection_type = "rws"
-    num_parents_mating = sol_per_pop - 2
-    # Elitism
-    keep_parents = 2
+    num_parents_mating = sol_per_pop - keep_parents
     # Mutation
     mutation_type = "random"
     mutation_start_probability = 0.2
@@ -188,13 +204,39 @@ def run_ga():
                            mutation_probability=mutation_start_probability,
                            crossover_probability=crossover_probability,
                            on_generation=on_generation,
-                           stop_criteria=stop_criteria
+                           stop_criteria=stop_criteria,
+                           on_fitness=on_fitness,
+                           save_best_solutions=True
                            )
 
     # Run GA and get the best solution
-    ga_instance.run()
+    start = time.time()
+    try:
+        ga_instance.run()
+    except Exception as e:
+        end = time.time()
+        duration = end - start
+        solution, solution_fitness, solution_idx = ga_instance.best_solution()
+        d = format_log(iteration, run, total_run, solution_fitness, solution, duration)
+        logging.error("Exception occurred", exc_info=True, extra=d)
+    end = time.time()
+    duration = end - start
     solution, solution_fitness, solution_idx = ga_instance.best_solution()
-    print(solution, solution_fitness)
+    return solution, solution_fitness, solution_idx, duration
 
 
-run_ga()
+def format_log(iteration, run, total_run, best_parameters_fitness, best_parameters, durantion):
+    return {'iteration':               iteration, 'run': run, 'total_run': total_run,
+            'best_parameters_fitness': best_parameters_fitness, 'best_parameters': best_parameters,
+            'duration':                durantion}
+
+
+# Load the data
+prepare_data()
+# Run GA several times
+for run in range(1, total_run + 1):
+    d = format_log(None, run, total_run, None, None, None)
+    logging.info('**** Starting the GA ****', extra=d)
+    solution, solution_fitness, solution_idx, duration = run_ga(run)
+    d = format_log(None, run, total_run, solution, solution_fitness, duration)
+    logging.info('**** Finishing the GA ****', extra=d)
