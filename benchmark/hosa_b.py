@@ -4,7 +4,7 @@ import time
 from hosa.optimization.hosa import HOSARNN
 from utils import *
 
-logging.basicConfig(level=logging.INFO, filename='benchmark/hosa.log', filemode='w', format=FORMAT)
+logging.basicConfig(level=logging.INFO, filename='hosa.log', filemode='w', format=FORMAT)
 
 # Load the data
 prepare_data()
