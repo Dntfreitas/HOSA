@@ -223,6 +223,7 @@ class BaseHOSA:
                 model = self.model(n_outputs=self.n_outputs,
                                    n_neurons_dense_layer=n_neurons_dense_layer, n_units=n_units,
                                    n_subs_layers=n_subs_layers, **specification)
+                specification['n_subs_layers'] = n_subs_layers
             model.prepare(x_win, y_win)
             model.compile()
             # Fit and asses the model
@@ -567,6 +568,7 @@ class HOSARNN(BaseHOSA):
                                 n_neurons_dense_layer=np.floor(n_units * mult), n_units=n_units,
                                 n_subs_layers=n_subs_layers_construction,
                                 imbalance_correction=imbalance_correction, **kwargs)
+                        # is not retunr n_subs_layers
                         # Compare with the current metrics, and update the current best values if
                         # necessary
                         if self.compare_function(metric, best_metric_current):

@@ -10,32 +10,27 @@ FORMAT = '%(levelname)s — %(asctime)s — %(message)s: Iteration: %(iteration)
          'total_run)s — Best parameters: %(best_parameters)s — Best parameters fitness: ' \
          '%(best_parameters_fitness)s — Duration: %(duration)s'
 
-x_train = None
-y_train = None
-x_test = None
-y_test = None
-
-param_grid = {'n_timesteps':           [5, 15, 25, 35],
-              'n_units':               [100, 200, 300, 400],
-              'n_subs_layers':         [1, 2, 3, 4],
-              'is_bidirectional':      [False, True],
-              'overlapping_type':      ['central', 'right', 'left'],
-              'overlapping_duration':  [0, 1, 2, 3],
-              'n_neurons_dense_layer': [0.5, 1, 2]
+param_grid = {'timesteps':          [5, 15, 25, 35],
+              'n_units':            [100, 200, 300, 400],
+              'n_subs_layers':      [1, 2, 3, 4, 5],
+              'is_bidirectional':   [False, True],
+              'overlapping_type':   ['central', 'right', 'left'],
+              'overlapping_epochs': [0, 1, 2, 3],
+              'mults':              [0.5, 1, 2]
               }
 
 
-def encode(n_timesteps, n_units, n_subs_layers, is_bidirectional, overlapping_type,
-           overlapping_duration, n_neurons_dense_layer):
+def encode(timesteps, n_units, n_subs_layers, is_bidirectional, overlapping_type,
+           overlapping_epochs, mults):
     # Encode number of timesteps
-    if n_timesteps == 5:
-        n_timesteps_encoded = [0, 0]
-    elif n_timesteps == 15:
-        n_timesteps_encoded = [0, 1]
-    elif n_timesteps == 25:
-        n_timesteps_encoded = [1, 0]
-    elif n_timesteps == 35:
-        n_timesteps_encoded = [1, 1]
+    if timesteps == 5:
+        timesteps_encoded = [0, 0]
+    elif timesteps == 15:
+        timesteps_encoded = [0, 1]
+    elif timesteps == 25:
+        timesteps_encoded = [1, 0]
+    elif timesteps == 35:
+        timesteps_encoded = [1, 1]
     # Encode number of hidden units
     if n_units == 100:
         n_units_encoded = [0, 0]
@@ -69,43 +64,43 @@ def encode(n_timesteps, n_units, n_subs_layers, is_bidirectional, overlapping_ty
     elif overlapping_type == 'left':
         overlapping_type_encode = [1, 0]
     # Encode overlapping duration
-    if overlapping_duration == 0:
-        overlapping_duration_encode = [0, 0]
-    elif overlapping_duration == 1:
-        overlapping_duration_encode = [0, 1]
-    elif overlapping_duration == 2:
-        overlapping_duration_encode = [1, 0]
-    elif overlapping_duration == 3:
-        overlapping_duration_encode = [1, 1]
+    if overlapping_epochs == 0:
+        overlapping_epochs_encode = [0, 0]
+    elif overlapping_epochs == 1:
+        overlapping_epochs_encode = [0, 1]
+    elif overlapping_epochs == 2:
+        overlapping_epochs_encode = [1, 0]
+    elif overlapping_epochs == 3:
+        overlapping_epochs_encode = [1, 1]
     # Encode the number of neurons of the dense layer
-    if n_neurons_dense_layer == 0.5:
-        n_neurons_dense_layer_encode = [0, 0]
-    elif n_neurons_dense_layer == 1:
-        n_neurons_dense_layer_encode = [0, 1]
-    if n_neurons_dense_layer == 2:
-        n_neurons_dense_layer_encode = [1, 0]
-    return np.concatenate((n_timesteps_encoded, n_units_encoded, n_subs_layers_encoded,
+    if mults == 0.5:
+        mults_encode = [0, 0]
+    elif mults == 1:
+        mults_encode = [0, 1]
+    if mults == 2:
+        mults_encode = [1, 0]
+    return np.concatenate((timesteps_encoded, n_units_encoded, n_subs_layers_encoded,
                            is_bidirectional_encode, overlapping_type_encode,
-                           overlapping_duration_encode, n_neurons_dense_layer_encode))
+                           overlapping_epochs_encode, mults_encode))
 
 
 def decode(chromosome):
-    n_timesteps = chromosome[:2]
+    timesteps = chromosome[:2]
     n_units = chromosome[2:4]
     n_subs_layers = chromosome[4:7]
     is_bidirectional = chromosome[7]
     overlapping_type = chromosome[8:10]
-    overlapping_duration = chromosome[10:12]
-    n_neurons_dense_layer_mult = chromosome[12:14]
+    overlapping_epochs = chromosome[10:12]
+    mults = chromosome[12:14]
     # Decode number of timesteps
-    if np.array_equal(n_timesteps, [0, 0]):
-        n_timesteps = 5
-    elif np.array_equal(n_timesteps, [0, 1]):
-        n_timesteps = 15
-    elif np.array_equal(n_timesteps, [1, 0]):
-        n_timesteps = 25
-    elif np.array_equal(n_timesteps, [1, 1]):
-        n_timesteps = 35
+    if np.array_equal(timesteps, [0, 0]):
+        timesteps = 5
+    elif np.array_equal(timesteps, [0, 1]):
+        timesteps = 15
+    elif np.array_equal(timesteps, [1, 0]):
+        timesteps = 25
+    elif np.array_equal(timesteps, [1, 1]):
+        timesteps = 35
     # Decode number of hidden units
     if np.array_equal(n_units, [0, 0]):
         n_units = 100
@@ -139,27 +134,26 @@ def decode(chromosome):
     else:
         overlapping_type = 'left'
     # Decode overlapping duration
-    if np.array_equal(overlapping_duration, [0, 0]):
-        overlapping_duration = 0
-    elif np.array_equal(overlapping_duration, [0, 1]):
-        overlapping_duration = 1
-    elif np.array_equal(overlapping_duration, [1, 0]):
-        overlapping_duration = 2
-    elif np.array_equal(overlapping_duration, [1, 1]):
-        overlapping_duration = 3
+    if np.array_equal(overlapping_epochs, [0, 0]):
+        overlapping_epochs = 0
+    elif np.array_equal(overlapping_epochs, [0, 1]):
+        overlapping_epochs = 1
+    elif np.array_equal(overlapping_epochs, [1, 0]):
+        overlapping_epochs = 2
+    elif np.array_equal(overlapping_epochs, [1, 1]):
+        overlapping_epochs = 3
     # Decode the number of neurons of the dense layer
-    if np.array_equal(n_neurons_dense_layer_mult, [0, 0]):
-        n_neurons_dense_layer_mult = 0.5
-    elif np.array_equal(n_neurons_dense_layer_mult, [0, 1]):
-        n_neurons_dense_layer_mult = 1
+    if np.array_equal(mults, [0, 0]):
+        mults = 0.5
+    elif np.array_equal(mults, [0, 1]):
+        mults = 1
     else:
-        n_neurons_dense_layer_mult = 2
-    return n_timesteps, n_units, n_subs_layers, is_bidirectional, overlapping_type, \
-           overlapping_duration, n_neurons_dense_layer_mult
+        mults = 2
+    return timesteps, n_units, n_subs_layers, is_bidirectional, overlapping_type, \
+           overlapping_epochs, mults
 
 
 def prepare_data():
-    global x_train, y_train, x_test, y_test
     num_distinct_words = 5000
     max_sequence_length = 300
     (x_train, y_train), (x_test, y_test) = imdb.load_data(num_words=num_distinct_words)
@@ -167,18 +161,19 @@ def prepare_data():
     y_train = y_train[:5000]
     x_train = pad_sequences(x_train, maxlen=max_sequence_length, value=0.0)
     x_test = pad_sequences(x_test, maxlen=max_sequence_length, value=0.0)
+    return x_train, y_train, x_test, y_test
 
 
 def fitness_func(solution, solution_idx=None):
     global x_train, y_train, x_test, y_test
-    n_timesteps, n_units, n_subs_layers, is_bidirectional, overlapping_type, \
-    overlapping_duration, n_neurons_dense_layer_mult = decode(solution)
-    n_neurons_dense_layer = np.int(np.floor(n_neurons_dense_layer_mult * n_units))
+    timesteps, n_units, n_subs_layers, is_bidirectional, overlapping_type, \
+    overlapping_epochs, mults = decode(solution)
+    n_neurons_dense_layer = np.int(np.floor(mults * n_units))
     # Overlap the data
     x_train_overlapped, y_train_overlapped = create_overlapping(x_train, y_train, RNNClassification,
-                                                                overlapping_duration,
+                                                                overlapping_epochs,
                                                                 overlapping_type,
-                                                                n_timesteps=n_timesteps)
+                                                                n_timesteps=timesteps)
     # Create the model and fit
     clf = RNNClassification(n_outputs=2, n_neurons_dense_layer=n_neurons_dense_layer,
                             is_bidirectional=is_bidirectional, n_units=n_units,
