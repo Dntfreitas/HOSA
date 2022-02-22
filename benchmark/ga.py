@@ -117,7 +117,7 @@ def run_ga(run):
 total_run = 50
 iteration = 0
 # Load the data
-x_train, y_train, x_test, y_test = prepare_data()
+prepare_data()
 # Prepare to store the information about the best global solution
 solution_best_global = None
 solution_fitness_best_global = -np.inf

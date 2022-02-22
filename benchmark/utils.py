@@ -6,6 +6,11 @@ from keras_preprocessing.sequence import pad_sequences
 from hosa.helpers import create_overlapping
 from hosa.models.rnn import RNNClassification
 
+x_train = None
+y_train = None
+x_test = None
+y_test = None
+
 FORMAT = '%(levelname)s — %(asctime)s — %(message)s: Iteration: %(iteration)s — Run: %(run)s/%(' \
          'total_run)s — Best parameters: %(best_parameters)s — Best parameters fitness: ' \
          '%(best_parameters_fitness)s — Duration: %(duration)s'
@@ -154,6 +159,7 @@ def decode(chromosome):
 
 
 def prepare_data():
+    global x_train, y_train, x_test, y_test
     num_distinct_words = 5000
     max_sequence_length = 300
     (x_train, y_train), (x_test, y_test) = imdb.load_data(num_words=num_distinct_words)
@@ -165,7 +171,6 @@ def prepare_data():
 
 
 def fitness_func(solution, solution_idx=None):
-    global x_train, y_train, x_test, y_test
     timesteps, n_units, n_subs_layers, is_bidirectional, overlapping_type, \
     overlapping_epochs, mults = decode(solution)
     n_neurons_dense_layer = np.int(np.floor(mults * n_units))

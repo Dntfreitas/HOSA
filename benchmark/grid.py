@@ -8,7 +8,7 @@ from utils import *
 logging.basicConfig(level=logging.INFO, filename='grid.log', filemode='w', format=FORMAT)
 
 # Load the data
-x_train, y_train, x_test, y_test = prepare_data()
+prepare_data()
 # Prepare to store the information about the best global solution
 solution_best_global = None
 solution_fitness_best_global = -np.inf
