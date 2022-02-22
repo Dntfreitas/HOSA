@@ -4,7 +4,7 @@ import time
 from hosa.optimization.hosa import HOSARNN
 from utils import *
 
-logging.basicConfig(level=logging.INFO, filename='hosa.log', filemode='w', format=FORMAT)
+logging.basicConfig(level=logging.INFO, filename='benchmark/hosa.log', filemode='w', format=FORMAT)
 
 # Load the data
 prepare_data()
@@ -14,7 +14,7 @@ logging.info('**** Starting HOSA ****', extra=d)
 # Start HOSA
 clf = HOSARNN(x_train, y_train, RNNClassification, 2, param_grid, 0.01, apply_rsv=False)
 start = time.time()
-clf.fit(max_n_subs_layers=5, show_progress=False, verbose=0, shuffle=False,
+clf.fit(max_n_subs_layers=5, show_progress=True, verbose=0, shuffle=False,
         imbalance_correction=False)
 end = time.time()
 duration = end - start
