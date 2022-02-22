@@ -15,6 +15,15 @@ y_train = None
 x_test = None
 y_test = None
 
+param_grid = {'n_timesteps':           [5, 15, 25, 35],
+              'n_units':               [100, 200, 300, 400],
+              'n_subs_layers':         [1, 2, 3, 4],
+              'is_bidirectional':      [False, True],
+              'overlapping_type':      ['central', 'right', 'left'],
+              'overlapping_duration':  [0, 1, 2, 3],
+              'n_neurons_dense_layer': [0.5, 1, 2]
+              }
+
 
 def encode(n_timesteps, n_units, n_subs_layers, is_bidirectional, overlapping_type,
            overlapping_duration, n_neurons_dense_layer):

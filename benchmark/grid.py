@@ -13,14 +13,6 @@ prepare_data()
 solution_best_global = None
 solution_fitness_best_global = -np.inf
 # Generate grid
-param_grid = {'n_timesteps':           [5, 15, 25, 35],
-              'n_units':               [100, 200, 300, 400],
-              'n_subs_layers':         [1, 2, 3, 4],
-              'is_bidirectional':      [False, True],
-              'overlapping_type':      ['central', 'right', 'left'],
-              'overlapping_duration':  [0, 1, 2, 3],
-              'n_neurons_dense_layer': [0.5, 1, 2]
-              }
 grid_gen = ParameterGrid(param_grid)
 grid = grid_gen.__iter__()
 total_run = grid_gen.__len__()
