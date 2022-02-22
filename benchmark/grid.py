@@ -1,8 +1,11 @@
+import logging
 import time
 
 from sklearn.model_selection import ParameterGrid
 
 from utils import *
+
+logging.basicConfig(level=logging.INFO, filename='grid.log', filemode='w', format=FORMAT)
 
 # Load the data
 prepare_data()

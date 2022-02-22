@@ -1,8 +1,11 @@
+import logging
 import time
 
 import pygad
 
 from utils import *
+
+logging.basicConfig(level=logging.INFO, filename='ga.log', filemode='w', format=FORMAT)
 
 
 def two_points_crossover(parents):

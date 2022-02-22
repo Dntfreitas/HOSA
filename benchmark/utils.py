@@ -1,5 +1,3 @@
-import logging
-
 import numpy as np
 from keras.datasets import imdb
 from keras_preprocessing.sequence import pad_sequences
@@ -11,7 +9,6 @@ from hosa.models.rnn import RNNClassification
 FORMAT = '%(levelname)s — %(asctime)s — %(message)s: Iteration: %(iteration)s — Run: %(run)s/%(' \
          'total_run)s — Best parameters: %(best_parameters)s — Best parameters fitness: ' \
          '%(best_parameters_fitness)s — Duration: %(duration)s'
-logging.basicConfig(level=logging.INFO, filename='app.log', filemode='w', format=FORMAT)
 
 x_train = None
 y_train = None
