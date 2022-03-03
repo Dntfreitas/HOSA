@@ -1,0 +1,989 @@
+INFO — 2022-02-22 19:57:32,435 — **** Starting the GA ****: Iteration: None — Run: 1/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-22 20:37:10,064 — Current best solution: Iteration: 1 — Run: 1/50 — Best parameters: [0 1 1 1 1 0 0 0 0 1 0 0 0 1] — Best parameters fitness: 0.7327907390372532 — Duration: None
+WARNING — 2022-02-22 21:04:02,501 — Current best solution: Iteration: 2 — Run: 1/50 — Best parameters: [0 1 1 1 0 0 1 1 0 0 0 0 1 1] — Best parameters fitness: 0.8133163360157226 — Duration: None
+WARNING — 2022-02-22 21:32:18,366 — Current best solution: Iteration: 3 — Run: 1/50 — Best parameters: [0 1 1 1 0 0 1 1 0 0 0 0 1 1] — Best parameters fitness: 0.8133163360157226 — Duration: None
+WARNING — 2022-02-22 21:47:44,223 — Current best solution: Iteration: 4 — Run: 1/50 — Best parameters: [0 1 1 1 0 0 1 1 0 0 0 0 1 1] — Best parameters fitness: 0.8133163360157226 — Duration: None
+WARNING — 2022-02-22 21:58:50,827 — Current best solution: Iteration: 5 — Run: 1/50 — Best parameters: [0 1 1 1 0 0 1 1 0 0 0 0 1 1] — Best parameters fitness: 0.8133163360157226 — Duration: None
+WARNING — 2022-02-22 22:05:57,465 — Current best solution: Iteration: 6 — Run: 1/50 — Best parameters: [0 0 1 0 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.7784024015820739 — Duration: None
+WARNING — 2022-02-22 22:07:34,015 — Current best solution: Iteration: 7 — Run: 1/50 — Best parameters: [0 0 0 1 0 0 0 0 1 0 0 0 0 0] — Best parameters fitness: 0.7545991527901752 — Duration: None
+WARNING — 2022-02-22 22:11:32,306 — Current best solution: Iteration: 8 — Run: 1/50 — Best parameters: [0 0 0 1 0 0 0 0 1 0 0 0 0 0] — Best parameters fitness: 0.7545991527901752 — Duration: None
+WARNING — 2022-02-22 22:17:30,509 — Current best solution: Iteration: 9 — Run: 1/50 — Best parameters: [0 0 1 1 0 0 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8582517031405502 — Duration: None
+WARNING — 2022-02-22 22:26:20,621 — Current best solution: Iteration: 10 — Run: 1/50 — Best parameters: [0 0 0 1 0 1 0 1 1 0 0 0 1 0] — Best parameters fitness: 0.838227137133594 — Duration: None
+WARNING — 2022-02-22 22:32:10,376 — Current best solution: Iteration: 11 — Run: 1/50 — Best parameters: [0 0 0 0 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8070406201586178 — Duration: None
+WARNING — 2022-02-22 22:35:15,296 — Current best solution: Iteration: 12 — Run: 1/50 — Best parameters: [0 0 0 0 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8070406201586178 — Duration: None
+WARNING — 2022-02-22 22:37:00,374 — Current best solution: Iteration: 13 — Run: 1/50 — Best parameters: [0 0 0 0 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8070406201586178 — Duration: None
+WARNING — 2022-02-22 22:38:48,048 — Current best solution: Iteration: 14 — Run: 1/50 — Best parameters: [0 0 0 0 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8070406201586178 — Duration: None
+WARNING — 2022-02-22 22:39:28,430 — Current best solution: Iteration: 15 — Run: 1/50 — Best parameters: [0 0 0 0 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8070406201586178 — Duration: None
+WARNING — 2022-02-22 22:41:12,060 — Current best solution: Iteration: 16 — Run: 1/50 — Best parameters: [0 0 0 0 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8070406201586178 — Duration: None
+WARNING — 2022-02-22 22:42:44,049 — Current best solution: Iteration: 17 — Run: 1/50 — Best parameters: [0 0 0 0 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8070406201586178 — Duration: None
+WARNING — 2022-02-22 22:44:30,144 — Current best solution: Iteration: 18 — Run: 1/50 — Best parameters: [0 0 0 0 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8070406201586178 — Duration: None
+WARNING — 2022-02-22 22:47:04,276 — Current best solution: Iteration: 19 — Run: 1/50 — Best parameters: [0 0 0 1 0 1 0 1 1 0 0 0 1 0] — Best parameters fitness: 0.8332227189715493 — Duration: None
+WARNING — 2022-02-22 22:47:45,901 — Current best solution: Iteration: 20 — Run: 1/50 — Best parameters: [0 0 0 0 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8070406201586178 — Duration: None
+INFO — 2022-02-22 22:47:45,917 — **** Finishing the GA ****: Iteration: None — Run: 1/50 — Best parameters: [0 0 0 0 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8070406201586178 — Duration: 10213.464909791946
+INFO — 2022-02-22 22:47:45,917 — **** Starting the GA ****: Iteration: None — Run: 2/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-22 23:41:35,435 — Current best solution: Iteration: 1 — Run: 2/50 — Best parameters: [0 0 1 0 0 1 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.7010217240194117 — Duration: None
+WARNING — 2022-02-23 00:54:28,871 — Current best solution: Iteration: 2 — Run: 2/50 — Best parameters: [0 0 1 0 0 1 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.7010217240194117 — Duration: None
+WARNING — 2022-02-23 01:18:58,026 — Current best solution: Iteration: 3 — Run: 2/50 — Best parameters: [0 0 1 1 1 0 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.7985165010978075 — Duration: None
+WARNING — 2022-02-23 01:46:44,281 — Current best solution: Iteration: 4 — Run: 2/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8104517105789651 — Duration: None
+WARNING — 2022-02-23 02:11:45,738 — Current best solution: Iteration: 5 — Run: 2/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8104517105789651 — Duration: None
+WARNING — 2022-02-23 02:22:25,891 — Current best solution: Iteration: 6 — Run: 2/50 — Best parameters: [0 0 1 1 1 0 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.8063084011768086 — Duration: None
+WARNING — 2022-02-23 02:28:26,410 — Current best solution: Iteration: 7 — Run: 2/50 — Best parameters: [0 0 1 0 0 0 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.8355956374978197 — Duration: None
+WARNING — 2022-02-23 02:38:34,915 — Current best solution: Iteration: 8 — Run: 2/50 — Best parameters: [0 0 1 1 1 0 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.8063084011768086 — Duration: None
+WARNING — 2022-02-23 02:45:50,367 — Current best solution: Iteration: 9 — Run: 2/50 — Best parameters: [0 0 1 1 0 1 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.8282993378528116 — Duration: None
+WARNING — 2022-02-23 02:53:39,390 — Current best solution: Iteration: 10 — Run: 2/50 — Best parameters: [0 0 1 1 0 1 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.8282993378528116 — Duration: None
+WARNING — 2022-02-23 02:57:18,541 — Current best solution: Iteration: 11 — Run: 2/50 — Best parameters: [0 0 1 1 0 1 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.8282993378528116 — Duration: None
+WARNING — 2022-02-23 02:57:18,541 — Current best solution: Iteration: 12 — Run: 2/50 — Best parameters: [0 0 1 1 0 1 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.8282993378528116 — Duration: None
+WARNING — 2022-02-23 03:01:30,381 — Current best solution: Iteration: 13 — Run: 2/50 — Best parameters: [0 0 1 1 0 1 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.8282993378528116 — Duration: None
+WARNING — 2022-02-23 03:01:30,381 — Current best solution: Iteration: 14 — Run: 2/50 — Best parameters: [0 0 1 1 0 1 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.8282993378528116 — Duration: None
+WARNING — 2022-02-23 03:02:19,712 — Current best solution: Iteration: 15 — Run: 2/50 — Best parameters: [0 0 1 1 0 1 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.8282993378528116 — Duration: None
+WARNING — 2022-02-23 03:03:42,855 — Current best solution: Iteration: 16 — Run: 2/50 — Best parameters: [0 0 1 1 0 1 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.8282993378528116 — Duration: None
+WARNING — 2022-02-23 03:03:42,870 — Current best solution: Iteration: 17 — Run: 2/50 — Best parameters: [0 0 1 1 0 1 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.8282993378528116 — Duration: None
+WARNING — 2022-02-23 03:03:42,870 — Current best solution: Iteration: 18 — Run: 2/50 — Best parameters: [0 0 1 1 0 1 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.8282993378528116 — Duration: None
+INFO — 2022-02-23 03:03:42,870 — **** Finishing the GA ****: Iteration: None — Run: 2/50 — Best parameters: [0 0 1 1 0 1 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.8282993378528116 — Duration: 15356.953579425812
+INFO — 2022-02-23 03:03:42,870 — **** Starting the GA ****: Iteration: None — Run: 3/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-23 03:56:49,839 — Current best solution: Iteration: 1 — Run: 3/50 — Best parameters: [1 0 0 1 0 1 0 1 0 1 0 1 0 0] — Best parameters fitness: 0.6410540732192266 — Duration: None
+WARNING — 2022-02-23 04:39:19,396 — Current best solution: Iteration: 2 — Run: 3/50 — Best parameters: [0 0 1 1 0 0 1 0 1 1 0 1 1 0] — Best parameters fitness: 0.7845103654265105 — Duration: None
+WARNING — 2022-02-23 05:05:05,073 — Current best solution: Iteration: 3 — Run: 3/50 — Best parameters: [0 0 1 1 0 0 1 0 1 1 0 1 1 0] — Best parameters fitness: 0.7845103654265105 — Duration: None
+WARNING — 2022-02-23 05:13:06,527 — Current best solution: Iteration: 4 — Run: 3/50 — Best parameters: [0 0 1 1 0 0 1 0 1 1 0 1 1 0] — Best parameters fitness: 0.7845103654265105 — Duration: None
+WARNING — 2022-02-23 05:30:35,249 — Current best solution: Iteration: 5 — Run: 3/50 — Best parameters: [0 0 1 1 0 0 1 0 1 1 0 1 1 0] — Best parameters fitness: 0.7845103654265105 — Duration: None
+WARNING — 2022-02-23 05:50:21,052 — Current best solution: Iteration: 6 — Run: 3/50 — Best parameters: [0 0 1 1 0 0 1 0 1 1 0 0 1 0] — Best parameters fitness: 0.7802068584751761 — Duration: None
+WARNING — 2022-02-23 06:03:50,290 — Current best solution: Iteration: 7 — Run: 3/50 — Best parameters: [0 0 1 1 0 0 1 0 1 1 0 0 1 0] — Best parameters fitness: 0.8305006438076477 — Duration: None
+WARNING — 2022-02-23 06:11:20,338 — Current best solution: Iteration: 8 — Run: 3/50 — Best parameters: [0 0 1 1 0 0 1 0 1 1 0 0 1 0] — Best parameters fitness: 0.8305006438076477 — Duration: None
+WARNING — 2022-02-23 06:16:38,068 — Current best solution: Iteration: 9 — Run: 3/50 — Best parameters: [0 0 1 1 0 0 0 0 1 0 0 0 0 0] — Best parameters fitness: 0.7944087806642248 — Duration: None
+WARNING — 2022-02-23 06:26:17,675 — Current best solution: Iteration: 10 — Run: 3/50 — Best parameters: [0 0 1 1 0 0 0 0 1 0 0 0 0 0] — Best parameters fitness: 0.7944087806642248 — Duration: None
+WARNING — 2022-02-23 06:35:44,213 — Current best solution: Iteration: 11 — Run: 3/50 — Best parameters: [0 0 1 1 0 0 1 0 1 0 0 0 1 0] — Best parameters fitness: 0.811077723742395 — Duration: None
+WARNING — 2022-02-23 06:35:44,213 — Current best solution: Iteration: 12 — Run: 3/50 — Best parameters: [0 0 1 1 0 0 0 0 1 0 0 0 0 0] — Best parameters fitness: 0.7944087806642248 — Duration: None
+WARNING — 2022-02-23 06:37:07,530 — Current best solution: Iteration: 13 — Run: 3/50 — Best parameters: [0 0 1 1 0 0 0 0 1 1 0 0 0 0] — Best parameters fitness: 0.8258287099736321 — Duration: None
+WARNING — 2022-02-23 06:37:54,438 — Current best solution: Iteration: 14 — Run: 3/50 — Best parameters: [0 0 1 1 0 0 0 0 1 1 0 0 0 0] — Best parameters fitness: 0.8258287099736321 — Duration: None
+WARNING — 2022-02-23 06:38:08,878 — Current best solution: Iteration: 15 — Run: 3/50 — Best parameters: [0 0 1 1 0 0 0 0 1 1 0 0 0 0] — Best parameters fitness: 0.8258287099736321 — Duration: None
+WARNING — 2022-02-23 06:38:08,878 — Current best solution: Iteration: 16 — Run: 3/50 — Best parameters: [0 0 1 1 0 0 0 0 1 1 0 0 0 0] — Best parameters fitness: 0.8258287099736321 — Duration: None
+WARNING — 2022-02-23 06:38:08,878 — Current best solution: Iteration: 17 — Run: 3/50 — Best parameters: [0 0 1 1 0 0 0 0 1 1 0 0 0 0] — Best parameters fitness: 0.8258287099736321 — Duration: None
+WARNING — 2022-02-23 06:38:08,878 — Current best solution: Iteration: 18 — Run: 3/50 — Best parameters: [0 0 1 1 0 0 0 0 1 1 0 0 0 0] — Best parameters fitness: 0.8258287099736321 — Duration: None
+WARNING — 2022-02-23 06:38:08,878 — Current best solution: Iteration: 19 — Run: 3/50 — Best parameters: [0 0 1 1 0 0 0 0 1 1 0 0 0 0] — Best parameters fitness: 0.8258287099736321 — Duration: None
+WARNING — 2022-02-23 06:38:08,878 — Current best solution: Iteration: 20 — Run: 3/50 — Best parameters: [0 0 1 1 0 0 0 0 1 1 0 0 0 0] — Best parameters fitness: 0.8258287099736321 — Duration: None
+WARNING — 2022-02-23 06:38:08,878 — Current best solution: Iteration: 21 — Run: 3/50 — Best parameters: [0 0 1 1 0 0 0 0 1 1 0 0 0 0] — Best parameters fitness: 0.8258287099736321 — Duration: None
+WARNING — 2022-02-23 06:38:08,878 — Current best solution: Iteration: 22 — Run: 3/50 — Best parameters: [0 0 1 1 0 0 0 0 1 1 0 0 0 0] — Best parameters fitness: 0.8258287099736321 — Duration: None
+INFO — 2022-02-23 06:38:08,878 — **** Finishing the GA ****: Iteration: None — Run: 3/50 — Best parameters: [0 0 1 1 0 0 0 0 1 1 0 0 0 0] — Best parameters fitness: 0.8258287099736321 — Duration: 12866.007893562317
+INFO — 2022-02-23 06:38:08,894 — **** Starting the GA ****: Iteration: None — Run: 4/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-23 07:32:31,431 — Current best solution: Iteration: 1 — Run: 4/50 — Best parameters: [0 0 1 1 0 0 1 0 1 0 0 1 0 0] — Best parameters fitness: 0.6648868931690056 — Duration: None
+WARNING — 2022-02-23 08:02:39,126 — Current best solution: Iteration: 2 — Run: 4/50 — Best parameters: [0 0 1 1 0 0 1 0 1 0 0 1 0 0] — Best parameters fitness: 0.6648868931690056 — Duration: None
+WARNING — 2022-02-23 08:08:34,684 — Current best solution: Iteration: 3 — Run: 4/50 — Best parameters: [0 0 1 1 0 0 1 0 1 0 0 1 0 0] — Best parameters fitness: 0.7250482090482898 — Duration: None
+WARNING — 2022-02-23 08:15:22,571 — Current best solution: Iteration: 4 — Run: 4/50 — Best parameters: [0 0 1 1 0 0 1 0 1 0 0 1 0 0] — Best parameters fitness: 0.7250482090482898 — Duration: None
+WARNING — 2022-02-23 08:25:09,433 — Current best solution: Iteration: 5 — Run: 4/50 — Best parameters: [0 0 0 0 0 0 1 0 1 0 0 1 0 1] — Best parameters fitness: 0.6543581236255771 — Duration: None
+WARNING — 2022-02-23 08:33:16,173 — Current best solution: Iteration: 6 — Run: 4/50 — Best parameters: [0 0 0 0 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.7072978065652991 — Duration: None
+WARNING — 2022-02-23 08:36:48,415 — Current best solution: Iteration: 7 — Run: 4/50 — Best parameters: [0 0 0 0 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.7072978065652991 — Duration: None
+WARNING — 2022-02-23 08:39:56,525 — Current best solution: Iteration: 8 — Run: 4/50 — Best parameters: [0 0 0 0 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.7072978065652991 — Duration: None
+WARNING — 2022-02-23 08:42:00,670 — Current best solution: Iteration: 9 — Run: 4/50 — Best parameters: [0 0 0 0 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.7072978065652991 — Duration: None
+WARNING — 2022-02-23 08:45:10,615 — Current best solution: Iteration: 10 — Run: 4/50 — Best parameters: [0 0 0 0 0 1 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.711590044579191 — Duration: None
+WARNING — 2022-02-23 08:46:32,479 — Current best solution: Iteration: 11 — Run: 4/50 — Best parameters: [0 0 0 0 0 1 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.711590044579191 — Duration: None
+WARNING — 2022-02-23 08:46:32,479 — Current best solution: Iteration: 12 — Run: 4/50 — Best parameters: [0 0 0 0 0 1 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.711590044579191 — Duration: None
+WARNING — 2022-02-23 08:46:32,479 — Current best solution: Iteration: 13 — Run: 4/50 — Best parameters: [0 0 0 0 0 1 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.711590044579191 — Duration: None
+WARNING — 2022-02-23 08:47:59,495 — Current best solution: Iteration: 14 — Run: 4/50 — Best parameters: [0 0 0 0 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.7072978065652991 — Duration: None
+WARNING — 2022-02-23 08:47:59,495 — Current best solution: Iteration: 15 — Run: 4/50 — Best parameters: [0 0 0 0 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.7072978065652991 — Duration: None
+INFO — 2022-02-23 08:47:59,495 — **** Finishing the GA ****: Iteration: None — Run: 4/50 — Best parameters: [0 0 0 0 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.7072978065652991 — Duration: 7790.601616859436
+INFO — 2022-02-23 08:47:59,495 — **** Starting the GA ****: Iteration: None — Run: 5/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-23 09:50:19,361 — Current best solution: Iteration: 1 — Run: 5/50 — Best parameters: [0 0 1 0 1 0 1 1 1 1 0 0 1 0] — Best parameters fitness: 0.7734010293227451 — Duration: None
+WARNING — 2022-02-23 10:32:57,268 — Current best solution: Iteration: 2 — Run: 5/50 — Best parameters: [0 0 1 1 0 0 1 1 0 1 0 0 1 0] — Best parameters fitness: 0.8405146100731529 — Duration: None
+WARNING — 2022-02-23 10:48:23,967 — Current best solution: Iteration: 3 — Run: 5/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8498887764576727 — Duration: None
+WARNING — 2022-02-23 10:58:45,944 — Current best solution: Iteration: 4 — Run: 5/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8498887764576727 — Duration: None
+WARNING — 2022-02-23 11:04:47,831 — Current best solution: Iteration: 5 — Run: 5/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8498887764576727 — Duration: None
+WARNING — 2022-02-23 11:12:40,269 — Current best solution: Iteration: 6 — Run: 5/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8498887764576727 — Duration: None
+WARNING — 2022-02-23 11:21:15,698 — Current best solution: Iteration: 7 — Run: 5/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8498887764576727 — Duration: None
+WARNING — 2022-02-23 11:22:14,938 — Current best solution: Iteration: 8 — Run: 5/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8498887764576727 — Duration: None
+WARNING — 2022-02-23 11:26:05,282 — Current best solution: Iteration: 9 — Run: 5/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8498887764576727 — Duration: None
+WARNING — 2022-02-23 11:26:58,064 — Current best solution: Iteration: 10 — Run: 5/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8498887764576727 — Duration: None
+WARNING — 2022-02-23 11:29:25,288 — Current best solution: Iteration: 11 — Run: 5/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8498887764576727 — Duration: None
+WARNING — 2022-02-23 11:34:10,044 — Current best solution: Iteration: 12 — Run: 5/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.820771870222742 — Duration: None
+WARNING — 2022-02-23 11:35:55,046 — Current best solution: Iteration: 13 — Run: 5/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.7875950962890004 — Duration: None
+WARNING — 2022-02-23 11:38:03,003 — Current best solution: Iteration: 14 — Run: 5/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.7875950962890004 — Duration: None
+WARNING — 2022-02-23 11:42:50,514 — Current best solution: Iteration: 15 — Run: 5/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.7875950962890004 — Duration: None
+WARNING — 2022-02-23 11:52:31,805 — Current best solution: Iteration: 16 — Run: 5/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 1 0] — Best parameters fitness: 0.8374475463490207 — Duration: None
+WARNING — 2022-02-23 11:53:10,586 — Current best solution: Iteration: 17 — Run: 5/50 — Best parameters: [0 0 1 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8347321240778931 — Duration: None
+WARNING — 2022-02-23 11:53:10,586 — Current best solution: Iteration: 18 — Run: 5/50 — Best parameters: [0 0 1 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8347321240778931 — Duration: None
+WARNING — 2022-02-23 11:56:08,368 — Current best solution: Iteration: 19 — Run: 5/50 — Best parameters: [0 0 1 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8347321240778931 — Duration: None
+WARNING — 2022-02-23 11:56:08,368 — Current best solution: Iteration: 20 — Run: 5/50 — Best parameters: [0 0 1 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8347321240778931 — Duration: None
+WARNING — 2022-02-23 11:56:08,368 — Current best solution: Iteration: 21 — Run: 5/50 — Best parameters: [0 0 1 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8347321240778931 — Duration: None
+WARNING — 2022-02-23 11:56:08,383 — Current best solution: Iteration: 22 — Run: 5/50 — Best parameters: [0 0 1 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8347321240778931 — Duration: None
+WARNING — 2022-02-23 11:56:08,383 — Current best solution: Iteration: 23 — Run: 5/50 — Best parameters: [0 0 1 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8347321240778931 — Duration: None
+WARNING — 2022-02-23 11:56:48,900 — Current best solution: Iteration: 24 — Run: 5/50 — Best parameters: [0 0 1 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8347321240778931 — Duration: None
+WARNING — 2022-02-23 11:57:15,149 — Current best solution: Iteration: 25 — Run: 5/50 — Best parameters: [0 0 1 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8347321240778931 — Duration: None
+WARNING — 2022-02-23 11:57:41,837 — Current best solution: Iteration: 26 — Run: 5/50 — Best parameters: [0 0 1 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8347321240778931 — Duration: None
+INFO — 2022-02-23 11:58:54,761 — **** Finishing the GA ****: Iteration: None — Run: 5/50 — Best parameters: [0 0 1 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8347321240778931 — Duration: 11419.062153339386
+INFO — 2022-02-23 11:58:54,761 — **** Starting the GA ****: Iteration: None — Run: 6/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-23 13:00:35,688 — Current best solution: Iteration: 1 — Run: 6/50 — Best parameters: [0 0 1 0 0 1 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.7966546031782689 — Duration: None
+WARNING — 2022-02-23 13:33:29,562 — Current best solution: Iteration: 2 — Run: 6/50 — Best parameters: [0 0 1 0 0 1 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.7966546031782689 — Duration: None
+WARNING — 2022-02-23 14:02:08,492 — Current best solution: Iteration: 3 — Run: 6/50 — Best parameters: [0 0 1 0 0 1 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.7966546031782689 — Duration: None
+WARNING — 2022-02-23 14:10:11,001 — Current best solution: Iteration: 4 — Run: 6/50 — Best parameters: [0 0 1 0 0 1 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.7966546031782689 — Duration: None
+WARNING — 2022-02-23 14:18:11,484 — Current best solution: Iteration: 5 — Run: 6/50 — Best parameters: [0 0 0 1 1 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.7334819092615963 — Duration: None
+WARNING — 2022-02-23 14:25:30,506 — Current best solution: Iteration: 6 — Run: 6/50 — Best parameters: [0 0 1 0 0 1 0 0 0 1 0 0 0 0] — Best parameters fitness: 0.7754236690366996 — Duration: None
+WARNING — 2022-02-23 14:32:17,176 — Current best solution: Iteration: 7 — Run: 6/50 — Best parameters: [0 0 1 0 0 1 0 0 0 1 0 0 0 0] — Best parameters fitness: 0.7754236690366996 — Duration: None
+WARNING — 2022-02-23 14:36:46,392 — Current best solution: Iteration: 8 — Run: 6/50 — Best parameters: [0 0 0 1 1 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8120030369253183 — Duration: None
+WARNING — 2022-02-23 14:42:42,719 — Current best solution: Iteration: 9 — Run: 6/50 — Best parameters: [0 0 0 1 1 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8120030369253183 — Duration: None
+WARNING — 2022-02-23 14:43:23,225 — Current best solution: Iteration: 10 — Run: 6/50 — Best parameters: [0 0 0 1 1 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8120030369253183 — Duration: None
+WARNING — 2022-02-23 14:43:48,776 — Current best solution: Iteration: 11 — Run: 6/50 — Best parameters: [0 0 0 1 1 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8120030369253183 — Duration: None
+WARNING — 2022-02-23 14:43:48,776 — Current best solution: Iteration: 12 — Run: 6/50 — Best parameters: [0 0 0 1 1 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8120030369253183 — Duration: None
+WARNING — 2022-02-23 14:43:48,776 — Current best solution: Iteration: 13 — Run: 6/50 — Best parameters: [0 0 0 1 1 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8120030369253183 — Duration: None
+WARNING — 2022-02-23 14:45:35,341 — Current best solution: Iteration: 14 — Run: 6/50 — Best parameters: [0 0 0 1 1 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8120030369253183 — Duration: None
+WARNING — 2022-02-23 14:45:35,341 — Current best solution: Iteration: 15 — Run: 6/50 — Best parameters: [0 0 0 1 1 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8120030369253183 — Duration: None
+WARNING — 2022-02-23 14:45:35,341 — Current best solution: Iteration: 16 — Run: 6/50 — Best parameters: [0 0 0 1 1 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8120030369253183 — Duration: None
+WARNING — 2022-02-23 14:46:19,285 — Current best solution: Iteration: 17 — Run: 6/50 — Best parameters: [0 0 0 1 1 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8120030369253183 — Duration: None
+INFO — 2022-02-23 14:50:00,234 — **** Finishing the GA ****: Iteration: None — Run: 6/50 — Best parameters: [0 0 0 1 1 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8120030369253183 — Duration: 10154.063500642776
+INFO — 2022-02-23 14:50:00,234 — **** Starting the GA ****: Iteration: None — Run: 7/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-23 15:51:26,572 — Current best solution: Iteration: 1 — Run: 7/50 — Best parameters: [1 0 0 1 0 0 0 1 1 0 0 1 1 0] — Best parameters fitness: 0.7026403229331978 — Duration: None
+WARNING — 2022-02-23 16:19:12,851 — Current best solution: Iteration: 2 — Run: 7/50 — Best parameters: [1 0 1 1 0 0 0 1 0 1 1 1 0 0] — Best parameters fitness: 0.6813757962484257 — Duration: None
+WARNING — 2022-02-23 16:48:37,307 — Current best solution: Iteration: 3 — Run: 7/50 — Best parameters: [1 0 1 1 0 0 0 1 0 1 1 1 0 0] — Best parameters fitness: 0.6813757962484257 — Duration: None
+WARNING — 2022-02-23 17:27:50,108 — Current best solution: Iteration: 4 — Run: 7/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.813709780771438 — Duration: None
+WARNING — 2022-02-23 18:17:03,512 — Current best solution: Iteration: 5 — Run: 7/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.7570977818568094 — Duration: None
+WARNING — 2022-02-23 18:25:28,440 — Current best solution: Iteration: 6 — Run: 7/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.7570977818568094 — Duration: None
+WARNING — 2022-02-23 18:40:22,928 — Current best solution: Iteration: 7 — Run: 7/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8225822404065586 — Duration: None
+WARNING — 2022-02-23 18:55:41,971 — Current best solution: Iteration: 8 — Run: 7/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8225822404065586 — Duration: None
+WARNING — 2022-02-23 19:17:42,208 — Current best solution: Iteration: 9 — Run: 7/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8225822404065586 — Duration: None
+WARNING — 2022-02-23 19:27:37,526 — Current best solution: Iteration: 10 — Run: 7/50 — Best parameters: [1 0 1 1 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.8813662752315343 — Duration: None
+WARNING — 2022-02-23 19:50:26,891 — Current best solution: Iteration: 11 — Run: 7/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8225822404065586 — Duration: None
+WARNING — 2022-02-23 19:51:28,264 — Current best solution: Iteration: 12 — Run: 7/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8225822404065586 — Duration: None
+WARNING — 2022-02-23 19:59:13,584 — Current best solution: Iteration: 13 — Run: 7/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8225822404065586 — Duration: None
+WARNING — 2022-02-23 20:04:11,156 — Current best solution: Iteration: 14 — Run: 7/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8225822404065586 — Duration: None
+WARNING — 2022-02-23 20:05:10,411 — Current best solution: Iteration: 15 — Run: 7/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8298585194219583 — Duration: None
+WARNING — 2022-02-23 20:05:52,830 — Current best solution: Iteration: 16 — Run: 7/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8225822404065586 — Duration: None
+INFO — 2022-02-23 20:05:52,830 — **** Finishing the GA ****: Iteration: None — Run: 7/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8225822404065586 — Duration: 18952.596076726913
+INFO — 2022-02-23 20:05:52,846 — **** Starting the GA ****: Iteration: None — Run: 8/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-23 20:38:53,294 — Current best solution: Iteration: 1 — Run: 8/50 — Best parameters: [0 0 0 0 0 1 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.7272380491602286 — Duration: None
+WARNING — 2022-02-23 21:10:57,696 — Current best solution: Iteration: 2 — Run: 8/50 — Best parameters: [0 0 0 0 0 1 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.7517226984517836 — Duration: None
+WARNING — 2022-02-23 21:38:14,624 — Current best solution: Iteration: 3 — Run: 8/50 — Best parameters: [0 0 1 0 1 1 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7955687085115988 — Duration: None
+WARNING — 2022-02-23 21:50:37,532 — Current best solution: Iteration: 4 — Run: 8/50 — Best parameters: [0 0 1 0 1 1 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7955687085115988 — Duration: None
+WARNING — 2022-02-23 22:05:50,452 — Current best solution: Iteration: 5 — Run: 8/50 — Best parameters: [0 1 1 0 0 0 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.8496773165484822 — Duration: None
+WARNING — 2022-02-23 22:15:03,067 — Current best solution: Iteration: 6 — Run: 8/50 — Best parameters: [0 0 0 0 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.7747459556824361 — Duration: None
+WARNING — 2022-02-23 22:25:01,669 — Current best solution: Iteration: 7 — Run: 8/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.841705798501031 — Duration: None
+WARNING — 2022-02-23 22:32:47,904 — Current best solution: Iteration: 8 — Run: 8/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8399915163593832 — Duration: None
+WARNING — 2022-02-23 22:33:38,509 — Current best solution: Iteration: 9 — Run: 8/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8399915163593832 — Duration: None
+WARNING — 2022-02-23 22:35:00,805 — Current best solution: Iteration: 10 — Run: 8/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8399915163593832 — Duration: None
+WARNING — 2022-02-23 22:35:43,150 — Current best solution: Iteration: 11 — Run: 8/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8399915163593832 — Duration: None
+WARNING — 2022-02-23 22:35:57,524 — Current best solution: Iteration: 12 — Run: 8/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8399915163593832 — Duration: None
+WARNING — 2022-02-23 22:35:57,524 — Current best solution: Iteration: 13 — Run: 8/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8399915163593832 — Duration: None
+WARNING — 2022-02-23 22:35:57,524 — Current best solution: Iteration: 14 — Run: 8/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8399915163593832 — Duration: None
+WARNING — 2022-02-23 22:35:57,524 — Current best solution: Iteration: 15 — Run: 8/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8399915163593832 — Duration: None
+WARNING — 2022-02-23 22:36:14,219 — Current best solution: Iteration: 16 — Run: 8/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8399915163593832 — Duration: None
+WARNING — 2022-02-23 22:36:23,194 — Current best solution: Iteration: 17 — Run: 8/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8399915163593832 — Duration: None
+INFO — 2022-02-23 22:36:39,581 — **** Finishing the GA ****: Iteration: None — Run: 8/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8399915163593832 — Duration: 9039.042549610138
+INFO — 2022-02-23 22:36:39,581 — **** Starting the GA ****: Iteration: None — Run: 9/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-24 00:26:03,298 — Current best solution: Iteration: 1 — Run: 9/50 — Best parameters: [0 0 1 1 0 0 1 0 0 0 0 1 0 1] — Best parameters fitness: 0.7227194840200231 — Duration: None
+WARNING — 2022-02-24 01:30:27,451 — Current best solution: Iteration: 2 — Run: 9/50 — Best parameters: [0 0 1 1 0 0 0 1 1 0 0 0 1 1] — Best parameters fitness: 0.7948432225778982 — Duration: None
+WARNING — 2022-02-24 02:14:10,378 — Current best solution: Iteration: 3 — Run: 9/50 — Best parameters: [0 0 1 1 0 0 0 1 1 0 0 0 1 1] — Best parameters fitness: 0.781324624616537 — Duration: None
+WARNING — 2022-02-24 02:29:25,222 — Current best solution: Iteration: 4 — Run: 9/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.849634924512912 — Duration: None
+WARNING — 2022-02-24 02:34:07,812 — Current best solution: Iteration: 5 — Run: 9/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.849634924512912 — Duration: None
+WARNING — 2022-02-24 02:39:07,372 — Current best solution: Iteration: 6 — Run: 9/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.849634924512912 — Duration: None
+WARNING — 2022-02-24 02:47:49,214 — Current best solution: Iteration: 7 — Run: 9/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.849634924512912 — Duration: None
+WARNING — 2022-02-24 02:53:07,391 — Current best solution: Iteration: 8 — Run: 9/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.849634924512912 — Duration: None
+WARNING — 2022-02-24 03:01:31,135 — Current best solution: Iteration: 9 — Run: 9/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8401285819815938 — Duration: None
+WARNING — 2022-02-24 03:13:08,453 — Current best solution: Iteration: 10 — Run: 9/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8401285819815938 — Duration: None
+WARNING — 2022-02-24 03:13:08,453 — Current best solution: Iteration: 11 — Run: 9/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8401285819815938 — Duration: None
+WARNING — 2022-02-24 03:19:10,676 — Current best solution: Iteration: 12 — Run: 9/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8401285819815938 — Duration: None
+WARNING — 2022-02-24 03:19:10,676 — Current best solution: Iteration: 13 — Run: 9/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8401285819815938 — Duration: None
+WARNING — 2022-02-24 03:19:24,881 — Current best solution: Iteration: 14 — Run: 9/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8401285819815938 — Duration: None
+WARNING — 2022-02-24 03:19:24,881 — Current best solution: Iteration: 15 — Run: 9/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8401285819815938 — Duration: None
+WARNING — 2022-02-24 03:19:24,881 — Current best solution: Iteration: 16 — Run: 9/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8401285819815938 — Duration: None
+WARNING — 2022-02-24 03:19:24,881 — Current best solution: Iteration: 17 — Run: 9/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8401285819815938 — Duration: None
+WARNING — 2022-02-24 03:19:24,896 — Current best solution: Iteration: 18 — Run: 9/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8401285819815938 — Duration: None
+INFO — 2022-02-24 03:20:01,943 — **** Finishing the GA ****: Iteration: None — Run: 9/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8401285819815938 — Duration: 16979.62758040428
+INFO — 2022-02-24 03:20:01,943 — **** Starting the GA ****: Iteration: None — Run: 10/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-24 04:17:35,672 — Current best solution: Iteration: 1 — Run: 10/50 — Best parameters: [1 0 1 0 0 0 0 1 0 1 1 0 0 1] — Best parameters fitness: 0.7491900342716067 — Duration: None
+WARNING — 2022-02-24 05:11:20,306 — Current best solution: Iteration: 2 — Run: 10/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 1 1 1 0] — Best parameters fitness: 0.7401444541638913 — Duration: None
+WARNING — 2022-02-24 06:00:20,412 — Current best solution: Iteration: 3 — Run: 10/50 — Best parameters: [0 0 0 1 1 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7631323294037982 — Duration: None
+WARNING — 2022-02-24 06:42:51,221 — Current best solution: Iteration: 4 — Run: 10/50 — Best parameters: [0 0 0 1 1 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7631323294037982 — Duration: None
+WARNING — 2022-02-24 06:58:21,663 — Current best solution: Iteration: 5 — Run: 10/50 — Best parameters: [0 0 0 1 1 0 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.7709608604707234 — Duration: None
+WARNING — 2022-02-24 07:17:21,930 — Current best solution: Iteration: 6 — Run: 10/50 — Best parameters: [0 0 0 1 1 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7631323294037982 — Duration: None
+WARNING — 2022-02-24 07:30:25,003 — Current best solution: Iteration: 7 — Run: 10/50 — Best parameters: [0 0 0 1 1 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7631323294037982 — Duration: None
+WARNING — 2022-02-24 08:03:30,124 — Current best solution: Iteration: 8 — Run: 10/50 — Best parameters: [0 0 0 1 1 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7631323294037982 — Duration: None
+WARNING — 2022-02-24 08:25:25,628 — Current best solution: Iteration: 9 — Run: 10/50 — Best parameters: [0 0 0 0 1 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7764355499810193 — Duration: None
+WARNING — 2022-02-24 08:36:13,635 — Current best solution: Iteration: 10 — Run: 10/50 — Best parameters: [0 0 0 0 1 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7764355499810193 — Duration: None
+WARNING — 2022-02-24 08:36:13,635 — Current best solution: Iteration: 11 — Run: 10/50 — Best parameters: [0 0 0 0 1 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7764355499810193 — Duration: None
+WARNING — 2022-02-24 08:45:27,080 — Current best solution: Iteration: 12 — Run: 10/50 — Best parameters: [0 0 0 0 1 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7764355499810193 — Duration: None
+WARNING — 2022-02-24 08:46:19,192 — Current best solution: Iteration: 13 — Run: 10/50 — Best parameters: [0 0 0 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7847519064144788 — Duration: None
+WARNING — 2022-02-24 08:46:49,739 — Current best solution: Iteration: 14 — Run: 10/50 — Best parameters: [0 0 0 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7847519064144788 — Duration: None
+WARNING — 2022-02-24 08:48:00,369 — Current best solution: Iteration: 15 — Run: 10/50 — Best parameters: [0 0 1 1 1 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7680092204284527 — Duration: None
+WARNING — 2022-02-24 08:48:00,369 — Current best solution: Iteration: 16 — Run: 10/50 — Best parameters: [0 0 1 1 1 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7680092204284527 — Duration: None
+WARNING — 2022-02-24 08:48:00,369 — Current best solution: Iteration: 17 — Run: 10/50 — Best parameters: [0 0 1 1 1 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7680092204284527 — Duration: None
+WARNING — 2022-02-24 08:48:43,355 — Current best solution: Iteration: 18 — Run: 10/50 — Best parameters: [0 0 1 1 1 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7680092204284527 — Duration: None
+WARNING — 2022-02-24 08:48:43,355 — Current best solution: Iteration: 19 — Run: 10/50 — Best parameters: [0 0 1 1 1 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7680092204284527 — Duration: None
+WARNING — 2022-02-24 08:48:43,355 — Current best solution: Iteration: 20 — Run: 10/50 — Best parameters: [0 0 1 1 1 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7680092204284527 — Duration: None
+WARNING — 2022-02-24 08:48:43,370 — Current best solution: Iteration: 21 — Run: 10/50 — Best parameters: [0 0 1 1 1 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7680092204284527 — Duration: None
+WARNING — 2022-02-24 08:48:43,370 — Current best solution: Iteration: 22 — Run: 10/50 — Best parameters: [0 0 1 1 1 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7680092204284527 — Duration: None
+WARNING — 2022-02-24 08:50:24,310 — Current best solution: Iteration: 23 — Run: 10/50 — Best parameters: [0 0 1 1 1 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7680092204284527 — Duration: None
+WARNING — 2022-02-24 08:50:24,310 — Current best solution: Iteration: 24 — Run: 10/50 — Best parameters: [0 0 1 1 1 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7680092204284527 — Duration: None
+INFO — 2022-02-24 08:50:24,310 — **** Finishing the GA ****: Iteration: None — Run: 10/50 — Best parameters: [0 0 1 1 1 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7680092204284527 — Duration: 19822.367095708847
+INFO — 2022-02-24 08:50:24,310 — **** Starting the GA ****: Iteration: None — Run: 11/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-24 10:13:34,810 — Current best solution: Iteration: 1 — Run: 11/50 — Best parameters: [0 1 1 0 1 1 1 0 1 0 0 0 1 1] — Best parameters fitness: 0.7249156371298033 — Duration: None
+WARNING — 2022-02-24 10:51:31,173 — Current best solution: Iteration: 2 — Run: 11/50 — Best parameters: [0 1 1 0 1 1 1 0 1 0 0 0 1 1] — Best parameters fitness: 0.7249156371298033 — Duration: None
+WARNING — 2022-02-24 11:27:47,757 — Current best solution: Iteration: 3 — Run: 11/50 — Best parameters: [0 0 1 1 0 0 1 1 1 1 0 0 0 0] — Best parameters fitness: 0.8587622926221183 — Duration: None
+WARNING — 2022-02-24 12:06:42,848 — Current best solution: Iteration: 4 — Run: 11/50 — Best parameters: [0 0 1 1 0 0 1 1 1 1 0 0 0 0] — Best parameters fitness: 0.8587622926221183 — Duration: None
+WARNING — 2022-02-24 12:26:23,104 — Current best solution: Iteration: 5 — Run: 11/50 — Best parameters: [0 0 1 1 0 0 1 1 1 1 0 0 0 0] — Best parameters fitness: 0.8587622926221183 — Duration: None
+WARNING — 2022-02-24 12:33:10,415 — Current best solution: Iteration: 6 — Run: 11/50 — Best parameters: [0 0 1 1 0 0 0 1 1 1 0 0 0 0] — Best parameters fitness: 0.8766253898755476 — Duration: None
+WARNING — 2022-02-24 12:38:02,941 — Current best solution: Iteration: 7 — Run: 11/50 — Best parameters: [0 0 1 1 0 0 1 1 1 1 0 0 0 0] — Best parameters fitness: 0.8587622926221183 — Duration: None
+WARNING — 2022-02-24 12:45:20,650 — Current best solution: Iteration: 8 — Run: 11/50 — Best parameters: [0 0 1 1 0 0 0 1 1 1 0 0 1 0] — Best parameters fitness: 0.8829667990191552 — Duration: None
+WARNING — 2022-02-24 12:46:49,303 — Current best solution: Iteration: 9 — Run: 11/50 — Best parameters: [0 1 1 0 0 0 0 1 1 1 0 0 0 0] — Best parameters fitness: 0.8704344054037305 — Duration: None
+WARNING — 2022-02-24 12:50:06,248 — Current best solution: Iteration: 10 — Run: 11/50 — Best parameters: [0 1 1 0 0 0 0 1 1 1 0 0 0 0] — Best parameters fitness: 0.8704344054037305 — Duration: None
+WARNING — 2022-02-24 12:52:29,949 — Current best solution: Iteration: 11 — Run: 11/50 — Best parameters: [0 1 1 0 0 0 0 1 1 1 0 0 0 0] — Best parameters fitness: 0.8704344054037305 — Duration: None
+WARNING — 2022-02-24 12:52:29,949 — Current best solution: Iteration: 12 — Run: 11/50 — Best parameters: [0 1 1 0 0 0 0 1 1 1 0 0 0 0] — Best parameters fitness: 0.8704344054037305 — Duration: None
+WARNING — 2022-02-24 12:53:41,516 — Current best solution: Iteration: 13 — Run: 11/50 — Best parameters: [0 1 1 0 0 0 0 1 1 1 0 0 0 0] — Best parameters fitness: 0.8704344054037305 — Duration: None
+WARNING — 2022-02-24 12:53:41,516 — Current best solution: Iteration: 14 — Run: 11/50 — Best parameters: [0 1 1 0 0 0 0 1 1 1 0 0 0 0] — Best parameters fitness: 0.8704344054037305 — Duration: None
+WARNING — 2022-02-24 12:53:41,516 — Current best solution: Iteration: 15 — Run: 11/50 — Best parameters: [0 1 1 0 0 0 0 1 1 1 0 0 0 0] — Best parameters fitness: 0.8704344054037305 — Duration: None
+WARNING — 2022-02-24 12:54:24,678 — Current best solution: Iteration: 16 — Run: 11/50 — Best parameters: [0 1 1 0 0 0 0 1 1 1 0 0 0 0] — Best parameters fitness: 0.8704344054037305 — Duration: None
+WARNING — 2022-02-24 12:54:24,678 — Current best solution: Iteration: 17 — Run: 11/50 — Best parameters: [0 1 1 0 0 0 0 1 1 1 0 0 0 0] — Best parameters fitness: 0.8704344054037305 — Duration: None
+WARNING — 2022-02-24 12:54:24,678 — Current best solution: Iteration: 18 — Run: 11/50 — Best parameters: [0 1 1 0 0 0 0 1 1 1 0 0 0 0] — Best parameters fitness: 0.8704344054037305 — Duration: None
+INFO — 2022-02-24 12:54:24,678 — **** Finishing the GA ****: Iteration: None — Run: 11/50 — Best parameters: [0 1 1 0 0 0 0 1 1 1 0 0 0 0] — Best parameters fitness: 0.8704344054037305 — Duration: 14640.367804050446
+INFO — 2022-02-24 12:54:24,678 — **** Starting the GA ****: Iteration: None — Run: 12/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-24 14:26:14,585 — Current best solution: Iteration: 1 — Run: 12/50 — Best parameters: [1 1 0 1 0 1 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.684515458012635 — Duration: None
+WARNING — 2022-02-24 15:51:05,320 — Current best solution: Iteration: 2 — Run: 12/50 — Best parameters: [0 1 1 1 0 0 1 0 1 0 0 1 0 1] — Best parameters fitness: 0.6598578726238302 — Duration: None
+WARNING — 2022-02-24 17:19:14,701 — Current best solution: Iteration: 3 — Run: 12/50 — Best parameters: [0 0 1 1 1 1 0 0 1 0 0 1 1 0] — Best parameters fitness: 0.7317871315520041 — Duration: None
+WARNING — 2022-02-24 18:10:33,674 — Current best solution: Iteration: 4 — Run: 12/50 — Best parameters: [0 0 1 1 1 1 0 0 1 0 0 1 1 0] — Best parameters fitness: 0.7317871315520041 — Duration: None
+WARNING — 2022-02-24 18:34:58,171 — Current best solution: Iteration: 5 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.7648647773081967 — Duration: None
+WARNING — 2022-02-24 18:56:10,952 — Current best solution: Iteration: 6 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 0 1 1 0 0 1 1 0] — Best parameters fitness: 0.8224960804087152 — Duration: None
+WARNING — 2022-02-24 19:17:50,050 — Current best solution: Iteration: 7 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 0 1 1 0 0 1 1 0] — Best parameters fitness: 0.8224960804087152 — Duration: None
+WARNING — 2022-02-24 19:25:56,689 — Current best solution: Iteration: 8 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 0 1 1 0 0 1 1 0] — Best parameters fitness: 0.8224960804087152 — Duration: None
+WARNING — 2022-02-24 19:37:03,948 — Current best solution: Iteration: 9 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 0 1 1 0 0 1 1 0] — Best parameters fitness: 0.8808844387735464 — Duration: None
+WARNING — 2022-02-24 19:43:04,011 — Current best solution: Iteration: 10 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 0 1 1 1 0 0 1 0] — Best parameters fitness: 0.7788884635312465 — Duration: None
+WARNING — 2022-02-24 19:44:16,264 — Current best solution: Iteration: 11 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 0 1 1 1 0 0 1 0] — Best parameters fitness: 0.7788884635312465 — Duration: None
+WARNING — 2022-02-24 19:52:21,069 — Current best solution: Iteration: 12 — Run: 12/50 — Best parameters: [0 1 1 1 0 0 0 0 1 0 0 0 0 1] — Best parameters fitness: 0.7781924093134354 — Duration: None
+WARNING — 2022-02-24 19:59:34,989 — Current best solution: Iteration: 13 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 1 0 0 0 0 0] — Best parameters fitness: 0.7981380076077031 — Duration: None
+WARNING — 2022-02-24 20:01:48,728 — Current best solution: Iteration: 14 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 1 0 0 0 0 0] — Best parameters fitness: 0.7981380076077031 — Duration: None
+WARNING — 2022-02-24 20:09:03,140 — Current best solution: Iteration: 15 — Run: 12/50 — Best parameters: [0 1 1 1 0 0 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8554936666481564 — Duration: None
+WARNING — 2022-02-24 20:13:56,404 — Current best solution: Iteration: 16 — Run: 12/50 — Best parameters: [0 1 1 1 0 0 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.865073811978441 — Duration: None
+WARNING — 2022-02-24 20:19:26,942 — Current best solution: Iteration: 17 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 1 0 0 0 0 0] — Best parameters fitness: 0.7981380076077031 — Duration: None
+WARNING — 2022-02-24 20:20:59,647 — Current best solution: Iteration: 18 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 1 0 0 0 0 1] — Best parameters fitness: 0.801311036684211 — Duration: None
+WARNING — 2022-02-24 20:23:34,853 — Current best solution: Iteration: 19 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 1 0 0 0 0 1] — Best parameters fitness: 0.801311036684211 — Duration: None
+WARNING — 2022-02-24 20:24:00,298 — Current best solution: Iteration: 20 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 1 0 0 0 0 1] — Best parameters fitness: 0.801311036684211 — Duration: None
+WARNING — 2022-02-24 20:24:00,298 — Current best solution: Iteration: 21 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 1 0 0 0 0 1] — Best parameters fitness: 0.801311036684211 — Duration: None
+WARNING — 2022-02-24 20:24:00,314 — Current best solution: Iteration: 22 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 1 0 0 0 0 1] — Best parameters fitness: 0.801311036684211 — Duration: None
+WARNING — 2022-02-24 20:24:00,314 — Current best solution: Iteration: 23 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 1 0 0 0 0 1] — Best parameters fitness: 0.801311036684211 — Duration: None
+WARNING — 2022-02-24 20:25:52,530 — Current best solution: Iteration: 24 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8258315955656786 — Duration: None
+WARNING — 2022-02-24 20:25:52,530 — Current best solution: Iteration: 25 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8258315955656786 — Duration: None
+WARNING — 2022-02-24 20:25:52,530 — Current best solution: Iteration: 26 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8258315955656786 — Duration: None
+WARNING — 2022-02-24 20:25:52,530 — Current best solution: Iteration: 27 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8258315955656786 — Duration: None
+WARNING — 2022-02-24 20:28:30,176 — Current best solution: Iteration: 28 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8228203199544462 — Duration: None
+WARNING — 2022-02-24 20:28:30,176 — Current best solution: Iteration: 29 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8228203199544462 — Duration: None
+WARNING — 2022-02-24 20:29:19,926 — Current best solution: Iteration: 30 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8228203199544462 — Duration: None
+WARNING — 2022-02-24 20:30:00,334 — Current best solution: Iteration: 31 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8228203199544462 — Duration: None
+WARNING — 2022-02-24 20:30:35,241 — Current best solution: Iteration: 32 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8228203199544462 — Duration: None
+WARNING — 2022-02-24 20:31:15,335 — Current best solution: Iteration: 33 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8228203199544462 — Duration: None
+WARNING — 2022-02-24 20:31:15,335 — Current best solution: Iteration: 34 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8228203199544462 — Duration: None
+WARNING — 2022-02-24 20:36:18,220 — Current best solution: Iteration: 35 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8228203199544462 — Duration: None
+WARNING — 2022-02-24 20:36:18,220 — Current best solution: Iteration: 36 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8228203199544462 — Duration: None
+WARNING — 2022-02-24 20:37:41,568 — Current best solution: Iteration: 37 — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8228203199544462 — Duration: None
+INFO — 2022-02-24 20:51:12,381 — **** Finishing the GA ****: Iteration: None — Run: 12/50 — Best parameters: [0 0 1 1 0 0 1 1 1 0 0 0 0 0] — Best parameters fitness: 0.841759422419896 — Duration: 28202.79651260376
+INFO — 2022-02-24 20:51:12,381 — **** Starting the GA ****: Iteration: None — Run: 13/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-24 21:59:35,267 — Current best solution: Iteration: 1 — Run: 13/50 — Best parameters: [0 1 1 0 1 0 1 0 0 0 0 0 1 1] — Best parameters fitness: 0.6658942222801677 — Duration: None
+WARNING — 2022-02-24 22:35:44,339 — Current best solution: Iteration: 2 — Run: 13/50 — Best parameters: [0 0 1 1 0 0 0 0 1 1 0 1 1 1] — Best parameters fitness: 0.7350455724656091 — Duration: None
+WARNING — 2022-02-24 22:53:48,734 — Current best solution: Iteration: 3 — Run: 13/50 — Best parameters: [0 0 1 1 0 0 0 0 1 1 0 1 1 1] — Best parameters fitness: 0.7350455724656091 — Duration: None
+WARNING — 2022-02-24 23:18:47,376 — Current best solution: Iteration: 4 — Run: 13/50 — Best parameters: [0 0 1 1 0 1 0 0 0 0 0 0 1 1] — Best parameters fitness: 0.7586561348969394 — Duration: None
+WARNING — 2022-02-24 23:35:49,687 — Current best solution: Iteration: 5 — Run: 13/50 — Best parameters: [0 0 1 1 0 1 0 0 0 0 0 0 1 1] — Best parameters fitness: 0.7929923557460474 — Duration: None
+WARNING — 2022-02-24 23:49:52,013 — Current best solution: Iteration: 6 — Run: 13/50 — Best parameters: [0 1 1 1 0 0 0 0 1 1 0 1 1 0] — Best parameters fitness: 0.7899858845216678 — Duration: None
+WARNING — 2022-02-25 00:07:51,196 — Current best solution: Iteration: 7 — Run: 13/50 — Best parameters: [0 1 1 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.8133023325438272 — Duration: None
+WARNING — 2022-02-25 00:16:03,924 — Current best solution: Iteration: 8 — Run: 13/50 — Best parameters: [0 1 1 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.8133023325438272 — Duration: None
+WARNING — 2022-02-25 00:29:39,020 — Current best solution: Iteration: 9 — Run: 13/50 — Best parameters: [0 1 1 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.8133023325438272 — Duration: None
+WARNING — 2022-02-25 00:38:00,682 — Current best solution: Iteration: 10 — Run: 13/50 — Best parameters: [0 1 1 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.8133023325438272 — Duration: None
+WARNING — 2022-02-25 00:39:27,403 — Current best solution: Iteration: 11 — Run: 13/50 — Best parameters: [0 1 1 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.8133023325438272 — Duration: None
+WARNING — 2022-02-25 00:40:14,811 — Current best solution: Iteration: 12 — Run: 13/50 — Best parameters: [0 1 1 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.8133023325438272 — Duration: None
+WARNING — 2022-02-25 00:40:14,811 — Current best solution: Iteration: 13 — Run: 13/50 — Best parameters: [0 1 1 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.8133023325438272 — Duration: None
+WARNING — 2022-02-25 00:40:14,811 — Current best solution: Iteration: 14 — Run: 13/50 — Best parameters: [0 1 1 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.8133023325438272 — Duration: None
+WARNING — 2022-02-25 00:40:14,811 — Current best solution: Iteration: 15 — Run: 13/50 — Best parameters: [0 1 1 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.8133023325438272 — Duration: None
+WARNING — 2022-02-25 00:40:14,811 — Current best solution: Iteration: 16 — Run: 13/50 — Best parameters: [0 1 1 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.8133023325438272 — Duration: None
+INFO — 2022-02-25 00:40:14,811 — **** Finishing the GA ****: Iteration: None — Run: 13/50 — Best parameters: [0 1 1 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.8133023325438272 — Duration: 13742.429525136948
+INFO — 2022-02-25 00:40:14,811 — **** Starting the GA ****: Iteration: None — Run: 14/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-25 01:55:58,243 — Current best solution: Iteration: 1 — Run: 14/50 — Best parameters: [1 1 0 1 0 0 1 1 0 1 0 0 1 0] — Best parameters fitness: 0.7952041096968434 — Duration: None
+WARNING — 2022-02-25 02:12:26,974 — Current best solution: Iteration: 2 — Run: 14/50 — Best parameters: [1 1 0 1 0 0 1 1 0 1 0 0 1 0] — Best parameters fitness: 0.7952041096968434 — Duration: None
+WARNING — 2022-02-25 02:27:24,011 — Current best solution: Iteration: 3 — Run: 14/50 — Best parameters: [0 0 1 0 0 0 0 1 1 1 0 0 1 0] — Best parameters fitness: 0.8077823776252475 — Duration: None
+WARNING — 2022-02-25 02:46:24,022 — Current best solution: Iteration: 4 — Run: 14/50 — Best parameters: [0 0 1 0 0 0 0 1 1 1 0 0 1 0] — Best parameters fitness: 0.8077823776252475 — Duration: None
+WARNING — 2022-02-25 03:01:12,445 — Current best solution: Iteration: 5 — Run: 14/50 — Best parameters: [0 0 1 0 0 0 0 1 1 1 0 0 1 0] — Best parameters fitness: 0.8077823776252475 — Duration: None
+WARNING — 2022-02-25 03:11:52,699 — Current best solution: Iteration: 6 — Run: 14/50 — Best parameters: [0 0 0 1 1 0 0 1 1 0 0 0 1 1] — Best parameters fitness: 0.7427986844265239 — Duration: None
+WARNING — 2022-02-25 03:18:16,607 — Current best solution: Iteration: 7 — Run: 14/50 — Best parameters: [0 0 0 1 0 0 0 1 1 0 0 0 1 0] — Best parameters fitness: 0.8202196801225029 — Duration: None
+WARNING — 2022-02-25 03:23:27,915 — Current best solution: Iteration: 8 — Run: 14/50 — Best parameters: [0 0 0 1 0 0 0 1 1 0 0 0 1 0] — Best parameters fitness: 0.8202196801225029 — Duration: None
+WARNING — 2022-02-25 03:27:08,175 — Current best solution: Iteration: 9 — Run: 14/50 — Best parameters: [0 0 0 1 0 0 0 1 1 0 0 0 1 0] — Best parameters fitness: 0.8202196801225029 — Duration: None
+WARNING — 2022-02-25 03:28:31,538 — Current best solution: Iteration: 10 — Run: 14/50 — Best parameters: [0 0 0 1 0 0 0 1 1 0 0 0 1 0] — Best parameters fitness: 0.8202196801225029 — Duration: None
+WARNING — 2022-02-25 03:31:49,283 — Current best solution: Iteration: 11 — Run: 14/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.7553736136333322 — Duration: None
+WARNING — 2022-02-25 03:33:28,212 — Current best solution: Iteration: 12 — Run: 14/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.7553736136333322 — Duration: None
+WARNING — 2022-02-25 03:33:28,212 — Current best solution: Iteration: 13 — Run: 14/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.7553736136333322 — Duration: None
+WARNING — 2022-02-25 03:33:28,212 — Current best solution: Iteration: 14 — Run: 14/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.7553736136333322 — Duration: None
+WARNING — 2022-02-25 03:33:28,212 — Current best solution: Iteration: 15 — Run: 14/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.7553736136333322 — Duration: None
+WARNING — 2022-02-25 03:33:28,212 — Current best solution: Iteration: 16 — Run: 14/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.7553736136333322 — Duration: None
+WARNING — 2022-02-25 03:33:28,212 — Current best solution: Iteration: 17 — Run: 14/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.7553736136333322 — Duration: None
+WARNING — 2022-02-25 03:33:28,212 — Current best solution: Iteration: 18 — Run: 14/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.7553736136333322 — Duration: None
+WARNING — 2022-02-25 03:33:28,212 — Current best solution: Iteration: 19 — Run: 14/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.7553736136333322 — Duration: None
+WARNING — 2022-02-25 03:33:28,212 — Current best solution: Iteration: 20 — Run: 14/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.7553736136333322 — Duration: None
+INFO — 2022-02-25 03:33:28,212 — **** Finishing the GA ****: Iteration: None — Run: 14/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.7553736136333322 — Duration: 10393.40109372139
+INFO — 2022-02-25 03:33:28,212 — **** Starting the GA ****: Iteration: None — Run: 15/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-25 04:49:49,907 — Current best solution: Iteration: 1 — Run: 15/50 — Best parameters: [1 0 1 0 0 0 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.859455378156462 — Duration: None
+WARNING — 2022-02-25 05:40:50,630 — Current best solution: Iteration: 2 — Run: 15/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.81952898160403 — Duration: None
+WARNING — 2022-02-25 06:09:56,660 — Current best solution: Iteration: 3 — Run: 15/50 — Best parameters: [1 0 1 0 0 0 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.7807177835278549 — Duration: None
+WARNING — 2022-02-25 06:25:46,345 — Current best solution: Iteration: 4 — Run: 15/50 — Best parameters: [0 1 1 0 0 0 0 1 1 0 1 0 0 0] — Best parameters fitness: 0.7814881381286323 — Duration: None
+WARNING — 2022-02-25 06:35:01,943 — Current best solution: Iteration: 5 — Run: 15/50 — Best parameters: [0 0 1 1 0 0 0 1 1 0 1 0 0 0] — Best parameters fitness: 0.8401461622384803 — Duration: None
+WARNING — 2022-02-25 06:43:01,800 — Current best solution: Iteration: 6 — Run: 15/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.763478864587621 — Duration: None
+WARNING — 2022-02-25 06:51:15,629 — Current best solution: Iteration: 7 — Run: 15/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.8333298064986098 — Duration: None
+WARNING — 2022-02-25 06:58:54,093 — Current best solution: Iteration: 8 — Run: 15/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.763478864587621 — Duration: None
+WARNING — 2022-02-25 07:04:55,658 — Current best solution: Iteration: 9 — Run: 15/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.763478864587621 — Duration: None
+WARNING — 2022-02-25 07:12:24,000 — Current best solution: Iteration: 10 — Run: 15/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.763478864587621 — Duration: None
+WARNING — 2022-02-25 07:12:24,000 — Current best solution: Iteration: 11 — Run: 15/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.763478864587621 — Duration: None
+WARNING — 2022-02-25 07:17:16,266 — Current best solution: Iteration: 12 — Run: 15/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8527578565052787 — Duration: None
+WARNING — 2022-02-25 07:19:53,677 — Current best solution: Iteration: 13 — Run: 15/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8381415312362134 — Duration: None
+WARNING — 2022-02-25 07:21:15,117 — Current best solution: Iteration: 14 — Run: 15/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8310184472693322 — Duration: None
+WARNING — 2022-02-25 07:24:29,080 — Current best solution: Iteration: 15 — Run: 15/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.763478864587621 — Duration: None
+INFO — 2022-02-25 07:24:29,080 — **** Finishing the GA ****: Iteration: None — Run: 15/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.763478864587621 — Duration: 13860.868496894836
+INFO — 2022-02-25 07:24:29,080 — **** Starting the GA ****: Iteration: None — Run: 16/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-25 08:54:25,251 — Current best solution: Iteration: 1 — Run: 16/50 — Best parameters: [0 0 1 1 0 0 0 0 1 0 0 1 1 1] — Best parameters fitness: 0.7981187565593815 — Duration: None
+WARNING — 2022-02-25 10:08:39,973 — Current best solution: Iteration: 2 — Run: 16/50 — Best parameters: [0 0 1 1 0 0 0 0 1 0 0 1 1 1] — Best parameters fitness: 0.7981187565593815 — Duration: None
+WARNING — 2022-02-25 10:48:44,145 — Current best solution: Iteration: 3 — Run: 16/50 — Best parameters: [0 0 1 1 0 0 0 0 1 0 0 1 1 1] — Best parameters fitness: 0.7981187565593815 — Duration: None
+WARNING — 2022-02-25 11:32:54,552 — Current best solution: Iteration: 4 — Run: 16/50 — Best parameters: [0 0 1 1 0 0 0 0 1 0 0 1 1 1] — Best parameters fitness: 0.7981187565593815 — Duration: None
+WARNING — 2022-02-25 11:46:31,798 — Current best solution: Iteration: 5 — Run: 16/50 — Best parameters: [0 0 1 1 0 0 0 0 1 0 0 1 1 1] — Best parameters fitness: 0.7981187565593815 — Duration: None
+WARNING — 2022-02-25 11:51:22,720 — Current best solution: Iteration: 6 — Run: 16/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.8022226433049136 — Duration: None
+WARNING — 2022-02-25 11:55:33,282 — Current best solution: Iteration: 7 — Run: 16/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.8022226433049136 — Duration: None
+WARNING — 2022-02-25 11:58:59,760 — Current best solution: Iteration: 8 — Run: 16/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.8022226433049136 — Duration: None
+WARNING — 2022-02-25 11:58:59,760 — Current best solution: Iteration: 9 — Run: 16/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.8022226433049136 — Duration: None
+WARNING — 2022-02-25 11:59:07,885 — Current best solution: Iteration: 10 — Run: 16/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.8022226433049136 — Duration: None
+WARNING — 2022-02-25 11:59:07,885 — Current best solution: Iteration: 11 — Run: 16/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.8022226433049136 — Duration: None
+WARNING — 2022-02-25 11:59:07,885 — Current best solution: Iteration: 12 — Run: 16/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.8022226433049136 — Duration: None
+WARNING — 2022-02-25 11:59:07,885 — Current best solution: Iteration: 13 — Run: 16/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.8022226433049136 — Duration: None
+WARNING — 2022-02-25 11:59:07,885 — Current best solution: Iteration: 14 — Run: 16/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.8022226433049136 — Duration: None
+WARNING — 2022-02-25 11:59:18,698 — Current best solution: Iteration: 15 — Run: 16/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.8022226433049136 — Duration: None
+INFO — 2022-02-25 11:59:18,698 — **** Finishing the GA ****: Iteration: None — Run: 16/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.8022226433049136 — Duration: 16489.61758542061
+INFO — 2022-02-25 11:59:18,698 — **** Starting the GA ****: Iteration: None — Run: 17/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-25 12:39:48,706 — Current best solution: Iteration: 1 — Run: 17/50 — Best parameters: [0 0 0 1 0 1 0 1 0 1 0 1 1 1] — Best parameters fitness: 0.6828731502223453 — Duration: None
+WARNING — 2022-02-25 13:18:12,640 — Current best solution: Iteration: 2 — Run: 17/50 — Best parameters: [0 0 1 1 0 1 1 0 0 0 0 0 0 1] — Best parameters fitness: 0.7726276906542727 — Duration: None
+WARNING — 2022-02-25 13:34:56,990 — Current best solution: Iteration: 3 — Run: 17/50 — Best parameters: [0 0 1 1 0 1 1 0 0 0 0 0 0 1] — Best parameters fitness: 0.7726276906542727 — Duration: None
+WARNING — 2022-02-25 13:42:44,596 — Current best solution: Iteration: 4 — Run: 17/50 — Best parameters: [0 0 1 1 0 1 1 0 0 0 0 0 0 1] — Best parameters fitness: 0.7726276906542727 — Duration: None
+WARNING — 2022-02-25 13:51:51,365 — Current best solution: Iteration: 5 — Run: 17/50 — Best parameters: [0 0 1 1 0 1 1 0 0 0 0 0 0 1] — Best parameters fitness: 0.7726276906542727 — Duration: None
+WARNING — 2022-02-25 14:01:11,230 — Current best solution: Iteration: 6 — Run: 17/50 — Best parameters: [0 0 1 1 0 1 1 0 0 0 0 0 0 1] — Best parameters fitness: 0.7726276906542727 — Duration: None
+WARNING — 2022-02-25 14:03:20,799 — Current best solution: Iteration: 7 — Run: 17/50 — Best parameters: [0 0 1 1 0 1 1 0 0 0 0 0 0 1] — Best parameters fitness: 0.7726276906542727 — Duration: None
+WARNING — 2022-02-25 14:08:30,575 — Current best solution: Iteration: 8 — Run: 17/50 — Best parameters: [0 0 1 1 0 1 1 0 0 0 0 0 0 1] — Best parameters fitness: 0.7726276906542727 — Duration: None
+WARNING — 2022-02-25 14:11:05,487 — Current best solution: Iteration: 9 — Run: 17/50 — Best parameters: [0 0 1 1 0 1 1 0 0 0 0 0 0 1] — Best parameters fitness: 0.7726276906542727 — Duration: None
+WARNING — 2022-02-25 14:11:05,487 — Current best solution: Iteration: 10 — Run: 17/50 — Best parameters: [0 0 1 1 0 1 1 0 0 0 0 0 0 1] — Best parameters fitness: 0.7726276906542727 — Duration: None
+WARNING — 2022-02-25 14:12:53,325 — Current best solution: Iteration: 11 — Run: 17/50 — Best parameters: [0 0 1 0 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.8052706300594047 — Duration: None
+WARNING — 2022-02-25 14:13:57,634 — Current best solution: Iteration: 12 — Run: 17/50 — Best parameters: [0 0 1 0 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.8052706300594047 — Duration: None
+WARNING — 2022-02-25 14:13:57,634 — Current best solution: Iteration: 13 — Run: 17/50 — Best parameters: [0 0 1 0 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.8052706300594047 — Duration: None
+WARNING — 2022-02-25 14:15:41,061 — Current best solution: Iteration: 14 — Run: 17/50 — Best parameters: [0 0 1 0 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.8052706300594047 — Duration: None
+WARNING — 2022-02-25 14:18:14,518 — Current best solution: Iteration: 15 — Run: 17/50 — Best parameters: [0 0 1 0 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.8052706300594047 — Duration: None
+WARNING — 2022-02-25 14:18:14,518 — Current best solution: Iteration: 16 — Run: 17/50 — Best parameters: [0 0 1 0 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.8052706300594047 — Duration: None
+WARNING — 2022-02-25 14:18:33,310 — Current best solution: Iteration: 17 — Run: 17/50 — Best parameters: [0 0 1 0 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.8052706300594047 — Duration: None
+WARNING — 2022-02-25 14:20:14,094 — Current best solution: Iteration: 18 — Run: 17/50 — Best parameters: [0 0 1 0 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.8052706300594047 — Duration: None
+WARNING — 2022-02-25 14:24:36,274 — Current best solution: Iteration: 19 — Run: 17/50 — Best parameters: [0 0 1 0 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.8052706300594047 — Duration: None
+WARNING — 2022-02-25 14:24:51,338 — Current best solution: Iteration: 20 — Run: 17/50 — Best parameters: [0 0 1 0 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.8052706300594047 — Duration: None
+INFO — 2022-02-25 14:35:27,437 — **** Finishing the GA ****: Iteration: None — Run: 17/50 — Best parameters: [0 0 1 0 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.8052706300594047 — Duration: 9095.202846765518
+INFO — 2022-02-25 14:35:27,437 — **** Starting the GA ****: Iteration: None — Run: 18/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-25 15:41:56,403 — Current best solution: Iteration: 1 — Run: 18/50 — Best parameters: [0 0 1 1 0 1 0 0 0 1 1 1 0 1] — Best parameters fitness: 0.684252409575706 — Duration: None
+WARNING — 2022-02-25 16:15:30,344 — Current best solution: Iteration: 2 — Run: 18/50 — Best parameters: [0 0 1 1 1 1 0 1 1 0 0 0 1 1] — Best parameters fitness: 0.8174624167667005 — Duration: None
+WARNING — 2022-02-25 16:36:43,932 — Current best solution: Iteration: 3 — Run: 18/50 — Best parameters: [0 0 1 0 0 1 1 1 0 0 0 0 1 1] — Best parameters fitness: 0.837130852621913 — Duration: None
+WARNING — 2022-02-25 16:57:07,543 — Current best solution: Iteration: 4 — Run: 18/50 — Best parameters: [0 0 1 0 0 1 1 1 0 0 0 0 1 1] — Best parameters fitness: 0.837130852621913 — Duration: None
+WARNING — 2022-02-25 17:11:28,425 — Current best solution: Iteration: 5 — Run: 18/50 — Best parameters: [0 0 1 0 0 1 1 1 0 0 0 0 1 1] — Best parameters fitness: 0.837130852621913 — Duration: None
+WARNING — 2022-02-25 17:34:07,627 — Current best solution: Iteration: 6 — Run: 18/50 — Best parameters: [0 0 1 0 0 1 1 1 0 0 0 0 1 1] — Best parameters fitness: 0.837130852621913 — Duration: None
+WARNING — 2022-02-25 17:58:04,154 — Current best solution: Iteration: 7 — Run: 18/50 — Best parameters: [0 0 1 0 0 1 1 1 0 0 0 0 1 1] — Best parameters fitness: 0.837130852621913 — Duration: None
+WARNING — 2022-02-25 18:08:03,690 — Current best solution: Iteration: 8 — Run: 18/50 — Best parameters: [0 0 1 0 0 1 1 1 0 0 0 0 1 1] — Best parameters fitness: 0.837130852621913 — Duration: None
+WARNING — 2022-02-25 18:14:52,476 — Current best solution: Iteration: 9 — Run: 18/50 — Best parameters: [0 0 1 0 0 1 1 1 0 0 0 0 1 1] — Best parameters fitness: 0.837130852621913 — Duration: None
+WARNING — 2022-02-25 18:19:30,248 — Current best solution: Iteration: 10 — Run: 18/50 — Best parameters: [0 0 1 0 0 1 1 1 0 0 0 0 1 1] — Best parameters fitness: 0.837130852621913 — Duration: None
+WARNING — 2022-02-25 18:29:53,399 — Current best solution: Iteration: 11 — Run: 18/50 — Best parameters: [0 0 1 0 0 1 1 1 0 0 0 0 1 1] — Best parameters fitness: 0.837130852621913 — Duration: None
+WARNING — 2022-02-25 18:41:14,939 — Current best solution: Iteration: 12 — Run: 18/50 — Best parameters: [0 0 1 0 0 1 1 1 0 0 0 0 1 1] — Best parameters fitness: 0.837130852621913 — Duration: None
+INFO — 2022-02-25 18:51:41,023 — **** Finishing the GA ****: Iteration: None — Run: 18/50 — Best parameters: [0 0 1 0 0 1 1 1 0 0 0 0 1 1] — Best parameters fitness: 0.837130852621913 — Duration: 15058.181046009064
+INFO — 2022-02-25 18:51:41,023 — **** Starting the GA ****: Iteration: None — Run: 19/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-25 19:59:26,767 — Current best solution: Iteration: 1 — Run: 19/50 — Best parameters: [0 0 0 1 0 1 1 0 0 0 0 0 1 1] — Best parameters fitness: 0.7383951106528364 — Duration: None
+WARNING — 2022-02-25 20:30:13,713 — Current best solution: Iteration: 2 — Run: 19/50 — Best parameters: [0 0 0 1 0 1 1 1 1 1 0 0 1 1] — Best parameters fitness: 0.8144947456575046 — Duration: None
+WARNING — 2022-02-25 20:58:22,570 — Current best solution: Iteration: 3 — Run: 19/50 — Best parameters: [0 0 0 1 0 1 1 1 1 1 0 0 1 1] — Best parameters fitness: 0.8144947456575046 — Duration: None
+WARNING — 2022-02-25 21:14:45,351 — Current best solution: Iteration: 4 — Run: 19/50 — Best parameters: [0 0 0 1 0 1 1 1 1 1 0 0 1 1] — Best parameters fitness: 0.8144947456575046 — Duration: None
+WARNING — 2022-02-25 21:27:28,581 — Current best solution: Iteration: 5 — Run: 19/50 — Best parameters: [0 0 0 1 0 1 1 1 1 1 0 0 1 1] — Best parameters fitness: 0.8144947456575046 — Duration: None
+WARNING — 2022-02-25 21:44:30,894 — Current best solution: Iteration: 6 — Run: 19/50 — Best parameters: [0 0 0 1 0 1 1 1 1 1 0 0 1 1] — Best parameters fitness: 0.8144947456575046 — Duration: None
+WARNING — 2022-02-25 21:55:41,826 — Current best solution: Iteration: 7 — Run: 19/50 — Best parameters: [0 0 1 0 0 1 0 1 0 1 0 0 0 1] — Best parameters fitness: 0.8363150316260888 — Duration: None
+WARNING — 2022-02-25 22:04:24,778 — Current best solution: Iteration: 8 — Run: 19/50 — Best parameters: [0 0 0 1 0 1 1 1 1 1 0 0 1 1] — Best parameters fitness: 0.8144947456575046 — Duration: None
+WARNING — 2022-02-25 22:15:12,809 — Current best solution: Iteration: 9 — Run: 19/50 — Best parameters: [0 0 0 1 0 1 1 1 1 1 0 0 1 1] — Best parameters fitness: 0.8144947456575046 — Duration: None
+WARNING — 2022-02-25 22:22:29,521 — Current best solution: Iteration: 10 — Run: 19/50 — Best parameters: [0 0 0 1 0 1 1 1 1 1 0 0 1 1] — Best parameters fitness: 0.8144947456575046 — Duration: None
+WARNING — 2022-02-25 22:26:30,247 — Current best solution: Iteration: 11 — Run: 19/50 — Best parameters: [0 0 0 1 0 1 1 1 1 1 0 0 1 1] — Best parameters fitness: 0.8144947456575046 — Duration: None
+INFO — 2022-02-25 22:41:07,233 — **** Finishing the GA ****: Iteration: None — Run: 19/50 — Best parameters: [0 0 0 1 0 1 1 1 1 1 0 0 1 1] — Best parameters fitness: 0.8144947456575046 — Duration: 13285.003888368607
+INFO — 2022-02-25 22:41:07,233 — **** Starting the GA ****: Iteration: None — Run: 20/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-25 23:37:28,293 — Current best solution: Iteration: 1 — Run: 20/50 — Best parameters: [1 0 1 1 0 0 0 0 1 0 0 1 0 0] — Best parameters fitness: 0.7058861617795988 — Duration: None
+WARNING — 2022-02-25 23:56:22,663 — Current best solution: Iteration: 2 — Run: 20/50 — Best parameters: [0 0 1 0 0 0 0 0 0 1 0 0 1 1] — Best parameters fitness: 0.7764959871033272 — Duration: None
+WARNING — 2022-02-26 00:13:12,129 — Current best solution: Iteration: 3 — Run: 20/50 — Best parameters: [0 0 1 0 0 0 0 0 0 1 0 0 1 1] — Best parameters fitness: 0.7764959871033272 — Duration: None
+WARNING — 2022-02-26 00:27:12,323 — Current best solution: Iteration: 4 — Run: 20/50 — Best parameters: [0 0 0 1 0 0 0 1 0 0 0 1 0 1] — Best parameters fitness: 0.7965213066358618 — Duration: None
+WARNING — 2022-02-26 00:36:27,999 — Current best solution: Iteration: 5 — Run: 20/50 — Best parameters: [0 0 0 1 0 0 0 1 0 0 0 1 0 1] — Best parameters fitness: 0.7965213066358618 — Duration: None
+WARNING — 2022-02-26 00:45:25,418 — Current best solution: Iteration: 6 — Run: 20/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.8317440133583673 — Duration: None
+WARNING — 2022-02-26 00:49:26,022 — Current best solution: Iteration: 7 — Run: 20/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.8317440133583673 — Duration: None
+WARNING — 2022-02-26 00:55:04,490 — Current best solution: Iteration: 8 — Run: 20/50 — Best parameters: [0 0 0 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.8629763791847496 — Duration: None
+WARNING — 2022-02-26 00:57:22,839 — Current best solution: Iteration: 9 — Run: 20/50 — Best parameters: [0 0 0 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.8487985035960889 — Duration: None
+WARNING — 2022-02-26 01:01:37,555 — Current best solution: Iteration: 10 — Run: 20/50 — Best parameters: [0 0 0 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.8487985035960889 — Duration: None
+WARNING — 2022-02-26 01:16:16,889 — Current best solution: Iteration: 11 — Run: 20/50 — Best parameters: [0 0 0 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.8487985035960889 — Duration: None
+WARNING — 2022-02-26 01:29:12,718 — Current best solution: Iteration: 12 — Run: 20/50 — Best parameters: [0 0 0 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.8487985035960889 — Duration: None
+WARNING — 2022-02-26 01:35:57,209 — Current best solution: Iteration: 13 — Run: 20/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.890987061646506 — Duration: None
+WARNING — 2022-02-26 01:36:23,929 — Current best solution: Iteration: 14 — Run: 20/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.890987061646506 — Duration: None
+WARNING — 2022-02-26 01:36:23,929 — Current best solution: Iteration: 15 — Run: 20/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.890987061646506 — Duration: None
+WARNING — 2022-02-26 01:36:23,929 — Current best solution: Iteration: 16 — Run: 20/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.890987061646506 — Duration: None
+WARNING — 2022-02-26 01:36:23,929 — Current best solution: Iteration: 17 — Run: 20/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.890987061646506 — Duration: None
+WARNING — 2022-02-26 01:36:40,303 — Current best solution: Iteration: 18 — Run: 20/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.890987061646506 — Duration: None
+WARNING — 2022-02-26 01:37:30,383 — Current best solution: Iteration: 19 — Run: 20/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.890987061646506 — Duration: None
+WARNING — 2022-02-26 01:37:57,683 — Current best solution: Iteration: 20 — Run: 20/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.890987061646506 — Duration: None
+WARNING — 2022-02-26 01:37:57,683 — Current best solution: Iteration: 21 — Run: 20/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.890987061646506 — Duration: None
+WARNING — 2022-02-26 01:37:57,683 — Current best solution: Iteration: 22 — Run: 20/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.890987061646506 — Duration: None
+INFO — 2022-02-26 01:37:57,683 — **** Finishing the GA ****: Iteration: None — Run: 20/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.890987061646506 — Duration: 10610.449722290039
+INFO — 2022-02-26 01:37:57,683 — **** Starting the GA ****: Iteration: None — Run: 21/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-26 02:55:09,163 — Current best solution: Iteration: 1 — Run: 21/50 — Best parameters: [0 1 1 1 1 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.6885326856325182 — Duration: None
+WARNING — 2022-02-26 03:18:38,251 — Current best solution: Iteration: 2 — Run: 21/50 — Best parameters: [0 0 0 1 1 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.7534203082838293 — Duration: None
+WARNING — 2022-02-26 03:50:25,238 — Current best solution: Iteration: 3 — Run: 21/50 — Best parameters: [0 0 0 1 1 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.7534203082838293 — Duration: None
+WARNING — 2022-02-26 04:25:57,511 — Current best solution: Iteration: 4 — Run: 21/50 — Best parameters: [1 0 0 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7258715334492722 — Duration: None
+WARNING — 2022-02-26 05:03:36,014 — Current best solution: Iteration: 5 — Run: 21/50 — Best parameters: [0 0 0 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.7454223288395047 — Duration: None
+WARNING — 2022-02-26 05:21:13,301 — Current best solution: Iteration: 6 — Run: 21/50 — Best parameters: [0 0 0 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.7454223288395047 — Duration: None
+WARNING — 2022-02-26 05:37:36,726 — Current best solution: Iteration: 7 — Run: 21/50 — Best parameters: [0 0 0 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.7454223288395047 — Duration: None
+WARNING — 2022-02-26 05:52:43,690 — Current best solution: Iteration: 8 — Run: 21/50 — Best parameters: [0 0 0 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.7454223288395047 — Duration: None
+WARNING — 2022-02-26 06:17:50,315 — Current best solution: Iteration: 9 — Run: 21/50 — Best parameters: [0 0 1 1 0 1 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8521682338637693 — Duration: None
+WARNING — 2022-02-26 06:24:15,409 — Current best solution: Iteration: 10 — Run: 21/50 — Best parameters: [0 0 1 1 0 1 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8521682338637693 — Duration: None
+WARNING — 2022-02-26 06:30:20,507 — Current best solution: Iteration: 11 — Run: 21/50 — Best parameters: [0 0 1 1 0 1 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8521682338637693 — Duration: None
+WARNING — 2022-02-26 06:40:53,218 — Current best solution: Iteration: 12 — Run: 21/50 — Best parameters: [0 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8502045884760996 — Duration: None
+WARNING — 2022-02-26 06:41:52,579 — Current best solution: Iteration: 13 — Run: 21/50 — Best parameters: [0 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8502045884760996 — Duration: None
+WARNING — 2022-02-26 06:42:47,223 — Current best solution: Iteration: 14 — Run: 21/50 — Best parameters: [0 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8502045884760996 — Duration: None
+WARNING — 2022-02-26 06:47:57,303 — Current best solution: Iteration: 15 — Run: 21/50 — Best parameters: [0 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8502045884760996 — Duration: None
+WARNING — 2022-02-26 06:49:53,355 — Current best solution: Iteration: 16 — Run: 21/50 — Best parameters: [0 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8502045884760996 — Duration: None
+WARNING — 2022-02-26 06:51:37,764 — Current best solution: Iteration: 17 — Run: 21/50 — Best parameters: [0 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8502045884760996 — Duration: None
+WARNING — 2022-02-26 06:51:59,749 — Current best solution: Iteration: 18 — Run: 21/50 — Best parameters: [0 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8502045884760996 — Duration: None
+WARNING — 2022-02-26 06:52:24,642 — Current best solution: Iteration: 19 — Run: 21/50 — Best parameters: [0 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8502045884760996 — Duration: None
+WARNING — 2022-02-26 06:52:24,642 — Current best solution: Iteration: 20 — Run: 21/50 — Best parameters: [0 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8502045884760996 — Duration: None
+WARNING — 2022-02-26 06:52:24,657 — Current best solution: Iteration: 21 — Run: 21/50 — Best parameters: [0 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8502045884760996 — Duration: None
+INFO — 2022-02-26 06:52:24,657 — **** Finishing the GA ****: Iteration: None — Run: 21/50 — Best parameters: [0 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8502045884760996 — Duration: 18866.958884477615
+INFO — 2022-02-26 06:52:24,657 — **** Starting the GA ****: Iteration: None — Run: 22/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-26 08:19:48,697 — Current best solution: Iteration: 1 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 0 1 0 1] — Best parameters fitness: 0.7772316170527239 — Duration: None
+WARNING — 2022-02-26 09:07:10,103 — Current best solution: Iteration: 2 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 0 1 0 1] — Best parameters fitness: 0.7772316170527239 — Duration: None
+WARNING — 2022-02-26 09:34:27,644 — Current best solution: Iteration: 3 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 0 1 0 1] — Best parameters fitness: 0.7772316170527239 — Duration: None
+WARNING — 2022-02-26 09:53:23,542 — Current best solution: Iteration: 4 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 0 1 0 1] — Best parameters fitness: 0.7772316170527239 — Duration: None
+WARNING — 2022-02-26 10:18:58,532 — Current best solution: Iteration: 5 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 0 1 0 1] — Best parameters fitness: 0.7772316170527239 — Duration: None
+WARNING — 2022-02-26 10:30:03,619 — Current best solution: Iteration: 6 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 0 1 0 1] — Best parameters fitness: 0.7772316170527239 — Duration: None
+WARNING — 2022-02-26 10:39:49,645 — Current best solution: Iteration: 7 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 0 1 0 1] — Best parameters fitness: 0.7772316170527239 — Duration: None
+WARNING — 2022-02-26 10:42:56,222 — Current best solution: Iteration: 8 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 0 1 0 1] — Best parameters fitness: 0.7772316170527239 — Duration: None
+WARNING — 2022-02-26 10:55:08,946 — Current best solution: Iteration: 9 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 0 1 0 1] — Best parameters fitness: 0.7772316170527239 — Duration: None
+WARNING — 2022-02-26 11:12:36,160 — Current best solution: Iteration: 10 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8244926808560846 — Duration: None
+WARNING — 2022-02-26 11:26:17,982 — Current best solution: Iteration: 11 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8448106955431068 — Duration: None
+WARNING — 2022-02-26 11:54:07,349 — Current best solution: Iteration: 12 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8448106955431068 — Duration: None
+WARNING — 2022-02-26 12:14:19,213 — Current best solution: Iteration: 13 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8448106955431068 — Duration: None
+WARNING — 2022-02-26 12:22:45,101 — Current best solution: Iteration: 14 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8448106955431068 — Duration: None
+WARNING — 2022-02-26 12:37:52,135 — Current best solution: Iteration: 15 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8448106955431068 — Duration: None
+WARNING — 2022-02-26 12:37:52,135 — Current best solution: Iteration: 16 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8448106955431068 — Duration: None
+WARNING — 2022-02-26 12:45:21,416 — Current best solution: Iteration: 17 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8349761970718295 — Duration: None
+WARNING — 2022-02-26 12:46:37,715 — Current best solution: Iteration: 18 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.8176865310823151 — Duration: None
+WARNING — 2022-02-26 12:46:37,715 — Current best solution: Iteration: 19 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.8176865310823151 — Duration: None
+WARNING — 2022-02-26 12:58:18,851 — Current best solution: Iteration: 20 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.8176865310823151 — Duration: None
+WARNING — 2022-02-26 13:04:35,285 — Current best solution: Iteration: 21 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.8176865310823151 — Duration: None
+WARNING — 2022-02-26 13:08:22,769 — Current best solution: Iteration: 22 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.8176865310823151 — Duration: None
+WARNING — 2022-02-26 13:13:07,401 — Current best solution: Iteration: 23 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.8176865310823151 — Duration: None
+WARNING — 2022-02-26 13:18:48,273 — Current best solution: Iteration: 24 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8480671663229608 — Duration: None
+WARNING — 2022-02-26 13:18:48,273 — Current best solution: Iteration: 25 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8480671663229608 — Duration: None
+WARNING — 2022-02-26 13:19:49,150 — Current best solution: Iteration: 26 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.8176865310823151 — Duration: None
+WARNING — 2022-02-26 13:19:49,150 — Current best solution: Iteration: 27 — Run: 22/50 — Best parameters: [0 0 1 0 0 1 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.8176865310823151 — Duration: None
+INFO — 2022-02-26 13:19:49,150 — **** Finishing the GA ****: Iteration: None — Run: 22/50 — Best parameters: [0 0 1 0 0 1 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.8176865310823151 — Duration: 23244.4927649498
+INFO — 2022-02-26 13:19:49,150 — **** Starting the GA ****: Iteration: None — Run: 23/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-26 14:04:38,338 — Current best solution: Iteration: 1 — Run: 23/50 — Best parameters: [0 0 0 0 0 1 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.820533728723568 — Duration: None
+WARNING — 2022-02-26 14:33:29,224 — Current best solution: Iteration: 2 — Run: 23/50 — Best parameters: [1 1 0 1 0 0 0 1 1 1 0 0 1 0] — Best parameters fitness: 0.7793733069283797 — Duration: None
+WARNING — 2022-02-26 14:51:40,853 — Current best solution: Iteration: 3 — Run: 23/50 — Best parameters: [1 1 0 1 0 0 0 1 1 1 0 0 1 0] — Best parameters fitness: 0.7793733069283797 — Duration: None
+WARNING — 2022-02-26 15:22:02,938 — Current best solution: Iteration: 4 — Run: 23/50 — Best parameters: [1 1 0 1 0 0 0 1 1 1 0 0 1 0] — Best parameters fitness: 0.8502845617829672 — Duration: None
+WARNING — 2022-02-26 15:47:55,556 — Current best solution: Iteration: 5 — Run: 23/50 — Best parameters: [1 1 0 1 0 0 0 1 1 1 0 0 1 0] — Best parameters fitness: 0.8502845617829672 — Duration: None
+WARNING — 2022-02-26 16:04:36,012 — Current best solution: Iteration: 6 — Run: 23/50 — Best parameters: [1 1 0 1 0 0 0 1 1 1 0 0 1 0] — Best parameters fitness: 0.8502845617829672 — Duration: None
+WARNING — 2022-02-26 16:18:12,486 — Current best solution: Iteration: 7 — Run: 23/50 — Best parameters: [1 1 0 1 0 0 0 1 1 1 0 0 1 0] — Best parameters fitness: 0.8502845617829672 — Duration: None
+WARNING — 2022-02-26 16:32:59,571 — Current best solution: Iteration: 8 — Run: 23/50 — Best parameters: [1 1 0 1 0 0 0 1 1 1 0 0 1 0] — Best parameters fitness: 0.8661650158161995 — Duration: None
+WARNING — 2022-02-26 16:38:13,514 — Current best solution: Iteration: 9 — Run: 23/50 — Best parameters: [1 1 0 1 0 0 0 1 1 1 0 0 1 0] — Best parameters fitness: 0.8661650158161995 — Duration: None
+WARNING — 2022-02-26 16:44:33,383 — Current best solution: Iteration: 10 — Run: 23/50 — Best parameters: [1 1 0 1 0 0 0 1 1 1 0 0 1 0] — Best parameters fitness: 0.8661650158161995 — Duration: None
+WARNING — 2022-02-26 16:51:38,417 — Current best solution: Iteration: 11 — Run: 23/50 — Best parameters: [1 1 0 1 0 0 0 1 1 1 0 0 1 0] — Best parameters fitness: 0.8661650158161995 — Duration: None
+WARNING — 2022-02-26 17:06:41,331 — Current best solution: Iteration: 12 — Run: 23/50 — Best parameters: [0 0 1 0 0 0 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.8797337335970123 — Duration: None
+WARNING — 2022-02-26 17:13:46,838 — Current best solution: Iteration: 13 — Run: 23/50 — Best parameters: [0 0 1 0 0 0 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.8797337335970123 — Duration: None
+WARNING — 2022-02-26 17:16:21,935 — Current best solution: Iteration: 14 — Run: 23/50 — Best parameters: [0 0 1 0 0 0 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.8797337335970123 — Duration: None
+WARNING — 2022-02-26 17:24:52,427 — Current best solution: Iteration: 15 — Run: 23/50 — Best parameters: [0 0 1 0 0 0 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.8797337335970123 — Duration: None
+WARNING — 2022-02-26 17:29:58,085 — Current best solution: Iteration: 16 — Run: 23/50 — Best parameters: [0 0 1 0 0 0 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.8797337335970123 — Duration: None
+WARNING — 2022-02-26 17:40:23,155 — Current best solution: Iteration: 17 — Run: 23/50 — Best parameters: [0 0 1 0 0 0 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.8797337335970123 — Duration: None
+WARNING — 2022-02-26 17:41:22,027 — Current best solution: Iteration: 18 — Run: 23/50 — Best parameters: [0 0 1 0 0 0 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.8797337335970123 — Duration: None
+WARNING — 2022-02-26 17:52:57,442 — Current best solution: Iteration: 19 — Run: 23/50 — Best parameters: [0 0 1 0 0 0 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.8797337335970123 — Duration: None
+WARNING — 2022-02-26 17:55:16,186 — Current best solution: Iteration: 20 — Run: 23/50 — Best parameters: [0 0 1 0 0 0 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.8797337335970123 — Duration: None
+WARNING — 2022-02-26 17:58:58,608 — Current best solution: Iteration: 21 — Run: 23/50 — Best parameters: [0 0 1 0 0 0 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.8797337335970123 — Duration: None
+INFO — 2022-02-26 18:00:04,378 — **** Finishing the GA ****: Iteration: None — Run: 23/50 — Best parameters: [0 0 1 0 0 0 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.8797337335970123 — Duration: 16779.31138253212
+INFO — 2022-02-26 18:00:04,378 — **** Starting the GA ****: Iteration: None — Run: 24/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-26 18:57:19,469 — Current best solution: Iteration: 1 — Run: 24/50 — Best parameters: [0 0 0 1 0 0 0 1 0 1 0 1 1 0] — Best parameters fitness: 0.709487880700728 — Duration: None
+WARNING — 2022-02-26 19:22:58,806 — Current best solution: Iteration: 2 — Run: 24/50 — Best parameters: [0 0 0 1 0 0 0 1 0 1 0 1 1 0] — Best parameters fitness: 0.709487880700728 — Duration: None
+WARNING — 2022-02-26 19:39:46,303 — Current best solution: Iteration: 3 — Run: 24/50 — Best parameters: [0 0 0 1 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8406500725886711 — Duration: None
+WARNING — 2022-02-26 19:51:14,787 — Current best solution: Iteration: 4 — Run: 24/50 — Best parameters: [0 0 0 1 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8406500725886711 — Duration: None
+WARNING — 2022-02-26 19:57:29,661 — Current best solution: Iteration: 5 — Run: 24/50 — Best parameters: [0 0 0 1 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8406500725886711 — Duration: None
+WARNING — 2022-02-26 20:08:13,667 — Current best solution: Iteration: 6 — Run: 24/50 — Best parameters: [0 0 0 1 0 0 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.8512970255317185 — Duration: None
+WARNING — 2022-02-26 20:16:23,245 — Current best solution: Iteration: 7 — Run: 24/50 — Best parameters: [0 0 0 1 0 0 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.8512970255317185 — Duration: None
+WARNING — 2022-02-26 20:25:40,568 — Current best solution: Iteration: 8 — Run: 24/50 — Best parameters: [1 0 1 0 0 0 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.8756526410356734 — Duration: None
+WARNING — 2022-02-26 20:29:10,156 — Current best solution: Iteration: 9 — Run: 24/50 — Best parameters: [1 0 1 0 0 0 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.8756526410356734 — Duration: None
+WARNING — 2022-02-26 20:33:35,754 — Current best solution: Iteration: 10 — Run: 24/50 — Best parameters: [0 0 0 1 0 0 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.8512970255317185 — Duration: None
+WARNING — 2022-02-26 20:42:33,526 — Current best solution: Iteration: 11 — Run: 24/50 — Best parameters: [0 0 0 1 0 0 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.8512970255317185 — Duration: None
+WARNING — 2022-02-26 20:43:50,063 — Current best solution: Iteration: 12 — Run: 24/50 — Best parameters: [0 0 0 1 0 0 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.8512970255317185 — Duration: None
+WARNING — 2022-02-26 20:49:13,477 — Current best solution: Iteration: 13 — Run: 24/50 — Best parameters: [0 0 0 1 0 0 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.8512970255317185 — Duration: None
+WARNING — 2022-02-26 20:49:55,856 — Current best solution: Iteration: 14 — Run: 24/50 — Best parameters: [0 0 0 1 0 0 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.8512970255317185 — Duration: None
+WARNING — 2022-02-26 20:55:41,761 — Current best solution: Iteration: 15 — Run: 24/50 — Best parameters: [0 0 0 1 0 0 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.8512970255317185 — Duration: None
+INFO — 2022-02-26 21:02:36,835 — **** Finishing the GA ****: Iteration: None — Run: 24/50 — Best parameters: [0 0 0 1 0 0 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.8512970255317185 — Duration: 10734.657287597656
+INFO — 2022-02-26 21:02:36,835 — **** Starting the GA ****: Iteration: None — Run: 25/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-26 22:12:08,515 — Current best solution: Iteration: 1 — Run: 25/50 — Best parameters: [0 0 1 0 1 0 1 0 0 1 0 0 1 1] — Best parameters fitness: 0.7539983885571526 — Duration: None
+WARNING — 2022-02-26 22:41:34,200 — Current best solution: Iteration: 2 — Run: 25/50 — Best parameters: [0 0 1 0 1 0 1 0 0 1 0 0 1 1] — Best parameters fitness: 0.7539983885571526 — Duration: None
+WARNING — 2022-02-26 22:59:54,764 — Current best solution: Iteration: 3 — Run: 25/50 — Best parameters: [0 0 1 0 1 0 1 0 0 1 0 0 0 1] — Best parameters fitness: 0.7841084193881007 — Duration: None
+WARNING — 2022-02-26 23:21:08,028 — Current best solution: Iteration: 4 — Run: 25/50 — Best parameters: [0 0 1 0 1 0 1 0 0 1 0 0 1 1] — Best parameters fitness: 0.7539983885571526 — Duration: None
+WARNING — 2022-02-26 23:37:39,421 — Current best solution: Iteration: 5 — Run: 25/50 — Best parameters: [0 0 1 0 1 0 1 0 0 1 0 0 0 1] — Best parameters fitness: 0.7205589455918413 — Duration: None
+WARNING — 2022-02-27 00:02:47,162 — Current best solution: Iteration: 6 — Run: 25/50 — Best parameters: [0 0 1 0 1 0 1 0 0 1 0 0 0 1] — Best parameters fitness: 0.7987514363835966 — Duration: None
+WARNING — 2022-02-27 00:10:00,169 — Current best solution: Iteration: 7 — Run: 25/50 — Best parameters: [0 0 1 0 1 0 1 0 0 1 0 0 0 1] — Best parameters fitness: 0.7987514363835966 — Duration: None
+WARNING — 2022-02-27 00:18:41,178 — Current best solution: Iteration: 8 — Run: 25/50 — Best parameters: [0 0 1 0 1 0 1 0 0 1 0 0 0 1] — Best parameters fitness: 0.811009752018632 — Duration: None
+WARNING — 2022-02-27 00:22:31,395 — Current best solution: Iteration: 9 — Run: 25/50 — Best parameters: [0 0 1 0 1 0 1 0 0 1 0 0 0 1] — Best parameters fitness: 0.811009752018632 — Duration: None
+WARNING — 2022-02-27 00:26:59,997 — Current best solution: Iteration: 10 — Run: 25/50 — Best parameters: [0 0 1 0 1 0 1 0 0 1 0 0 0 1] — Best parameters fitness: 0.811009752018632 — Duration: None
+WARNING — 2022-02-27 00:28:22,799 — Current best solution: Iteration: 11 — Run: 25/50 — Best parameters: [0 0 1 0 1 0 1 0 0 1 0 0 0 1] — Best parameters fitness: 0.811009752018632 — Duration: None
+WARNING — 2022-02-27 00:30:13,383 — Current best solution: Iteration: 12 — Run: 25/50 — Best parameters: [0 0 1 0 1 0 1 0 0 1 0 0 0 1] — Best parameters fitness: 0.811009752018632 — Duration: None
+WARNING — 2022-02-27 00:31:49,980 — Current best solution: Iteration: 13 — Run: 25/50 — Best parameters: [0 0 1 0 1 0 1 0 0 1 0 0 0 1] — Best parameters fitness: 0.811009752018632 — Duration: None
+WARNING — 2022-02-27 00:32:55,172 — Current best solution: Iteration: 14 — Run: 25/50 — Best parameters: [0 0 1 0 1 0 1 0 0 1 0 0 0 1] — Best parameters fitness: 0.811009752018632 — Duration: None
+WARNING — 2022-02-27 00:33:45,532 — Current best solution: Iteration: 15 — Run: 25/50 — Best parameters: [0 0 1 0 1 0 1 0 0 1 0 0 0 1] — Best parameters fitness: 0.811009752018632 — Duration: None
+WARNING — 2022-02-27 00:33:45,532 — Current best solution: Iteration: 16 — Run: 25/50 — Best parameters: [0 0 1 0 1 0 1 0 0 1 0 0 0 1] — Best parameters fitness: 0.811009752018632 — Duration: None
+WARNING — 2022-02-27 00:37:47,923 — Current best solution: Iteration: 17 — Run: 25/50 — Best parameters: [0 0 1 0 1 0 0 0 0 1 0 0 0 1] — Best parameters fitness: 0.8186952859685842 — Duration: None
+WARNING — 2022-02-27 00:39:12,507 — Current best solution: Iteration: 18 — Run: 25/50 — Best parameters: [0 0 1 0 1 0 1 0 0 1 0 0 0 1] — Best parameters fitness: 0.811009752018632 — Duration: None
+INFO — 2022-02-27 00:43:13,064 — **** Finishing the GA ****: Iteration: None — Run: 25/50 — Best parameters: [0 0 1 0 1 0 1 0 0 1 0 0 0 1] — Best parameters fitness: 0.811009752018632 — Duration: 13126.13212132454
+INFO — 2022-02-27 00:43:13,064 — **** Starting the GA ****: Iteration: None — Run: 26/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-27 02:21:51,889 — Current best solution: Iteration: 1 — Run: 26/50 — Best parameters: [0 0 1 1 0 0 0 1 1 0 1 0 1 1] — Best parameters fitness: 0.7486967334103454 — Duration: None
+WARNING — 2022-02-27 03:26:31,801 — Current best solution: Iteration: 2 — Run: 26/50 — Best parameters: [0 0 1 1 0 0 0 1 1 0 1 0 1 1] — Best parameters fitness: 0.7486967334103454 — Duration: None
+WARNING — 2022-02-27 04:30:41,521 — Current best solution: Iteration: 3 — Run: 26/50 — Best parameters: [0 0 0 1 0 0 0 1 1 0 0 0 1 1] — Best parameters fitness: 0.7785577426205792 — Duration: None
+WARNING — 2022-02-27 05:07:33,294 — Current best solution: Iteration: 4 — Run: 26/50 — Best parameters: [0 0 0 1 0 0 0 1 1 0 0 0 1 1] — Best parameters fitness: 0.7785577426205792 — Duration: None
+WARNING — 2022-02-27 05:38:30,636 — Current best solution: Iteration: 5 — Run: 26/50 — Best parameters: [0 0 1 1 0 0 0 1 1 0 0 0 1 1] — Best parameters fitness: 0.8849936068105102 — Duration: None
+WARNING — 2022-02-27 06:04:50,115 — Current best solution: Iteration: 6 — Run: 26/50 — Best parameters: [0 0 1 1 0 0 0 1 1 0 0 0 1 1] — Best parameters fitness: 0.8849936068105102 — Duration: None
+WARNING — 2022-02-27 06:13:58,311 — Current best solution: Iteration: 7 — Run: 26/50 — Best parameters: [0 0 1 1 0 0 0 1 1 0 0 0 1 1] — Best parameters fitness: 0.8849936068105102 — Duration: None
+WARNING — 2022-02-27 06:24:42,158 — Current best solution: Iteration: 8 — Run: 26/50 — Best parameters: [0 0 1 1 0 0 0 1 1 0 0 0 1 1] — Best parameters fitness: 0.8849936068105102 — Duration: None
+WARNING — 2022-02-27 06:31:46,034 — Current best solution: Iteration: 9 — Run: 26/50 — Best parameters: [0 0 1 1 0 0 0 1 1 0 0 0 1 1] — Best parameters fitness: 0.8849936068105102 — Duration: None
+WARNING — 2022-02-27 06:33:31,945 — Current best solution: Iteration: 10 — Run: 26/50 — Best parameters: [0 0 1 1 0 0 0 1 1 0 0 0 1 1] — Best parameters fitness: 0.8849936068105102 — Duration: None
+WARNING — 2022-02-27 06:35:07,333 — Current best solution: Iteration: 11 — Run: 26/50 — Best parameters: [0 0 1 1 0 0 0 1 1 0 0 0 1 1] — Best parameters fitness: 0.8849936068105102 — Duration: None
+WARNING — 2022-02-27 06:35:07,333 — Current best solution: Iteration: 12 — Run: 26/50 — Best parameters: [0 0 1 1 0 0 0 1 1 0 0 0 1 1] — Best parameters fitness: 0.8849936068105102 — Duration: None
+WARNING — 2022-02-27 06:35:07,333 — Current best solution: Iteration: 13 — Run: 26/50 — Best parameters: [0 0 1 1 0 0 0 1 1 0 0 0 1 1] — Best parameters fitness: 0.8849936068105102 — Duration: None
+WARNING — 2022-02-27 06:35:07,333 — Current best solution: Iteration: 14 — Run: 26/50 — Best parameters: [0 0 1 1 0 0 0 1 1 0 0 0 1 1] — Best parameters fitness: 0.8849936068105102 — Duration: None
+INFO — 2022-02-27 06:35:07,333 — **** Finishing the GA ****: Iteration: None — Run: 26/50 — Best parameters: [0 0 1 1 0 0 0 1 1 0 0 0 1 1] — Best parameters fitness: 0.8849936068105102 — Duration: 21114.269226789474
+INFO — 2022-02-27 06:35:07,333 — **** Starting the GA ****: Iteration: None — Run: 27/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-27 08:06:10,761 — Current best solution: Iteration: 1 — Run: 27/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8064733780960197 — Duration: None
+WARNING — 2022-02-27 09:00:41,218 — Current best solution: Iteration: 2 — Run: 27/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8064733780960197 — Duration: None
+WARNING — 2022-02-27 09:42:45,774 — Current best solution: Iteration: 3 — Run: 27/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8359036566321516 — Duration: None
+WARNING — 2022-02-27 09:56:40,339 — Current best solution: Iteration: 4 — Run: 27/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8359036566321516 — Duration: None
+WARNING — 2022-02-27 10:00:35,755 — Current best solution: Iteration: 5 — Run: 27/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8359036566321516 — Duration: None
+WARNING — 2022-02-27 10:02:49,639 — Current best solution: Iteration: 6 — Run: 27/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8359036566321516 — Duration: None
+WARNING — 2022-02-27 10:04:56,767 — Current best solution: Iteration: 7 — Run: 27/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8359036566321516 — Duration: None
+WARNING — 2022-02-27 10:06:08,075 — Current best solution: Iteration: 8 — Run: 27/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8359036566321516 — Duration: None
+WARNING — 2022-02-27 10:10:13,894 — Current best solution: Iteration: 9 — Run: 27/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8359036566321516 — Duration: None
+WARNING — 2022-02-27 10:12:21,882 — Current best solution: Iteration: 10 — Run: 27/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8359036566321516 — Duration: None
+WARNING — 2022-02-27 10:15:40,624 — Current best solution: Iteration: 11 — Run: 27/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8359036566321516 — Duration: None
+WARNING — 2022-02-27 10:18:42,238 — Current best solution: Iteration: 12 — Run: 27/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8359036566321516 — Duration: None
+INFO — 2022-02-27 10:29:58,776 — **** Finishing the GA ****: Iteration: None — Run: 27/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8359036566321516 — Duration: 13833.452343940735
+INFO — 2022-02-27 10:29:58,776 — **** Starting the GA ****: Iteration: None — Run: 28/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-27 12:16:56,731 — Current best solution: Iteration: 1 — Run: 28/50 — Best parameters: [0 1 0 1 0 1 0 1 1 0 0 0 1 0] — Best parameters fitness: 0.7078590864424663 — Duration: None
+WARNING — 2022-02-27 12:52:51,857 — Current best solution: Iteration: 2 — Run: 28/50 — Best parameters: [0 0 1 1 1 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.7359240018416491 — Duration: None
+WARNING — 2022-02-27 13:24:29,592 — Current best solution: Iteration: 3 — Run: 28/50 — Best parameters: [0 0 0 1 1 1 0 1 1 0 0 0 1 0] — Best parameters fitness: 0.7792030732196539 — Duration: None
+WARNING — 2022-02-27 13:45:24,926 — Current best solution: Iteration: 4 — Run: 28/50 — Best parameters: [0 0 1 1 0 1 0 1 1 0 0 1 1 1] — Best parameters fitness: 0.7930354764709053 — Duration: None
+WARNING — 2022-02-27 14:04:39,582 — Current best solution: Iteration: 5 — Run: 28/50 — Best parameters: [0 0 1 1 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8299679314537227 — Duration: None
+WARNING — 2022-02-27 14:25:03,319 — Current best solution: Iteration: 6 — Run: 28/50 — Best parameters: [0 0 1 1 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8299679314537227 — Duration: None
+WARNING — 2022-02-27 14:30:38,847 — Current best solution: Iteration: 7 — Run: 28/50 — Best parameters: [0 0 1 1 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8299679314537227 — Duration: None
+WARNING — 2022-02-27 14:36:13,019 — Current best solution: Iteration: 8 — Run: 28/50 — Best parameters: [0 0 0 1 0 0 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8392763704638493 — Duration: None
+WARNING — 2022-02-27 14:39:58,992 — Current best solution: Iteration: 9 — Run: 28/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8812400126453055 — Duration: None
+WARNING — 2022-02-27 14:40:36,292 — Current best solution: Iteration: 10 — Run: 28/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8812400126453055 — Duration: None
+WARNING — 2022-02-27 14:45:03,798 — Current best solution: Iteration: 11 — Run: 28/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8812400126453055 — Duration: None
+WARNING — 2022-02-27 14:45:36,463 — Current best solution: Iteration: 12 — Run: 28/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8812400126453055 — Duration: None
+WARNING — 2022-02-27 14:46:27,559 — Current best solution: Iteration: 13 — Run: 28/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8812400126453055 — Duration: None
+WARNING — 2022-02-27 14:47:02,936 — Current best solution: Iteration: 14 — Run: 28/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8812400126453055 — Duration: None
+WARNING — 2022-02-27 14:48:56,347 — Current best solution: Iteration: 15 — Run: 28/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8812400126453055 — Duration: None
+WARNING — 2022-02-27 14:48:56,347 — Current best solution: Iteration: 16 — Run: 28/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8812400126453055 — Duration: None
+WARNING — 2022-02-27 14:48:56,347 — Current best solution: Iteration: 17 — Run: 28/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8812400126453055 — Duration: None
+WARNING — 2022-02-27 14:48:56,347 — Current best solution: Iteration: 18 — Run: 28/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8812400126453055 — Duration: None
+INFO — 2022-02-27 14:48:56,347 — **** Finishing the GA ****: Iteration: None — Run: 28/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8812400126453055 — Duration: 15537.570979595184
+INFO — 2022-02-27 14:48:56,347 — **** Starting the GA ****: Iteration: None — Run: 29/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-27 15:48:33,361 — Current best solution: Iteration: 1 — Run: 29/50 — Best parameters: [0 0 0 1 1 1 0 1 1 0 0 0 0 1] — Best parameters fitness: 0.8437143308760914 — Duration: None
+WARNING — 2022-02-27 16:20:13,714 — Current best solution: Iteration: 2 — Run: 29/50 — Best parameters: [0 0 0 1 1 1 0 1 1 0 0 0 0 1] — Best parameters fitness: 0.8437143308760914 — Duration: None
+WARNING — 2022-02-27 16:37:23,063 — Current best solution: Iteration: 3 — Run: 29/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.841595023828578 — Duration: None
+WARNING — 2022-02-27 16:45:36,126 — Current best solution: Iteration: 4 — Run: 29/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.841595023828578 — Duration: None
+WARNING — 2022-02-27 16:50:27,526 — Current best solution: Iteration: 5 — Run: 29/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.841595023828578 — Duration: None
+WARNING — 2022-02-27 16:51:09,031 — Current best solution: Iteration: 6 — Run: 29/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.841595023828578 — Duration: None
+WARNING — 2022-02-27 16:52:08,954 — Current best solution: Iteration: 7 — Run: 29/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.841595023828578 — Duration: None
+WARNING — 2022-02-27 16:52:23,982 — Current best solution: Iteration: 8 — Run: 29/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.841595023828578 — Duration: None
+WARNING — 2022-02-27 16:52:59,253 — Current best solution: Iteration: 9 — Run: 29/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.841595023828578 — Duration: None
+WARNING — 2022-02-27 16:52:59,253 — Current best solution: Iteration: 10 — Run: 29/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.841595023828578 — Duration: None
+WARNING — 2022-02-27 16:53:38,006 — Current best solution: Iteration: 11 — Run: 29/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.841595023828578 — Duration: None
+WARNING — 2022-02-27 16:53:38,022 — Current best solution: Iteration: 12 — Run: 29/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.841595023828578 — Duration: None
+INFO — 2022-02-27 16:53:38,022 — **** Finishing the GA ****: Iteration: None — Run: 29/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.841595023828578 — Duration: 7481.675356626511
+INFO — 2022-02-27 16:53:38,022 — **** Starting the GA ****: Iteration: None — Run: 30/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-27 18:07:27,317 — Current best solution: Iteration: 1 — Run: 30/50 — Best parameters: [0 0 0 1 0 0 1 1 1 1 0 0 1 1] — Best parameters fitness: 0.8086541470446408 — Duration: None
+WARNING — 2022-02-27 18:50:47,797 — Current best solution: Iteration: 2 — Run: 30/50 — Best parameters: [0 0 0 1 0 0 1 1 1 1 0 0 1 1] — Best parameters fitness: 0.8086541470446408 — Duration: None
+WARNING — 2022-02-27 19:13:01,790 — Current best solution: Iteration: 3 — Run: 30/50 — Best parameters: [0 0 1 0 0 0 1 1 0 0 0 0 1 0] — Best parameters fitness: 0.8106168305682948 — Duration: None
+WARNING — 2022-02-27 19:33:43,033 — Current best solution: Iteration: 4 — Run: 30/50 — Best parameters: [0 0 0 1 0 0 1 1 0 1 0 0 1 1] — Best parameters fitness: 0.828042680471339 — Duration: None
+WARNING — 2022-02-27 19:56:14,513 — Current best solution: Iteration: 5 — Run: 30/50 — Best parameters: [1 0 1 0 0 0 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.8488898132970293 — Duration: None
+WARNING — 2022-02-27 20:19:16,104 — Current best solution: Iteration: 6 — Run: 30/50 — Best parameters: [0 0 0 1 0 0 1 1 0 1 0 0 1 1] — Best parameters fitness: 0.8234695781649174 — Duration: None
+WARNING — 2022-02-27 20:37:50,167 — Current best solution: Iteration: 7 — Run: 30/50 — Best parameters: [0 0 0 1 0 0 1 1 0 1 0 0 1 1] — Best parameters fitness: 0.8234695781649174 — Duration: None
+WARNING — 2022-02-27 20:53:23,021 — Current best solution: Iteration: 8 — Run: 30/50 — Best parameters: [0 0 0 1 0 0 1 1 0 1 0 0 1 1] — Best parameters fitness: 0.7903352865585275 — Duration: None
+WARNING — 2022-02-27 21:00:30,037 — Current best solution: Iteration: 9 — Run: 30/50 — Best parameters: [0 0 0 1 0 0 1 1 0 1 0 0 1 1] — Best parameters fitness: 0.7903352865585275 — Duration: None
+WARNING — 2022-02-27 21:09:48,278 — Current best solution: Iteration: 10 — Run: 30/50 — Best parameters: [0 0 0 1 0 0 1 1 0 0 0 0 1 1] — Best parameters fitness: 0.8481655970738814 — Duration: None
+WARNING — 2022-02-27 21:20:01,229 — Current best solution: Iteration: 11 — Run: 30/50 — Best parameters: [0 0 0 1 0 0 1 1 0 0 0 0 1 1] — Best parameters fitness: 0.8473522608934306 — Duration: None
+WARNING — 2022-02-27 21:30:27,554 — Current best solution: Iteration: 12 — Run: 30/50 — Best parameters: [0 0 0 1 0 1 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.845305013491746 — Duration: None
+WARNING — 2022-02-27 21:43:27,660 — Current best solution: Iteration: 13 — Run: 30/50 — Best parameters: [0 0 0 1 0 1 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.845305013491746 — Duration: None
+WARNING — 2022-02-27 21:48:14,722 — Current best solution: Iteration: 14 — Run: 30/50 — Best parameters: [0 0 0 1 0 1 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.845305013491746 — Duration: None
+WARNING — 2022-02-27 21:50:29,572 — Current best solution: Iteration: 15 — Run: 30/50 — Best parameters: [0 0 0 1 0 1 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.845305013491746 — Duration: None
+WARNING — 2022-02-27 21:59:17,143 — Current best solution: Iteration: 16 — Run: 30/50 — Best parameters: [0 0 0 1 0 1 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.845305013491746 — Duration: None
+WARNING — 2022-02-27 22:02:07,595 — Current best solution: Iteration: 17 — Run: 30/50 — Best parameters: [0 0 0 1 0 1 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.845305013491746 — Duration: None
+WARNING — 2022-02-27 22:02:07,595 — Current best solution: Iteration: 18 — Run: 30/50 — Best parameters: [0 0 0 1 0 1 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.845305013491746 — Duration: None
+WARNING — 2022-02-27 22:02:47,335 — Current best solution: Iteration: 19 — Run: 30/50 — Best parameters: [0 0 0 1 0 1 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.845305013491746 — Duration: None
+WARNING — 2022-02-27 22:05:27,819 — Current best solution: Iteration: 20 — Run: 30/50 — Best parameters: [0 0 0 1 0 1 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.845305013491746 — Duration: None
+WARNING — 2022-02-27 22:05:27,819 — Current best solution: Iteration: 21 — Run: 30/50 — Best parameters: [0 0 0 1 0 1 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.845305013491746 — Duration: None
+INFO — 2022-02-27 22:05:27,819 — **** Finishing the GA ****: Iteration: None — Run: 30/50 — Best parameters: [0 0 0 1 0 1 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.845305013491746 — Duration: 18709.79660511017
+INFO — 2022-02-27 22:05:27,819 — **** Starting the GA ****: Iteration: None — Run: 31/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-27 23:09:26,166 — Current best solution: Iteration: 1 — Run: 31/50 — Best parameters: [1 0 0 1 0 0 0 1 0 1 0 1 1 1] — Best parameters fitness: 0.8256383053369605 — Duration: None
+WARNING — 2022-02-27 23:38:18,897 — Current best solution: Iteration: 2 — Run: 31/50 — Best parameters: [1 0 0 1 0 0 0 1 0 1 0 1 1 1] — Best parameters fitness: 0.8256383053369605 — Duration: None
+WARNING — 2022-02-28 00:02:28,007 — Current best solution: Iteration: 3 — Run: 31/50 — Best parameters: [1 0 0 1 0 0 0 1 0 1 0 1 1 1] — Best parameters fitness: 0.8256383053369605 — Duration: None
+WARNING — 2022-02-28 00:11:50,335 — Current best solution: Iteration: 4 — Run: 31/50 — Best parameters: [0 0 0 1 0 0 0 1 1 0 0 0 1 0] — Best parameters fitness: 0.8305816006956201 — Duration: None
+WARNING — 2022-02-28 00:31:31,327 — Current best solution: Iteration: 5 — Run: 31/50 — Best parameters: [0 0 0 1 0 0 0 1 1 0 0 0 1 0] — Best parameters fitness: 0.8305816006956201 — Duration: None
+WARNING — 2022-02-28 00:58:55,934 — Current best solution: Iteration: 6 — Run: 31/50 — Best parameters: [0 0 0 1 0 0 0 1 1 0 0 0 1 0] — Best parameters fitness: 0.8305816006956201 — Duration: None
+WARNING — 2022-02-28 01:09:53,664 — Current best solution: Iteration: 7 — Run: 31/50 — Best parameters: [0 0 0 1 0 0 0 1 1 0 0 0 1 0] — Best parameters fitness: 0.8305816006956201 — Duration: None
+WARNING — 2022-02-28 01:14:57,118 — Current best solution: Iteration: 8 — Run: 31/50 — Best parameters: [0 0 0 1 0 0 0 1 1 0 0 0 1 0] — Best parameters fitness: 0.8305816006956201 — Duration: None
+WARNING — 2022-02-28 01:22:04,087 — Current best solution: Iteration: 9 — Run: 31/50 — Best parameters: [0 0 0 1 0 0 0 1 1 0 0 0 1 0] — Best parameters fitness: 0.8305816006956201 — Duration: None
+WARNING — 2022-02-28 01:26:47,946 — Current best solution: Iteration: 10 — Run: 31/50 — Best parameters: [0 0 0 1 0 0 0 1 1 0 0 0 1 0] — Best parameters fitness: 0.8305816006956201 — Duration: None
+WARNING — 2022-02-28 01:33:27,607 — Current best solution: Iteration: 11 — Run: 31/50 — Best parameters: [0 0 0 1 0 0 0 1 1 0 0 0 1 0] — Best parameters fitness: 0.8305816006956201 — Duration: None
+WARNING — 2022-02-28 01:42:27,933 — Current best solution: Iteration: 12 — Run: 31/50 — Best parameters: [0 0 0 1 0 0 0 1 1 0 0 0 1 0] — Best parameters fitness: 0.8305816006956201 — Duration: None
+WARNING — 2022-02-28 01:49:08,767 — Current best solution: Iteration: 13 — Run: 31/50 — Best parameters: [0 0 0 1 0 0 0 1 1 0 0 0 1 0] — Best parameters fitness: 0.8305816006956201 — Duration: None
+INFO — 2022-02-28 02:03:56,834 — **** Finishing the GA ****: Iteration: None — Run: 31/50 — Best parameters: [0 0 0 1 0 0 0 1 1 0 0 0 1 0] — Best parameters fitness: 0.8305816006956201 — Duration: 13901.844930887222
+INFO — 2022-02-28 02:03:56,834 — **** Starting the GA ****: Iteration: None — Run: 32/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-28 03:12:52,273 — Current best solution: Iteration: 1 — Run: 32/50 — Best parameters: [0 0 1 1 1 0 1 1 0 0 0 0 1 1] — Best parameters fitness: 0.7928967304318384 — Duration: None
+WARNING — 2022-02-28 04:01:12,653 — Current best solution: Iteration: 2 — Run: 32/50 — Best parameters: [1 0 1 0 0 0 1 1 1 0 0 0 0 0] — Best parameters fitness: 0.7473739617175439 — Duration: None
+WARNING — 2022-02-28 04:30:53,147 — Current best solution: Iteration: 3 — Run: 32/50 — Best parameters: [0 0 1 1 1 1 0 0 0 1 0 0 0 0] — Best parameters fitness: 0.7677816594334492 — Duration: None
+WARNING — 2022-02-28 05:01:05,998 — Current best solution: Iteration: 4 — Run: 32/50 — Best parameters: [1 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.7987248339176336 — Duration: None
+WARNING — 2022-02-28 05:06:37,316 — Current best solution: Iteration: 5 — Run: 32/50 — Best parameters: [1 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.7987248339176336 — Duration: None
+WARNING — 2022-02-28 05:31:06,947 — Current best solution: Iteration: 6 — Run: 32/50 — Best parameters: [1 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.7987248339176336 — Duration: None
+WARNING — 2022-02-28 05:38:25,612 — Current best solution: Iteration: 7 — Run: 32/50 — Best parameters: [1 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.7987248339176336 — Duration: None
+WARNING — 2022-02-28 05:38:46,331 — Current best solution: Iteration: 8 — Run: 32/50 — Best parameters: [1 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.7987248339176336 — Duration: None
+WARNING — 2022-02-28 05:42:08,203 — Current best solution: Iteration: 9 — Run: 32/50 — Best parameters: [1 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.7987248339176336 — Duration: None
+WARNING — 2022-02-28 05:49:54,420 — Current best solution: Iteration: 10 — Run: 32/50 — Best parameters: [1 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.7987248339176336 — Duration: None
+WARNING — 2022-02-28 05:49:54,420 — Current best solution: Iteration: 11 — Run: 32/50 — Best parameters: [1 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.7987248339176336 — Duration: None
+WARNING — 2022-02-28 05:49:54,420 — Current best solution: Iteration: 12 — Run: 32/50 — Best parameters: [1 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.7987248339176336 — Duration: None
+WARNING — 2022-02-28 05:58:45,223 — Current best solution: Iteration: 13 — Run: 32/50 — Best parameters: [1 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.7987248339176336 — Duration: None
+INFO — 2022-02-28 05:58:45,223 — **** Finishing the GA ****: Iteration: None — Run: 32/50 — Best parameters: [1 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.7987248339176336 — Duration: 14088.389040708542
+INFO — 2022-02-28 05:58:45,223 — **** Starting the GA ****: Iteration: None — Run: 33/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-28 07:01:26,119 — Current best solution: Iteration: 1 — Run: 33/50 — Best parameters: [0 0 0 1 0 0 0 0 1 1 0 1 1 0] — Best parameters fitness: 0.7207566254564304 — Duration: None
+WARNING — 2022-02-28 07:19:48,651 — Current best solution: Iteration: 2 — Run: 33/50 — Best parameters: [0 0 0 1 0 0 0 0 1 1 0 1 1 0] — Best parameters fitness: 0.7207566254564304 — Duration: None
+WARNING — 2022-02-28 07:32:52,310 — Current best solution: Iteration: 3 — Run: 33/50 — Best parameters: [0 0 0 1 0 0 0 0 1 0 0 1 0 0] — Best parameters fitness: 0.7265817250820484 — Duration: None
+WARNING — 2022-02-28 07:45:30,397 — Current best solution: Iteration: 4 — Run: 33/50 — Best parameters: [0 0 0 1 0 0 0 0 1 0 0 1 0 0] — Best parameters fitness: 0.7265817250820484 — Duration: None
+WARNING — 2022-02-28 07:53:38,917 — Current best solution: Iteration: 5 — Run: 33/50 — Best parameters: [0 0 0 1 0 0 0 0 1 1 0 1 1 0] — Best parameters fitness: 0.7207566254564304 — Duration: None
+WARNING — 2022-02-28 07:56:38,616 — Current best solution: Iteration: 6 — Run: 33/50 — Best parameters: [0 0 0 1 0 0 0 0 1 1 0 1 1 0] — Best parameters fitness: 0.7207566254564304 — Duration: None
+WARNING — 2022-02-28 08:01:05,647 — Current best solution: Iteration: 7 — Run: 33/50 — Best parameters: [0 0 0 1 0 0 0 0 1 1 0 1 1 0] — Best parameters fitness: 0.7207566254564304 — Duration: None
+WARNING — 2022-02-28 08:06:30,361 — Current best solution: Iteration: 8 — Run: 33/50 — Best parameters: [0 0 0 1 0 0 0 0 0 1 0 1 1 0] — Best parameters fitness: 0.7324161265200444 — Duration: None
+WARNING — 2022-02-28 08:08:00,365 — Current best solution: Iteration: 9 — Run: 33/50 — Best parameters: [0 0 0 1 0 0 0 0 0 1 0 1 1 0] — Best parameters fitness: 0.7324161265200444 — Duration: None
+WARNING — 2022-02-28 08:10:00,714 — Current best solution: Iteration: 10 — Run: 33/50 — Best parameters: [0 0 0 1 0 0 0 0 0 1 0 1 1 0] — Best parameters fitness: 0.7324161265200444 — Duration: None
+WARNING — 2022-02-28 08:10:44,106 — Current best solution: Iteration: 11 — Run: 33/50 — Best parameters: [0 0 0 1 0 0 0 0 1 1 0 1 1 0] — Best parameters fitness: 0.7207566254564304 — Duration: None
+INFO — 2022-02-28 08:12:15,187 — **** Finishing the GA ****: Iteration: None — Run: 33/50 — Best parameters: [0 0 0 1 0 0 0 0 1 1 0 1 1 0] — Best parameters fitness: 0.7207566254564304 — Duration: 7968.2914226055145
+INFO — 2022-02-28 08:12:15,187 — **** Starting the GA ****: Iteration: None — Run: 34/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-28 08:56:11,484 — Current best solution: Iteration: 1 — Run: 34/50 — Best parameters: [0 0 1 1 0 0 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.846071779422779 — Duration: None
+WARNING — 2022-02-28 09:30:02,894 — Current best solution: Iteration: 2 — Run: 34/50 — Best parameters: [0 0 1 1 0 0 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.846071779422779 — Duration: None
+WARNING — 2022-02-28 09:52:33,335 — Current best solution: Iteration: 3 — Run: 34/50 — Best parameters: [0 0 1 1 0 0 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.846071779422779 — Duration: None
+WARNING — 2022-02-28 10:06:26,795 — Current best solution: Iteration: 4 — Run: 34/50 — Best parameters: [0 0 1 1 0 0 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.846071779422779 — Duration: None
+WARNING — 2022-02-28 10:15:45,005 — Current best solution: Iteration: 5 — Run: 34/50 — Best parameters: [0 0 1 1 0 0 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.846071779422779 — Duration: None
+WARNING — 2022-02-28 10:21:33,687 — Current best solution: Iteration: 6 — Run: 34/50 — Best parameters: [0 0 1 1 0 0 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.846071779422779 — Duration: None
+WARNING — 2022-02-28 10:28:41,344 — Current best solution: Iteration: 7 — Run: 34/50 — Best parameters: [0 0 1 0 0 0 0 1 1 1 0 0 0 1] — Best parameters fitness: 0.8478877786840674 — Duration: None
+WARNING — 2022-02-28 10:33:08,785 — Current best solution: Iteration: 8 — Run: 34/50 — Best parameters: [0 0 1 1 0 0 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.846071779422779 — Duration: None
+WARNING — 2022-02-28 10:40:40,755 — Current best solution: Iteration: 9 — Run: 34/50 — Best parameters: [0 0 1 1 0 0 0 1 1 1 0 0 1 0] — Best parameters fitness: 0.8668571798660059 — Duration: None
+WARNING — 2022-02-28 10:45:34,265 — Current best solution: Iteration: 10 — Run: 34/50 — Best parameters: [0 0 1 1 0 0 0 1 1 1 0 0 1 0] — Best parameters fitness: 0.8536600047964953 — Duration: None
+WARNING — 2022-02-28 10:48:00,796 — Current best solution: Iteration: 11 — Run: 34/50 — Best parameters: [0 0 1 1 0 0 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.846071779422779 — Duration: None
+INFO — 2022-02-28 10:58:03,636 — **** Finishing the GA ****: Iteration: None — Run: 34/50 — Best parameters: [0 0 1 0 0 0 0 1 1 1 0 0 1 1] — Best parameters fitness: 0.8695884728933896 — Duration: 9658.258758068085
+INFO — 2022-02-28 10:58:03,636 — **** Starting the GA ****: Iteration: None — Run: 35/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-28 12:21:43,427 — Current best solution: Iteration: 1 — Run: 35/50 — Best parameters: [0 0 1 0 0 0 1 1 1 0 0 0 0 1] — Best parameters fitness: 0.776672489150174 — Duration: None
+WARNING — 2022-02-28 12:45:59,965 — Current best solution: Iteration: 2 — Run: 35/50 — Best parameters: [0 0 1 0 0 0 1 1 0 0 0 0 0 1] — Best parameters fitness: 0.8063439099900479 — Duration: None
+WARNING — 2022-02-28 13:03:33,456 — Current best solution: Iteration: 3 — Run: 35/50 — Best parameters: [0 0 1 0 0 0 1 1 0 0 0 0 0 1] — Best parameters fitness: 0.8247858890701468 — Duration: None
+WARNING — 2022-02-28 13:44:57,168 — Current best solution: Iteration: 4 — Run: 35/50 — Best parameters: [0 0 1 0 0 0 1 1 0 0 0 0 0 1] — Best parameters fitness: 0.8247858890701468 — Duration: None
+WARNING — 2022-02-28 14:07:31,675 — Current best solution: Iteration: 5 — Run: 35/50 — Best parameters: [0 0 1 0 1 0 1 1 0 0 0 0 0 1] — Best parameters fitness: 0.831230698595422 — Duration: None
+WARNING — 2022-02-28 14:23:44,082 — Current best solution: Iteration: 6 — Run: 35/50 — Best parameters: [0 0 1 1 1 0 1 0 0 0 0 0 0 0] — Best parameters fitness: 0.777949844562775 — Duration: None
+WARNING — 2022-02-28 14:25:36,931 — Current best solution: Iteration: 7 — Run: 35/50 — Best parameters: [0 0 1 1 1 0 1 0 0 0 0 0 0 0] — Best parameters fitness: 0.777949844562775 — Duration: None
+WARNING — 2022-02-28 14:29:30,288 — Current best solution: Iteration: 8 — Run: 35/50 — Best parameters: [0 0 1 1 1 0 1 0 0 0 0 0 0 0] — Best parameters fitness: 0.777949844562775 — Duration: None
+WARNING — 2022-02-28 14:31:25,789 — Current best solution: Iteration: 9 — Run: 35/50 — Best parameters: [0 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.7792969351165009 — Duration: None
+WARNING — 2022-02-28 14:31:43,353 — Current best solution: Iteration: 10 — Run: 35/50 — Best parameters: [0 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.7792969351165009 — Duration: None
+WARNING — 2022-02-28 14:32:13,877 — Current best solution: Iteration: 11 — Run: 35/50 — Best parameters: [0 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.7792969351165009 — Duration: None
+WARNING — 2022-02-28 14:33:23,966 — Current best solution: Iteration: 12 — Run: 35/50 — Best parameters: [0 0 1 0 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.7792969351165009 — Duration: None
+WARNING — 2022-02-28 14:37:31,459 — Current best solution: Iteration: 13 — Run: 35/50 — Best parameters: [0 0 1 1 0 0 1 0 0 0 0 0 0 0] — Best parameters fitness: 0.8171866022602523 — Duration: None
+WARNING — 2022-02-28 14:42:10,641 — Current best solution: Iteration: 14 — Run: 35/50 — Best parameters: [0 0 1 1 0 0 1 0 0 0 0 0 0 0] — Best parameters fitness: 0.8171866022602523 — Duration: None
+WARNING — 2022-02-28 14:43:10,227 — Current best solution: Iteration: 15 — Run: 35/50 — Best parameters: [0 0 1 1 0 0 1 0 0 0 0 0 0 0] — Best parameters fitness: 0.8171866022602523 — Duration: None
+WARNING — 2022-02-28 14:47:37,107 — Current best solution: Iteration: 16 — Run: 35/50 — Best parameters: [0 0 1 1 0 0 1 0 0 0 0 0 0 0] — Best parameters fitness: 0.8171866022602523 — Duration: None
+WARNING — 2022-02-28 14:49:31,625 — Current best solution: Iteration: 17 — Run: 35/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7830530140970788 — Duration: None
+WARNING — 2022-02-28 14:50:52,393 — Current best solution: Iteration: 18 — Run: 35/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7830530140970788 — Duration: None
+WARNING — 2022-02-28 14:53:31,523 — Current best solution: Iteration: 19 — Run: 35/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7830530140970788 — Duration: None
+WARNING — 2022-02-28 14:53:31,539 — Current best solution: Iteration: 20 — Run: 35/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7830530140970788 — Duration: None
+WARNING — 2022-02-28 14:53:31,539 — Current best solution: Iteration: 21 — Run: 35/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7830530140970788 — Duration: None
+WARNING — 2022-02-28 14:53:31,539 — Current best solution: Iteration: 22 — Run: 35/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7830530140970788 — Duration: None
+WARNING — 2022-02-28 14:53:31,539 — Current best solution: Iteration: 23 — Run: 35/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7830530140970788 — Duration: None
+WARNING — 2022-02-28 14:53:31,539 — Current best solution: Iteration: 24 — Run: 35/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7830530140970788 — Duration: None
+WARNING — 2022-02-28 14:53:31,539 — Current best solution: Iteration: 25 — Run: 35/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7830530140970788 — Duration: None
+WARNING — 2022-02-28 14:53:31,539 — Current best solution: Iteration: 26 — Run: 35/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7830530140970788 — Duration: None
+INFO — 2022-02-28 14:53:31,539 — **** Finishing the GA ****: Iteration: None — Run: 35/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7830530140970788 — Duration: 14127.903265476227
+INFO — 2022-02-28 14:53:31,539 — **** Starting the GA ****: Iteration: None — Run: 36/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-28 16:01:06,924 — Current best solution: Iteration: 1 — Run: 36/50 — Best parameters: [1 0 1 0 0 0 0 0 0 0 1 0 1 0] — Best parameters fitness: 0.6629844467160207 — Duration: None
+WARNING — 2022-02-28 16:39:06,511 — Current best solution: Iteration: 2 — Run: 36/50 — Best parameters: [0 1 0 1 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8309241728092815 — Duration: None
+WARNING — 2022-02-28 17:00:00,976 — Current best solution: Iteration: 3 — Run: 36/50 — Best parameters: [0 1 0 1 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8309241728092815 — Duration: None
+WARNING — 2022-02-28 17:08:12,978 — Current best solution: Iteration: 4 — Run: 36/50 — Best parameters: [0 1 0 1 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8309241728092815 — Duration: None
+WARNING — 2022-02-28 17:10:56,638 — Current best solution: Iteration: 5 — Run: 36/50 — Best parameters: [0 1 0 1 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8309241728092815 — Duration: None
+WARNING — 2022-02-28 17:16:30,632 — Current best solution: Iteration: 6 — Run: 36/50 — Best parameters: [0 1 0 1 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8309241728092815 — Duration: None
+WARNING — 2022-02-28 17:19:10,261 — Current best solution: Iteration: 7 — Run: 36/50 — Best parameters: [0 1 0 1 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8309241728092815 — Duration: None
+WARNING — 2022-02-28 17:20:33,027 — Current best solution: Iteration: 8 — Run: 36/50 — Best parameters: [0 1 0 1 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8309241728092815 — Duration: None
+WARNING — 2022-02-28 17:23:14,657 — Current best solution: Iteration: 9 — Run: 36/50 — Best parameters: [0 1 0 1 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8309241728092815 — Duration: None
+WARNING — 2022-02-28 17:23:38,250 — Current best solution: Iteration: 10 — Run: 36/50 — Best parameters: [0 1 0 1 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8309241728092815 — Duration: None
+WARNING — 2022-02-28 17:24:24,035 — Current best solution: Iteration: 11 — Run: 36/50 — Best parameters: [0 1 0 1 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8309241728092815 — Duration: None
+INFO — 2022-02-28 17:24:42,410 — **** Finishing the GA ****: Iteration: None — Run: 36/50 — Best parameters: [0 1 0 1 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.8309241728092815 — Duration: 9062.542496919632
+INFO — 2022-02-28 17:24:42,410 — **** Starting the GA ****: Iteration: None — Run: 37/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-02-28 18:59:15,910 — Current best solution: Iteration: 1 — Run: 37/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 1 0] — Best parameters fitness: 0.7444752134055628 — Duration: None
+WARNING — 2022-02-28 20:42:02,422 — Current best solution: Iteration: 2 — Run: 37/50 — Best parameters: [1 0 0 1 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.7698461296792707 — Duration: None
+WARNING — 2022-02-28 21:19:34,757 — Current best solution: Iteration: 3 — Run: 37/50 — Best parameters: [1 0 0 1 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.7698461296792707 — Duration: None
+WARNING — 2022-02-28 21:52:25,384 — Current best solution: Iteration: 4 — Run: 37/50 — Best parameters: [0 0 0 1 1 1 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.7754922820031396 — Duration: None
+WARNING — 2022-02-28 22:29:25,515 — Current best solution: Iteration: 5 — Run: 37/50 — Best parameters: [0 0 0 1 1 1 1 1 1 0 0 0 0 0] — Best parameters fitness: 0.8200743585008259 — Duration: None
+WARNING — 2022-02-28 23:02:52,647 — Current best solution: Iteration: 6 — Run: 37/50 — Best parameters: [0 0 0 1 1 1 1 1 1 0 0 0 0 0] — Best parameters fitness: 0.8200743585008259 — Duration: None
+WARNING — 2022-02-28 23:21:50,910 — Current best solution: Iteration: 7 — Run: 37/50 — Best parameters: [0 0 0 1 1 1 1 1 1 0 0 0 0 0] — Best parameters fitness: 0.8200743585008259 — Duration: None
+WARNING — 2022-02-28 23:34:06,926 — Current best solution: Iteration: 8 — Run: 37/50 — Best parameters: [0 0 0 1 1 1 1 1 1 0 0 0 0 0] — Best parameters fitness: 0.8200743585008259 — Duration: None
+WARNING — 2022-02-28 23:45:59,832 — Current best solution: Iteration: 9 — Run: 37/50 — Best parameters: [0 0 0 1 1 1 1 1 1 0 0 0 0 0] — Best parameters fitness: 0.8200743585008259 — Duration: None
+WARNING — 2022-02-28 23:48:54,846 — Current best solution: Iteration: 10 — Run: 37/50 — Best parameters: [0 0 0 1 1 1 1 1 1 0 0 0 0 0] — Best parameters fitness: 0.8200743585008259 — Duration: None
+WARNING — 2022-02-28 23:56:56,422 — Current best solution: Iteration: 11 — Run: 37/50 — Best parameters: [0 0 0 1 1 1 1 1 1 0 0 0 0 0] — Best parameters fitness: 0.8200743585008259 — Duration: None
+WARNING — 2022-02-28 23:59:57,835 — Current best solution: Iteration: 12 — Run: 37/50 — Best parameters: [0 0 0 1 1 1 1 1 1 0 0 0 0 0] — Best parameters fitness: 0.8200743585008259 — Duration: None
+WARNING — 2022-03-01 00:01:11,014 — Current best solution: Iteration: 13 — Run: 37/50 — Best parameters: [0 0 0 1 1 1 1 1 1 0 0 0 0 0] — Best parameters fitness: 0.8200743585008259 — Duration: None
+WARNING — 2022-03-01 00:01:11,014 — Current best solution: Iteration: 14 — Run: 37/50 — Best parameters: [0 0 0 1 1 1 1 1 1 0 0 0 0 0] — Best parameters fitness: 0.8200743585008259 — Duration: None
+INFO — 2022-03-01 00:01:11,014 — **** Finishing the GA ****: Iteration: None — Run: 37/50 — Best parameters: [0 0 0 1 1 1 1 1 1 0 0 0 0 0] — Best parameters fitness: 0.8200743585008259 — Duration: 23788.60332775116
+INFO — 2022-03-01 00:01:11,014 — **** Starting the GA ****: Iteration: None — Run: 38/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-03-01 00:49:36,400 — Current best solution: Iteration: 1 — Run: 38/50 — Best parameters: [1 1 1 0 0 0 0 1 1 1 0 1 1 0] — Best parameters fitness: 0.7159631416775453 — Duration: None
+WARNING — 2022-03-01 01:16:15,070 — Current best solution: Iteration: 2 — Run: 38/50 — Best parameters: [0 0 1 1 0 1 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.7896263622343851 — Duration: None
+WARNING — 2022-03-01 01:47:40,695 — Current best solution: Iteration: 3 — Run: 38/50 — Best parameters: [0 0 1 1 0 1 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.7983958062297765 — Duration: None
+WARNING — 2022-03-01 01:59:13,015 — Current best solution: Iteration: 4 — Run: 38/50 — Best parameters: [0 0 1 1 0 1 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.7983958062297765 — Duration: None
+WARNING — 2022-03-01 02:18:10,227 — Current best solution: Iteration: 5 — Run: 38/50 — Best parameters: [0 0 1 1 0 1 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.812137149129222 — Duration: None
+WARNING — 2022-03-01 02:37:54,326 — Current best solution: Iteration: 6 — Run: 38/50 — Best parameters: [0 0 1 1 0 1 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.812137149129222 — Duration: None
+WARNING — 2022-03-01 02:53:22,385 — Current best solution: Iteration: 7 — Run: 38/50 — Best parameters: [0 0 0 1 0 1 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8266802802486994 — Duration: None
+WARNING — 2022-03-01 03:04:42,172 — Current best solution: Iteration: 8 — Run: 38/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8272643721721198 — Duration: None
+WARNING — 2022-03-01 03:10:06,424 — Current best solution: Iteration: 9 — Run: 38/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8272643721721198 — Duration: None
+WARNING — 2022-03-01 03:15:10,214 — Current best solution: Iteration: 10 — Run: 38/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8272643721721198 — Duration: None
+WARNING — 2022-03-01 03:20:36,569 — Current best solution: Iteration: 11 — Run: 38/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8272643721721198 — Duration: None
+WARNING — 2022-03-01 03:23:02,685 — Current best solution: Iteration: 12 — Run: 38/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8272643721721198 — Duration: None
+WARNING — 2022-03-01 03:30:54,074 — Current best solution: Iteration: 13 — Run: 38/50 — Best parameters: [0 0 1 0 0 1 1 1 1 1 0 0 0 0] — Best parameters fitness: 0.8399638627689372 — Duration: None
+WARNING — 2022-03-01 03:34:05,832 — Current best solution: Iteration: 14 — Run: 38/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8272643721721198 — Duration: None
+WARNING — 2022-03-01 03:36:35,230 — Current best solution: Iteration: 15 — Run: 38/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8272643721721198 — Duration: None
+WARNING — 2022-03-01 03:42:51,496 — Current best solution: Iteration: 16 — Run: 38/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8272643721721198 — Duration: None
+WARNING — 2022-03-01 03:45:37,989 — Current best solution: Iteration: 17 — Run: 38/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8272643721721198 — Duration: None
+INFO — 2022-03-01 03:48:10,651 — **** Finishing the GA ****: Iteration: None — Run: 38/50 — Best parameters: [0 0 1 0 0 1 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8272643721721198 — Duration: 13536.978457927704
+INFO — 2022-03-01 03:48:10,651 — **** Starting the GA ****: Iteration: None — Run: 39/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-03-01 04:42:44,348 — Current best solution: Iteration: 1 — Run: 39/50 — Best parameters: [0 1 0 1 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.8655298100919964 — Duration: None
+WARNING — 2022-03-01 05:03:47,531 — Current best solution: Iteration: 2 — Run: 39/50 — Best parameters: [0 1 0 1 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.8655298100919964 — Duration: None
+WARNING — 2022-03-01 05:15:47,395 — Current best solution: Iteration: 3 — Run: 39/50 — Best parameters: [0 1 0 1 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.8655298100919964 — Duration: None
+WARNING — 2022-03-01 05:29:38,738 — Current best solution: Iteration: 4 — Run: 39/50 — Best parameters: [0 1 0 1 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.8655298100919964 — Duration: None
+WARNING — 2022-03-01 05:38:02,719 — Current best solution: Iteration: 5 — Run: 39/50 — Best parameters: [0 1 0 1 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.8655298100919964 — Duration: None
+WARNING — 2022-03-01 05:43:26,864 — Current best solution: Iteration: 6 — Run: 39/50 — Best parameters: [0 1 0 1 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.8655298100919964 — Duration: None
+WARNING — 2022-03-01 05:50:38,493 — Current best solution: Iteration: 7 — Run: 39/50 — Best parameters: [0 1 0 1 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.8655298100919964 — Duration: None
+WARNING — 2022-03-01 05:53:25,402 — Current best solution: Iteration: 8 — Run: 39/50 — Best parameters: [0 1 0 1 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.8655298100919964 — Duration: None
+WARNING — 2022-03-01 05:55:19,253 — Current best solution: Iteration: 9 — Run: 39/50 — Best parameters: [0 1 0 1 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.8655298100919964 — Duration: None
+WARNING — 2022-03-01 05:57:26,149 — Current best solution: Iteration: 10 — Run: 39/50 — Best parameters: [0 1 0 1 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.8655298100919964 — Duration: None
+INFO — 2022-03-01 06:03:22,903 — **** Finishing the GA ****: Iteration: None — Run: 39/50 — Best parameters: [0 1 0 1 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.8655298100919964 — Duration: 7955.794125556946
+INFO — 2022-03-01 06:03:22,903 — **** Starting the GA ****: Iteration: None — Run: 40/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-03-01 06:54:25,485 — Current best solution: Iteration: 1 — Run: 40/50 — Best parameters: [1 0 0 1 0 0 1 1 0 0 0 1 1 0] — Best parameters fitness: 0.7264937807790943 — Duration: None
+WARNING — 2022-03-01 07:15:24,659 — Current best solution: Iteration: 2 — Run: 40/50 — Best parameters: [1 0 0 1 0 0 1 1 0 0 0 1 1 0] — Best parameters fitness: 0.7264937807790943 — Duration: None
+WARNING — 2022-03-01 07:27:59,970 — Current best solution: Iteration: 3 — Run: 40/50 — Best parameters: [1 0 0 1 0 0 1 1 0 0 0 1 1 0] — Best parameters fitness: 0.7264937807790943 — Duration: None
+WARNING — 2022-03-01 07:42:13,962 — Current best solution: Iteration: 4 — Run: 40/50 — Best parameters: [0 0 0 0 0 0 1 0 0 0 0 1 0 0] — Best parameters fitness: 0.6474529906302143 — Duration: None
+WARNING — 2022-03-01 07:47:52,930 — Current best solution: Iteration: 5 — Run: 40/50 — Best parameters: [0 0 0 0 0 0 1 0 0 0 0 0 0 0] — Best parameters fitness: 0.6647923143217704 — Duration: None
+WARNING — 2022-03-01 07:52:01,659 — Current best solution: Iteration: 6 — Run: 40/50 — Best parameters: [0 0 0 0 0 0 1 0 0 0 0 0 0 0] — Best parameters fitness: 0.6647923143217704 — Duration: None
+WARNING — 2022-03-01 07:54:26,414 — Current best solution: Iteration: 7 — Run: 40/50 — Best parameters: [0 0 0 1 0 0 0 0 0 1 0 0 0 0] — Best parameters fitness: 0.7156694701796507 — Duration: None
+WARNING — 2022-03-01 07:58:24,625 — Current best solution: Iteration: 8 — Run: 40/50 — Best parameters: [0 0 0 1 0 0 0 0 0 1 0 0 0 0] — Best parameters fitness: 0.7156694701796507 — Duration: None
+WARNING — 2022-03-01 08:03:01,463 — Current best solution: Iteration: 9 — Run: 40/50 — Best parameters: [0 0 0 1 0 0 0 0 0 1 0 0 0 0] — Best parameters fitness: 0.7156694701796507 — Duration: None
+WARNING — 2022-03-01 08:03:01,479 — Current best solution: Iteration: 10 — Run: 40/50 — Best parameters: [0 0 0 1 0 0 0 0 0 1 0 0 0 0] — Best parameters fitness: 0.7156694701796507 — Duration: None
+WARNING — 2022-03-01 08:03:31,510 — Current best solution: Iteration: 11 — Run: 40/50 — Best parameters: [0 0 0 1 0 0 0 0 0 1 0 0 0 0] — Best parameters fitness: 0.7156694701796507 — Duration: None
+WARNING — 2022-03-01 08:04:35,595 — Current best solution: Iteration: 12 — Run: 40/50 — Best parameters: [0 0 0 1 0 0 0 0 0 1 0 0 0 0] — Best parameters fitness: 0.7156694701796507 — Duration: None
+WARNING — 2022-03-01 08:04:35,595 — Current best solution: Iteration: 13 — Run: 40/50 — Best parameters: [0 0 0 1 0 0 0 0 0 1 0 0 0 0] — Best parameters fitness: 0.7156694701796507 — Duration: None
+WARNING — 2022-03-01 08:05:05,408 — Current best solution: Iteration: 14 — Run: 40/50 — Best parameters: [0 0 0 1 0 0 0 0 0 1 0 0 0 0] — Best parameters fitness: 0.7156694701796507 — Duration: None
+WARNING — 2022-03-01 08:08:12,321 — Current best solution: Iteration: 15 — Run: 40/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.7473244149301815 — Duration: None
+WARNING — 2022-03-01 08:08:12,321 — Current best solution: Iteration: 16 — Run: 40/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.7473244149301815 — Duration: None
+WARNING — 2022-03-01 08:08:20,225 — Current best solution: Iteration: 17 — Run: 40/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.7473244149301815 — Duration: None
+WARNING — 2022-03-01 08:08:20,225 — Current best solution: Iteration: 18 — Run: 40/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.7473244149301815 — Duration: None
+WARNING — 2022-03-01 08:08:51,710 — Current best solution: Iteration: 19 — Run: 40/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.7473244149301815 — Duration: None
+WARNING — 2022-03-01 08:08:51,710 — Current best solution: Iteration: 20 — Run: 40/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.7473244149301815 — Duration: None
+WARNING — 2022-03-01 08:08:51,710 — Current best solution: Iteration: 21 — Run: 40/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.7473244149301815 — Duration: None
+WARNING — 2022-03-01 08:08:51,710 — Current best solution: Iteration: 22 — Run: 40/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.7473244149301815 — Duration: None
+WARNING — 2022-03-01 08:08:51,710 — Current best solution: Iteration: 23 — Run: 40/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.7473244149301815 — Duration: None
+WARNING — 2022-03-01 08:08:51,710 — Current best solution: Iteration: 24 — Run: 40/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.7473244149301815 — Duration: None
+INFO — 2022-03-01 08:08:51,710 — **** Finishing the GA ****: Iteration: None — Run: 40/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.7473244149301815 — Duration: 7528.807257175446
+INFO — 2022-03-01 08:08:51,710 — **** Starting the GA ****: Iteration: None — Run: 41/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-03-01 09:29:22,956 — Current best solution: Iteration: 1 — Run: 41/50 — Best parameters: [1 0 1 1 0 1 0 1 1 1 1 0 0 1] — Best parameters fitness: 0.6570582569731023 — Duration: None
+WARNING — 2022-03-01 10:09:57,719 — Current best solution: Iteration: 2 — Run: 41/50 — Best parameters: [0 0 1 0 0 1 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.7832304039680891 — Duration: None
+WARNING — 2022-03-01 10:34:54,532 — Current best solution: Iteration: 3 — Run: 41/50 — Best parameters: [0 0 1 0 0 1 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.7832304039680891 — Duration: None
+WARNING — 2022-03-01 10:42:48,540 — Current best solution: Iteration: 4 — Run: 41/50 — Best parameters: [0 1 0 0 0 0 1 1 0 1 0 0 1 0] — Best parameters fitness: 0.6921183792349437 — Duration: None
+WARNING — 2022-03-01 10:50:05,609 — Current best solution: Iteration: 5 — Run: 41/50 — Best parameters: [0 0 1 0 0 1 0 1 0 1 0 1 0 0] — Best parameters fitness: 0.712523318681375 — Duration: None
+WARNING — 2022-03-01 10:57:32,482 — Current best solution: Iteration: 6 — Run: 41/50 — Best parameters: [0 0 0 0 0 0 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.7201237012745407 — Duration: None
+WARNING — 2022-03-01 11:03:03,124 — Current best solution: Iteration: 7 — Run: 41/50 — Best parameters: [0 0 0 1 1 1 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8199618204110107 — Duration: None
+WARNING — 2022-03-01 11:09:23,061 — Current best solution: Iteration: 8 — Run: 41/50 — Best parameters: [0 0 0 0 0 1 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7147443173073964 — Duration: None
+WARNING — 2022-03-01 11:10:11,957 — Current best solution: Iteration: 9 — Run: 41/50 — Best parameters: [0 0 0 0 0 1 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7147443173073964 — Duration: None
+WARNING — 2022-03-01 11:14:36,625 — Current best solution: Iteration: 10 — Run: 41/50 — Best parameters: [0 1 0 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8119697492815173 — Duration: None
+WARNING — 2022-03-01 11:19:10,898 — Current best solution: Iteration: 11 — Run: 41/50 — Best parameters: [0 1 0 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8119697492815173 — Duration: None
+WARNING — 2022-03-01 11:22:39,405 — Current best solution: Iteration: 12 — Run: 41/50 — Best parameters: [0 1 0 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8119697492815173 — Duration: None
+WARNING — 2022-03-01 11:25:50,648 — Current best solution: Iteration: 13 — Run: 41/50 — Best parameters: [0 1 0 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8119697492815173 — Duration: None
+WARNING — 2022-03-01 11:29:26,827 — Current best solution: Iteration: 14 — Run: 41/50 — Best parameters: [0 1 0 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8119697492815173 — Duration: None
+WARNING — 2022-03-01 11:33:42,201 — Current best solution: Iteration: 15 — Run: 41/50 — Best parameters: [0 1 0 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8119697492815173 — Duration: None
+WARNING — 2022-03-01 11:35:17,659 — Current best solution: Iteration: 16 — Run: 41/50 — Best parameters: [0 1 0 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8119697492815173 — Duration: None
+WARNING — 2022-03-01 11:35:59,753 — Current best solution: Iteration: 17 — Run: 41/50 — Best parameters: [0 1 0 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8119697492815173 — Duration: None
+WARNING — 2022-03-01 11:36:26,911 — Current best solution: Iteration: 18 — Run: 41/50 — Best parameters: [0 1 0 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8119697492815173 — Duration: None
+WARNING — 2022-03-01 11:36:39,645 — Current best solution: Iteration: 19 — Run: 41/50 — Best parameters: [0 1 0 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8119697492815173 — Duration: None
+INFO — 2022-03-01 11:41:29,325 — **** Finishing the GA ****: Iteration: None — Run: 41/50 — Best parameters: [0 1 0 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8119697492815173 — Duration: 12586.580458164215
+INFO — 2022-03-01 11:41:29,325 — **** Starting the GA ****: Iteration: None — Run: 42/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-03-01 12:36:08,335 — Current best solution: Iteration: 1 — Run: 42/50 — Best parameters: [0 0 1 1 1 1 1 0 0 1 0 0 1 0] — Best parameters fitness: 0.7972449168692993 — Duration: None
+WARNING — 2022-03-01 13:03:42,779 — Current best solution: Iteration: 2 — Run: 42/50 — Best parameters: [0 0 1 1 1 1 1 0 0 1 0 0 1 0] — Best parameters fitness: 0.7972449168692993 — Duration: None
+WARNING — 2022-03-01 13:23:38,471 — Current best solution: Iteration: 3 — Run: 42/50 — Best parameters: [0 0 1 0 1 0 1 1 0 0 0 0 1 0] — Best parameters fitness: 0.7997187509618641 — Duration: None
+WARNING — 2022-03-01 13:45:50,301 — Current best solution: Iteration: 4 — Run: 42/50 — Best parameters: [0 0 1 0 0 0 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8127824673992223 — Duration: None
+WARNING — 2022-03-01 13:55:50,012 — Current best solution: Iteration: 5 — Run: 42/50 — Best parameters: [0 0 1 0 0 0 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8127824673992223 — Duration: None
+WARNING — 2022-03-01 14:02:08,820 — Current best solution: Iteration: 6 — Run: 42/50 — Best parameters: [0 0 1 0 0 0 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.7922771296951789 — Duration: None
+WARNING — 2022-03-01 14:04:35,447 — Current best solution: Iteration: 7 — Run: 42/50 — Best parameters: [0 0 1 0 0 0 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.7922771296951789 — Duration: None
+WARNING — 2022-03-01 14:05:58,920 — Current best solution: Iteration: 8 — Run: 42/50 — Best parameters: [0 0 1 0 0 0 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.7922771296951789 — Duration: None
+WARNING — 2022-03-01 14:05:58,920 — Current best solution: Iteration: 9 — Run: 42/50 — Best parameters: [0 0 1 0 0 0 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.7922771296951789 — Duration: None
+WARNING — 2022-03-01 14:07:27,266 — Current best solution: Iteration: 10 — Run: 42/50 — Best parameters: [0 0 1 0 0 0 1 0 0 1 0 0 1 0] — Best parameters fitness: 0.8088789026029323 — Duration: None
+WARNING — 2022-03-01 14:07:59,502 — Current best solution: Iteration: 11 — Run: 42/50 — Best parameters: [0 0 1 0 0 0 1 0 0 1 0 0 1 0] — Best parameters fitness: 0.8088789026029323 — Duration: None
+WARNING — 2022-03-01 14:11:41,618 — Current best solution: Iteration: 12 — Run: 42/50 — Best parameters: [0 0 1 0 0 0 1 0 0 1 0 0 0 0] — Best parameters fitness: 0.8126572647665363 — Duration: None
+WARNING — 2022-03-01 14:14:11,717 — Current best solution: Iteration: 13 — Run: 42/50 — Best parameters: [0 0 1 0 0 0 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.7922771296951789 — Duration: None
+WARNING — 2022-03-01 14:14:11,732 — Current best solution: Iteration: 14 — Run: 42/50 — Best parameters: [0 0 1 0 0 0 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.7922771296951789 — Duration: None
+WARNING — 2022-03-01 14:14:11,732 — Current best solution: Iteration: 15 — Run: 42/50 — Best parameters: [0 0 1 0 0 0 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.7922771296951789 — Duration: None
+INFO — 2022-03-01 14:14:11,732 — **** Finishing the GA ****: Iteration: None — Run: 42/50 — Best parameters: [0 0 1 0 0 0 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.7922771296951789 — Duration: 9162.407496929169
+INFO — 2022-03-01 14:14:11,732 — **** Starting the GA ****: Iteration: None — Run: 43/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-03-01 15:05:34,547 — Current best solution: Iteration: 1 — Run: 43/50 — Best parameters: [0 1 1 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.7017937320781715 — Duration: None
+WARNING — 2022-03-01 15:38:00,102 — Current best solution: Iteration: 2 — Run: 43/50 — Best parameters: [0 1 1 0 1 0 1 1 1 0 0 0 0 1] — Best parameters fitness: 0.7162444297971349 — Duration: None
+WARNING — 2022-03-01 15:54:34,653 — Current best solution: Iteration: 3 — Run: 43/50 — Best parameters: [0 0 1 1 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.738395190808171 — Duration: None
+WARNING — 2022-03-01 16:00:05,209 — Current best solution: Iteration: 4 — Run: 43/50 — Best parameters: [0 0 1 0 0 0 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.7776702627555993 — Duration: None
+WARNING — 2022-03-01 16:12:44,265 — Current best solution: Iteration: 5 — Run: 43/50 — Best parameters: [0 0 1 0 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8441408374116368 — Duration: None
+WARNING — 2022-03-01 16:19:11,335 — Current best solution: Iteration: 6 — Run: 43/50 — Best parameters: [0 0 1 1 0 0 0 1 0 1 0 0 0 0] — Best parameters fitness: 0.8109034660449178 — Duration: None
+WARNING — 2022-03-01 16:27:13,242 — Current best solution: Iteration: 7 — Run: 43/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.7958563860075717 — Duration: None
+WARNING — 2022-03-01 16:36:07,437 — Current best solution: Iteration: 8 — Run: 43/50 — Best parameters: [0 0 1 1 0 0 0 1 0 1 0 0 1 0] — Best parameters fitness: 0.8492940238747473 — Duration: None
+WARNING — 2022-03-01 16:48:25,639 — Current best solution: Iteration: 9 — Run: 43/50 — Best parameters: [0 1 1 1 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.7933328987428263 — Duration: None
+WARNING — 2022-03-01 16:52:24,771 — Current best solution: Iteration: 10 — Run: 43/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.7459627361055536 — Duration: None
+WARNING — 2022-03-01 16:56:21,621 — Current best solution: Iteration: 11 — Run: 43/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.7459627361055536 — Duration: None
+WARNING — 2022-03-01 16:58:40,116 — Current best solution: Iteration: 12 — Run: 43/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.7459627361055536 — Duration: None
+WARNING — 2022-03-01 17:02:20,918 — Current best solution: Iteration: 13 — Run: 43/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.7459627361055536 — Duration: None
+WARNING — 2022-03-01 17:02:40,280 — Current best solution: Iteration: 14 — Run: 43/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.7459627361055536 — Duration: None
+WARNING — 2022-03-01 17:02:40,280 — Current best solution: Iteration: 15 — Run: 43/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.7459627361055536 — Duration: None
+WARNING — 2022-03-01 17:04:06,266 — Current best solution: Iteration: 16 — Run: 43/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.7459627361055536 — Duration: None
+WARNING — 2022-03-01 17:04:14,423 — Current best solution: Iteration: 17 — Run: 43/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.7459627361055536 — Duration: None
+WARNING — 2022-03-01 17:04:14,423 — Current best solution: Iteration: 18 — Run: 43/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.7459627361055536 — Duration: None
+WARNING — 2022-03-01 17:04:14,423 — Current best solution: Iteration: 19 — Run: 43/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.7459627361055536 — Duration: None
+INFO — 2022-03-01 17:05:11,347 — **** Finishing the GA ****: Iteration: None — Run: 43/50 — Best parameters: [0 0 0 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.7459627361055536 — Duration: 10235.068599700928
+INFO — 2022-03-01 17:05:11,347 — **** Starting the GA ****: Iteration: None — Run: 44/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-03-01 18:12:38,557 — Current best solution: Iteration: 1 — Run: 44/50 — Best parameters: [0 0 0 1 0 0 1 1 0 0 0 1 0 1] — Best parameters fitness: 0.7177672153767167 — Duration: None
+WARNING — 2022-03-01 18:49:08,093 — Current best solution: Iteration: 2 — Run: 44/50 — Best parameters: [1 1 0 1 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.808599566606117 — Duration: None
+WARNING — 2022-03-01 19:23:01,758 — Current best solution: Iteration: 3 — Run: 44/50 — Best parameters: [1 1 0 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7293161511832335 — Duration: None
+WARNING — 2022-03-01 19:49:55,379 — Current best solution: Iteration: 4 — Run: 44/50 — Best parameters: [1 1 0 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7293161511832335 — Duration: None
+WARNING — 2022-03-01 20:27:40,382 — Current best solution: Iteration: 5 — Run: 44/50 — Best parameters: [1 0 0 1 0 0 1 1 1 0 0 0 0 0] — Best parameters fitness: 0.8199324050788792 — Duration: None
+WARNING — 2022-03-01 20:37:53,551 — Current best solution: Iteration: 6 — Run: 44/50 — Best parameters: [1 1 1 1 0 0 0 0 0 0 0 0 0 0] — Best parameters fitness: 0.8055028529194863 — Duration: None
+WARNING — 2022-03-01 20:48:08,127 — Current best solution: Iteration: 7 — Run: 44/50 — Best parameters: [1 1 0 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.7293161511832335 — Duration: None
+WARNING — 2022-03-01 21:04:45,388 — Current best solution: Iteration: 8 — Run: 44/50 — Best parameters: [1 1 0 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8202048195801223 — Duration: None
+WARNING — 2022-03-01 21:11:04,954 — Current best solution: Iteration: 9 — Run: 44/50 — Best parameters: [1 1 0 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8202048195801223 — Duration: None
+WARNING — 2022-03-01 21:18:34,013 — Current best solution: Iteration: 10 — Run: 44/50 — Best parameters: [1 1 0 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8202048195801223 — Duration: None
+WARNING — 2022-03-01 21:19:40,493 — Current best solution: Iteration: 11 — Run: 44/50 — Best parameters: [1 1 0 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8202048195801223 — Duration: None
+WARNING — 2022-03-01 21:19:40,493 — Current best solution: Iteration: 12 — Run: 44/50 — Best parameters: [1 1 0 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8202048195801223 — Duration: None
+WARNING — 2022-03-01 21:24:04,929 — Current best solution: Iteration: 13 — Run: 44/50 — Best parameters: [1 1 0 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8202048195801223 — Duration: None
+WARNING — 2022-03-01 21:27:11,396 — Current best solution: Iteration: 14 — Run: 44/50 — Best parameters: [1 1 0 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8202048195801223 — Duration: None
+WARNING — 2022-03-01 21:28:58,479 — Current best solution: Iteration: 15 — Run: 44/50 — Best parameters: [1 1 0 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8202048195801223 — Duration: None
+WARNING — 2022-03-01 21:28:58,479 — Current best solution: Iteration: 16 — Run: 44/50 — Best parameters: [1 1 0 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8202048195801223 — Duration: None
+WARNING — 2022-03-01 21:30:36,202 — Current best solution: Iteration: 17 — Run: 44/50 — Best parameters: [1 1 0 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8202048195801223 — Duration: None
+INFO — 2022-03-01 21:37:23,115 — **** Finishing the GA ****: Iteration: None — Run: 44/50 — Best parameters: [1 1 0 1 0 0 0 1 0 0 0 0 0 0] — Best parameters fitness: 0.8202048195801223 — Duration: 16237.900820732117
+INFO — 2022-03-01 21:37:23,115 — **** Starting the GA ****: Iteration: None — Run: 45/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-03-01 23:03:08,271 — Current best solution: Iteration: 1 — Run: 45/50 — Best parameters: [0 0 1 1 1 0 1 1 0 1 0 0 0 1] — Best parameters fitness: 0.7462401537186946 — Duration: None
+WARNING — 2022-03-02 00:28:45,462 — Current best solution: Iteration: 2 — Run: 45/50 — Best parameters: [0 0 1 1 1 0 1 1 0 1 0 0 0 1] — Best parameters fitness: 0.7462401537186946 — Duration: None
+WARNING — 2022-03-02 01:37:22,499 — Current best solution: Iteration: 3 — Run: 45/50 — Best parameters: [0 0 1 1 1 0 1 1 0 1 0 0 0 1] — Best parameters fitness: 0.7462401537186946 — Duration: None
+WARNING — 2022-03-02 03:04:27,686 — Current best solution: Iteration: 4 — Run: 45/50 — Best parameters: [0 0 1 1 1 0 1 1 0 1 0 0 0 1] — Best parameters fitness: 0.7462401537186946 — Duration: None
+WARNING — 2022-03-02 03:59:51,697 — Current best solution: Iteration: 5 — Run: 45/50 — Best parameters: [1 1 0 0 0 0 0 1 1 1 0 1 0 1] — Best parameters fitness: 0.7976119941809483 — Duration: None
+WARNING — 2022-03-02 04:46:57,919 — Current best solution: Iteration: 6 — Run: 45/50 — Best parameters: [1 1 0 0 0 0 0 1 1 1 0 1 0 1] — Best parameters fitness: 0.7976119941809483 — Duration: None
+WARNING — 2022-03-02 05:25:42,063 — Current best solution: Iteration: 7 — Run: 45/50 — Best parameters: [0 0 1 0 1 1 0 1 1 1 0 0 1 0] — Best parameters fitness: 0.8294498875260345 — Duration: None
+WARNING — 2022-03-02 05:58:01,437 — Current best solution: Iteration: 8 — Run: 45/50 — Best parameters: [0 0 1 0 1 1 0 1 1 1 0 0 0 0] — Best parameters fitness: 0.8139821522925708 — Duration: None
+WARNING — 2022-03-02 06:35:28,643 — Current best solution: Iteration: 9 — Run: 45/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 1 0] — Best parameters fitness: 0.8482050334985175 — Duration: None
+WARNING — 2022-03-02 06:40:12,046 — Current best solution: Iteration: 10 — Run: 45/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 1 0] — Best parameters fitness: 0.8482050334985175 — Duration: None
+WARNING — 2022-03-02 07:20:13,265 — Current best solution: Iteration: 11 — Run: 45/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 1 0] — Best parameters fitness: 0.8535642191716171 — Duration: None
+WARNING — 2022-03-02 07:33:25,300 — Current best solution: Iteration: 12 — Run: 45/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 1 0] — Best parameters fitness: 0.8050919638185232 — Duration: None
+WARNING — 2022-03-02 07:45:07,002 — Current best solution: Iteration: 13 — Run: 45/50 — Best parameters: [0 0 1 0 0 0 1 1 0 1 0 0 0 0] — Best parameters fitness: 0.8470088754398925 — Duration: None
+WARNING — 2022-03-02 07:52:04,983 — Current best solution: Iteration: 14 — Run: 45/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 1 0] — Best parameters fitness: 0.8050919638185232 — Duration: None
+WARNING — 2022-03-02 07:58:04,009 — Current best solution: Iteration: 15 — Run: 45/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 1 0] — Best parameters fitness: 0.8050919638185232 — Duration: None
+WARNING — 2022-03-02 08:05:59,215 — Current best solution: Iteration: 16 — Run: 45/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 1 0] — Best parameters fitness: 0.8050919638185232 — Duration: None
+WARNING — 2022-03-02 08:07:36,469 — Current best solution: Iteration: 17 — Run: 45/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 1 0] — Best parameters fitness: 0.8050919638185232 — Duration: None
+WARNING — 2022-03-02 08:07:36,469 — Current best solution: Iteration: 18 — Run: 45/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 1 0] — Best parameters fitness: 0.8050919638185232 — Duration: None
+WARNING — 2022-03-02 08:10:13,543 — Current best solution: Iteration: 19 — Run: 45/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 1 0] — Best parameters fitness: 0.8050919638185232 — Duration: None
+WARNING — 2022-03-02 08:12:22,784 — Current best solution: Iteration: 20 — Run: 45/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 1 0] — Best parameters fitness: 0.8050919638185232 — Duration: None
+WARNING — 2022-03-02 08:14:06,507 — Current best solution: Iteration: 21 — Run: 45/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 1 0] — Best parameters fitness: 0.8050919638185232 — Duration: None
+INFO — 2022-03-02 08:16:19,227 — **** Finishing the GA ****: Iteration: None — Run: 45/50 — Best parameters: [0 0 1 0 1 0 1 1 0 1 0 0 1 0] — Best parameters fitness: 0.8050919638185232 — Duration: 38281.25425744057
+INFO — 2022-03-02 08:16:19,227 — **** Starting the GA ****: Iteration: None — Run: 46/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-03-02 09:23:37,563 — Current best solution: Iteration: 1 — Run: 46/50 — Best parameters: [0 0 1 1 1 0 0 1 1 1 1 1 0 0] — Best parameters fitness: 0.6719531808004365 — Duration: None
+WARNING — 2022-03-02 10:02:44,530 — Current best solution: Iteration: 2 — Run: 46/50 — Best parameters: [0 1 1 0 0 0 0 1 0 1 0 1 1 0] — Best parameters fitness: 0.8192551323595811 — Duration: None
+WARNING — 2022-03-02 10:41:57,003 — Current best solution: Iteration: 3 — Run: 46/50 — Best parameters: [0 0 1 0 0 0 0 0 0 1 0 0 0 0] — Best parameters fitness: 0.8253025703571466 — Duration: None
+WARNING — 2022-03-02 11:07:41,955 — Current best solution: Iteration: 4 — Run: 46/50 — Best parameters: [0 1 1 0 0 0 0 1 0 1 0 1 1 0] — Best parameters fitness: 0.8192551323595811 — Duration: None
+WARNING — 2022-03-02 11:28:05,258 — Current best solution: Iteration: 5 — Run: 46/50 — Best parameters: [0 0 0 1 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8379247110560497 — Duration: None
+WARNING — 2022-03-02 11:46:31,404 — Current best solution: Iteration: 6 — Run: 46/50 — Best parameters: [0 0 0 1 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8379247110560497 — Duration: None
+WARNING — 2022-03-02 11:52:50,919 — Current best solution: Iteration: 7 — Run: 46/50 — Best parameters: [0 0 0 1 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8379247110560497 — Duration: None
+WARNING — 2022-03-02 12:01:56,943 — Current best solution: Iteration: 8 — Run: 46/50 — Best parameters: [0 0 0 1 0 0 1 1 0 0 0 0 0 0] — Best parameters fitness: 0.8427567952486482 — Duration: None
+WARNING — 2022-03-02 12:10:20,163 — Current best solution: Iteration: 9 — Run: 46/50 — Best parameters: [0 0 1 0 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8361961612648383 — Duration: None
+WARNING — 2022-03-02 12:15:07,235 — Current best solution: Iteration: 10 — Run: 46/50 — Best parameters: [0 0 1 0 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8361961612648383 — Duration: None
+WARNING — 2022-03-02 12:20:29,596 — Current best solution: Iteration: 11 — Run: 46/50 — Best parameters: [0 0 1 0 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8361961612648383 — Duration: None
+WARNING — 2022-03-02 12:20:29,596 — Current best solution: Iteration: 12 — Run: 46/50 — Best parameters: [0 0 1 0 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8361961612648383 — Duration: None
+WARNING — 2022-03-02 12:29:35,962 — Current best solution: Iteration: 13 — Run: 46/50 — Best parameters: [0 0 1 0 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8361961612648383 — Duration: None
+WARNING — 2022-03-02 12:34:38,284 — Current best solution: Iteration: 14 — Run: 46/50 — Best parameters: [0 0 1 0 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8361961612648383 — Duration: None
+WARNING — 2022-03-02 12:35:28,388 — Current best solution: Iteration: 15 — Run: 46/50 — Best parameters: [0 0 1 0 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8361961612648383 — Duration: None
+WARNING — 2022-03-02 12:37:20,690 — Current best solution: Iteration: 16 — Run: 46/50 — Best parameters: [0 0 1 0 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8361961612648383 — Duration: None
+WARNING — 2022-03-02 12:37:20,690 — Current best solution: Iteration: 17 — Run: 46/50 — Best parameters: [0 0 1 0 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8361961612648383 — Duration: None
+WARNING — 2022-03-02 12:38:02,757 — Current best solution: Iteration: 18 — Run: 46/50 — Best parameters: [0 0 1 0 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8361961612648383 — Duration: None
+INFO — 2022-03-02 12:38:02,757 — **** Finishing the GA ****: Iteration: None — Run: 46/50 — Best parameters: [0 0 1 0 0 1 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8361961612648383 — Duration: 15703.530070781708
+INFO — 2022-03-02 12:38:02,757 — **** Starting the GA ****: Iteration: None — Run: 47/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-03-02 14:26:26,234 — Current best solution: Iteration: 1 — Run: 47/50 — Best parameters: [1 0 0 0 0 1 1 1 0 1 0 1 1 1] — Best parameters fitness: 0.6711922771852709 — Duration: None
+WARNING — 2022-03-02 16:09:13,409 — Current best solution: Iteration: 2 — Run: 47/50 — Best parameters: [0 1 1 1 1 0 1 0 0 1 0 1 0 0] — Best parameters fitness: 0.7262425678769973 — Duration: None
+WARNING — 2022-03-02 17:13:56,765 — Current best solution: Iteration: 3 — Run: 47/50 — Best parameters: [0 0 1 1 0 1 0 0 0 0 0 0 1 1] — Best parameters fitness: 0.7061473370474108 — Duration: None
+WARNING — 2022-03-02 17:56:12,472 — Current best solution: Iteration: 4 — Run: 47/50 — Best parameters: [1 0 1 0 0 0 0 1 1 1 0 1 1 1] — Best parameters fitness: 0.758828587891557 — Duration: None
+WARNING — 2022-03-02 18:39:29,588 — Current best solution: Iteration: 5 — Run: 47/50 — Best parameters: [0 0 1 0 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.7944023682374548 — Duration: None
+WARNING — 2022-03-02 19:10:11,924 — Current best solution: Iteration: 6 — Run: 47/50 — Best parameters: [0 0 1 1 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.8017748956056922 — Duration: None
+WARNING — 2022-03-02 19:19:25,974 — Current best solution: Iteration: 7 — Run: 47/50 — Best parameters: [0 0 1 1 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.8017748956056922 — Duration: None
+WARNING — 2022-03-02 19:28:14,234 — Current best solution: Iteration: 8 — Run: 47/50 — Best parameters: [0 0 1 1 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.8017748956056922 — Duration: None
+WARNING — 2022-03-02 19:29:57,522 — Current best solution: Iteration: 9 — Run: 47/50 — Best parameters: [0 0 1 1 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.8017748956056922 — Duration: None
+WARNING — 2022-03-02 19:31:47,749 — Current best solution: Iteration: 10 — Run: 47/50 — Best parameters: [0 0 1 1 0 1 0 0 1 0 0 0 1 1] — Best parameters fitness: 0.803615903331384 — Duration: None
+WARNING — 2022-03-02 19:32:40,200 — Current best solution: Iteration: 11 — Run: 47/50 — Best parameters: [0 0 1 1 0 1 0 0 1 0 0 0 1 1] — Best parameters fitness: 0.803615903331384 — Duration: None
+WARNING — 2022-03-02 19:35:09,471 — Current best solution: Iteration: 12 — Run: 47/50 — Best parameters: [0 0 1 1 0 1 0 0 1 0 0 0 1 1] — Best parameters fitness: 0.803615903331384 — Duration: None
+WARNING — 2022-03-02 19:36:55,396 — Current best solution: Iteration: 13 — Run: 47/50 — Best parameters: [0 0 1 1 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.8017748956056922 — Duration: None
+WARNING — 2022-03-02 19:37:27,727 — Current best solution: Iteration: 14 — Run: 47/50 — Best parameters: [0 0 1 1 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.8017748956056922 — Duration: None
+WARNING — 2022-03-02 19:38:48,761 — Current best solution: Iteration: 15 — Run: 47/50 — Best parameters: [0 0 1 1 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.8017748956056922 — Duration: None
+INFO — 2022-03-02 19:38:48,761 — **** Finishing the GA ****: Iteration: None — Run: 47/50 — Best parameters: [0 0 1 1 0 1 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.8017748956056922 — Duration: 25246.00335907936
+INFO — 2022-03-02 19:38:48,761 — **** Starting the GA ****: Iteration: None — Run: 48/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-03-02 20:50:55,087 — Current best solution: Iteration: 1 — Run: 48/50 — Best parameters: [1 0 0 1 0 0 0 1 0 1 1 1 1 0] — Best parameters fitness: 0.6994060255343165 — Duration: None
+WARNING — 2022-03-02 22:05:26,728 — Current best solution: Iteration: 2 — Run: 48/50 — Best parameters: [1 1 0 1 0 0 0 1 0 1 1 0 1 1] — Best parameters fitness: 0.7315119075051767 — Duration: None
+WARNING — 2022-03-02 23:16:30,816 — Current best solution: Iteration: 3 — Run: 48/50 — Best parameters: [1 1 0 1 0 0 0 1 0 1 1 0 1 1] — Best parameters fitness: 0.7739744391087708 — Duration: None
+WARNING — 2022-03-03 00:00:12,459 — Current best solution: Iteration: 4 — Run: 48/50 — Best parameters: [0 0 1 1 0 0 0 0 0 0 0 0 0 1] — Best parameters fitness: 0.7118434957472786 — Duration: None
+WARNING — 2022-03-03 00:45:45,544 — Current best solution: Iteration: 5 — Run: 48/50 — Best parameters: [0 0 0 1 0 1 0 1 0 1 1 1 1 0] — Best parameters fitness: 0.7218745335334291 — Duration: None
+WARNING — 2022-03-03 01:11:00,915 — Current best solution: Iteration: 6 — Run: 48/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.853168492284568 — Duration: None
+WARNING — 2022-03-03 01:24:13,799 — Current best solution: Iteration: 7 — Run: 48/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.853168492284568 — Duration: None
+WARNING — 2022-03-03 01:35:59,771 — Current best solution: Iteration: 8 — Run: 48/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.853168492284568 — Duration: None
+WARNING — 2022-03-03 01:40:27,032 — Current best solution: Iteration: 9 — Run: 48/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.853168492284568 — Duration: None
+WARNING — 2022-03-03 01:47:54,680 — Current best solution: Iteration: 10 — Run: 48/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.853168492284568 — Duration: None
+WARNING — 2022-03-03 02:02:05,901 — Current best solution: Iteration: 11 — Run: 48/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.853168492284568 — Duration: None
+WARNING — 2022-03-03 02:02:05,901 — Current best solution: Iteration: 12 — Run: 48/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.853168492284568 — Duration: None
+WARNING — 2022-03-03 02:03:04,810 — Current best solution: Iteration: 13 — Run: 48/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.853168492284568 — Duration: None
+WARNING — 2022-03-03 02:03:04,810 — Current best solution: Iteration: 14 — Run: 48/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.853168492284568 — Duration: None
+WARNING — 2022-03-03 02:03:04,826 — Current best solution: Iteration: 15 — Run: 48/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.853168492284568 — Duration: None
+INFO — 2022-03-03 02:03:04,826 — **** Finishing the GA ****: Iteration: None — Run: 48/50 — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.853168492284568 — Duration: 23056.065113067627
+INFO — 2022-03-03 02:03:04,826 — **** Starting the GA ****: Iteration: None — Run: 49/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-03-03 03:33:31,918 — Current best solution: Iteration: 1 — Run: 49/50 — Best parameters: [0 0 0 1 1 0 1 1 1 1 1 0 0 0] — Best parameters fitness: 0.6936832563213964 — Duration: None
+WARNING — 2022-03-03 04:13:07,503 — Current best solution: Iteration: 2 — Run: 49/50 — Best parameters: [0 0 1 1 1 0 1 0 0 1 0 1 0 1] — Best parameters fitness: 0.7051833868347921 — Duration: None
+WARNING — 2022-03-03 04:33:55,660 — Current best solution: Iteration: 3 — Run: 49/50 — Best parameters: [0 0 1 1 1 0 1 0 0 1 0 0 0 1] — Best parameters fitness: 0.7686963921122021 — Duration: None
+WARNING — 2022-03-03 05:07:09,956 — Current best solution: Iteration: 4 — Run: 49/50 — Best parameters: [0 0 0 1 1 0 1 1 1 1 0 0 0 0] — Best parameters fitness: 0.7028795643653749 — Duration: None
+WARNING — 2022-03-03 05:18:48,881 — Current best solution: Iteration: 5 — Run: 49/50 — Best parameters: [0 0 0 1 0 0 1 1 1 1 0 1 0 0] — Best parameters fitness: 0.7192321706709366 — Duration: None
+WARNING — 2022-03-03 05:31:16,694 — Current best solution: Iteration: 6 — Run: 49/50 — Best parameters: [0 0 0 1 0 0 1 1 1 0 0 1 0 0] — Best parameters fitness: 0.7507706872307286 — Duration: None
+WARNING — 2022-03-03 05:38:34,408 — Current best solution: Iteration: 7 — Run: 49/50 — Best parameters: [0 0 0 0 0 1 1 0 1 0 0 0 0 0] — Best parameters fitness: 0.7444829083176869 — Duration: None
+WARNING — 2022-03-03 05:44:50,127 — Current best solution: Iteration: 8 — Run: 49/50 — Best parameters: [0 0 0 1 0 0 1 1 1 0 0 1 0 0] — Best parameters fitness: 0.762426980772833 — Duration: None
+WARNING — 2022-03-03 05:50:28,703 — Current best solution: Iteration: 9 — Run: 49/50 — Best parameters: [0 0 0 1 0 0 1 1 1 0 0 1 0 0] — Best parameters fitness: 0.762426980772833 — Duration: None
+WARNING — 2022-03-03 05:57:40,564 — Current best solution: Iteration: 10 — Run: 49/50 — Best parameters: [0 0 0 1 0 1 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.7845959260627803 — Duration: None
+WARNING — 2022-03-03 06:01:22,495 — Current best solution: Iteration: 11 — Run: 49/50 — Best parameters: [0 0 0 1 0 1 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.7845959260627803 — Duration: None
+WARNING — 2022-03-03 06:05:38,572 — Current best solution: Iteration: 12 — Run: 49/50 — Best parameters: [0 0 0 1 0 1 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.7845959260627803 — Duration: None
+WARNING — 2022-03-03 06:06:49,247 — Current best solution: Iteration: 13 — Run: 49/50 — Best parameters: [0 0 0 1 0 1 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.7845959260627803 — Duration: None
+WARNING — 2022-03-03 06:07:42,373 — Current best solution: Iteration: 14 — Run: 49/50 — Best parameters: [0 0 0 1 0 1 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.7845959260627803 — Duration: None
+WARNING — 2022-03-03 06:07:42,373 — Current best solution: Iteration: 15 — Run: 49/50 — Best parameters: [0 0 0 1 0 1 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.7845959260627803 — Duration: None
+WARNING — 2022-03-03 06:07:42,373 — Current best solution: Iteration: 16 — Run: 49/50 — Best parameters: [0 0 0 1 0 1 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.7845959260627803 — Duration: None
+WARNING — 2022-03-03 06:08:17,235 — Current best solution: Iteration: 17 — Run: 49/50 — Best parameters: [0 0 0 1 0 1 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.7845959260627803 — Duration: None
+WARNING — 2022-03-03 06:10:23,578 — Current best solution: Iteration: 18 — Run: 49/50 — Best parameters: [0 0 0 1 0 1 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.7845959260627803 — Duration: None
+WARNING — 2022-03-03 06:12:55,988 — Current best solution: Iteration: 19 — Run: 49/50 — Best parameters: [0 0 0 1 0 1 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.7845959260627803 — Duration: None
+INFO — 2022-03-03 06:15:08,824 — **** Finishing the GA ****: Iteration: None — Run: 49/50 — Best parameters: [0 0 0 1 0 1 0 1 1 0 0 1 0 0] — Best parameters fitness: 0.7845959260627803 — Duration: 15053.181827306747
+INFO — 2022-03-03 06:15:08,824 — **** Starting the GA ****: Iteration: None — Run: 50/50 — Best parameters: None — Best parameters fitness: None — Duration: None
+WARNING — 2022-03-03 07:30:29,152 — Current best solution: Iteration: 1 — Run: 50/50 — Best parameters: [0 0 0 1 1 0 0 1 1 0 0 0 0 0] — Best parameters fitness: 0.8396826778550689 — Duration: None
+WARNING — 2022-03-03 08:46:13,474 — Current best solution: Iteration: 2 — Run: 50/50 — Best parameters: [1 0 1 0 0 0 0 1 1 1 0 0 0 1] — Best parameters fitness: 0.8073489800723785 — Duration: None
+WARNING — 2022-03-03 09:31:44,099 — Current best solution: Iteration: 3 — Run: 50/50 — Best parameters: [1 0 1 0 0 0 0 1 1 1 0 0 0 1] — Best parameters fitness: 0.8073489800723785 — Duration: None
+WARNING — 2022-03-03 09:59:06,216 — Current best solution: Iteration: 4 — Run: 50/50 — Best parameters: [1 0 1 0 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.677308511358665 — Duration: None
+WARNING — 2022-03-03 10:32:28,120 — Current best solution: Iteration: 5 — Run: 50/50 — Best parameters: [1 0 1 0 0 0 0 1 1 1 0 0 0 1] — Best parameters fitness: 0.7985426188514939 — Duration: None
+WARNING — 2022-03-03 11:18:53,391 — Current best solution: Iteration: 6 — Run: 50/50 — Best parameters: [1 0 1 0 0 0 0 1 1 1 0 0 0 1] — Best parameters fitness: 0.7056658623346186 — Duration: None
+WARNING — 2022-03-03 12:04:49,121 — Current best solution: Iteration: 7 — Run: 50/50 — Best parameters: [1 0 1 0 0 0 0 0 0 0 0 0 1 0] — Best parameters fitness: 0.8489896073576424 — Duration: None
+WARNING — 2022-03-03 12:14:04,961 — Current best solution: Iteration: 8 — Run: 50/50 — Best parameters: [1 0 1 0 0 0 0 1 0 1 0 0 0 1] — Best parameters fitness: 0.8698060019622663 — Duration: None
+WARNING — 2022-03-03 12:25:53,848 — Current best solution: Iteration: 9 — Run: 50/50 — Best parameters: [1 0 1 0 0 0 0 1 0 1 0 0 0 1] — Best parameters fitness: 0.8698060019622663 — Duration: None
+WARNING — 2022-03-03 12:29:24,935 — Current best solution: Iteration: 10 — Run: 50/50 — Best parameters: [1 0 1 0 0 0 0 1 0 1 0 0 0 1] — Best parameters fitness: 0.8698060019622663 — Duration: None
+WARNING — 2022-03-03 12:56:57,512 — Current best solution: Iteration: 11 — Run: 50/50 — Best parameters: [1 0 1 0 0 0 0 1 0 0 0 0 1 1] — Best parameters fitness: 0.8709589263807498 — Duration: None
+WARNING — 2022-03-03 13:24:34,064 — Current best solution: Iteration: 12 — Run: 50/50 — Best parameters: [1 0 1 0 0 0 0 1 0 1 0 0 0 1] — Best parameters fitness: 0.8698060019622663 — Duration: None
+WARNING — 2022-03-03 13:51:29,209 — Current best solution: Iteration: 13 — Run: 50/50 — Best parameters: [1 0 1 0 0 0 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.8706281110899403 — Duration: None
+WARNING — 2022-03-03 13:58:02,454 — Current best solution: Iteration: 14 — Run: 50/50 — Best parameters: [1 0 1 0 0 0 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.8706281110899403 — Duration: None
+WARNING — 2022-03-03 14:04:48,926 — Current best solution: Iteration: 15 — Run: 50/50 — Best parameters: [1 0 1 0 0 0 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.8706281110899403 — Duration: None
+WARNING — 2022-03-03 14:05:45,080 — Current best solution: Iteration: 16 — Run: 50/50 — Best parameters: [1 0 1 0 0 0 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.8706281110899403 — Duration: None
+WARNING — 2022-03-03 14:13:19,116 — Current best solution: Iteration: 17 — Run: 50/50 — Best parameters: [1 0 1 0 0 0 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.8706281110899403 — Duration: None
+WARNING — 2022-03-03 14:14:20,680 — Current best solution: Iteration: 18 — Run: 50/50 — Best parameters: [1 0 1 0 0 0 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.8706281110899403 — Duration: None
+WARNING — 2022-03-03 14:20:17,097 — Current best solution: Iteration: 19 — Run: 50/50 — Best parameters: [1 0 1 0 0 0 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.8706281110899403 — Duration: None
+WARNING — 2022-03-03 14:32:09,754 — Current best solution: Iteration: 20 — Run: 50/50 — Best parameters: [1 0 1 0 0 0 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.8706281110899403 — Duration: None
+WARNING — 2022-03-03 14:33:16,612 — Current best solution: Iteration: 21 — Run: 50/50 — Best parameters: [1 0 1 0 0 0 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.8706281110899403 — Duration: None
+WARNING — 2022-03-03 14:33:16,612 — Current best solution: Iteration: 22 — Run: 50/50 — Best parameters: [1 0 1 0 0 0 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.8706281110899403 — Duration: None
+INFO — 2022-03-03 14:33:16,612 — **** Finishing the GA ****: Iteration: None — Run: 50/50 — Best parameters: [1 0 1 0 0 0 0 1 0 1 0 0 1 1] — Best parameters fitness: 0.8706281110899403 — Duration: 29887.788692235947
+INFO — 2022-03-03 14:33:16,612 — **** Best solution of the GA ****: Iteration: None — Run: None/None — Best parameters: [0 0 1 1 0 0 0 1 0 0 0 0 0 1] — Best parameters fitness: 0.890987061646506 — Duration: 10610.449722290039
