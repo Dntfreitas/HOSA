@@ -20,7 +20,7 @@ clf.fit(max_n_subs_layers=5, show_progress=True, verbose=0, shuffle=False,
 end = time.time()
 duration = end - start
 # Compute fitness
-solution_fitness_best_global = clf.score(x_train, x_test)
+solution_fitness_best_global = clf.score(x_test, y_test)
 # Extract the parameters
 best_parameters = clf.get_params()
 timesteps = best_parameters['timesteps']
@@ -35,4 +35,4 @@ solution_best_global = encode(timesteps, n_units, n_subs_layers, is_bidirectiona
                               overlapping_type, overlapping_epochs, n_neurons_dense_layer)
 # Log the information
 d = format_log(None, None, None, solution_fitness_best_global, solution_best_global, duration)
-logging.info('**** Best solution of the grid search ****', extra=d)
+logging.info('**** Best solution of HOSA ****', extra=d)
