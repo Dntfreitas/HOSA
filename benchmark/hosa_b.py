@@ -6,11 +6,6 @@ from utils import *
 # Load the data
 x_train, y_train, x_test, y_test = prepare_data()
 
-x_train = x_train[:100]
-y_train = y_train[:100]
-x_test = x_test[:100]
-y_test = y_test[:100]
-
 # Start HOSA
 del (param_grid['n_subs_layers'])
 clf = HOSARNN(x_train, y_train, RNNClassification, 2, param_grid, 0.01, apply_rsv=False, log_path='logs/hosa.log')
