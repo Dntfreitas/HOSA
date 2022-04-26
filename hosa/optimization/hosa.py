@@ -2,6 +2,8 @@
 Utilities for implementing the HOSA.
 """
 import abc
+import logging
+import time
 
 import numpy as np
 from sklearn.model_selection import ShuffleSplit
@@ -9,6 +11,7 @@ from tqdm import tqdm
 
 from hosa.helpers.functions import create_parameter_grid, create_overlapping, \
     prepare_param_overlapping
+from hosa.helpers.log import FORMAT, format_log
 
 
 class BaseHOSA:
@@ -42,7 +45,8 @@ class BaseHOSA:
             **Ignored if ``apply_rsv = False``**.
     """
 
-    def __init__(self, x, y, model, n_outputs, parameters, tr, apply_rsv=True, validation_size=.25,
+    def __init__(self, x, y, model, n_outputs, parameters, tr, log_path=None, apply_rsv=True,
+                 validation_size=.25,
                  n_splits=10):
         self.x = x
         self.y = y
@@ -53,7 +57,12 @@ class BaseHOSA:
         self.apply_rsv = apply_rsv
         self.validation_size = validation_size
         self.n_splits = n_splits
-
+        # Create log if required
+        if log_path:
+            self.log_required = True
+            logging.basicConfig(level=logging.DEBUG, filename=log_path, filemode='w', format=FORMAT)
+        else:
+            self.log_required = False
         # Check the type of the model
         self.is_cnn = 'CNNRegression' in str(self.model) or 'CNNClassification' in str(self.model)
         self.is_rnn = 'RNNRegression' in str(self.model) or 'RNNClassification' in str(self.model)
@@ -244,7 +253,7 @@ class BaseHOSA:
         Returns:
             dict: Parameter names mapped to their values.
         """
-        return self.best_specification
+        return self.best_specificationbest_specification
 
     def get_model(self):
         """
@@ -296,6 +305,11 @@ class BaseHOSA:
         x, y = create_overlapping(x, y, self.best_model, overlapping_epochs, overlapping_type,
                                   n_stride=stride, n_timesteps=timesteps)
         return self.best_model.score(x, y, **kwargs)
+
+    def log(self, message, iteration, best_metric, best_specification, duration):
+        if self.log_required:
+            extra = format_log(iteration, best_metric, best_specification, duration)
+            logging.info(message, exc_info=True, extra=extra)
 
     @abc.abstractmethod
     def fit(self, **kwargs):
@@ -368,10 +382,10 @@ class HOSACNN(BaseHOSA):
             score = regr.score(X_test, y_test)
     """
 
-    def __init__(self, x, y, model, n_outputs, parameters, tr, apply_rsv=True, validation_size=.25,
+    def __init__(self, x, y, model, n_outputs, parameters, tr, log_path=None, apply_rsv=True, validation_size=.25,
                  n_splits=10):
         self.required_parameters = ['n_kernels_first_gol', 'mults']
-        super().__init__(x, y, model, n_outputs, parameters, tr, apply_rsv, validation_size,
+        super().__init__(x, y, model, n_outputs, parameters, tr, log_path, apply_rsv, validation_size,
                          n_splits)
         self.n_kernels_first_gol = self.parameters[0]['n_kernels_first_gol']
         self.mults = self.parameters[0]['mults']
@@ -399,16 +413,18 @@ class HOSACNN(BaseHOSA):
         """
         # Initalize variables
         best_metric = self.initial_metric_value
-        best_model = best_specification = None
+        best_model = None
         k_construction_size = []
         stop = False
+        iteration = 0
+        start = time.time()
         # Show progess bar?
         with tqdm(total=max_gol_sizes, disable=not show_progress, colour='green') as pbar_all:
             # Perform optimization
             while len(k_construction_size) < max_gol_sizes and not stop:
                 # Inicialize the best current metric for comparing with the best metric found
                 best_metric_current = self.initial_metric_value
-                best_model_current = best_specification_current = None
+                best_model_current = None
                 # If there is just one GofL
                 if len(k_construction_size) == 0:
                     n_kernels_test = np.array(self.n_kernels_first_gol).reshape(
@@ -427,32 +443,39 @@ class HOSACNN(BaseHOSA):
                     if self.compare_function(metric, best_metric_current):
                         best_model_current = model
                         best_metric_current = metric
-                        best_specification_current = specification
+                        # Log information
+                        self.log('New solution found. Updating current best metric.', iteration, best_metric_current, model.__dict__(), None)
                 # Check the stopping criterion
                 if self.stop_check(best_metric_current, best_metric):
-                    if self.compare_function(best_metric_current, best_metric):
-                        self.best_model = best_model_current
-                        self.best_metric = best_metric_current
-                        self.best_specification = best_specification_current
-                    else:
-                        self.best_model = best_model
-                        self.best_metric = best_metric
-                        self.best_specification = best_specification
                     stop = True
+                    if self.compare_function(best_metric_current, best_metric):
+                        best_model = best_model_current
+                        best_metric = best_metric_current
+                    else:
+                        best_model = best_model
+                        best_metric = best_metric
                 else:
                     best_model = best_model_current
                     best_metric = best_metric_current
-                    best_specification = best_specification_current
                     k_construction_size.append(best_model.n_kernels[-1])
-                # Update progress bar
-                best_specification_complete = best_model.__dict__()
-                pbar_all.set_postfix(n_goflayers=len(best_specification_complete['n_kernels']),
-                                     no_kernels=best_specification_complete['n_kernels'])
-                pbar_all.update(1)
-        best_specification.update(self.best_model.__dict__())
+                    # Log information
+                    self.log('Adding one GofLayers to the model.', None, best_metric, best_model.__dict__(), None)
+                    # Update progress bar
+                    best_specification_complete = best_model.__dict__()
+                    pbar_all.set_postfix(n_goflayers=len(best_specification_complete['n_kernels']),
+                                         no_kernels=best_specification_complete['n_kernels'])
+                    pbar_all.update(1)
+        end = time.time()
         self.best_model = best_model
         self.best_metric = best_metric
-        self.best_specification = best_specification
+        self.best_specification = best_model.__dict__()
+        # Log information
+        if stop:
+            message = 'Stopping HOSA execution because the stop criterion was met.'
+        else:
+            message = 'HOSA finished.'
+        # Log information
+        self.log(message, iteration, self.best_metric, self.best_specification, end - start)
         return self.best_model, self.best_metric, self.best_specification
 
 
@@ -519,10 +542,10 @@ class HOSARNN(BaseHOSA):
             score = clf.score(X_test, y_test)
     """
 
-    def __init__(self, x, y, model, n_outputs, parameters, tr, apply_rsv=True, validation_size=.25,
+    def __init__(self, x, y, model, n_outputs, parameters, tr, log_path=None, apply_rsv=True, validation_size=.25,
                  n_splits=10):
         self.required_parameters = ['n_units', 'mults']
-        super().__init__(x, y, model, n_outputs, parameters, tr, apply_rsv, validation_size,
+        super().__init__(x, y, model, n_outputs, parameters, tr, log_path, apply_rsv, validation_size,
                          n_splits)
         self.n_units = self.parameters[0]['n_units']
         self.mults = self.parameters[0]['mults']
@@ -549,16 +572,18 @@ class HOSARNN(BaseHOSA):
         """
         # Initalize variables
         best_metric = self.initial_metric_value
-        best_model = best_specification = None
+        best_model = None
         n_subs_layers_construction = 1
         stop = False
+        iteration = 0
+        start = time.time()
         # Show progess bar?
         with tqdm(total=max_n_subs_layers, disable=not show_progress, colour='green') as pbar_all:
             # Perform optimization
             while n_subs_layers_construction < max_n_subs_layers and not stop:
                 # Inicialize the best current metric for comparing with the best metric found
                 best_metric_current = self.initial_metric_value
-                best_model_current = best_specification_current = None
+                best_model_current = None
                 # Test each number of hidden units
                 for n_units in self.n_units:
                     # Test each number of units in the dense layer
@@ -574,31 +599,39 @@ class HOSARNN(BaseHOSA):
                         if self.compare_function(metric, best_metric_current):
                             best_model_current = model
                             best_metric_current = metric
-                            best_specification_current = specification
+                            # Log information
+                            self.log('New solution found. Updating current best metric.', iteration, best_metric_current, model.__dict__(), None)
                 # Check the stopping criterion
                 if self.stop_check(best_metric_current, best_metric):
-                    if self.compare_function(best_metric_current, best_metric):
-                        self.best_model = best_model_current
-                        self.best_metric = best_metric_current
-                        self.best_specification = best_specification_current
-                    else:
-                        self.best_model = best_model
-                        self.best_metric = best_metric
-                        self.best_specification = best_specification
                     stop = True
+                    if self.compare_function(best_metric_current, best_metric):
+                        best_model = best_model_current
+                        best_metric = best_metric_current
+                    else:
+                        best_model = best_model
+                        best_metric = best_metric
                 else:
                     best_model = best_model_current
                     best_metric = best_metric_current
-                    best_specification = best_specification_current
                     n_subs_layers_construction = n_subs_layers_construction + 1
-                # Update progress bar
-                best_specification_complete = best_model.__dict__()
-                pbar_all.set_postfix(n_subs_layers=best_specification_complete['n_subs_layers'],
-                                     n_units=best_specification_complete['n_units'],
-                                     n_hidden_dense=best_specification_complete[
-                                         'n_neurons_dense_layer'])
-                pbar_all.update(1)
+                    # Log information
+                    self.log('Adding one subsequent layer to the model.', None, best_metric, best_model.__dict__(), None)
+                    # Update progress bar
+                    best_specification_complete = best_model.__dict__()
+                    pbar_all.set_postfix(n_subs_layers=best_specification_complete['n_subs_layers'],
+                                         n_units=best_specification_complete['n_units'],
+                                         n_hidden_dense=best_specification_complete[
+                                             'n_neurons_dense_layer'])
+                    pbar_all.update(1)
+        end = time.time()
         self.best_model = best_model
         self.best_metric = best_metric
-        self.best_specification = best_specification
+        self.best_specification = best_model.__dict__()
+        # Log information
+        if stop:
+            message = 'Stopping HOSA execution because the stop criterion was met.'
+        else:
+            message = 'HOSA finished.'
+        # Log information
+        self.log(message, iteration, self.best_metric, self.best_specification, end - start)
         return self.best_model, self.best_metric, self.best_specification

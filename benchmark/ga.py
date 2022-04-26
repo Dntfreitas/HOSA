@@ -5,7 +5,7 @@ import pygad
 
 from utils import *
 
-logging.basicConfig(level=logging.INFO, filename='ga.log', filemode='w', format=FORMAT)
+logging.basicConfig(level=logging.INFO, filename='logs/ga.py', filemode='w', format=FORMAT)
 
 
 def two_points_crossover(parents):

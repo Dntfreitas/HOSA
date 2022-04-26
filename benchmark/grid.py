@@ -5,7 +5,7 @@ from sklearn.model_selection import ParameterGrid
 
 from utils import *
 
-logging.basicConfig(level=logging.INFO, filename='grid.log', filemode='w', format=FORMAT)
+logging.basicConfig(level=logging.INFO, filename='logs/grid.log', filemode='w', format=FORMAT)
 
 # Load the data
 prepare_data()
