@@ -60,7 +60,7 @@ class BaseHOSA:
         # Create log if required
         if log_path:
             self.log_required = True
-            logging.basicConfig(level=logging.DEBUG, filename=log_path, filemode='w', format=FORMAT)
+            logging.basicConfig(level=logging.INFO, filename=log_path, filemode='w', format=FORMAT)
         else:
             self.log_required = False
         # Check the type of the model
@@ -438,6 +438,7 @@ class HOSACNN(BaseHOSA):
                     # Run grid search
                     specification, model, metric = self.grid_search(n_kernel, imbalance_correction,
                                                                     **kwargs)
+                    iteration = iteration + 1
                     # Compare with the current metrics, and update the current best values if
                     # necessary
                     if self.compare_function(metric, best_metric_current):
@@ -593,7 +594,7 @@ class HOSARNN(BaseHOSA):
                                 n_neurons_dense_layer=np.floor(n_units * mult), n_units=n_units,
                                 n_subs_layers=n_subs_layers_construction,
                                 imbalance_correction=imbalance_correction, **kwargs)
-                        # is not retunr n_subs_layers
+                        iteration = iteration + 1
                         # Compare with the current metrics, and update the current best values if
                         # necessary
                         if self.compare_function(metric, best_metric_current):
