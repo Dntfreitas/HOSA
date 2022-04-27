@@ -413,7 +413,7 @@ class HOSACNN(BaseHOSA):
         """
         # Initalize variables
         best_metric = self.initial_metric_value
-        best_model = None
+        best_model = best_specification_hosa = None
         k_construction_size = []
         stop = False
         iteration = 0
@@ -424,7 +424,7 @@ class HOSACNN(BaseHOSA):
             while len(k_construction_size) < max_gol_sizes and not stop:
                 # Inicialize the best current metric for comparing with the best metric found
                 best_metric_current = self.initial_metric_value
-                best_model_current = None
+                best_model_current = best_specification_hosa_current = None
                 # If there is just one GofL
                 if len(k_construction_size) == 0:
                     n_kernels_test = np.array(self.n_kernels_first_gol).reshape(
@@ -444,6 +444,7 @@ class HOSACNN(BaseHOSA):
                     if self.compare_function(metric, best_metric_current):
                         best_model_current = model
                         best_metric_current = metric
+                        best_specification_hosa_current = specification
                         # Log information
                         self.log('New solution found. Updating current best metric.', iteration, best_metric_current, model.__dict__(), None)
                 # Check the stopping criterion
@@ -452,12 +453,15 @@ class HOSACNN(BaseHOSA):
                     if self.compare_function(best_metric_current, best_metric):
                         best_model = best_model_current
                         best_metric = best_metric_current
+                        best_specification_hosa = best_specification_hosa_current
                     else:
                         best_model = best_model
                         best_metric = best_metric
+                        best_specification_hosa = best_specification_hosa
                 else:
                     best_model = best_model_current
                     best_metric = best_metric_current
+                    best_specification_hosa = best_specification_hosa_current
                     k_construction_size.append(best_model.n_kernels[-1])
                     # Log information
                     self.log('Adding one GofLayers to the model.', None, best_metric, best_model.__dict__(), None)
@@ -469,7 +473,7 @@ class HOSACNN(BaseHOSA):
         end = time.time()
         self.best_model = best_model
         self.best_metric = best_metric
-        self.best_specification = best_model.__dict__()
+        self.best_specification = best_model.__dict__().update(best_specification_hosa)
         # Log information
         if stop:
             message = 'Stopping HOSA execution because the stop criterion was met.'
@@ -573,7 +577,7 @@ class HOSARNN(BaseHOSA):
         """
         # Initalize variables
         best_metric = self.initial_metric_value
-        best_model = None
+        best_model = best_specification_hosa = None
         n_subs_layers_construction = 1
         stop = False
         iteration = 0
@@ -584,7 +588,7 @@ class HOSARNN(BaseHOSA):
             while n_subs_layers_construction < max_n_subs_layers and not stop:
                 # Inicialize the best current metric for comparing with the best metric found
                 best_metric_current = self.initial_metric_value
-                best_model_current = None
+                best_model_current = best_specification_hosa_current = None
                 # Test each number of hidden units
                 for n_units in self.n_units:
                     # Test each number of units in the dense layer
@@ -600,6 +604,7 @@ class HOSARNN(BaseHOSA):
                         if self.compare_function(metric, best_metric_current):
                             best_model_current = model
                             best_metric_current = metric
+                            best_specification_hosa_current = specification
                             # Log information
                             self.log('New solution found. Updating current best metric.', iteration, best_metric_current, model.__dict__(), None)
                 # Check the stopping criterion
@@ -608,12 +613,15 @@ class HOSARNN(BaseHOSA):
                     if self.compare_function(best_metric_current, best_metric):
                         best_model = best_model_current
                         best_metric = best_metric_current
+                        best_specification_hosa = best_specification_hosa_current
                     else:
                         best_model = best_model
                         best_metric = best_metric
+                        best_specification_hosa = best_specification_hosa
                 else:
                     best_model = best_model_current
                     best_metric = best_metric_current
+                    best_specification_hosa = best_specification_hosa_current
                     n_subs_layers_construction = n_subs_layers_construction + 1
                     # Log information
                     self.log('Adding one subsequent layer to the model.', None, best_metric, best_model.__dict__(), None)
@@ -627,7 +635,7 @@ class HOSARNN(BaseHOSA):
         end = time.time()
         self.best_model = best_model
         self.best_metric = best_metric
-        self.best_specification = best_model.__dict__()
+        self.best_specification = best_model.__dict__().update(best_specification_hosa)
         # Log information
         if stop:
             message = 'Stopping HOSA execution because the stop criterion was met.'
