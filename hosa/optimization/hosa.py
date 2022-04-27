@@ -473,7 +473,8 @@ class HOSACNN(BaseHOSA):
         end = time.time()
         self.best_model = best_model
         self.best_metric = best_metric
-        self.best_specification = best_model.__dict__().update(best_specification_hosa)
+        self.best_specification = best_model.__dict__()
+        self.best_specification.update(best_specification_hosa)  # Adds the HOSA parameters
         # Log information
         if stop:
             message = 'Stopping HOSA execution because the stop criterion was met.'
