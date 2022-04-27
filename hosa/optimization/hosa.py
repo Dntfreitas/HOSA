@@ -253,7 +253,7 @@ class BaseHOSA:
         Returns:
             dict: Parameter names mapped to their values.
         """
-        return self.best_specificationbest_specification
+        return self.best_specification
 
     def get_model(self):
         """
